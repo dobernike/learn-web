@@ -245,9 +245,111 @@ header .button {
 }
 .main_cats {
   background-color: #121212;
-  padding: 40px 0 32px;
+  padding: 20px 0 32px;
 }
 .main_cats h2 {
   text-transform: uppercase;
+  color: #c9c9c9;
+  font-family: "BebasRegular";
+  font-size: 40px;
+  text-align: center;
+}
+.main_cats h2 strong {
   color: #fff;
+}
+.main_cats h2 span {
+  color: #d12f22;
+}
+section h2 {
+  position: relative;
+}
+.s_black h2::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  background-image: url(../img/heder.png);
+  top: 20px;
+  margin-left: -70px;
+}
+
+.s_black h2::after {
+  background-image: url(../img/heder.png);
+  background-position: -50px 0;
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  top: 20px;
+  margin-left: 22px;
+}
+.mc_item {
+  border: #323232 1px solid;
+  border-radius: 2px;
+}
+.mc_item_wrap {
+  margin-left: 30px;
+  width: 160px;
+  display: inline-block;
+  text-align: center;
+}
+.mc_item_wrap:nth-child(1) {
+  margin-left: 0;
+}
+.mc_wrap {
+  text-align: center;
+  padding: 0;
+}
+.mc_item_wrap a {
+  color: #fff;
+}
+.mc_item span {
+  display: block;
+  height: 85px;
+  width: 124px;
+  background-image: url(../img/cats_iconset.png);
+  margin: 15px auto 0;
+}
+
+.mc_item_wrap:nth-child(1) span {
+  background-position: 8px 0;
+}
+.mc_item_wrap:nth-child(2) span {
+  background-position: -120px 0;
+}
+.mc_item_wrap:nth-child(3) span {
+  background-position: -245px 0;
+}
+.mc_item_wrap:nth-child(4) span {
+  background-position: -370px 0;
+}
+.mc_item_wrap:nth-child(5) span {
+  background-position: -495px 0;
+}
+.mc_item_wrap:nth-child(6) span {
+  background-position: -620px 0;
+}
+.mc_item h4 {
+  font-weight: normal;
+  font-family: "BebasBold";
+  font-size: 20px;
+  margin-top: 8px;
+}
+.mc_item a:hover h4,
+.mc_item_wrap.active h4 {
+  text-decoration: underline;
+}
+.mc_item_wrap.active,
+.mc_item_wrap:hover {
+  background-color: #252525;
+}
+.mc_toggle {
+  background-color: #1b1b1b;
+  height: 25px;
+  position: absolute;
+  bottom: 0;
+}
+.mc_item_wrap.active .mc_toggle,
+.mc_item_wrap:hover .mc_toggle {
+  background-color: #323232;
 }
