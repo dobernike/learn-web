@@ -19,12 +19,10 @@
 }
 
 body input:focus:required:invalid,
-body textarea:focus:required:invalid {
-}
+body textarea:focus:required:invalid {}
 
 body input:required:valid,
-body textarea:required:valid {
-}
+body textarea:required:valid {}
 
 body {
   font-family: "RobotoRegular", sans-serif;
@@ -79,6 +77,7 @@ header h1 {
   background-color: rgba(0, 0, 0, .6);
   padding: 22px 0;
 }
+
 .top_line a {
   font-size: 21px;
   border-bottom: #fff dashed 1px;
@@ -123,6 +122,7 @@ header h1 {
   width: 249px;
   margin: auto;
 }
+
 .ta_right span {
   color: #fff;
 }
@@ -144,15 +144,19 @@ header h1 {
   font-size: 20px;
   border-bottom: #c90e02 4px solid;
 }
+
 .button:hover {
   background-color: #ff4234;
 }
+
 .button:active {
   background-color: #990a00;
 }
+
 header .button {
   margin-right: 20px;
 }
+
 .st_button {
   line-height: 18px;
   padding-top: 7px;
@@ -162,11 +166,13 @@ header .button {
   background-repeat: no-repeat;
   background-position: 8px 8px;
 }
+
 .buttons_top {
   position: absolute;
   width: 100%;
   bottom: 33px;
 }
+
 .top_mnu {
   height: 68px;
   background-color: #1f1f1f;
@@ -175,11 +181,13 @@ header .button {
   font-family: "BebasRegular";
   text-transform: uppercase;
 }
+
 .top_mnu ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
+
 .top_mnu a {
   color: #fff;
   font-size: 20px;
@@ -191,6 +199,7 @@ header .button {
   background-repeat: no-repeat;
   background-position: 20px 22px;
 }
+
 .top_mnu li {
   float: left;
 }
@@ -199,21 +208,27 @@ header .button {
 .top_mnu li:hover {
   background-color: #010101;
 }
+
 .top_mnu li:nth-child(2) a {
   background-position: 20px -54px;
 }
+
 .top_mnu li:nth-child(3) a {
   background-position: 28px -132px;
 }
+
 .top_mnu li:nth-child(4) a {
   background-position: 20px -211px;
 }
+
 .top_mnu li:nth-child(5) a {
   background-position: 20px -302px;
 }
+
 .top_mnu li:nth-child(6) a {
   background-position: 25px -380px;
 }
+
 .waranty {
   float: right;
   color: #fff;
@@ -225,28 +240,34 @@ header .button {
   line-height: 16px;
   margin-top: 12px;
 }
+
 .w_left,
 .w_right {
   display: inline-block;
   vertical-align: top;
 }
+
 .w_left {
   font-family: "BebasBold";
   font-size: 20px;
   margin-top: 10px;
   margin-right: 7px;
 }
+
 .w_left span {
   font-size: 33px;
   font-family: "BebasBold";
 }
+
 .w_right {
   font-family: "RobotoCondensedRegular";
 }
+
 .main_cats {
   background-color: #121212;
   padding: 20px 0 32px;
 }
+
 .main_cats h2 {
   text-transform: uppercase;
   color: #c9c9c9;
@@ -254,15 +275,19 @@ header .button {
   font-size: 40px;
   text-align: center;
 }
+
 .main_cats h2 strong {
   color: #fff;
 }
+
 .main_cats h2 span {
   color: #d12f22;
 }
+
 section h2 {
   position: relative;
 }
+
 .s_black h2::before {
   content: "";
   position: absolute;
@@ -283,26 +308,33 @@ section h2 {
   top: 20px;
   margin-left: 22px;
 }
+
 .mc_item {
   border: #323232 1px solid;
   border-radius: 2px;
 }
+
 .mc_item_wrap {
   margin-left: 30px;
   width: 160px;
   display: inline-block;
   text-align: center;
 }
+
 .mc_item_wrap:nth-child(1) {
   margin-left: 0;
 }
+
 .mc_wrap {
   text-align: center;
   padding: 0;
+  position: relative;
 }
+
 .mc_item_wrap a {
   color: #fff;
 }
+
 .mc_item span {
   display: block;
   height: 85px;
@@ -314,42 +346,86 @@ section h2 {
 .mc_item_wrap:nth-child(1) span {
   background-position: 8px 0;
 }
+
 .mc_item_wrap:nth-child(2) span {
   background-position: -120px 0;
 }
+
 .mc_item_wrap:nth-child(3) span {
   background-position: -245px 0;
 }
+
 .mc_item_wrap:nth-child(4) span {
   background-position: -370px 0;
 }
+
 .mc_item_wrap:nth-child(5) span {
   background-position: -495px 0;
 }
+
 .mc_item_wrap:nth-child(6) span {
   background-position: -620px 0;
 }
+
 .mc_item h4 {
   font-weight: normal;
   font-family: "BebasBold";
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 5px;
+  margin-bottom: 8px;
 }
+
 .mc_item a:hover h4,
 .mc_item_wrap.active h4 {
   text-decoration: underline;
 }
+
 .mc_item_wrap.active,
 .mc_item_wrap:hover {
   background-color: #252525;
 }
+
 .mc_toggle {
-  background-color: #1b1b1b;
+  background-color: #1B1B1B;
   height: 25px;
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  cursor: pointer;
+  background-image: url(../img/mc_arr.png);
+  background-repeat: no-repeat;
+  background-position: -118px 10px;
 }
+
 .mc_item_wrap.active .mc_toggle,
 .mc_item_wrap:hover .mc_toggle {
   background-color: #323232;
+  background-position: 72px 10px;
+}
+
+.mc_item_wrap.active>ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body .mc_wrap .mc_item_wrap.active>ul {
+  position: absolute;
+  width: 100%;
+  margin-top: 25px;
+  font-size: 20px;
+  background-color: #323232;
+  padding: 0;
+}
+
+.mc_item_wrap.active>ul li {
+  font-family: BebasRegular;
+  display: inline-block;
+}
+
+.mc_item_wrap.active>ul li a {
+  padding: 0px 10px;
+  text-decoration: underline;
+}
+
+.mc_item_wrap.active>ul li a:hover {
+  text-decoration: none;
 }
