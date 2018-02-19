@@ -413,7 +413,7 @@ body .mc_wrap .mc_item_wrap.active>ul {
   margin-top: 25px;
   font-size: 20px;
   background-color: #323232;
-  padding: 0;
+  padding: 15px 0;
 }
 
 .mc_item_wrap.active>ul li {
