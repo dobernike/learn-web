@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>chapter 7</title>
+
+    <script>
+        // var name = prompt('Как вас зовут?');
+        // console.log('Hello, '+ name);
+        // var likeCats = confirm('Тебе нравятся кошки?')
+        // if (likeCats){
+        //     alert('Ты кошечка!');
+        // } else if (!likeCats){
+        //     alert('Ты все равно молодец!');
+        // }
+        // #1. Больше слов Добавьте новые слова в массив words. Не забывайте, что все буквы должны быть строчными.
+        var words = ["программа", "макака", "прекрасный", "оладушек", 'сметана', 'майонез'];
+        var word = words[Math.floor(Math.random() * words.length)];
+        var answerArray = [];
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = '_';
+        }
+        var remainingLetters = word.length;
+        console.log(word);
+        console.log(answerArray);
+        var cnt = word.length + 5;
+        while (remainingLetters > 0 && cnt > 0) {
+            // #3. Ограничение по ходам Сейчас наша «Виселица» позволяет угадывать буквы сколько угодно раз, до победного конца. Добавьте в программу переменную для учета попыток и завершайте игру, если игрок израсходовал все попытки. 
+            alert(answerArray.join(" "));
+            var guess = prompt('Угадайте букву или нажмите отмену для выхода. У вас осталось ' + cnt + ' попыток.   ' +
+                answerArray.join(' '));
+            // #2. Заглавные буквы Если игрок введет заглавную букву, она не совпадет с такой же строчной буквой в загаданном слове. Эту вероятность можно учесть, преобразовав введенную букву в строчный регистр. 
+
+            if (guess == null) {
+                break;
+            } else if (guess.length !== 1) {
+                alert('Введите 1 букву');
+            } else {
+                guess = guess.toLowerCase()
+                cnt--;
+                for (var j = 0; j < word.length; j++) {
+                    // #4. Исправьте ошибку В игре есть ошибка: если вы будете снова и снова вводить одну и ту же букву, которая есть в загаданном слове, remainingLetters будет снова и снова уменьшаться. Постарайтесь это исправить! 
+                    if (word[j] === guess && word[j] != answerArray[j]) {
+                        answerArray[j] = guess;
+                        remainingLetters--;
+                    }
+                }
+            }
+        }
+        if (cnt === 0) {
+            alert(answerArray.join(' '));
+            alert('У вас закончились попытки! Загаданое слово было ' + word);
+        } else {
+            alert(answerArray.join(' '));
+            alert('Отлично! Было загадано слово ' + word);
+        }
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

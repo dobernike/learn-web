@@ -99,7 +99,11 @@
 // Подсказка: вам понадобится переприсвоить значения для каждого индекса, то есть присвоить новые значения уже существующим элементам. Например, сделать первое животное прекрасным можно так:
 // animals[0] = animals[0] + " - прекрасное животное";
 
-
+// var animals = ['Cat', 'Fish', 'Lemur', 'Varan'];
+// for (var i = 0; i<animals.length; i++){
+//     animals[i]+=" - beauty animal";
+// }
+// console.log(animals);
 
 // #2. Генератор случайных строк Напишите генератор случайных строк. Для этого вам понадобится строка со всеми буквами алфавита:
 // var alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
@@ -109,9 +113,78 @@
 //  Random string — случайная строка
 // Добавлять символ в конец строки можно с помощью оператора +=. После того как цикл закончит работу, выведите получившуюся строку в консоль, чтобы полюбоваться на свое творение!
 
-
+// var alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+// var randomString = "";
+// while(randomString.length<6){
+//  randomString+=alphabet[Math.floor(Math.random() * alphabet.length)];
+// }
+// console.log(randomString);
 
 // #3. h4ck3r sp34k Переведите англоязычный текст на «хакерский язык» (h4ck3r sp34k)! Многим в интернете нравится заменять некоторые буквы похожими на них числами — например, число «4» похоже на букву «A», «3» похоже на «E», «1» — на «I», а «0» — на «О». Хотя цифры напоминают скорее заглавные буквы, мы будем заменять ими буквы строчные. Чтобы перевести обычный текст на «хакерский язык», понадобится строка с исходным текстом и новая пустая строка для результата: 
 // var input = "javascript is awesome"; var output = "";
 // Теперь воспользуйтесь циклом for, чтобы перебрать все символы исходной строки. Встретив букву «a», добавьте к результирующей строке «4». Встретив «e», добавьте «3», встретив «i», добавьте «1», а встретив «o» — «0». В противном случае просто добавляйте к результату исходный символ. И снова оператор += отлично подойдет для добавления символа в конец строки. После завершения цикла выведите результирующую строку в консоль. Если программа работает верно, вы должны увидеть следующее: "j4v4scr1pt 1s 4w3s0m3".
- 
+
+// var input = "javascript is awesome"; 
+// var output = "";
+// for (var i = 0; i<input.length; i++){
+// if (input[i] == 'a'){
+//     output += 4;
+// } else if (input[i] == 'e'){
+//     output += 3;
+// } else if (input[i] == 'i'){
+//     output += 1;
+// } else if (input[i] == 'o'){
+//     output += 0;
+// } else {
+// output += input[i];
+// }
+// }
+// console.log(output);
+
+// Глава 7 ПИШЕМ ИГРУ «ВИСЕЛИЦА»
+// in handman.html
+
+// Chapter 8 Function
+
+// var ourFirtsFunction = function () {
+//     console.log('Hello, world!');
+// };
+// ourFirtsFunction();
+
+// var sayHelloTo = function(name){
+//     console.log('Hello, ' + name + '!');
+// };
+// sayHelloTo('Paul');
+
+// function drawCats(howManyTimes){
+//     for (var i = 0; i< howManyTimes; i++){
+//         console.log('=^.^=');
+//     }
+// }
+// drawCats(100);
+
+// var printMultipleTimes = function(howManyTimes, whatToDraw){
+//     for (var i = 0; i<howManyTimes; i++){
+//         console.log(whatToDraw);
+//     }
+// };
+// printMultipleTimes(3, '=^-^=');
+
+// var double = function (number) {
+//     return number * 2;
+// };
+// console.log(double(3) + double(5));
+
+// var pickRandomWord = function(words){
+//     return words[Math.floor(Math.random() * words.length)];
+// };
+// var randomWords = ["Планета", "Червяк", "Цветок", "Компьютер"];
+// console.log(pickRandomWord(randomWords));
+
+// var randomBodyParts = ["глаз", "нос", "череп"]; 
+// var randomAdjectives = ["вонючая", "унылая", "дурацкая"]; 
+// var randomWords = ["муха", "выдра", "дубина", "мартышка", "крыса"]; 
+// var pickRandomWord = function(words){
+//     return words[Math.floor(Math.random() * words.length)];}
+//  var randomInsult = "У тебя " + pickRandomWord(randomBodyParts) + " словно " + pickRandomWord(randomAdjectives) + " " + pickRandomWord(randomWords) + "!!!"; 
+//  console.log(randomInsult);
