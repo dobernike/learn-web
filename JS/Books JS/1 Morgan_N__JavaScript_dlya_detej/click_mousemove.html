@@ -60,8 +60,7 @@
         var topOffset = 0;
         var interval = 50;
         var count = 0
-
-        var setIntevalId = setInterval(function () {
+        var moveElement = function () {
 
 
             $('#heading').offset({
@@ -81,8 +80,8 @@
             if (topOffset > 0 && leftOffset === 0) {
                 topOffset--;
             }
-
-        }, interval)
+        }
+        var setIntevalId = setInterval(moveElement, interval)
 
         // #3. Остановка анимации по клику Доработайте упражнение #2: добавьте к двигающемуся элементу h1 обработчик клика, который останавливает анимацию.
 
@@ -97,10 +96,9 @@
                 clearInterval(setIntevalId);
                 count++;
                 $('#heading').text('Вы кликнули ' + count + ' раз');
-                // clearInterval(setIntevalId);
-                interval--;
+                interval -= 10;
+                setIntevalId = setInterval(moveElement, interval)
             } else if (count === 9) {
-                console.log(setIntevalId);
                 $('#heading').text('Вы победили!');
                 clearInterval(setIntevalId);
             }
