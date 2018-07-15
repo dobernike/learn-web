@@ -259,3 +259,5 @@
 // console.log(areArraysSame([1, 2, 3], [4, 5, 6])); //false
 // console.log(areArraysSame([1, 2, 3], [1, 2, 3])); // true
 // console.log(areArraysSame([1, 2, 3], [1, 2, 3, 4])); // false
+
+//
