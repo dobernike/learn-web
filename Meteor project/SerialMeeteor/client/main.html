@@ -1,0 +1,264 @@
+<head>
+  <title>SerialMeeteor</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="../lib/vanillaCalendar.css">
+  <link rel="stylesheet" href="main.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="../lib/vanillaCalendar.js" type="text/javascript"></script>
+  <script>
+    window.addEventListener('load', function () {
+      vanillaCalendar.init();
+    })
+  </script>
+
+</head>
+
+<body>
+  <!-- <div class="container">
+    <h1>Welcome to Meteor!</h1>
+    <ul class="collection">
+      {{#each notes}} {{> note}} {{/each}}
+    </ul>
+
+  </div> -->
+  <!-- {{> hello}} {{> info}} -->
+
+
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">SerialMeeteor</a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="#">Navbar Link</a>
+        </li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li>
+          <a href="#">Navbar Link</a>
+        </li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br>
+      <br>
+      <h1 class="header center orange-text">Calendar</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern calendar for check-out day a partymaker</h5>
+      </div>
+      <div class="row center">
+        <a href="#" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+      </div>
+      <br>
+      <br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+
+      <div class="row">
+
+        <div class="col s12 m12">
+          <div class="icon-block">
+            <h4 class="center light-blue-text">
+
+              <i class="material-icons">Last is watching:</i>
+              <strong>Last man on the Earth</strong>
+            </h4>
+
+            <h5 class="center">Season 2, 13 episode</h5>
+            <!-- CALENDAR -->
+            <div id="v-cal">
+              <div class="vcal-header">
+                <button class="vcal-btn" data-calendar-toggle="previous">
+                  <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+                  </svg>
+                </button>
+
+                <div class="vcal-header__label" data-calendar-label="month">
+                  March 2017
+                </div>
+
+                <button class="vcal-btn" data-calendar-toggle="next">
+                  <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="vcal-week">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+              <div class="vcal-body" data-calendar-area="month"></div>
+            </div>
+            <!-- END CALENDAR -->
+
+
+            <!-- 
+            <div class="day">
+              <div class="block">
+                <div class="small-block"></div>
+                <div class="small-block"></div>
+              </div>
+              <div class="block">
+                <div class="small-block"></div>
+                <div class="small-block"></div>
+              </div>
+              <div></div>
+              <div class="block .bottom"></div>
+              <div class="block .bottom"></div>
+            </div> -->
+            <!-- <div class="day">
+              <div class="block"></div>
+              <div class="block"></div>
+              <div></div>
+              <div class="block .bottom"></div>
+              <div class="block .bottom"></div>
+            </div> -->
+
+            <!-- 
+        <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally,
+          we refined animations and transitions to provide a smoother experience for developers.</p>
+      </div>
+    </div>
+
+    <div class="col s12 m4">
+      <div class="icon-block">
+        <h2 class="center light-blue-text">
+          <i class="material-icons">group</i>
+        </h2>
+        <h5 class="center">User Experience Focused</h5>
+
+        <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components
+          and animations that provide more feedback to users. Additionally, a single underlying responsive system across
+          all platforms allow for a more unified user experience.</p>
+      </div>
+    </div>
+
+    <div class="col s12 m4">
+      <div class="icon-block">
+        <h2 class="center light-blue-text">
+          <i class="material-icons">settings</i>
+        </h2>
+        <h5 class="center">Easy to work with</h5>
+
+        <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also
+          always open to feedback and can answer any questions a user may have about Materialize.</p>
+            -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support
+            and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li>
+              <a class="white-text" href="#!">Link 1</a>
+            </li>
+            <li>
+              <a class="white-text" href="#!">Link 2</a>
+            </li>
+            <li>
+              <a class="white-text" href="#!">Link 3</a>
+            </li>
+            <li>
+              <a class="white-text" href="#!">Link 4</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li>
+              <a class="white-text" href="#!">Link 1</a>
+            </li>
+            <li>
+              <a class="white-text" href="#!">Link 2</a>
+            </li>
+            <li>
+              <a class="white-text" href="#!">Link 3</a>
+            </li>
+            <li>
+              <a class="white-text" href="#!">Link 4</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by
+        <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+
+</body>
+
+<template name='note'>
+  <li class="collection-items">My Note</li>
+</template>
+<!-- <template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="info">
+  <h2>Learn Meteor!</h2>
+  <ul>
+    <li>
+      <a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a>
+    </li>
+    <li>
+      <a href="http://guide.meteor.com" target="_blank">Follow the Guide</a>
+    </li>
+    <li>
+      <a href="https://docs.meteor.com" target="_blank">Read the Docs</a>
+    </li>
+    <li>
+      <a href="https://forums.meteor.com" target="_blank">Discussions</a>
+    </li>
+  </ul>
+</template> -->

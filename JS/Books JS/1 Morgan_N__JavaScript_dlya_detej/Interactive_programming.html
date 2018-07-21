@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter 10</title>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script>
+        // var timeUp = function () {
+        //     alert('Time over!');
+        // };
+        // setTimeout(timeUp, 3000);
+
+        // var doHomeworkAlarm = function () {
+        //     alert('Hey! Now time to do homework');
+        // };
+        // var timeoutId = setTimeout(doHomeworkAlarm, 60000);
+        // clearTimeout(timeoutId);
+
+        // var counter = 5;
+        // var printMessage = function () {
+        //     console.log('You watch in console ' + counter + ' seconds');
+        //     counter += 5;
+        // };
+        // var intervalId = setInterval(printMessage, 5000);
+        //  clearInterval(intervalId);
+    </script>
+</head>
+
+<body>
+    <h1 id="heading">Привет, мир!</h1>
+    <script>
+        var leftOffset = 0;
+        var moveHeading = function () {
+            $('#heading').offset({
+                left: leftOffset
+            });
+            leftOffset++;
+            if (leftOffset > 200) {
+                leftOffset = 0
+            }
+        };
+        setInterval(moveHeading, 30)
+    </script>
+</body>
+
+</html>

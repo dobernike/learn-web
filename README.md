@@ -1,2 +1,2 @@
-# study-web
-Just study front-end and back-end
+# web
+front-end and back-end

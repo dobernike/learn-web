@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Practice</title>
+    <script src="./jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <h1 id="main-heading">Привет, мир!</h1>
+    <script>
+        // var headingElement = document.getElementById('main-heading');
+        // var newHeadingText = prompt('Enter new h1:');
+        // headingElement.innerHTML = newHeadingText;
+
+        // var newHeadingText = prompt('Enter new text to h1: ');
+        // $('#main-heading').text(newHeadingText)
+
+        // for (var i = 0; i < 3; i++) {
+        //     var hobby = prompt('Enter you hobby: ');
+        //     $('body').append('<p>' + hobby + '</p>');
+        // }
+
+        // $('h1').text('This text fadeOut').fadeOut(3000);
+
+        // $('h1').fadeOut(3000).fadeIn(2000);
+
+        // $('h1').slideUp(1000).slideDown(1000);
+        // for (var i = 0; i < 5; i++) {
+        //     $('h1').fadeOut(1000);
+        //     $('h1').fadeIn(1000);
+        // }
+        // $('h1').hide();
+        // // $('h1').show();
+        // $('h1').fadeIn(5000);
+        // $('body').append('<p> lloooll</p>');
+
+
+        //         УПРАЖНЕНИЯ
+        // Выполните эти упражнения, чтобы попрактиковаться в использовании jQuery и DOM.
+
+        // #1. Перечислите своих друзей (и сделайте их лучшими!) Создайте массив с именами нескольких друзей. В цикле for создайте для каждого имени по одному элементу p и добавьте эти элементы в конец <body>, вызывая jQuery-метод append. 
+
+        var friends = ['Jane', 'Paul', 'Vova'];
+        for (var i = 0; i < friends.length; i++) {
+            $('body').append('<p>' + friends[i] + '</p>')
+        }
+
+        // С помощью jQuery измените текст элемента h1, чтобы вместо "Привет, мир!" там было "Мои друзья".
+
+        $('h1').text('My friends');
+
+        //  Используйте метод hide и метод fadeIn, чтобы имена плавно возникали на экране. 
+
+        $('p').hide().fadeIn(1000);
+
+        //Теперь измените созданные вами элементы p, добавив после каждого имени слово "лучший!". 
+
+        $('p').append(' лучший!')
+
+        // #2. Мигающий заголовок Как с помощью fadeOut и fadeIn сделать так, чтобы заголовок мигнул пять раз с интервалом в секунду?
+
+        // $('h1').fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+
+        // Как сделать это в цикле for? 
+
+        // for (var j = 0; j<5; j++){
+        //     $('h1').fadeOut().fadeIn();
+        // }
+
+        //А теперь измените цикл, чтобы заголовок появлялся и исчезал в первый раз за секунду, потом за две, потом за три и т. д.
+
+        // for (var j = 1; j<6; j++){
+        //     $('h1').fadeOut(1000*j).fadeIn(1000*j);
+        // }
+
+        // #3. Отложенная анимация Для задержки анимации можно воспользоваться методом delay. С помощью delay, fadeOut и fadeIn заставьте какой-нибудь элемент плавно исчезнуть, а затем, через пять секунд, снова проявиться.
+
+        // $('h1').fadeOut(1000).delay(5000).fadeIn(5000);
+
+        // #4. Метод fadeTo() Поэкспериментируйте с методом fadeTo. Первый его аргумент — число миллисекунд, как и у прочих методов анимации, а второй — число от 0 до 1. Что произойдет, если запустить следующий код?
+
+        //  $("h1").fadeTo(2000, 0.5);
+
+        // Как думаете, что делает второй аргумент? Попробуйте разные его значения в диапазоне от 0 до 1, чтобы выяснить, зачем он нужен.
+        $("h1").fadeTo(1000, 0.5);
+    </script>
+</body>
+
+</html>

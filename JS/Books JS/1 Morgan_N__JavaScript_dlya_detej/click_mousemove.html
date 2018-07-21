@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter 10</title>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script>
+        // var timeUp = function () {
+        //     alert('Time over!');
+        // };
+        // setTimeout(timeUp, 3000);
+
+        // var doHomeworkAlarm = function () {
+        //     alert('Hey! Now time to do homework');
+        // };
+        // var timeoutId = setTimeout(doHomeworkAlarm, 60000);
+        // clearTimeout(timeoutId);
+
+        // var counter = 5;
+        // var printMessage = function () {
+        //     console.log('You watch in console ' + counter + ' seconds');
+        //     counter += 5;
+        // };
+        // var intervalId = setInterval(printMessage, 5000);
+        //  clearInterval(intervalId);
+    </script>
+</head>
+
+<body>
+    <h1 id="heading">Нажми на меня!</h1>
+    <script>
+        ////click
+        // var clickHandler = function (event) {
+        //     console.log('Click! ' + event.pageX + ' ' + event.pageY);
+        // };
+        // $('h1').click(clickHandler);
+
+        ////mouseMove
+        // $('html').mousemove(function (event) {
+        //     $('#heading').offset({
+        //         left: event.pageX,
+        //         top: event.pageY
+        //     });
+        // });
+        //         УПРАЖНЕНИЯ
+        // Выполните эти упражнения, чтобы опробовать разные варианты интерактивного программирования.
+
+        // #1. Следом за кликами Измените последний пример с mousemove так, чтобы заголовок следовал не за указателем мышки, а только за кликами: вы кликаете в любом месте страницы, и заголовок перемещается туда.
+
+        // $('html').click(function (event) {
+        //     $('#heading').offset({
+        //         left: event.pageX,
+        //         top: event.pageY
+        //     });
+        // });
+
+        // #2. Создайте собственную анимацию Используйте setInterval для анимации заголовка h1, двигая его по квадрату, вдоль краев страницы. Пусть он переместится на 200 пикселей вправо, на 200 пикселей вниз, 200 пикселей влево, 200 пикселей вверх, а затем начнет с начала. 
+        var leftOffset = 0;
+        var topOffset = 0;
+        var interval = 50;
+        var count = 0
+        var moveElement = function () {
+
+
+            $('#heading').offset({
+                left: leftOffset,
+                top: topOffset
+            });
+
+            if (leftOffset < 200 && topOffset === 0) {
+                leftOffset++;
+            }
+            if (topOffset < 200 && leftOffset === 200) {
+                topOffset++;
+            }
+            if (topOffset === 200 && leftOffset > 0) {
+                leftOffset--
+            }
+            if (topOffset > 0 && leftOffset === 0) {
+                topOffset--;
+            }
+        }
+        var setIntevalId = setInterval(moveElement, interval)
+
+        // #3. Остановка анимации по клику Доработайте упражнение #2: добавьте к двигающемуся элементу h1 обработчик клика, который останавливает анимацию.
+
+        // $('#heading').click(function (event) {
+        //     clearInterval(setIntevalId);
+        // });
+
+        // #4. Напишите игру «Кликни по заголовку» Доработайте упражнение #3 так, чтобы каждый раз, когда игрок кликает по заголовку, тот не останавливался, а ускорялся и кликнуть по нему становилось сложнее. Отслеживайте количество кликов по заголовку и меняйте его текст, отображая там это число. Когда игрок наберет 10 кликов, остановите анимацию, а текст заголовка измените на «Вы победили!».
+
+        $('#heading').click(function (event) {
+            if (count < 9) {
+                clearInterval(setIntevalId);
+                count++;
+                $('#heading').text('Вы кликнули ' + count + ' раз');
+                interval -= 10;
+                setIntevalId = setInterval(moveElement, interval)
+            } else if (count === 9) {
+                $('#heading').text('Вы победили!');
+                clearInterval(setIntevalId);
+            }
+        });
+    </script>
+</body>
+
+</html>
