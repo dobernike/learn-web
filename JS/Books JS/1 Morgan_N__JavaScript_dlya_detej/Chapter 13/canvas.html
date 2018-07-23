@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script src="../Chapter 11/jquery-3.3.1.min.js"></script>
+    <script>
+        // var canvas = document.getElementById('canvas');
+        // var context = canvas.getContext('2d');
+        // // for (var i = 0; i < 8; i++) {
+        // //     ctx.fillRect(i * 10, i * 10, 10, 10);
+        // // }
+        // context.fillStyle = 'red';
+
+        //ПОПРОБУЙТЕ !
+        // Теперь, когда вы знаете, как рисовать на «холсте» пря-
+        // моугольники и квадраты, попробуйте изобразить этого
+        // робота с помощью метода fi llRect.
+
+        // context.fillRect(50, 0, 50, 50);
+        // context.fillRect(70, 50, 10, 30);
+        // context.fillRect(0, 80, 150, 10);
+        // context.fillRect(25, 90, 100, 100);
+        // context.fillRect(25, 190, 10, 10);
+        // context.fillRect(115, 190, 10, 10);
+
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // ctx.fillStyle = 'red';
+        // ctx.fillRect(0, 0, 100, 100);
+
+        //         ПОПРОБУЙТЕ !
+        // Зайдите на сайт CSS-Tricks (http://css-tricks.com/snippets/css/named-colorsand-
+        // hex-equivalents/), выберите три цвета на свой вкус и нарисуйте
+        // три прямоугольника. Пусть каждый из них будет 50 пикселей в ширину
+        // и 100 пикселей в высоту, и пусть они располагаются сторона к стороне, без
+        // пробелов. Должно получиться нечто вроде:
+
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // ctx.fillStyle = 'red';
+        // ctx.fillRect(0, 0, 50, 100);
+        // ctx.fillStyle = 'green';
+        // ctx.fillRect(50, 0, 50, 100);
+        // ctx.fillStyle = 'blue';
+        // ctx.fillRect(100, 0, 50, 100);
+
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // ctx.strokeRect(10, 10, 100, 20);
+
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // ctx.strokeStyle = 'DeepPink';
+        // ctx.lineWidth = 4;
+        // ctx.strokeRect(10, 10, 100, 20)
+
+        //         var canvas = document.getElementById('canvas');
+        //         var ctx = canvas.getContext('2d');
+        //         ctx.strokeStyle = 'Turquoise';
+        //         ctx.lineWidth = 4;
+        //         ctx.beginPath();
+        //         ctx.moveTo(10, 10);
+        //         ctx.lineTo(60, 60);
+        //         ctx.moveTo(60, 10);
+        //         ctx.lineTo(10, 60);
+        //         ctx.stroke();
+
+        //         ПОПРОБУЙТЕ !
+        // Попробуйте нарисовать этого веселого человечка при помощи
+        // методов beginPath, moveTo, lineTo и stroke. Изобразить
+        // голову (это квадрат 20 × 20 пикселей с шириной линии
+        // 4 пикселя) можно, воспользовавшись методом strokeRect.
+
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // ctx.lineWidth = 4;
+        // ctx.strokeRect(50, 10, 20, 20);
+        // ctx.beginPath();
+        // ctx.moveTo(60, 30);
+        // ctx.lineTo(60, 100);
+        // ctx.moveTo(60, 60);
+        // ctx.lineTo(80, 50);
+        // ctx.moveTo(60, 60);
+        // ctx.lineTo(40, 50);
+        // ctx.moveTo(60, 100);
+        // ctx.lineTo(50, 130);
+        // ctx.moveTo(60, 100);
+        // ctx.lineTo(70, 130);
+        // ctx.stroke();
+
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // ctx.fillStyle = 'blue';
+        // ctx.beginPath();
+        // ctx.moveTo(100, 100);
+        // ctx.lineTo(100, 60);
+        // ctx.lineTo(130, 30);
+        // ctx.lineTo(160, 60);
+        // ctx.lineTo(160, 100);
+        // ctx.lineTo(100, 100);
+        // ctx.fill();
+
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // ctx.lineWidth = 2;
+        // ctx.strokeStyle = 'Green';
+
+        // ctx.beginPath();
+        // ctx.arc(50, 50, 20, 0, Math.PI / 2, false);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.arc(100, 50, 20, 0, Math.PI, false);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.arc(150, 50, 20, 0, Math.PI * 2, false);
+        // ctx.stroke();
+
+        // ctx.lineWidth = 4;
+        // ctx.strokeStyle = 'Red';
+        // circle(100, 100, 10);
+        // ctx.strokeStyle = 'Orange';
+        // circle(100, 100, 20);
+        // ctx.strokeStyle = 'Yellow';
+        // circle(100, 100, 30);
+        // ctx.strokeStyle = 'Green';
+        // circle(100, 100, 40);
+        // ctx.strokeStyle = 'Blue';
+        // circle(100, 100, 50);
+        // ctx.strokeStyle = 'Purple';
+        // circle(100, 100, 60);
+
+        // ПОПРОБУЙТЕ !
+        // Как изменить функцию circle, чтобы она заполняла
+        // окружности цветом, а не обводила их? Добавьте четвертый
+        // аргумент — булево значение, которое определяет, нужно
+        // ли заполнять окружность или рисовать контур. Можно
+        // назвать этот аргумент fi llCircle.
+        // Нарисуйте с помощью измененной функции такого
+        // снеговика, используя как заполненные окружности, так
+        // и пустые.
+
+        // var circle = function (x, y, radius, fillCircle) {
+        //     ctx.beginPath();
+        //     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+        //     if (fillCircle === true) {
+        //         ctx.fill();
+        //     } else {
+        //         ctx.stroke();
+        //     }
+        // };
+
+        // ctx.lineWidth = 4;
+        // circle(100, 100, 50);
+        // circle(80, 80, 10, true);
+        // circle(120, 80, 10, true)
+        // ctx.fillStyle = 'Orange';
+        // circle(100, 100, 10, true);
+        // ctx.fillStyle = 'black';
+        // circle(100, 230, 80);
+        // circle(100, 200, 10, true);
+        // circle(100, 230, 10, true);
+        // circle(100, 260, 10, true);
+
+        // #1. Функция, рисующая снеговика
+        // Создайте на основе вашего кода для рисования снеговика
+        // (см. с. 205) функцию drawSnowman, которая рисует снеговика
+        // в указанной позиции на «холсте», — так, чтобы в результате
+        // вызова:
+        // drawSnowman(50, 50);
+        // снеговик появился в позиции (50, 50).
+
+        // var drawSnowman = function(x, y) {
+        //         ctx.lineWidth = 4;
+        //         circle(x, y, 50);
+        //         circle(x-20, y-20, 10, true);
+        //         circle(x+20, y-20, 10, true)
+        //         ctx.fillStyle = 'Orange';
+        //         circle(x, y, 10, true);
+        //         ctx.fillStyle = 'black';
+        //         circle(x, y+130, 80);
+        //         circle(x, y+100, 10, true);
+        //         circle(x, y+130, 10, true);
+        //         circle(x, y+160, 10, true);
+        //     };
+        //     drawSnowman(100, 100);
+
+        //     #2. Рисование по массиву точек
+        // Напишите функцию drawPoints, которая принимает массив
+        // с координатами точек:
+        // var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+        // drawPoints(points);
+        // и рисует линию, соединяющую эти точки. В данном случае она
+        // должна прочертить линию от (50, 50) до (50, 100) и далее до (100,
+        // 100), до (100, 50) и обратно до (50, 50).
+        // Теперь передайте в эту функцию следующий массив:
+        // var mysteryPoints = [[50, 50], [50, 100], [25, 120], [100, 50],
+        // [70, 90], [100, 90], [70, 120]];
+        // drawPoints(mysteryPoints);
+
+        // var drawPoints = function (array) {
+        //     ctx.beginPath();
+        //     for (var i = 0; i < array.length; i++) {
+        //         var x = array[i]["0"];
+        //         var y = array[i][1];
+        //         ctx.lineTo(x, y)
+        //     }
+        //     return ctx.fill();
+        // };
+
+        // var points = [
+        //     [50, 50],
+        //     [50, 100],
+        //     [100, 100],
+        //     [100, 50],
+        //     [50, 50]
+        // ];
+        // // drawPoints(points);
+        // var mysteryPoints = [
+        //     [50, 50],
+        //     [50, 100],
+        //     [25, 120],
+        //     [100, 50],
+        //     [70, 90],
+        //     [100, 90],
+        //     [70, 120]
+        // ];
+        // drawPoints(mysteryPoints);
+        //         #3. Рисование мышкой
+        // С помощью jQuery и события mousemove напишите код, рисую-
+        // щий окружность радиусом в 3 пикселя под курсором мышки каж-
+        // дый раз, когда вы передвигаете мышку над «холстом». Поскольку
+        // это событие возникает при малейшем перемещении курсора,
+        // окружности по мере движения мышки будут сливаться в линию.
+        // $('#canvas').mousemove(function (event) {
+        //     console.log('in');
+        //     ctx.beginPath();
+        //     var x = event.pageX;
+        //     var y = event.pageY;
+
+        //     ctx.arc(x, y, 3, 0, Math.PI * 2, false);
+        //     ctx.stroke();
+        // });
+
+        //         #4. Человечек в «Виселице»
+        // В седьмой главе мы написали вариант игры «Виселица». Теперь
+        // вы можете сделать ее более похожей на настоящую игру, рисуя
+        // части тела человечка всякий раз, когда игрок вводит неверную
+        // букву.
+    </script>
+</body>
+
+</html>

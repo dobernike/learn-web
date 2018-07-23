@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Raicing</title>
+</head>
+
+<body>
+    <script src="../Chapter 11/jquery-3.3.1.min.js"></script>
+    <script>
+        var Car = function (x, y) {
+            this.x = x;
+            this.y = y;
+        };
+
+        var drawCar = function (car) {
+            var carHtml = '<img src="./car.png">';
+
+            var carElement = $(carHtml);
+
+            carElement.css({
+                position: "absolute",
+                left: car.x,
+                top: car.y
+            });
+            $('body').append(carElement);
+        };
+        var telsla = new Car(20, 20);
+        var nissan = new Car(100, 200);
+        drawCar(telsla);
+        drawCar(nissan);
+        //     var tesla = new Car(10, 20);
+        // tesla;
+        //output: Car {x:10, y:20}
+    </script>
+</body>
+
+</html>
