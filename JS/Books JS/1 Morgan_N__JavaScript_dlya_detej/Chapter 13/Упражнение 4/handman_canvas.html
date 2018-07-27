@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>chapter 7</title>
+
+
+
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <script>
+        //    #4. Человечек в «Виселице»
+        // В седьмой главе мы написали вариант игры «Виселица». Теперь
+        // вы можете сделать ее более похожей на настоящую игру, рисуя
+        // части тела человечка всякий раз, когда игрок вводит неверную
+        // букву.   
+
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        ctx.lineWidth = 4;
+
+
+        //func
+        var pickWord = function () {
+            var words = ['машина', 'макака', 'перстень', 'гриб', 'музыка'];
+            return words[Math.floor(Math.random() * words.length)];
+            // Возвращает случайно выбранное слово
+        };
+        var setupAnswerArray = function (word) {
+            // Возвращает итоговый массив для заданного слова word
+            var answerArray = [];
+            for (var i = 0; i < word.length; i++) {
+                answerArray[i] = '_';
+            }
+            return answerArray;
+        };
+        var showPlayerProgress = function (answerArray) {
+            // С помощью alert отображает текущее состояние игры
+
+            alert(answerArray.join(' '));
+        };
+        var getGuess = function () {
+            // Запрашивает ответ игрока с помощью prompt
+            do {
+                var guess = prompt('Введите одну букву', '');
+
+                return guess;
+
+
+            } while (guess != undefined);
+        };
+        var updateGameState = function (guess, word, answerArray) {
+            // Обновляет answerArray согласно ответу игрока (guess)
+            guess = guess.toLowerCase();
+            var curent = 0;
+            for (var j = 0; j < word.length; j++) {
+                if (word[j] === guess && word[j] !== answerArray[j]) {
+                    answerArray[j] = guess;
+                    curent++;
+                } else {
+                    answerArray[j] = answerArray[j]
+                }
+            }
+            // возвращает число, обозначающее, сколько раз буква guess
+            // встречается в слове, чтобы можно было обновить значение
+            // remainingLetters
+            return curent;
+        };
+        var showAnswerAndCongratulatePlayer = function (answerArray, word) {
+            // С помощью alert показывает игроку отгаданное слово
+            //
+            alert('У вас получилось ' + answerArray.join(' '))
+            alert('Загаданное слово было: ' + word);
+        }
+        var getHandMan = function (curent, word) {
+
+            if (curent >= 5 && curent != word.length + 5) {
+                ctx.beginPath();
+                ctx.moveTo(60, 100);
+                ctx.lineTo(70, 130);
+                ctx.stroke();
+            } else
+            if (curent >= 4) {
+                ctx.beginPath();
+                ctx.moveTo(60, 100);
+                ctx.lineTo(70, 130);
+                ctx.moveTo(60, 100);
+                ctx.lineTo(50, 130);
+                ctx.stroke();
+            } else
+            if (curent >= 3) {
+                ctx.beginPath();
+                ctx.moveTo(60, 100);
+                ctx.lineTo(70, 130);
+                ctx.moveTo(60, 100);
+                ctx.lineTo(50, 130);
+                ctx.moveTo(60, 60);
+                ctx.lineTo(40, 50);
+                ctx.stroke();
+            } else
+            if (curent >= 2) {
+                ctx.beginPath();
+                ctx.moveTo(60, 100);
+                ctx.lineTo(70, 130);
+                ctx.moveTo(60, 100);
+                ctx.lineTo(50, 130);
+                ctx.moveTo(60, 60);
+                ctx.lineTo(40, 50);
+                ctx.moveTo(60, 60);
+                ctx.lineTo(80, 50);
+                ctx.stroke();
+            } else
+            if (curent >= 1) {
+                ctx.beginPath();
+                ctx.moveTo(60, 100);
+                ctx.lineTo(70, 130);
+                ctx.moveTo(60, 100);
+                ctx.lineTo(50, 130);
+                ctx.moveTo(60, 60);
+                ctx.lineTo(40, 50);
+                ctx.moveTo(60, 60);
+                ctx.lineTo(80, 50);
+                ctx.moveTo(60, 30);
+                ctx.lineTo(60, 100);
+                ctx.stroke();
+            }
+            return '';
+        }
+        // word: загаданное слово
+        var word = pickWord();
+        // answerArray: итоговый массив
+        var answerArray = setupAnswerArray(word);
+        // remainingLetters: сколько букв осталось угадать
+        var remainingLetters = word.length;
+        var curent = remainingLetters + 5;
+        while (remainingLetters > 0) {
+            showPlayerProgress(answerArray);
+            // guess: ответ игрока
+            var guess = getGuess();
+            if (guess === null) {
+                alert('Спасибо за игру')
+                break;
+            } else if (guess.length !== 1) {
+                alert("Пожалуйста, введите одиночную букву.");
+            } else {
+                // correctGuesses: количество открытых букв
+                var correctGuesses = updateGameState(guess, word,
+                    answerArray);
+                if (correctGuesses > 0) {
+                    remainingLetters -= correctGuesses;
+                } else {
+                    curent -= 1;
+                    console.log(curent);
+                    var showHandman = getHandMan(curent, word);
+
+                    if (curent === 0) {
+                        ctx.strokeRect(50, 10, 20, 20);
+                        ctx.beginPath();
+                        ctx.moveTo(60, 30);
+                        ctx.lineTo(60, 100);
+                        ctx.moveTo(60, 60);
+                        ctx.lineTo(80, 50);
+                        ctx.moveTo(60, 60);
+                        ctx.lineTo(40, 50);
+                        ctx.moveTo(60, 100);
+                        ctx.lineTo(50, 130);
+                        ctx.moveTo(60, 100);
+                        ctx.lineTo(70, 130);
+                        ctx.stroke();
+                        break;
+                    }
+                }
+
+
+            }
+        }
+        showAnswerAndCongratulatePlayer(answerArray, word);
+    </script>
+
+</body>
+
+</html>
