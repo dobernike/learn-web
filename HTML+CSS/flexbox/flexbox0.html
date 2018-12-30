@@ -30,6 +30,7 @@
             padding: 10px;
             margin: 10px;
             background: aqua;
+            width: 250px;
         }
 
         /* Add your flexbox CSS below here */
@@ -37,16 +38,115 @@
         section {
             display: flex;
             flex-direction: row;
+
             /* flex-direction: column; */
             /* flex-direction: row-reverse; */
             /* flex-direction: column-reverse; */
-            justify-content: center;
+
+            /* justify-content: center; */
+
+            /* flex-wrap: wrap-reverse; */
+ 
+            /* align-items:flex-start; */
+            /* align-content: center; */
         }
 
         aside {
-            background: antiquewhite;
+            background-color: antiquewhite;
             display: flex;
+            height: 150px;
+            /* flex-direction: row; */
             justify-content: center;
+            align-items: stretch;
+            /* align-items: center; */
+            /* align-items: flex-start; */
+            /* align-items: flex-end; */
+            
+        }
+
+
+        .div-1 {
+            background-color:aliceblue;
+            /* flex-direction: row; */
+            /* justify-content: center; */
+            /* justify-content: flex-start; */
+            /* justify-content: flex-end; */
+            /* justify-content: space-between; */
+            /* align-items: center; */
+            /* align-items: flex-start; */
+        }
+
+        .div-2 {
+            background-color: aliceblue;
+            /* flex-direction: row-reverse; */
+            /* justify-content: center; */
+            /* justify-content: flex-start; */
+            /* justify-content: flex-end; */
+            /* justify-content: space-around; */
+            /* align-items: center; */
+            /* align-items: baseline; */
+        }
+
+        aside > div {
+            width: 120px;
+            /* min-height: auto; */
+            /* height: 150px; */
+        }
+
+        .p-1 {
+            background-color:darkgoldenrod;
+            align-self: flex-start;
+            order: 1;
+        }
+
+        .p-2 {
+            background-color:darkgreen;
+            /* height: 250px; */
+            align-self: flex-end;
+            order: -1;
+        }
+
+        .p-3 {
+            background-color:darkred;
+            align-self: center;
+            order: -2;
+        }
+
+        .p-1 > p,
+        .p-2 > p,
+        .p-3 > p {
+            margin: 30px 0;
+            text-align: center;
+            background-color: indianred;
+        }
+
+        .image-block {
+            display: flex;
+        }
+
+        .img {
+           margin: auto;
+
+            background-color: teal
+        }
+        .img img {
+            width: 40px;
+        }
+
+        .image-block2 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100px;
+        }
+
+        .img2 {
+           /* margin: auto; */
+
+            background-color: teal
+        }
+        .img2 img {
+            width: 40px;
         }
     </style>
 </head>
@@ -103,9 +203,34 @@
         </article>
     </section>
 
-    <aside>
-        <p>asfafaf</p>
-    </aside>
+
+        <!-- <aside class="div-1"><div class="p-1"><p>first p</p></div><div class="p-2"><p>second p</p></div><div class="p-3"><p>third p</p></div></aside> -->
+
+        <aside class="div-2"><div class="p-1"><p>first p</p></div><div class="p-2"><p>second p</p></div><div class="p-3"><p>third p</p></div></aside>
+
+        <div class="image-block">
+            <div class="img">
+            <img src="/intro/back.PNG" alt="">
+            </div>
+            <div class="img">
+                    <img src="/intro/back.PNG" alt="">
+            </div>
+        </div>
+
+        <div class="image-block2">
+                <div class="img2">
+                    <img src="/intro/back.PNG" alt="">
+                </div>
+                <div class="img2">
+                        <img src="/intro/back.PNG" alt="">
+                </div>
+            </div>
+
+
+            <!-- menu -->
+            <div class="logo">
+                <img src="../verstka/webDesign-Master/1/template_bootstrap/img/logo.png"
+            </div>
 </body>
 
 </html>
