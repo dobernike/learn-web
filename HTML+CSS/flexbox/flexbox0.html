@@ -15,8 +15,8 @@
         }
 
         header {
-            background: purple;
-            height: 100px;
+            /* background: blueviolet;
+            height: 50px; */
         }
 
         h1 {
@@ -46,7 +46,7 @@
             /* justify-content: center; */
 
             /* flex-wrap: wrap-reverse; */
- 
+
             /* align-items:flex-start; */
             /* align-content: center; */
         }
@@ -61,12 +61,12 @@
             /* align-items: center; */
             /* align-items: flex-start; */
             /* align-items: flex-end; */
-            
+
         }
 
 
         .div-1 {
-            background-color:aliceblue;
+            background-color: aliceblue;
             /* flex-direction: row; */
             /* justify-content: center; */
             /* justify-content: flex-start; */
@@ -87,34 +87,34 @@
             /* align-items: baseline; */
         }
 
-        aside > div {
+        aside>div {
             width: 120px;
             /* min-height: auto; */
             /* height: 150px; */
         }
 
         .p-1 {
-            background-color:darkgoldenrod;
+            background-color: darkgoldenrod;
             align-self: flex-start;
             order: 1;
         }
 
         .p-2 {
-            background-color:darkgreen;
+            background-color: darkgreen;
             /* height: 250px; */
             align-self: flex-end;
             order: -1;
         }
 
         .p-3 {
-            background-color:darkred;
+            background-color: darkred;
             align-self: center;
             order: -2;
         }
 
-        .p-1 > p,
-        .p-2 > p,
-        .p-3 > p {
+        .p-1>p,
+        .p-2>p,
+        .p-3>p {
             margin: 30px 0;
             text-align: center;
             background-color: indianred;
@@ -125,10 +125,11 @@
         }
 
         .img {
-           margin: auto;
+            margin: auto;
 
             background-color: teal
         }
+
         .img img {
             width: 40px;
         }
@@ -141,19 +142,75 @@
         }
 
         .img2 {
-           /* margin: auto; */
+            /* margin: auto; */
 
             background-color: teal
         }
+
         .img2 img {
             width: 40px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            /* align-content: center; */
+            
+
+
+            background-color: rgb(0, 100, 200);
+            border-bottom: 5px solid black;
+            /* min-height: 50px; */
+            width: 80%;
+        }
+
+        .menu > div {
+            
+            /* height: 50px; */
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .menu > div > a {
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            /* align-content: center; */
+            /* vertical-align: middle; */
+            color: #ffffff;
+            text-decoration: none;
+           
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Sample flexbox example</h1>
+        <!-- <h1>Sample flexbox example</h1> -->
+        <div class="logo">
+            <img src="../verstka/webDesign-Master/1/template_bootstrap/img/logo.png" alt="Логотип">
+        </div>
+        <div class="menu">
+            <div>
+                <a href="#">Хлеб</a>
+            </div>
+            <div>
+                <a href="#">Яйца</a>
+            </div>
+            <div>
+                <a href="#">Сметана</a>
+            </div>
+            <div>
+                <a href="#">Молоко</a>
+            </div>
+            <div>
+                <a href="#">Сыр</a>
+            </div>
+        </div>
     </header>
 
     <section>
@@ -204,33 +261,39 @@
     </section>
 
 
-        <!-- <aside class="div-1"><div class="p-1"><p>first p</p></div><div class="p-2"><p>second p</p></div><div class="p-3"><p>third p</p></div></aside> -->
+    <!-- <aside class="div-1"><div class="p-1"><p>first p</p></div><div class="p-2"><p>second p</p></div><div class="p-3"><p>third p</p></div></aside> -->
 
-        <aside class="div-2"><div class="p-1"><p>first p</p></div><div class="p-2"><p>second p</p></div><div class="p-3"><p>third p</p></div></aside>
-
-        <div class="image-block">
-            <div class="img">
-            <img src="/intro/back.PNG" alt="">
-            </div>
-            <div class="img">
-                    <img src="/intro/back.PNG" alt="">
-            </div>
+    <aside class="div-2">
+        <div class="p-1">
+            <p>first p</p>
         </div>
+        <div class="p-2">
+            <p>second p</p>
+        </div>
+        <div class="p-3">
+            <p>third p</p>
+        </div>
+    </aside>
 
-        <div class="image-block2">
-                <div class="img2">
-                    <img src="/intro/back.PNG" alt="">
-                </div>
-                <div class="img2">
-                        <img src="/intro/back.PNG" alt="">
-                </div>
-            </div>
+    <div class="image-block">
+        <div class="img">
+            <img src="/intro/back.PNG" alt="">
+        </div>
+        <div class="img">
+            <img src="/intro/back.PNG" alt="">
+        </div>
+    </div>
+
+    <div class="image-block2">
+        <div class="img2">
+            <img src="/intro/back.PNG" alt="">
+        </div>
+        <div class="img2">
+            <img src="/intro/back.PNG" alt="">
+        </div>
+    </div>
 
 
-            <!-- menu -->
-            <div class="logo">
-                <img src="../verstka/webDesign-Master/1/template_bootstrap/img/logo.png"
-            </div>
 </body>
 
 </html>
