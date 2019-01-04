@@ -14,17 +14,12 @@
 
         }
 
-        header {
-            /* background: blueviolet;
-            height: 50px; */
-        }
-
-        h1 {
+        /* h1 {
             text-align: center;
             color: white;
             line-height: 100px;
             margin: 0;
-        }
+        } */
 
         article {
             padding: 10px;
@@ -33,9 +28,10 @@
             width: 250px;
         }
 
+
         /* Add your flexbox CSS below here */
 
-        section {
+        .section {
             display: flex;
             flex-direction: row;
 
@@ -51,7 +47,7 @@
             /* align-content: center; */
         }
 
-        aside {
+        .div-2 {
             background-color: antiquewhite;
             display: flex;
             height: 150px;
@@ -61,9 +57,7 @@
             /* align-items: center; */
             /* align-items: flex-start; */
             /* align-items: flex-end; */
-
         }
-
 
         .div-1 {
             background-color: aliceblue;
@@ -87,7 +81,7 @@
             /* align-items: baseline; */
         }
 
-        aside>div {
+        .div-2>div {
             width: 120px;
             /* min-height: auto; */
             /* height: 150px; */
@@ -154,28 +148,42 @@
         .logo {
             display: flex;
             justify-content: center;
+            /* width: 100px; */
+            /* height: 50px; */
+            /* background-color: rgb(0, 100, 200); */
+            order: -1;
+        }
+
+        .logo>img {
+            /* display: flex;
+            justify-content: center; */
+            /* width: 100px; */
+            height: 50px;
+            background-color: rgb(0, 100, 200);
+            /* order: 1; */
         }
 
         .menu {
             display: flex;
             justify-content: space-around;
             /* align-content: center; */
-            
+
 
 
             background-color: rgb(0, 100, 200);
             border-bottom: 5px solid black;
+            align-items: center;
             /* min-height: 50px; */
-            width: 80%;
+            /* width: 80%; */
         }
 
-        .menu > div {
-            
+        .menu>div {
+
             /* height: 50px; */
             background-color: rgba(255, 255, 255, 0.3);
         }
 
-        .menu > div > a {
+        .menu>div>a {
             min-height: 50px;
             display: flex;
             align-items: center;
@@ -183,7 +191,52 @@
             /* vertical-align: middle; */
             color: #ffffff;
             text-decoration: none;
-           
+
+        }
+
+        .post {
+            display: flex;
+        }
+
+        .post aside {
+            display: flex;
+            order: -1;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .sort-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-sort:checked ~ .sort-list{
+           /* flex-direction: column-reverse;  */
+           /* justify-content: center */
+           order: -1;
+        }
+
+        .basis {
+            display:flex;
+            flex-direction: row;
+            /* flex-basis: auto; */
+
+            
+        }
+
+        .basis-element {
+            flex-basis: 70px;
+            height: 50px;
+            width: 100px;
+border-right: 2px solid black;
+border-top: 2px solid black;
+border-bottom: 2px solid black;
+margin-top: 20px;
+margin-bottom: 20px;
+            background-color: aquamarine;
+            flex-grow: 1;
         }
     </style>
 </head>
@@ -191,9 +244,7 @@
 <body>
     <header>
         <!-- <h1>Sample flexbox example</h1> -->
-        <div class="logo">
-            <img src="../verstka/webDesign-Master/1/template_bootstrap/img/logo.png" alt="Логотип">
-        </div>
+
         <div class="menu">
             <div>
                 <a href="#">Хлеб</a>
@@ -202,7 +253,13 @@
                 <a href="#">Яйца</a>
             </div>
             <div>
-                <a href="#">Сметана</a>
+                <a href="#">Рыба</a>
+            </div>
+            <div class="logo">
+                <img src="../verstka/webDesign-Master/1/template_bootstrap/img/logo.png" alt="Логотип">
+            </div>
+            <div>
+                <a href="#">Сметанна</a>
             </div>
             <div>
                 <a href="#">Молоко</a>
@@ -213,7 +270,7 @@
         </div>
     </header>
 
-    <section>
+    <section class="section">
         <article>
             <h2>First article</h2>
 
@@ -293,7 +350,39 @@
         </div>
     </div>
 
+    <div class="post">
+        <section>
+            <h1>День когда Земля остановилась</h1>
+            <p>В тот день никто не ожидал подобного, и даже не мог поверить, что такое может случится.</p>
+            <p>Когда Земля остановилась, люди не поняли, что происходит и почему у некоторых не кончался день, а у
+                других, была долгая ночь.</p>
+            <p>С одной стороны, солнце сжигало всё и вся. С другой - была тьма и холод.</p>
+            <!-- <p>С одной стороны, солнце сжигало всё и вся. С другой - была тьма и холод.</p> -->
+        </section>
+        <aside>
+            <a>fb</a>
+            <a>tw</a>
+            <a>yo</a>
+        </aside>
+    </div>
 
+
+    <div>
+        <div class="sort-list">
+            <input type="checkbox" class="input-sort">
+            <input type="checkbox" class="input-sort">
+            <input type="checkbox" class="input-sort" checked>
+            <input type="checkbox" class="input-sort">
+            <input type="checkbox" class="input-sort">
+        </div>
+
+    </div>
+
+    <div class="basis">
+        <div class="basis-element"></div>
+        <div class="basis-element"></div>
+        <div class="basis-element"></div>
+    </div>
 </body>
 
 </html>

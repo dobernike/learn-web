@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Селекторы часть 2</title>
+    <style>
+        .class1 {
+            color: red;
+        }
+
+        .class2 {
+            color: blueviolet;
+        }
+
+        .class1.class2 {
+            color: cadetblue;
+        }
+
+        .ul1 li:not(:last-child) {
+            color: chocolate;
+        }
+
+        .ul1 li:not(:first-child):not(:last-child) {
+            color: navajowhite;
+        }
+
+        .ul2 li:nth-child(1) {
+            color: mediumorchid;
+        }
+
+        .ul2 li:nth-last-child(1) {
+            color: mediumseagreen;
+        }
+
+        ul:first-child {
+            background-color: indianred;
+            /* Не сработает так как первый элемент родителя h1 */
+        }
+
+        ul:first-of-type {
+            /* background-color: aliceblue; */
+        }
+
+        ul:nth-child(2) {
+            /* Или так */
+            /* background-color: aliceblue; */
+        }
+
+        ul:nth-last-of-type(2) {
+            /* Или так */
+            background-color: aliceblue;
+        }
+
+        ul:last-of-type {
+            /* background-color:antiquewhite; */
+        }
+
+        ul:nth-of-type(2) {
+            /* Или так */
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1 class="class1 class2">Заголовок с двумя классами</h1>
+        <ul class="ul1">
+            <li>Первый элемент</li>
+            <li>Второй элемент</li>
+            <li>Последней элемент</li>
+        </ul>
+
+        <ul class="ul2">
+            <li>Первый элемент второго списка</li>
+            <li>Второй элемент второго списка</li>
+            <li>Последний элемент второго списка</li>
+        </ul>
+
+        <ul class="ul3">
+            <li>Первый элемент третьего списка</li>
+            <li>Второй элемент третьего списка</li>
+            <li>Последний элемент третьего списка</li>
+        </ul>
+    </main>
+</body>
+
+</html>
