@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Grid test area</title>
+  <!-- inline css -->
+  <style>
+    @import "https://unpkg.com/normalize.css@8.0.0/normalize.css";
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* Page */
+
+    .page {
+      display: grid;
+      background-color: #292929;
+      color: #ffffff;
+      line-height: 1;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* Header */
+
+    .header {
+      padding: 25px;
+      background-color: #242424;
+    }
+
+    /* Navigation */
+
+    .navigation {
+      padding: 25px;
+      background-color: #826550;
+    }
+
+    @media (min-width: 768px) {
+      .navigation {
+        order: -1;
+      }
+    }
+
+    /* Statistics */
+
+    .statistics {
+      display: grid;
+      background-color: #ffffff;
+    }
+
+    @media (min-width: 768px) {
+      .statistics {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .statistics {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .statistics__header {
+      padding: 25px;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .statistics__header {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .statistics__header {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+    }
+
+    .statistics__table,
+    .statistics__body,
+    .statistics__row {
+      display: contents;
+    }
+
+    .statistics__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .statistics__cell {
+      padding: 25px;
+    }
+
+    .statistics__cell--one {
+      background-color: #404040;
+    }
+
+    .statistics__cell--two {
+      background-color: #4e4e4e;
+    }
+
+    .statistics__cell--three {
+      background-color: #353535;
+    }
+
+    .statistics__cell--four {
+      background-color: #404040;
+    }
+
+    /* Advantages */
+
+    .advantages {
+      padding: 25px;
+      display: grid;
+      grid-gap: 25px;
+      background-color: #242424;
+    }
+
+    @media (min-width: 1024px) {
+      .advantages {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .advantages__item {
+      padding: 25px;
+      background-color: #353535;
+    }
+
+    /* News */
+
+    .news {
+      padding: 25px;
+      display: grid;
+      grid-gap: 25px;
+      background-color: #f8f5f2;
+      color: #000000;
+    }
+
+    @media (min-width: 768px) {
+      .news {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .news {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .news__item {
+      padding: 25px;
+      background-color: #e5ddd5;
+      color: #000000;
+    }
+
+    /* Footer */
+
+    .footer {
+      padding: 25px;
+      display: grid;
+      grid-gap: 25px;
+      background-color: #292929;
+    }
+
+    @media (min-width: 768px) {
+      .footer {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .footer__contacts {
+      padding: 25px;
+      background-color: #353535;
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .footer__contacts {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    }
+
+    .footer__social {
+      padding: 25px;
+      background-color: #353535;
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .footer__social {
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+    }
+
+    .footer__copyright {
+      padding: 25px;
+      background-color: #353535;
+    }
+  </style>
+</head>
+
+<body class="page">
+  <header class="header">
+    header
+  </header>
+  <nav class="navigation">
+    navigation
+  </nav>
+  <section class="statistics">
+    <header class="statistics__header">
+      statistics__header
+    </header>
+    <table class="statistics__table">
+      <tbody class="statistics__body">
+        <tr class="statistics__row">
+          <td class="statistics__cell statistics__cell--one">
+            statistics__item
+          </td>
+          <td class="statistics__cell statistics__cell--two">
+            statistics__item
+          </td>
+        </tr>
+        <tr class="statistics__row">
+          <td class="statistics__cell statistics__cell--three">
+            statistics__item
+          </td>
+          <td class="statistics__cell statistics__cell--four">
+            statistics__item
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="advantages">
+    <div class="advantages__item">
+      advantages__item
+    </div>
+    <div class="advantages__item">
+      advantages__item
+    </div>
+    <div class="advantages__item">
+      advantages__item
+    </div>
+  </section>
+  <section class="news">
+    <div class="news__item">
+      news__item
+    </div>
+    <div class="news__item">
+      news__item
+    </div>
+    <div class="news__item">
+      news__item
+    </div>
+    <div class="news__item">
+      news__item
+    </div>
+    <div class="news__item">
+      news__item
+    </div>
+    <div class="news__item">
+      news__item
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer__contacts">
+      contacts
+    </div>
+    <div class="footer__social">
+      social
+    </div>
+    <div class="footer__copyright">
+      copyright
+    </div>
+  </footer>
+</body>
+
+</html>
