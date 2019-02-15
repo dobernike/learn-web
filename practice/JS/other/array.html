@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>array practice</title>
+</head>
+
+<body>
+  <script>
+    // var wizards = [
+    //   {
+    //     name: 'Пендальф',
+    //     eyesColor: 'blue',
+    //     coatColor: 'green'
+    //   },
+    //   {
+    //     name: 'Баба Яга',
+    //     eyesColor: 'black',
+    //     coatColor: 'gray'
+    //   },
+    //   {
+    //     name: 'Сарумян',
+    //     eyesColor: 'white',
+    //     coatColor: 'yellow'
+    //   },
+    //   {
+    //     name: 'Радагаст',
+    //     eyesColor: 'red',
+    //     coatColor: 'blue'
+    //   }
+    // ];
+
+    // var wizardNames = [];
+
+    // for (var i = 0; i < wizards.length; i++) {
+    //   wizardNames[i] = wizards[i].name;
+    // }
+
+    // var wizardNames = ['Кащей Бессмертный'];
+
+    // for (var i = 0; i < wizards.length; i++) {
+    //   wizardNames.push(wizards[i].name);
+    // }
+
+    // for (var i = 0; i < wizards.length; i++) {
+    //   wizardNames.unshift(wizards[i].name);
+    // }
+
+    // console.log(wizardNames);
+    // wizardNames.pop();
+    // wizardNames.shift();
+    // console.log(wizardNames.push('Николай'));
+    // console.log(wizardNames);
+    // console.log(wizardNames.pop());
+    // wizardNames.push('Вася');
+    // console.log(wizardNames);
+    // wizardNames.pop();
+    // console.log(wizardNames);
+
+    // var wizardNames = wizards.map(function (wizard) {
+    //   return wizard.name;
+    // });
+
+    // var wizardNames = wizards.map(function (wizard, index, array){
+    //   return wizard.name + ' - ' + index;
+    // });
+
+    // console.log(wizardNames);
+    // console.log(wizards);
+
+
+    // var blueEyesWizards = wizards.filter(function (wizard) {
+    //   return wizard.eyesColor === 'blue';
+    // });
+
+    // console.log(blueEyesWizards);
+    // console.log(wizards);
+
+    // var wizardNames = wizards.filter(function (wizard) {
+    //   return wizard.eyesColor === 'blue';
+    // }).
+    // map(function (wizard) {
+    //   return wizard.name;
+    // });
+
+    // console.log(wizardNames);
+
+    // wizards.forEach(function (wizard) {
+    //   console.log(wizard.name + ', цвет глаз: ' + wizard.eyesColor);
+    // });
+
+    // wizards.forEach(function (wizard) {
+    //   console.log(wizard.name + ', цвет: ' + wizard[this + 'Color']);
+    // }, 'eyes');
+
+    // var allWizards = '';
+    // wizards.forEach(function (wizard, index, array) {
+    //   allWizards += wizard.name;
+    //   if (index !== (array.length - 1)) {
+    //     allWizards += ', ';
+    //   }
+    // });
+
+    // console.log(allWizards);
+
+    // var wizardNames = wizards.map(function (it) {
+    //   return it.name;
+    // });
+
+    // console.log(wizardNames);
+
+    // console.log(wizardNames.sort());
+
+    // console.log(wizardNames);
+
+    // var wizardNames = wizards.map(function (it) {
+    //   return it.name;
+    // });
+
+    // console.log(wizardNames);
+
+    // var wizardNamesCopy = wizardNames.slice();
+    // console.log(wizardNamesCopy.sort());
+
+    // console.log(wizardNames);
+
+    // wizards.sort(function (first, second) {
+    //   if (first.name > second.name) {
+    //     return 1;
+    //   } else if (first.name, second.name) {
+    //     return -1;
+    //   } else {
+    //     return 0;
+    //   }
+    // });
+
+    // console.log(wizards);
+
+    // var party = 'Саурон пригласил на вечеринку: ';
+
+    // var result = wizards.reduce(function (accumulator, it, i, array) {
+    //   var message = accumulator + it.name;
+
+    //   if (i !== (array.length - 1)) {
+    //     message += ', ';
+    //   }
+    //   return message;
+    // }, party);
+
+    // console.log(result);
+
+    // var party = 'Саурон пригласил на вечеринку: ';
+
+    // var result = wizards.reduceRight(function (accumulator, it, i, array) {
+    //   var message = accumulator + it.name;
+
+    //   if (i !== 0) {
+    //     message += ', ';
+    //   }
+    //   return message;
+    // }, party);
+
+    // console.log(result);
+
+    // var party = 'Саурон пригласил на вечеринку: ';
+
+    // var result = wizards.
+    //   map(function (it) {
+    //     return it.name;
+    //   }).join(', ');
+
+    // console.log(party + result);
+
+    // for (var i = 0; i < wizards.length; i++) {
+    //   var wizard = wizards[i];
+    //   var button = document.createElement('button');
+    //   button.textContent = wizard.name;
+    //   button.addEventListener('click', function (evt) {
+    //     button.style.backgroundColor = wizard.coatColor;
+    //   });
+    //   document.body.appendChild(button);
+    // }
+
+    // wizards.forEach(function (wizard) {
+    //   var button = document.createElement('button');
+    //   button.textContent = wizard.name;
+    //   button.addEventListener('click', function (evt) {
+    //     button.style.backgroundColor = wizard.coatColor;
+    //   });
+    //   document.body.appendChild(button);
+    // });
+
+    // wizards.forEach(function (it, i) {
+    //   console.log(i);
+
+    //   if (i >= 2) {
+    //     return;
+    //   }
+
+    //   console.log(it);
+    // });
+
+    // var wizards = [
+    //   {
+    //     name: 'Пендальф',
+    //     location: {x: 5, y: 20}
+    //   },
+    //   {
+    //     name: 'Баба Яга',
+    //     location: {x: 10, y: 10}
+    //   },
+    //   {
+    //     name: 'Сарумян',
+    //     location: {x: 0, y: 0}
+    //   },
+    //   {
+    //     name: 'Радагаст',
+    //     location: {x: 20, y: 20}
+    //   }
+    // ];
+
+    // var count = 0;
+    // console.log(wizards.map(function (it) {
+    //   count++;
+    //   return it.location;
+      // return it.location.x;
+    // })
+    // .map(function (loc) {
+    //   count++;
+    //   return loc.x;
+    // })
+    // );
+    // console.log(count);
+
+
+  </script>
+
+  <h1 class="h">Первый</h1>
+  <h1 class="h">Второй</h1>
+  <h1 class="h">Третий</h1>
+  <h1 class="h">Четвертый</h1>
+
+  <script>
+
+    // wrong way;
+    // var headers = document.querySelectorAll('h1'); // is not []
+
+    // console.log(headers.map(function (it) { // .map only for []
+    //   return it.textContent; // error
+    // }));
+
+    var headers = document.querySelectorAll('h1');
+    // console.log(headers.map(function (it) { // .map only for []
+    //   return it.textContent; // error
+    // }));
+    console.log([].map.call(headers, function (it) {
+      return it.textContent;
+    }));
+
+    console.log(Array.from(headers).map(function (it) {
+      return it.textContent;
+    }));
+
+    headers.forEach(function (itt) {
+      console.log(itt);
+    });
+
+    headers.forEach.call(headers, function (ittt) {
+      console.log(ittt);
+    })
+
+// var arr = [1, 2, 3];
+// arr.forEach(function (it) {
+//   console.log(it);
+// });
+  </script>
+
+</body>
+
+</html>
