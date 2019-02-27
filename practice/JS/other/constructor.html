@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>constructor js</title>
+</head>
+
+<body>
+    <script>
+        var coordinate = {
+            x: 100,
+            y: 100
+        };
+        console.log(coordinate);
+
+        var Rect = function (left, top, right, bottom) {
+            this.left = left;
+            this.top = top;
+            this.right = right;
+            this.bottom = bottom;
+        }
+
+        var Coordinate = function (x, y, constraints) {
+            this.x = x;
+            this.y = y;
+            this._constraints = constraints;
+
+            // this._minX = minX;
+            // this._minY = minY;
+            // this._maxX = maxX;
+            // this._maxY = maxY;
+        };
+
+        Coordinate.prototype.setX = function (x) {
+            // if (x >= this._minX && x <= this._maxX) {
+            if (x >= this._constraints.left &&
+                x <= this._constraints.right) {
+                this.x = x;
+            }
+        };
+
+        Coordinate.prototype.setY = function (y) {
+            // if (y >= this._minY && y <= this._maxY) {
+            if (y >= this._constraints.top &&
+                y <= this._constraints.bottom) {
+                this.y = y;
+            }
+        };
+
+        // var a = new Coordinate(100, 100, 0, 0, 640, 480);
+        var a = new Coordinate(100, 100, new Rect(0, 0, 640, 480));
+        console.log(a);
+
+        a.setX(20);
+        a.setY(600);
+        console.log(a);
+
+    </script>
+</body>
+
+</html>
