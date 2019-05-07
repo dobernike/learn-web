@@ -1,6 +1,7 @@
 .random-planet {
   display: flex;
   padding: 1rem;
+  border: 1px solid #444;
 }
 
 .random-planet .planet-image {
