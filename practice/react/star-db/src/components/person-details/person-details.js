@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 
 import './person-details.css';
+import SwapiService from '../../services/swapi-service';
 
 export default class PersonDetails extends Component {
+
+  swapiService = new SwapiService();
+
+  state = {
+    person: null
+  };
+
+  updatePerson() {
+
+  }
 
   render() {
     return (
       <div className="person-details card">
         <img className="person-image"
-          src="https://starwars-visualguide.com/assets/img/characters/3.jpg" alt="r2-d2"/>
+          src="https://starwars-visualguide.com/assets/img/characters/3.jpg" alt="r2-d2" />
 
         <div className="card-body">
           <h4>R2-D2</h4>
