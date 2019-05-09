@@ -43,7 +43,7 @@ export default class App extends Component {
 
         <Record field="gender" label="Gender" />
         <Record field="eyeColor" label="Eye Color" />
-        
+
       </ItemDetails>
     );
 
@@ -53,7 +53,9 @@ export default class App extends Component {
         getData={getStarship}
         getImageUrl={getStarshipImage}>
 
-
+        <Record field="model" label="Model" />
+        <Record field="length" label="Length" />
+        <Record field="costInCredits" label="Cost" />
 
       </ItemDetails>
     );
