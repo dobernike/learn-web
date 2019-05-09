@@ -7,8 +7,7 @@ import ErrorIndicator from '../error-indicator';
 import PeoplePage from '../people-page';
 
 import './app.css';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+
 import SwapiService from '../../services/swapi-service';
 
 export default class App extends Component {
@@ -63,29 +62,6 @@ export default class App extends Component {
         </div>
 
         <PeoplePage />
-
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onPersonSelected}
-              getData={this.swapiSevice.getAllPlanets}
-              renderItem={(item) => (<span>{item.name} <button>!</button></span>)} />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
-        </div>
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onPersonSelected}
-              getData={this.swapiSevice.getAllStarships}
-              renderItem={(item) => item.name} />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
-        </div>
 
       </div>
     );
