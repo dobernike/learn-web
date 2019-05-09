@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './item-list.css';
 // import SwapiService from "../../services/swapi-service";
-import Spinner from "../spinner/spinner";
+import Spinner from "../spinner";
 
 export default class ItemList extends Component {
 
