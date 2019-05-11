@@ -1,7 +1,11 @@
 import withData from './with-data';
 import withSwapiService from './with-swapi-service';
+import compose from './compose';
+import withChildFunction from './withChildFunction';
 
 export {
   withData,
-  withSwapiService
+  withSwapiService,
+  compose,
+  withChildFunction
 };
