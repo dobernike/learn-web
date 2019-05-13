@@ -73,8 +73,8 @@ export default class App extends Component {
                     <SecretPage isLoggedIn={isLoggedIn} />
                   )} />
 
-                <Route render={() => <h2>Page not found</h2>} />
-                {/* <Redirect to="/" /> */}
+                {/* <Route render={() => <h2>Page not found</h2>} /> */}
+                <Redirect to="/" />
               </Switch>
 
             </div>
