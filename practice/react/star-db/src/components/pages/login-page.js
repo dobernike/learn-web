@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 const LoginPage = ({ isLoggenIn, onLogin }) => {
 
     if (isLoggenIn) {
-        return <Redirect to="/" />;
+        return <Redirect to="/secret" />;
     }
     return (
         <div className="jumbotron">

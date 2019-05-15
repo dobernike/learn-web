@@ -50,9 +50,9 @@ export default class App extends Component {
               <RandomPlanet />
 
               <Switch>
-                <Route path="/"
+                {/* <Route path="/"
                   render={() => <h2>Welcome to StarDB</h2>}
-                  exact />
+                  exact /> */}
                 <Route path="/people/:id?" component={PeoplePage} />
                 <Route path="/planets" component={PlanetsPage} />
                 <Route path="/starships" exact component={StarshipsPage} />
@@ -74,7 +74,7 @@ export default class App extends Component {
                   )} />
 
                 {/* <Route render={() => <h2>Page not found</h2>} /> */}
-                <Redirect to="/" />
+                <Redirect to="/people/" exact />
               </Switch>
 
             </div>
