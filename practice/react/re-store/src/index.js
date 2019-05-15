@@ -1,2 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log(`test`);
+import App from './components/app';
+
+ReactDOM.render(<App />,
+  document.getElementById(`root`));
+  
