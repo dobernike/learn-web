@@ -28,6 +28,8 @@
 }
 .lds-eclipse {
   position: relative;
+  width: auto;
+  height: auto;
 }
 .lds-eclipse div {
   position: absolute;
@@ -35,19 +37,19 @@
   animation: lds-eclipse 0.3s linear infinite;
   width: 160px;
   height: 160px;
-  top: 20px;
-  left: 20px;
+  top: 100%;
+  /* left: 20px; */
+  margin-top: -80px;
   border-radius: 50%;
   box-shadow: 0 4px 0 0 #1875e5;
   -webkit-transform-origin: 80px 82px;
   transform-origin: 80px 82px;
 }
 .lds-eclipse {
+  margin: 0 auto;
+  vertical-align: middle;
   width: 200px !important;
   height: 200px !important;
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
-}
-.lds-css {
-  margin: 0 auto;
 }
