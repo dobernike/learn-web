@@ -1,6 +1,17 @@
 
 const initialState = {
-  books: []
+  books: [
+    {
+      id: 1,
+      title: `JavaScript: The Good Parts`,
+      author: `Douglas Crockford`
+    },
+    {
+      id: 2,
+      title: `You Don’t Know JS`,
+      author: `Kyle Simpson`
+    }
+  ]
 };
 
 const reducer = (state = initialState, action) => {
