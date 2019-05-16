@@ -1,9 +1,8 @@
 import React from 'react';
-import Spinner from '../spinner';
 
 const App = () => {
   return (
-    <Spinner />
+    <div>App</div>
   );
 };
 
