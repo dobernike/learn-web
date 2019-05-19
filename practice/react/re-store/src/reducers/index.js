@@ -1,17 +1,6 @@
 
 const initialState = {
-  books: [
-    {
-      id: 1,
-      title: `JavaScript: The Good Parts`,
-      author: `Douglas Crockford`
-    },
-    {
-      id: 2,
-      title: `You Don’t Know JS`,
-      author: `Kyle Simpson`
-    }
-  ]
+  books: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,7 +11,7 @@ const reducer = (state = initialState, action) => {
         books: action.payload
       };
 
-      default:
+    default:
       return state;
   }
 };
