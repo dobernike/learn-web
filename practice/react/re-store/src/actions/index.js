@@ -26,16 +26,16 @@ export const bookAddedToCart = (bookId) => {
   };
 };
 
-export const bookRemoveToCart = (bookId) => {
+export const bookRemoveFromCart = (bookId) => {
   return {
-    type: `BOOK_REMOVE_TO_CART`,
+    type: `BOOK_REMOVE_FROM_CART`,
     payload: bookId
   };
 };
 
-export const allBookRemoveToCart = (bookId) => {
+export const allBookRemoveFromCart = (bookId) => {
   return {
-    type: `ALL_BOOK_REMOVE_TO_CART`,
+    type: `ALL_BOOK_REMOVE_FROM_CART`,
     payload: bookId
   };
 };
