@@ -40,12 +40,12 @@ export const allBooksRemoveFromCart = (bookId) => {
   };
 };
 
-const fetchBooks = (bookstoreService, dispatch) => () => {
+const fetchBooks = (bookstoreService) => () => (dispatch) => {
   dispatch(booksRequester());
   bookstoreService.getBooks()
     .then((data) => dispatch(booksLoaded(data)))
     .catch((err) => dispatch(booksError));
-}
+};
 
 export {
   fetchBooks

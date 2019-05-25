@@ -4,6 +4,7 @@ import './book-list.css';
 import BookListItem from '../book-list-item';
 import { withBookstoreService } from '../hoc';
 import { fetchBooks, bookAddedToCart } from '../../actions';
+import { bindActionCreators } from 'redux';
 import { compose } from '../../utils';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
@@ -47,15 +48,15 @@ class BookListContainer extends Component {
 
 // Эта функция опредяляет, какие свойства
 // получит компонент из Redux
-const mapStateToProps = ({ bookList: { books, loading, error }}) => {
+const mapStateToProps = ({ bookList: { books, loading, error } }) => {
   return { books, loading, error };
 };
 
 const mapDispatchToProps = (dispatch, { bookstoreService }) => {
-  return {
-    fetchBooks: fetchBooks(bookstoreService, dispatch),
-    onAddedToCart: (id) => dispatch(bookAddedToCart(id))
-  }
+  return bindActionCreators({
+    fetchBooks: fetchBooks(bookstoreService),
+    onAddedToCart: bookAddedToCart
+  }, dispatch);
 }
 
 export default compose(
