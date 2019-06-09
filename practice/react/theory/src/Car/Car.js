@@ -6,6 +6,7 @@ export default props => (
     <p>
       Year:
       <strong>{props.year}</strong>
+      {props.children}
     </p>
   </h2>
 );
