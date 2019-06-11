@@ -12,13 +12,7 @@ class App extends Component {
     pageTitle: "React Components"
   };
 
-  changeTitileHandler = () => {
-    console.log(`Clicked`);
-
-    const oldTitle = this.state.pageTitle;
-
-    const newTitle = oldTitle + ` (changed)`;
-
+  changeTitileHandler = newTitle => {
     this.setState({
       pageTitle: newTitle
     });
@@ -35,11 +29,19 @@ class App extends Component {
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
 
-        <button onClick={this.changeTitileHandler}> Change title </button>
+        <button onClick={this.changeTitileHandler.bind(this, "Changed!")}>
+          Change title
+        </button>
 
-        <Car name={cars[0].name} year={cars[0].year} />
-        <Car name={cars[1].name} year={cars[1].year} />
-        <Car name={cars[2].name} year={cars[2].year} />
+        <Car
+          name={cars[0].name}
+          year={cars[0].year}
+          onChangeTitle={this.changeTitileHandler.bind(this, cars[0].name)}
+        />
+        <Car name={cars[1].name} year={cars[1].year}
+        onChangeTitle={() => this.changeTitileHandler(cars[1].name)} />
+        <Car name={cars[2].name} year={cars[2].year} 
+        onChangeTitle={() => this.changeTitileHandler(cars[2].name)}/>
       </div>
     );
   }

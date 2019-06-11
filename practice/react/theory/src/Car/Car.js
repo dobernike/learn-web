@@ -8,5 +8,6 @@ export default props => (
       <strong>{props.year}</strong>
       {props.children}
     </p>
+    <button onClick={props.onChangeTitle}>Click</button>
   </h2>
 );
