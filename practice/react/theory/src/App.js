@@ -5,11 +5,15 @@ import Car from "./Car/Car";
 class App extends Component {
   state = {
     cars: [
-      { name: "Ford", year: "2013" },
-      { name: "Vw", year: "1993" },
-      { name: "Audi", year: "2018" }
+      { name: "Ford", year: 2013 },
+      { name: "Vw", year: 1993 },
+      { name: "Audi", year: 2018 }
     ],
     pageTitle: "React Components"
+  };
+
+  changeTitileHandler = () => {
+    console.log(`Clicked`);
   };
 
   render() {
@@ -22,6 +26,8 @@ class App extends Component {
     return (
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
+
+        <button onClick={this.changeTitileHandler}> Change title </button>
 
         <Car name={cars[0].name} year={cars[0].year} />
         <Car name={cars[1].name} year={cars[1].year} />
