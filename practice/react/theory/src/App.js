@@ -14,6 +14,14 @@ class App extends Component {
 
   changeTitileHandler = () => {
     console.log(`Clicked`);
+
+    const oldTitle = this.state.pageTitle;
+
+    const newTitle = oldTitle + ` (changed)`;
+
+    this.setState({
+      pageTitle: newTitle
+    });
   };
 
   render() {
