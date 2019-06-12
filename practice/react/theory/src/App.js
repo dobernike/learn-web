@@ -29,7 +29,7 @@ class App extends Component {
       textAlign: "center"
     };
 
-    const cars = this.state.cars;
+    // const cars = this.state.cars;
 
     return (
       <div style={divStyle}>
@@ -39,21 +39,14 @@ class App extends Component {
           Change title
         </button>
 
-        <Car
-          name={cars[0].name}
-          year={cars[0].year}
-          onChangeTitle={this.changeTitileHandler.bind(this, cars[0].name)}
-        />
-        <Car
-          name={cars[1].name}
-          year={cars[1].year}
-          onChangeTitle={() => this.changeTitileHandler(cars[1].name)}
-        />
-        <Car
-          name={cars[2].name}
-          year={cars[2].year}
-          onChangeTitle={() => this.changeTitileHandler(cars[2].name)}
-        />
+        {this.state.cars.map((car, idx) => (
+          <Car
+            key={idx}
+            name={car.name}
+            year={car.year}
+            onChangeTitle={this.changeTitileHandler.bind(this, car.name)}
+          />
+        ))}
       </div>
     );
   }
