@@ -13,9 +13,18 @@ class App extends Component {
     showCars: false
   };
 
-  changeTitileHandler = pageTitle => {
-    this.setState({ pageTitle });
-  };
+  // changeTitileHandler = pageTitle => {
+  // this.setState({ pageTitle });
+  // };
+
+  onChangeName(name, idx) {
+    const car = this.state.cars[idx];
+    car.name = name;
+    const cars = [...this.state.cars];
+    cars[idx] = car;
+
+    this.setState({ cars });
+  }
 
   toggleCarsHandler = () => {
     this.setState({
@@ -36,7 +45,7 @@ class App extends Component {
           key={idx}
           name={car.name}
           year={car.year}
-          onChangeTitle={this.changeTitileHandler.bind(this, car.name)}
+          onChangeName={event => this.onChangeName(event.target.value, idx)}
         />
       ));
     }
