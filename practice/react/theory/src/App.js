@@ -52,7 +52,7 @@ class App extends Component {
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
 
-        <button onClick={this.ToggleCarsHandler}>Toggle Cars</button>
+        <button className="AppButton" onClick={this.ToggleCarsHandler}>Toggle Cars</button>
 
         <div style={{
           width: 400,
