@@ -10,8 +10,8 @@ class App extends Component {
     this.state = {
       cars: [
         { name: `Ford`, year: `2013` },
-        { name: `VW`, year: `1993` },
-        { name: `Audi`, year: `2018` }
+        // { name: `VW`, year: `1993` },
+        // { name: `Audi`, year: `2018` }
       ],
       pageTitle: `React components`,
       showCars: true
@@ -37,15 +37,15 @@ class App extends Component {
   }
 
   componentWillMount() {
-    console.log(`willMount`);
+    console.log(`App componentWillMount`);
   }
 
   componentDidMount() {
-    console.log(`didMount`);
+    console.log(`App componentDidMount`);
   }
 
   render() {
-    console.log(`render`);
+    console.log(`App render`);
     const divStyle = {
       textAlign: "center"
     };
