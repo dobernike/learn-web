@@ -27,7 +27,7 @@ class App extends Component {
   deleteHandler(idx) {
     const cars = this.state.cars.concat();
     cars.splice(idx, 1);
-    
+
     this.setState({ cars });
   }
 
@@ -54,7 +54,11 @@ class App extends Component {
 
         <button onClick={this.ToggleCarsHandler}>Toggle Cars</button>
 
-        {cars}
+        <div style={{
+          width: 400,
+          margin: `auto`,
+          paddingTop: `20px`
+        }}>{cars}</div>
       </div>
     );
   }
