@@ -1,4 +1,6 @@
 .Car {
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14);
   margin-bottom: 10px;
   display: block;
   padding: 10px;
@@ -6,7 +8,10 @@
   transition: border, box-shadow 0.3s;
 }
 
-.input {
+.Car:hover {
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .input:active,

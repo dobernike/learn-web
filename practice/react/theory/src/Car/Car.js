@@ -1,6 +1,6 @@
 import React from "react";
 // import Radium from 'radium';
-import "./Car.css";
+import classes from "./Car.css";
 
 const Car = props => {
   const inputClasses = [`input`];
@@ -15,18 +15,12 @@ const Car = props => {
     inputClasses.push(`bold`);
   }
 
-  const style = {
-    border: `1px solid #ccc`,
-    boxShadow: `0 4px 5px 0 rgba(0, 0, 0, .14)`,
-    ":hover": {
-      border: `1px solid #aaa`,
-      boxShadow: `0 4px 15px 0 rgba(0, 0, 0, .25)`,
-      cursor: `pointer`
-    }
-  };
+  // const style = {
+
+  // };
 
   return (
-    <div className="Car" style={style}>
+    <div className="Car">
       <h3>Car name is: {props.name}</h3>
       <p>
         Year:
