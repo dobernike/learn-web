@@ -1,12 +1,18 @@
 import React from "react";
 
 export default props => (
-  <h2>
-    <p>Car name is: {props.name}</p>
+  <div style={{
+    border: `1px solid #ccc`,
+    marginBottom: `10px`,
+    display: `block`,
+    padding: `10px`
+  }}>
+    <h3>Car name is: {props.name}</h3>
     <p>
       Year:
       <strong>{props.year}</strong>
-      {props.children}
     </p>
-  </h2>
+    <input type="text" onChange={props.onChangeName} value={props.name}/>
+    <button onClick={props.onDelete}>Delete</button>
+  </div>
 );
