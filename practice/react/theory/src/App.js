@@ -3,15 +3,19 @@ import "./App.css";
 import Car from "./Car/Car";
 
 class App extends Component {
-  state = {
-    cars: [
-      { name: `Ford`, year: `2013` },
-      { name: `VW`, year: `1993` },
-      { name: `Audi`, year: `2018` }
-    ],
-    pageTitle: `React components`,
-    showCars: true
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cars: [
+        { name: `Ford`, year: `2013` },
+        { name: `VW`, year: `1993` },
+        { name: `Audi`, year: `2018` }
+      ],
+      pageTitle: `React components`,
+      showCars: true
+    };
+  }
 
   onChangeName = (name, idx) => {
     const car = this.state.cars[idx];
