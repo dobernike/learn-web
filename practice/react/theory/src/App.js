@@ -50,15 +50,22 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
-        <h1>{this.state.pageTitle}</h1>
+        {/* <h1>{this.state.pageTitle}</h1> */}
+        <h1>{this.props.title}</h1>
 
-        <button className="AppButton" onClick={this.ToggleCarsHandler}>Toggle Cars</button>
+        <button className="AppButton" onClick={this.ToggleCarsHandler}>
+          Toggle Cars
+        </button>
 
-        <div style={{
-          width: 400,
-          margin: `auto`,
-          paddingTop: `20px`
-        }}>{cars}</div>
+        <div
+          style={{
+            width: 400,
+            margin: `auto`,
+            paddingTop: `20px`
+          }}
+        >
+          {cars}
+        </div>
       </div>
     );
   }
