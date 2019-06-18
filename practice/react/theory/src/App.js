@@ -5,6 +5,7 @@ import Car from "./Car/Car";
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log(`constructor`);
 
     this.state = {
       cars: [
@@ -35,7 +36,16 @@ class App extends Component {
     this.setState({ cars });
   }
 
+  componentWillMount() {
+    console.log(`willMount`);
+  }
+
+  componentDidMount() {
+    console.log(`didMount`);
+  }
+
   render() {
+    console.log(`render`);
     const divStyle = {
       textAlign: "center"
     };
