@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Auxiliary from "../hoc/Auxiliary";
+// import Auxiliary from "../hoc/Auxiliary";
 
 export default class Counter extends Component {
   state = {

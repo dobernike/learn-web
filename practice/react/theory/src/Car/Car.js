@@ -4,6 +4,18 @@ import "./Car.css";
 import withClass from "../hoc/withClass";
 
 class Car extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.inputRef = React.createRef();
+  }
+
+  componentDidMount() {
+    if (this.props.idx === 0) {
+      this.inputRef.current.focus();
+    }
+  }
+
   render() {
     const inputClasses = [`input`];
 
@@ -25,6 +37,7 @@ class Car extends React.Component {
           <strong>{this.props.year}</strong>
         </p>
         <input
+          ref={this.inputRef}
           className={inputClasses.join(` `)}
           type="text"
           onChange={this.props.onChangeName}

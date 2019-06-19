@@ -11,7 +11,7 @@ class App extends Component {
 
     this.state = {
       cars: [
-        { name: `Ford`, year: 2013 }
+        { name: `Ford`, year: 2013 },
         { name: `VW`, year: 1993 },
         { name: `Audi`, year: 2018 }
       ],
@@ -57,6 +57,7 @@ class App extends Component {
           return (
             <ErrorBoundary key={idx}>
               <Car
+                idx={idx}
                 name={car.name}
                 year={car.year}
                 onChangeName={event =>
