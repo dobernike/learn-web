@@ -13,10 +13,14 @@
   margin: 0;
 }
 
-.success {
-  color: rgba(161, 240, 69, .7);
+.FinishedQuiz ul li span {
+  margin-left: 10px;
 }
 
-.error {
-  color: rgba(240, 87, 108, .7);
+.FinishedQuiz .success {
+  color: rgba(161, 240, 69, 0.7);
+}
+
+.FinishedQuiz .error {
+  color: rgba(240, 87, 108, 0.7);
 }

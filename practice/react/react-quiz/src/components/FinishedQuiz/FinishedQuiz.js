@@ -1,27 +1,39 @@
 import React from "react";
 import "./FinishedQuiz.css";
 
-const FinishedQuiz = props => (
-  <div className="FinishedQuiz">
-    <ul>
-      <li>
-        <strong>1. </strong>
-        How are you?
-        <i className="error">&times;</i>
-      </li>
-      <li>
-        <strong>2. </strong>
-        How are you?
-        <i className="success">+</i>
-      </li>
-    </ul>
+const FinishedQuiz = props => {
+  const successCount = Object.keys(props.results).reduce((total, key) => {
+    if (props.results[key] === `success`) {
+      total++;
+    }
+    return total;
+  }, 0);
 
-    <p>Правильно 4 из 10</p>
+  return (
+    <div className="FinishedQuiz">
+      <ul>
+        {props.quiz.map((it, idx) => {
+          return (
+            <li key={idx}>
+              <strong>{idx + 1}</strong>.&nbsp;
+              {it.question}
+              <span className={props.results[idx]}>
+                {props.results[idx] === `success` ? `+` : `x`}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
 
-    <div>
-      <button type="button">Повторить</button>
+      <p>
+        Правильно {successCount} из {props.quiz.length}
+      </p>
+
+      <div>
+        <button type="button" onClick={props.onRetry}>Повторить</button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default FinishedQuiz;
