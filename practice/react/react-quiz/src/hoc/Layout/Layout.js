@@ -5,21 +5,24 @@ import Drawer from "../../components/Navigation/Drawer/Drawer";
 
 class Layout extends Component {
   state = {
-    isOpen: false
+    menu: false
   };
 
   toggleMenuHandler = () => {
-    console.log(`click`);
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({ menu: !this.state.menu });
+  };
+
+  closeMenuHandler = () => {
+    this.setState({ menu: false });
   };
 
   render() {
     return (
       <div className={`Layout`}>
-        <Drawer isOpen={this.state.isOpen} />
+        <Drawer isOpen={this.state.menu} onClose={this.closeMenuHandler} />
         <MenuToggle
           onToggle={this.toggleMenuHandler}
-          isOpen={this.state.isOpen}
+          isOpen={this.state.menu}
         />
         <main>{this.props.children}</main>
       </div>
