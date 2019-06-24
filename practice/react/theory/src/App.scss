@@ -1,0 +1,30 @@
+.AppButton {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:focus, &:active {
+    outline: none;
+  }
+
+  &:hover {
+    background: #f0ff1e;
+  }
+}
+
+
+.nav {
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+
+    li {
+      margin-right: 15px;
+    }
+  }
+}
