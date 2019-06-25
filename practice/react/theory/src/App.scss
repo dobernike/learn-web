@@ -4,7 +4,8 @@
   font-weight: bold;
   text-transform: uppercase;
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: none;
   }
 
@@ -12,7 +13,6 @@
     background: #f0ff1e;
   }
 }
-
 
 .nav {
   ul {
@@ -25,6 +25,11 @@
 
     li {
       margin-right: 15px;
+
+      a.active, a.wfm-active {
+        font-weight: bold;
+        color: red;
+      }
     }
   }
 }
