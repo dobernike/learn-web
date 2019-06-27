@@ -27,10 +27,14 @@ export default class Cars extends Component {
         }}
       >
         <button onClick={this.goToHomePage}>Go to home page</button>
+
         <hr />
+
         {this.state.cars.map((car, index) => {
           return <Car key={index} name={car.name} year={car.year} />;
         })}
+
+        <hr />
       </div>
     );
   }

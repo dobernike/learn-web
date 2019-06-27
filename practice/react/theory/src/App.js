@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.scss";
 import About from "./About/About";
 import Cars from "./Cars/Cars";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
+import CarDetail from "./CarDetail/CarDetail";
 
 class App extends Component {
   render() {
@@ -28,7 +29,7 @@ class App extends Component {
             <li>
               <NavLink
                 to={{
-                  pathname: `/cars`,
+                  pathname: `/cars`
                   // search: `?a=1&b=2`,
                   // hash: `wfm-hash`
                 }}
@@ -41,9 +42,12 @@ class App extends Component {
 
         <hr />
 
-        <Route path="/" exact render={() => <h1>Hello</h1>} />
-        <Route path="/about" component={About} />
-        <Route path="/cars" component={Cars} />
+        <Switch>
+          <Route path="/" exact render={() => <h1>Hello</h1>} />
+          <Route path="/about" component={About} />
+          <Route path="/cars/:name" component={CarDetail} />
+          <Route path="/cars" component={Cars} />
+        </Switch>
       </div>
     );
   }
