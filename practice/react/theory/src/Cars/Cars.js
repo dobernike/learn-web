@@ -17,7 +17,6 @@ export default class Cars extends Component {
   };
 
   render() {
-    // console.log(this.props);
     return (
       <div
         style={{
