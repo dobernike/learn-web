@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Auth.css";
+import axios from "axios";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 // import is from 'is_js';
@@ -40,9 +41,33 @@ export default class Auth extends Component {
     }
   };
 
-  loginHandler = () => {};
+  loginHandler = async () => {
+    const authData = {
+      email: this.state.formControls.email.value,
+      password: this.state.formControls.password.value,
+      returnSecureToken: true
+    };
 
-  registerHandler = () => {};
+    const response = await axios.post(
+      `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBClRsfthPDifOeebzgbRiqxibQaSPNEvo`,
+      authData
+    );
+    console.log(response.data);
+  };
+
+  registerHandler = async () => {
+    const authData = {
+      email: this.state.formControls.email.value,
+      password: this.state.formControls.password.value,
+      returnSecureToken: true
+    };
+
+    const response = await axios.post(
+      `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBClRsfthPDifOeebzgbRiqxibQaSPNEvo`,
+      authData
+    );
+    console.log(response.data);
+  };
 
   submitHandler = event => event.preventDefault();
 
