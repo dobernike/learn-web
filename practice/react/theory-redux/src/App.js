@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import "./App.scss";
 import { connect } from "react-redux";
+import Counter from "./Counter";
 
 class App extends Component {
-  updateCounter(value) {
-    // this.setState({
-    //   counter: this.props.counter + value
-    // });
-  }
-
   render() {
     return (
       <div className={"App"}>
@@ -30,13 +25,15 @@ class App extends Component {
             Вычесть 19
           </button>
         </div>
+
+        <Counter />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  counter: state.counter
+  counter: state.counter1.counter
 });
 
 const mapDispatchToProps = dispatch => ({
