@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./QuizCreator.css";
-import axios from "axios";
 import { connect } from "react-redux";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
@@ -75,7 +74,7 @@ class QuizCreator extends Component {
       ]
     };
 
-    this.props.createQuizQuestion(questionItem)
+    this.props.createQuizQuestion(questionItem);
 
     this.setState({
       isFormValid: false,
@@ -84,23 +83,15 @@ class QuizCreator extends Component {
     });
   };
 
-  createQuizHandler = async event => {
+  createQuizHandler = event => {
     event.preventDefault();
 
-    try {
-      await axios.post(
-        `https://react-quizes-161ef.firebaseio.com/quizes.json`,
-        this.props.quiz
-      );
-      this.setState({
-        // quiz: [],
-        isFormValid: false,
-        rightAnswerId: 1,
-        formControls: createFormControls()
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    this.setState({
+      isFormValid: false,
+      rightAnswerId: 1,
+      formControls: createFormControls()
+    });
+    this.props.finishCreateQuiz();
   };
 
   changeHandler = (value, controlName) => {
@@ -152,7 +143,7 @@ class QuizCreator extends Component {
     const select = (
       <Select
         label="Выберите правильный ответ"
-        value={this.props.rightAnswerId}
+        value={this.state.rightAnswerId}
         onChange={this.selectChangeHandler}
         options={[
           { text: 1, value: 1 },
@@ -174,7 +165,7 @@ class QuizCreator extends Component {
             <Button
               type="primary"
               onClick={this.addQuestionHandler}
-              disabled={!this.props.isFormValid}
+              disabled={!this.state.isFormValid}
             >
               Добавить вопрос
             </Button>
