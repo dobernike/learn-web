@@ -32,6 +32,10 @@ export function auth(email, password, isLogin) {
   };
 }
 
+export function authLogin() {
+  return { type: authLogin };
+}
+
 export function authSuccess(token) {
   return {
     type: AUTH_SUCCESS,
