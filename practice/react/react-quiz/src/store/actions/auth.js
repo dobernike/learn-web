@@ -32,8 +32,23 @@ export function auth(email, password, isLogin) {
   };
 }
 
-export function authLogin() {
-  return { type: authLogin };
+export function autoLogin() {
+  return dispatch => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch(logout());
+    } else {
+      const expirationData = new Date(localStorage.getItem(`expirationData`));
+      if (expirationData <= new Date()) {
+        dispatch(logout());
+      } else {
+        dispatch(authSuccess(token));
+        dispatch(
+          autoLogout((expirationData.getTime() - new Date().getTime()) / 1000)
+        );
+      }
+    }
+  };
 }
 
 export function authSuccess(token) {
