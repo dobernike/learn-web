@@ -10,24 +10,28 @@ const starWarsChars = [
   { name: "Обиван Кеноби", side: "light" }
 ];
 
-const App = ({ list, side }) => {
+const App = ({ list }) => (
+  <ul>
+    {list.map((char, index) => {
+      return (
+        <li key={char.name + index}>
+          <strong>{char.name}</strong> - &nbsp;
+          {char.side}
+        </li>
+      );
+    })}
+  </ul>
+);
+
+const withFiltredProps = Component => ({ list, side }) => {
   const filtredList = list.filter(char => char.side === side);
-  return (
-    <ul>
-      {filtredList.map((char, index) => {
-        return (
-          <li key={char.name + index}>
-            <strong>{char.name}</strong> - &nbsp;
-            {char.side}
-          </li>
-        );
-      })}
-    </ul>
-  );
+  return <Component list={filtredList} />;
 };
 
+const FilteredList = withFiltredProps(App);
+
 ReactDOM.render(
-  <App list={starWarsChars} side="light" />,
+  <FilteredList list={starWarsChars} side="dark" />,
   document.getElementById("root")
 );
 
