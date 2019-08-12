@@ -29,7 +29,7 @@ function stringify(string) {
         if (count !== 1) {
           str = count + char + 1;
         } else {
-          str = char + count;
+          str = 1 + char + count;
         }
 
       }
