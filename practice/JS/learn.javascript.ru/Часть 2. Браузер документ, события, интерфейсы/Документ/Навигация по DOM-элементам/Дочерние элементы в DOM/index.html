@@ -1,0 +1,45 @@
+<!-- Дочерние элементы в DOM
+важность: 5
+
+Для страницы:
+
+<html>
+<body>
+  <div>Пользователи:</div>
+  <ul>
+    <li>Джон</li>
+    <li>Пит</li>
+  </ul>
+</body>
+</html>
+
+Как получить:
+
+    Напишите код, который получит элемент <div>?
+    Напишите код, который получит <ul>?
+    Напишите код, который получит второй <li> (с именем Пит)? -->
+
+
+<html>
+
+<body>
+  <div>Пользователи:</div>
+  <ul>
+    <li>Джон</li>
+    <li>Пит</li>
+  </ul>
+
+  <script>
+    //  Напишите код, который получит элемент <div>?
+    const div = document.body.firstElementChild;
+    console.log(div);
+    // Напишите код, который получит <ul>?
+    const ul = document.body.lastElementChild;
+    console.log(ul);
+    // Напишите код, который получит второй <li> (с именем Пит)?
+    const secondLi = ul.lastElementChild;
+    console.log(secondLi);
+  </script>
+</body>
+
+</html>
