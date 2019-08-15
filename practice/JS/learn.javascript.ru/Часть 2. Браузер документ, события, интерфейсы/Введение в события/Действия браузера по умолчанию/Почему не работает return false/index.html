@@ -1,0 +1,26 @@
+<!-- Почему не работает return false?
+важность: 3
+
+Почему в коде ниже return false не работает?
+
+<script>
+  function handler() {
+    alert( "..." );
+    return false;
+  }
+</script>
+
+<a href="http://w3.org" onclick="handler()">браузер откроет w3.org</a>
+
+Браузер переходит по указанной ссылке, но нам этого не нужно.
+
+Как поправить? -->
+
+<script>
+  function handler() {
+    alert( "..." );
+    event.preventDefault();
+  }
+</script>
+
+<a href="http://w3.org" onclick="handler(event)">браузер откроет w3.org</a>
