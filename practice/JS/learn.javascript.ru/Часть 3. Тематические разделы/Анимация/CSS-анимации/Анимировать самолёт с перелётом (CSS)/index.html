@@ -1,0 +1,55 @@
+<!-- Анимировать самолёт с перелётом (CSS)
+важность: 5
+Модифицируйте решение предыдущей задачи Анимировать самолёт (CSS) , чтобы в процессе анимации изображение выросло больше своего стандартного размера 400x240px («выпрыгнуло»), а затем вернулось к нему.
+
+Должно получиться, как в примере ниже (клик на самолёт):-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    img {
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    #flyjet {
+      width: 40px;
+      /* -> 400px */
+
+      height: 24px;
+      /* -> 240px */
+    }
+
+    #flyjet.animate {
+      width: 400px;
+      height: 240px;
+      transition: all 3s cubic-bezier(0.25, 1.5, 0.75, 1.5);
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+
+  <script>
+    flyjet.onclick = function() {
+    
+    let ended = false;
+    flyjet.addEventListener('transitionend', function() {
+      if (!ended) {
+          ended = true;
+          alert('«Анимация закончилась!»');
+        }
+    });
+
+    flyjet.classList.add('animate');
+    }
+    
+  </script>
+</body>
+
+</html>
