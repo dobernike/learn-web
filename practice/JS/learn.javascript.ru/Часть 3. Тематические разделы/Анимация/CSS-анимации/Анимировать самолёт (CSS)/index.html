@@ -1,0 +1,57 @@
+<!-- /* Реализуйте анимацию, как в примере ниже (клик на самолёт):
+
+
+При нажатии картинка изменяет размеры с 40x24px до 400x240px (увеличивается в 10 раз).
+Время анимации 3 секунды.
+По окончании анимации вывести сообщение: «Анимация закончилась!».
+Если во время анимации будут дополнительные клики по картинке – они не должны ничего «сломать». */ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    img {
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    #flyjet {
+      width: 40px;
+      /* -> 400px */
+
+      height: 24px;
+      /* -> 240px */
+    }
+
+    #flyjet.animate {
+      width: 400px;
+      height: 240px;
+      transition: all 3s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+
+  <script>
+    flyjet.onclick = function() {
+    
+    let ended = false;
+    flyjet.addEventListener('transitionend', function() {
+      if (!ended) {
+          ended = true;
+          alert('«Анимация закончилась!»');
+        }
+    });
+
+    flyjet.classList.add('animate');
+    }
+    
+  </script>
+</body>
+
+</html>
