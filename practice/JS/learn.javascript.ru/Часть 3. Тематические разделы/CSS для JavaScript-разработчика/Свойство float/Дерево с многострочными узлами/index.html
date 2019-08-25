@@ -1,0 +1,80 @@
+<!-- Дерево с многострочными узлами
+важность: 3
+Сделайте дерево при помощи семантической вёрстки и CSS-спрайта с иконками (есть готовый).
+
+Выглядеть должно так (не кликабельно):
+
+ 
+Поддержка многострочных названий узлов
+Над иконкой курсор становится указателем.
+Исходный документ содержит список UL/LI и ссылку на картинку.
+
+P.S. Достаточно сделать HTML/CSS-структуру, действия добавим позже.
+
+Открыть песочницу для задачи. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    /* ваш стиль */
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      position: relative;
+    }
+
+    .icon {
+      position: absolute;
+      left: -16px;
+      width: 16px;
+      height: 16px;
+    }
+
+    .open .icon {
+      background-image: url(https://js.cx/sprite-tree/minus.gif);
+    }
+
+    .closed .icon {
+      background-image: url(https://js.cx/sprite-tree/plus.gif);
+    }
+
+    .leaf .icon {
+      background-image: url(https://js.cx/sprite-tree/article.gif);
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul>
+    <li class="open">
+      <div class="icon"></div>
+      <div class="text">Раздел 1
+        <br>(занимает две строки)</div>
+      <ul>
+        <li class="closed">
+          <div class="icon"></div>
+          <div class="text">Раздел 1.1</div>
+        </li>
+        <li class="leaf">
+          <div class="icon"></div>
+          <div class="text">Страница 1.2
+            <br>(занимает две строки)</div>
+        </li>
+      </ul>
+    </li>
+    <li class="closed">
+      <div class="icon"></div>
+      <div class="text">Раздел 2
+        <br>(занимает две строки)</div>
+    </li>
+  </ul>
+
+</body>
+
+</html>
