@@ -2,8 +2,8 @@ import React from "react";
 
 export const Navbar: React.FC = () => (
   <nav>
-    <div className="nav-wrapper purple darken-2">
-      <a href="#" className="brand-logo">
+    <div className="nav-wrapper purple darken-2 px1">
+      <a href="/" className="brand-logo">
         React + TS
       </a>
       <ul className="right hide-on-med-and-down">
