@@ -217,7 +217,7 @@ describe("DelayedLoader", () => {
 import React from "react";
 import { shallow } from "enzyme";
 import noop from "@tinkoff/utils/function/noop";
-import Interval from "../Interval.jsx";
+import Interval from "../Interval.jsx.js";
 
 const DELAY = 1000;
 

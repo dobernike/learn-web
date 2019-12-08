@@ -1,12 +1,8 @@
-import {
-  Template
-} from 'meteor/templating';
-import {
-  Notes
-} from '../lib/collection.js';
+import { Template } from "meteor/templating";
+import { Notes } from "../lib/collection.js.js";
 // import { ReactiveVar } from 'meteor/reactive-var';
 
-import './main.html';
+import "./main.html";
 
 Template.body.helpers({
   // notes: [{
