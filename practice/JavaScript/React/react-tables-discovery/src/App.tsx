@@ -1,7 +1,8 @@
 import React from "react";
+import ReactDatasheet from "./ReactDatasheet";
 
 const App: React.FC = () => {
-  return <div></div>;
+  return <ReactDatasheet />;
 };
 
 export default App;

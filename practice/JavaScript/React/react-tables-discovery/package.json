@@ -11,6 +11,7 @@
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "react": "^16.12.0",
+    "react-datasheet": "^1.4.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
     "typescript": "^3.7.3"
