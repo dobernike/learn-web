@@ -5,7 +5,7 @@ import Datasheet from "react-datasheet";
 import "./styles.css";
 import getDds from "../mock/dds";
 
-const COUNT = 120;
+const COUNT = 10;
 
 const alphabet_original = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".repeat(100);
 const alphabet = alphabet_original.slice(0, COUNT);
@@ -34,15 +34,11 @@ export default class MathSheet extends React.Component {
     super(props);
     this.onCellsChanged = this.onCellsChanged.bind(this);
     const state = getDds(COUNT);
-    console.log(state, initial);
 
     this.state = state;
   }
 
   generateGrid() {
-    // ...Array(COUNT + 1).keys()
-    // alphabet.split("")
-    console.log(["", ...alphabet.split("")], ["", "A", "B", "C", "D"]);
     return [...Array(COUNT + 1).keys()].map((row, i) =>
       ["", ...alphabet.split("")].map((col, j) => {
         if (i === 0 && j === 0) {
