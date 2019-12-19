@@ -93,7 +93,6 @@ export default class ComponentSheet extends React.Component {
         { readOnly: true, value: `${total.toFixed(2)} $` }
       ]
     ]);
-    console.log(rows);
     return rows;
   }
 

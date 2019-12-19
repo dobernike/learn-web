@@ -3,40 +3,49 @@ import _ from "lodash";
 import * as mathjs from "mathjs";
 import Datasheet from "react-datasheet";
 import "./styles.css";
+import getDds from "../mock/dds";
+
+const COUNT = 120;
+
+const alphabet_original = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".repeat(100);
+const alphabet = alphabet_original.slice(0, COUNT);
+
+const initial = {
+  A1: { key: "A1", value: "200", expr: "" },
+  A2: { key: "A2", value: "300", expr: "" },
+  A3: { key: "A3", value: "500", expr: "=A1+A2" },
+  A4: { key: "A4", value: "500", expr: "=A1+A2" },
+  B1: { key: "B1", value: "500", expr: "=A1+A2" },
+  B2: { key: "B2", value: "500", expr: "=A1+A2" },
+  B3: { key: "B3", value: "500", expr: "=A1+A2" },
+  B4: { key: "B4", value: "500", expr: "=A1+A2" },
+  C1: { key: "C1", value: "500", expr: "=A1+A2" },
+  C2: { key: "C2", value: "500", expr: "=A1+A2" },
+  C3: { key: "C3", value: "500", expr: "=A1+A2" },
+  C4: { key: "C4", value: "500", expr: "=A1+A2" },
+  D1: { key: "D1", value: "500", expr: "=A1+A2" },
+  D2: { key: "D2", value: "500", expr: "=A1+A2" },
+  D3: { key: "D3", value: "500", expr: "=A1+A2" },
+  D4: { key: "D4", value: "500", expr: "=A1+A2" }
+};
 
 export default class MathSheet extends React.Component {
   constructor(props) {
     super(props);
     this.onCellsChanged = this.onCellsChanged.bind(this);
-    this.state = {
-      A1: { key: "A1", value: "200", expr: "200" },
-      A2: {
-        key: "A2",
-        value: "400",
-        expr: "=A1+A3",
-        readOnly: true
-      },
-      A3: { key: "A3", value: "200", expr: "", className: "equation" },
-      A4: { key: "A4", value: "600", expr: "=A1+A2" },
-      B1: { key: "B1", value: "", expr: "" },
-      B2: { key: "B2", value: "", expr: "" },
-      B3: { key: "B3", value: "", expr: "" },
-      B4: { key: "B4", value: "", expr: "" },
-      C1: { key: "C1", value: "", expr: "" },
-      C2: { key: "C2", value: "", expr: "" },
-      C3: { key: "C3", value: "", expr: "" },
-      C4: { key: "C4", value: "", expr: "" },
-      D1: { key: "D1", value: "", expr: "" },
-      D2: { key: "D2", value: "", expr: "" },
-      D3: { key: "D3", value: "", expr: "" },
-      D4: { key: "D4", value: "", expr: "" }
-    };
+    const state = getDds(COUNT);
+    console.log(state, initial);
+
+    this.state = state;
   }
 
   generateGrid() {
-    return [0, 1, 2, 3, 4].map((row, i) =>
-      ["", "A", "B", "C", "D"].map((col, j) => {
-        if (i == 0 && j == 0) {
+    // ...Array(COUNT + 1).keys()
+    // alphabet.split("")
+    console.log(["", ...alphabet.split("")], ["", "A", "B", "C", "D"]);
+    return [...Array(COUNT + 1).keys()].map((row, i) =>
+      ["", ...alphabet.split("")].map((col, j) => {
+        if (i === 0 && j === 0) {
           return { readOnly: true, value: "" };
         }
         if (row === 0) {
@@ -59,6 +68,7 @@ export default class MathSheet extends React.Component {
       } else {
         valid = this.validateExp([...trailKeys, match], this.state[match].expr);
       }
+      return undefined;
     });
     return valid;
   }
