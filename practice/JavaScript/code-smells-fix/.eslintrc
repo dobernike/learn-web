@@ -1,0 +1,18 @@
+{
+  "extends": ["eslint:recommended"],
+  "plugins": ["smells", "react/recommended"],
+  "rules": {
+    "max-statements": [2, 15],
+    "max-depth": [1, 2],
+    "complexity": [2, 5],
+    "consistent-this": 2,
+    "no-extra-bind": 2,
+    "no-complex-chaining": 2,
+    "smells/no-reassing": 2,
+    "smells/no-switch": 0,
+    "smells/no-complex-switch-case": 0,
+    "smells/no-setinterval": 1,
+    "smells/no-this-assign": 2,
+    "smells/no-complex-string-concat": 2
+  }
+}
