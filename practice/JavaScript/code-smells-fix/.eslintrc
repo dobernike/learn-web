@@ -8,6 +8,7 @@
     "consistent-this": 2,
     "no-extra-bind": 2,
     "no-complex-chaining": 2,
+    "no-cond-assign": 2,
     "smells/no-reassing": 2,
     "smells/no-switch": 0,
     "smells/no-complex-switch-case": 0,
