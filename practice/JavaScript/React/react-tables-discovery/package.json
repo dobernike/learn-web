@@ -10,14 +10,20 @@
     "@types/node": "^12.12.20",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "faker": "^4.1.0",
     "lodash": "^4.17.15",
     "mathjs": "^6.2.5",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-color": "^2.17.3",
     "react-data-grid": "^6.1.0",
+    "react-data-grid-addons": "^6.1.0",
     "react-datasheet": "^1.4.0",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.12.0",
+    "react-joyride": "^2.2.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.5",
     "react-select": "^3.0.8",
     "typescript": "^3.7.3"
@@ -42,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.3"
   }
 }

@@ -1,32 +1,36 @@
 import React from "react";
-import MyOwnSheet from "./ReactDataSheet/MyOwnSheet";
-import ReactDatasheet from "./ReactDataSheet/BasicTypescript";
-import BasicSheet from "./ReactDataSheet/BasicSheet";
-import ComponentSheet from "./ReactDataSheet/ComponentSheet";
-import MathSheet from "./ReactDataSheet/MathSheet";
-import OverrideEverythingSheet from "./ReactDataSheet/OverrideEverythingSheet";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import ReactDataSheetComponents from "./ReactDataSheet";
+import ReactDataGreedComponents from "./ReactDataGrid";
 
 const App: React.FC = () => {
   return (
     <>
-      <section>
-        <h1 style={{ textAlign: "center" }}>ReactDataSheet</h1>
-        <hr />
-        <h2 style={{ textAlign: "center" }}>test</h2>
-        <hr />
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/reactDataSheet">ReactDataSheet</Link>
+              </li>
+              <li>
+                <Link to="/reactDataGrid">ReactDataGrid</Link>
+              </li>
+            </ul>
+          </nav>
 
-        <MyOwnSheet />
-
-        <hr />
-        <h2 style={{ textAlign: "center" }}>exaples</h2>
-        <hr />
-
-        <ReactDatasheet />
-        <BasicSheet />
-        <ComponentSheet />
-        <MathSheet />
-        <OverrideEverythingSheet />
-      </section>
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/reactDataSheet">
+              <ReactDataSheetComponents />
+            </Route>
+            <Route path="/reactDataGrid">
+              <ReactDataGreedComponents />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
     </>
   );
 };

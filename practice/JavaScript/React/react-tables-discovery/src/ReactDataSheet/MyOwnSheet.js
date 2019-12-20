@@ -10,25 +10,6 @@ const COUNT = 10;
 const alphabet_original = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".repeat(100);
 const alphabet = alphabet_original.slice(0, COUNT);
 
-const initial = {
-  A1: { key: "A1", value: "200", expr: "" },
-  A2: { key: "A2", value: "300", expr: "" },
-  A3: { key: "A3", value: "500", expr: "=A1+A2" },
-  A4: { key: "A4", value: "500", expr: "=A1+A2" },
-  B1: { key: "B1", value: "500", expr: "=A1+A2" },
-  B2: { key: "B2", value: "500", expr: "=A1+A2" },
-  B3: { key: "B3", value: "500", expr: "=A1+A2" },
-  B4: { key: "B4", value: "500", expr: "=A1+A2" },
-  C1: { key: "C1", value: "500", expr: "=A1+A2" },
-  C2: { key: "C2", value: "500", expr: "=A1+A2" },
-  C3: { key: "C3", value: "500", expr: "=A1+A2" },
-  C4: { key: "C4", value: "500", expr: "=A1+A2" },
-  D1: { key: "D1", value: "500", expr: "=A1+A2" },
-  D2: { key: "D2", value: "500", expr: "=A1+A2" },
-  D3: { key: "D3", value: "500", expr: "=A1+A2" },
-  D4: { key: "D4", value: "500", expr: "=A1+A2" }
-};
-
 export default class MathSheet extends React.Component {
   constructor(props) {
     super(props);
