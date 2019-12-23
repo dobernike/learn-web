@@ -5,8 +5,6 @@ import createRowData from "./createRowData";
 
 import "./styles.css";
 
-const COLUMN_WIDTH = 140;
-
 const columns = [
   {
     key: "id",

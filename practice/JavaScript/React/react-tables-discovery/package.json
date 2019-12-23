@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.8.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.0",
@@ -11,8 +12,12 @@
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "faker": "^4.1.0",
+    "framer-motion": "^1.7.0",
+    "immutability-helper": "^3.0.1",
     "lodash": "^4.17.15",
+    "match-sorter": "^4.0.2",
     "mathjs": "^6.2.5",
+    "namor": "^2.0.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-color": "^2.17.3",
@@ -26,6 +31,10 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.5",
     "react-select": "^3.0.8",
+    "react-table": "^7.0.0-rc.15",
+    "react-table-hoc-fixed-columns": "^2.1.2",
+    "react-window": "^1.8.5",
+    "styled-components": "^4.4.1",
     "typescript": "^3.7.3"
   },
   "scripts": {
