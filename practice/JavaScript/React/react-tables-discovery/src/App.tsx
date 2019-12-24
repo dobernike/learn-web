@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import ReactDataSheetComponents from "./ReactDataSheet";
 import ReactDataGreedComponents from "./ReactDataGrid";
 import ReactTableComponents from "./ReactTable";
+import ReactSpreadsheetComponents from "./reactSpreadsheet";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ const App: React.FC = () => {
               <li>
                 <Link to="/reactTable">ReactTable</Link>
               </li>
+              <li>
+                <Link to="/reactspread">ReactSpreadsheet</Link>
+              </li>
             </ul>
           </nav>
 
@@ -34,6 +38,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/reactTable">
               <ReactTableComponents />
+            </Route>
+            <Route path="/reactspread">
+              <ReactSpreadsheetComponents />
             </Route>
           </Switch>
         </div>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@handsontable/react": "^3.1.2",
     "@material-ui/core": "^4.8.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -13,6 +14,7 @@
     "@types/react-dom": "^16.9.4",
     "faker": "^4.1.0",
     "framer-motion": "^1.7.0",
+    "handsontable": "^7.3.0",
     "immutability-helper": "^3.0.1",
     "lodash": "^4.17.15",
     "match-sorter": "^4.0.2",
@@ -31,6 +33,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.5",
     "react-select": "^3.0.8",
+    "react-spreadsheet": "^0.4.43",
     "react-table": "^7.0.0-rc.15",
     "react-table-hoc-fixed-columns": "^2.1.2",
     "react-table-sticky": "^0.4.0",
