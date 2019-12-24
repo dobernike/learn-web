@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import MyOwnReactTable from "./MyOwnReactTable";
 import Basic from "./Basic";
 import Footers from "./Footers";
 import Sorting from "./Sorting";
@@ -23,6 +24,7 @@ import PaginationControlled from "./PaginationControlled";
 import VirtualizedRows from "./VirtualizedRows";
 import AnimatedFramerMotion from "./AnimatedFramerMotion";
 import MaterialUIComponents from "./MaterialUIComponents";
+import FixedColumn from "./FixedColumns";
 
 const ReactTableComponents = () => {
   const [examples, setexamples] = useState(false);
@@ -33,6 +35,7 @@ const ReactTableComponents = () => {
         <hr />
         <h2 style={{ textAlign: "center" }}>test</h2>
         <hr />
+        <MyOwnReactTable />
         <hr />
         <h2
           style={{ textAlign: "center", cursor: "pointer" }}
@@ -89,6 +92,8 @@ const ReactTableComponents = () => {
             <AnimatedFramerMotion />
             MaterialUIComponents
             <MaterialUIComponents />
+            FixedColumn
+            <FixedColumn />
           </>
         )}
       </section>
