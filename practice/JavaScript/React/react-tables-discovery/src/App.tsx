@@ -4,6 +4,7 @@ import ReactDataSheetComponents from "./ReactDataSheet";
 import ReactDataGreedComponents from "./ReactDataGrid";
 import ReactTableComponents from "./ReactTable";
 import ReactSpreadsheetComponents from "./reactSpreadsheet";
+import HandlesontableComponents from "./handsontable";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,9 @@ const App: React.FC = () => {
               <li>
                 <Link to="/reactspread">ReactSpreadsheet</Link>
               </li>
+              <li>
+                <Link to="/handsontable">handlesontable</Link>
+              </li>
             </ul>
           </nav>
 
@@ -41,6 +45,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/reactspread">
               <ReactSpreadsheetComponents />
+            </Route>
+            <Route path="/handsontable">
+              <HandlesontableComponents />
             </Route>
           </Switch>
         </div>
