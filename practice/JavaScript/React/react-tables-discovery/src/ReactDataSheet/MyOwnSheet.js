@@ -5,11 +5,29 @@ import Datasheet from "react-datasheet";
 import "./styles.css";
 import getDds from "../mock/dds";
 
-const COUNT = 10;
+const COUNT = 13;
 
 const alphabet_original = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".repeat(100);
 const alphabet = alphabet_original.slice(0, COUNT);
+const mounth = [
+  { key: "A", value: "Наименование" },
+  { key: "B", value: "Январь" },
+  { key: "C", value: "Февраль" },
+  { key: "D", value: "Март" },
+  { key: "E", value: "Апрель" },
+  { key: "F", value: "Май" },
+  { key: "G", value: "Июнь" },
+  { key: "H", value: "Июль" },
+  { key: "I", value: "Август" },
+  { key: "J", value: "Сентябрь" },
+  { key: "K", value: "Октябрь" },
+  { key: "L", value: "Ноябрь" },
+  { key: "M", value: "Декабрь" }
+];
 
+const alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+
+const store = {};
 export default class MathSheet extends React.Component {
   constructor(props) {
     super(props);
@@ -21,17 +39,19 @@ export default class MathSheet extends React.Component {
 
   generateGrid() {
     return [...Array(COUNT + 1).keys()].map((row, i) =>
-      ["", ...alphabet.split("")].map((col, j) => {
+      ["#", ...mounth].map((col, j) => {
         if (i === 0 && j === 0) {
-          return { readOnly: true, value: "" };
+          return { readOnly: true, value: col };
         }
         if (row === 0) {
-          return { readOnly: true, value: col };
+          // console.log(col.value);
+          return { readOnly: true, value: col.value };
         }
         if (j === 0) {
           return { readOnly: true, value: row };
         }
-        return this.state[col + row];
+        console.log(this.state[col.key + row], col.key, row);
+        return this.state[col.key + row];
       })
     );
   }
@@ -101,6 +121,7 @@ export default class MathSheet extends React.Component {
   }
 
   render() {
+    console.log("state", this.state);
     return (
       <Datasheet
         data={this.generateGrid()}

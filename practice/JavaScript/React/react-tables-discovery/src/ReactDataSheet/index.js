@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+
 import MyOwnSheet from "./MyOwnSheet";
+import Test from "./test";
 import ReactDatasheet from "./BasicTypescript";
 import BasicSheet from "./BasicSheet";
 import ComponentSheet from "./ComponentSheet";
@@ -7,6 +9,8 @@ import MathSheet from "./MathSheet";
 import OverrideEverythingSheet from "./OverrideEverythingSheet";
 
 const ReactDataSheetComponents = () => {
+  const [examples, setexamples] = useState(false);
+
   return (
     <>
       <section>
@@ -15,19 +19,29 @@ const ReactDataSheetComponents = () => {
         <h2 style={{ textAlign: "center" }}>test</h2>
         <hr />
         <MyOwnSheet />
+        <Test />
         <hr />
-        <h2 style={{ textAlign: "center" }}>exaples</h2>
+        <h2
+          style={{ textAlign: "center" }}
+          onClick={() => setexamples(prev => !prev)}
+        >
+          exaples
+        </h2>
         <hr />
-        ReactDatasheet
-        <ReactDatasheet />
-        BasicSheet
-        <BasicSheet />
-        ComponentSheet
-        <ComponentSheet />
-        MathSheet
-        <MathSheet />
-        OverrideEverythingSheet
-        <OverrideEverythingSheet />
+        {examples && (
+          <>
+            ReactDatasheet
+            <ReactDatasheet />
+            BasicSheet
+            <BasicSheet />
+            ComponentSheet
+            <ComponentSheet />
+            MathSheet
+            <MathSheet />
+            OverrideEverythingSheet
+            <OverrideEverythingSheet />
+          </>
+        )}
       </section>
     </>
   );
