@@ -81,6 +81,7 @@ export default class MathSheet extends React.Component {
     const scope = _.mapValues(state, val =>
       isNaN(val.value) ? 0 : parseFloat(val.value)
     );
+    console.log(scope);
     const updatedCell = _.assign(
       {},
       changeCell,

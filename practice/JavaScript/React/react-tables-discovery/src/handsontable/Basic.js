@@ -23,6 +23,7 @@ class App extends React.Component {
           rowHeaders={true}
           width="600"
           height="300"
+          licenseKey="non-commercial-and-evaluation"
         />
       </div>
     );

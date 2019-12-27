@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import MyOwn from "./MyOwn";
 import Basic from "./Basic";
+import Declare from "./Declare";
 
 const Handsontable = () => {
   const [examples, setexamples] = useState(false);
@@ -24,6 +25,8 @@ const Handsontable = () => {
         {examples && (
           <>
             <Basic />
+            Declare
+            <Declare />
           </>
         )}
       </section>
