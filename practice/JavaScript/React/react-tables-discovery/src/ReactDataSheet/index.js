@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import MyOwnSheet from "./MyOwnSheet";
+import MyOwn from "./MyOwn2";
 import Test from "./test";
 import ReactDatasheet from "./BasicTypescript";
 import BasicSheet from "./BasicSheet";
@@ -18,8 +19,9 @@ const ReactDataSheetComponents = () => {
         <hr />
         <h2 style={{ textAlign: "center" }}>test</h2>
         <hr />
+        <MyOwn />
+        MyOwnSheet
         <MyOwnSheet />
-        <Test />
         <hr />
         <h2
           style={{ textAlign: "center" }}

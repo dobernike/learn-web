@@ -222,6 +222,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.data);
     return (
       <div id="hot-app">
         <HotTable

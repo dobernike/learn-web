@@ -35,6 +35,7 @@
     "react-scripts": "2.1.5",
     "react-select": "^3.0.8",
     "react-spreadsheet": "^0.4.43",
+    "react-spreadsheet-grid": "^1.4.3",
     "react-table": "^7.0.0-rc.15",
     "react-table-hoc-fixed-columns": "^2.1.2",
     "react-table-sticky": "^0.4.0",

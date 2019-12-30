@@ -318,38 +318,42 @@ export default class MathSheet extends React.Component {
     }
   }
 
-  cellUpdate(state, changeCell, expr) {
-    // console.log(state, changeCell, expr);
-    const scope = _.mapValues(state, val =>
-      isNaN(val.value) ? 0 : parseFloat(val.value)
-    );
-    // console.log(state, scope);
-    const updatedCell = _.assign(
-      {},
-      changeCell,
-      this.computeExpr(changeCell.key, expr, scope)
-    );
-    state[changeCell.key] = updatedCell;
+  cellUpdate(state, changeCell, expr, row, col) {
+    // other
+    state.store[row][col].value = expr;
+    state.store[row][col].expr = expr;
+    // ----
 
-    _.each(state, (cell, key) => {
-      if (
-        cell.expr.charAt(0) === "=" &&
-        cell.expr.indexOf(changeCell.key) > -1 &&
-        key !== changeCell.key
-      ) {
-        state = this.cellUpdate(state, cell, cell.expr);
-      }
-    });
+    // const scope = _.mapValues(state, val =>
+    //   isNaN(val.value) ? 0 : parseFloat(val.value)
+    // );
+    // const updatedCell = _.assign(
+    //   {},
+    //   changeCell,
+    //   this.computeExpr(changeCell.key, expr, scope)
+    // );
+    // state[changeCell.key] = updatedCell;
+
+    // _.each(state, (cell, key) => {
+    //   if (
+    //     cell.expr.charAt(0) === "=" &&
+    //     cell.expr.indexOf(changeCell.key) > -1 &&
+    //     key !== changeCell.key
+    //   ) {
+    //     state = this.cellUpdate(state, cell, cell.expr);
+    //   }
+    // });
     return state;
   }
 
   onCellsChanged(changes) {
     console.log(changes);
-    const state = _.assign({}, this.state.store);
-    changes.forEach(({ cell, value }) => {
-      this.cellUpdate(state, cell, value);
+    const state = Object.assign({}, this.state);
+    changes.forEach(({ cell, value, row, col }) => {
+      this.cellUpdate(state, cell, value, row, col);
     });
-    this.setState({ ...this.state, store: state });
+    this.setState({ ...this.state, store: state.store });
+    console.log(state);
   }
 
   render() {
