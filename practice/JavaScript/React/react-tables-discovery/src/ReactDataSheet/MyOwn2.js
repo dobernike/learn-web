@@ -103,13 +103,11 @@ export default class MathSheet extends React.Component {
     const scope = _.mapValues(state, val =>
       isNaN(val.value) ? 0 : parseFloat(val.value)
     );
-    // console.log(changeCell, scope);
     const updatedCell = _.assign(
       {},
       changeCell,
       this.computeExpr(changeCell.key, expr, scope)
     );
-    // console.log(state[changeCell.key], updatedCell);
     state[changeCell.key] = updatedCell;
 
     _.each(state, (cell, key) => {
@@ -126,7 +124,6 @@ export default class MathSheet extends React.Component {
 
   onCellsChanged(changes) {
     const state = _.assign({}, this.state);
-    console.log(changes);
     changes.forEach(({ cell, value }) => {
       this.cellUpdate(state, cell, value);
     });
@@ -134,8 +131,6 @@ export default class MathSheet extends React.Component {
   }
 
   render() {
-    console.log(this.generateGrid());
-    console.log(this.state);
     return (
       <Datasheet
         data={this.generateGrid()}
