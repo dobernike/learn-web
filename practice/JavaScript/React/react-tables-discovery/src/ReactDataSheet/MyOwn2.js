@@ -39,31 +39,25 @@ export default class MathSheet extends React.Component {
       D2: { key: "D2", value: "", expr: "" },
       D3: { key: "D3", value: "", expr: "" },
       D4: { key: "D4", value: "", expr: "" }
-      // D0: { key: "D5", value: "", expr: "" }
     };
   }
 
   getCols(cells) {
-    return Object.entries(cells).filter((cell, idx) => console.log(cell));
-    // .map(filtredCell => filtredCell.value);
+    return [...new Set(Object.keys(cells).map((cell, idx) => cell.charAt(0)))];
   }
 
   getRows(cells) {
-    return Object.values(cells).filter((cell, idx) => +cell.key === idx);
-    // .map(filtredCell => filtredCell.key);
+    return Object.entries(cells)
+      .filter((cell, idx) => +cell[0].match(/.(\d+)/)[1] === idx)
+      .map(filtredCell => filtredCell[1]);
   }
 
   generateGrid() {
-    console.log(this.getCols(this.state));
-
     return this.getRows(this.state).map((row, i) =>
-      ["", "A", "B", "C", "D"].map((col, j) => {
+      this.getCols(this.state).map((col, j) => {
         if (i === 0 && j === 0) {
           return { readOnly: true, value: row.value };
         }
-        // if (row === 0) {
-        //   return { readOnly: true, value: col };
-        // }
         if (j === 0) {
           return { readOnly: true, value: row.value };
         }
