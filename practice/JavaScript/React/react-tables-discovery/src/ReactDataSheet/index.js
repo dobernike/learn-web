@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import MyOwnSheet from "./MyOwnSheet";
-import MyOwn from "./MathFCSheet";
+import MyOwn from "./MathSheetFC";
 import Test from "./test";
 import ReactDatasheet from "./BasicTypescript";
 import BasicSheet from "./BasicSheet";
