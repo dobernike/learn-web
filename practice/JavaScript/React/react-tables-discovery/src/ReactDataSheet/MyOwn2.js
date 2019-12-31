@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import * as mathjs from "mathjs";
 import Datasheet from "react-datasheet";
 
@@ -14,12 +13,11 @@ export default class MathSheet extends React.Component {
       "03": { key: "3", value: "три", readOnly: true, expr: "" },
       "04": { key: "4", value: "четыре", readOnly: true, expr: "" },
       A0: { key: "A0", value: "Январь", readOnly: true, expr: "" },
-      A1: { key: "A1", value: "200", expr: "200" },
+      A1: { key: "A1", value: "200", expr: "" },
       A2: {
         key: "A2",
         value: "200",
         expr: "=A1",
-        className: "equation",
         readOnly: true
       },
       A3: { key: "A3", value: "", expr: "" },
@@ -43,13 +41,13 @@ export default class MathSheet extends React.Component {
   }
 
   getCols(cells) {
-    return [...new Set(Object.keys(cells).map((cell, idx) => cell.charAt(0)))];
+    return [...new Set(Object.keys(cells).map(cell => cell.charAt(0)))];
   }
 
   getRows(cells) {
     return Object.entries(cells)
-      .filter((cell, idx) => +cell[0].match(/.(\d+)/)[1] === idx)
-      .map(filtredCell => filtredCell[1]);
+      .filter(([key], idx) => +key.match(/.(\d+)/)[1] === idx)
+      .map(([_, filtredCell]) => filtredCell);
   }
 
   generateGrid() {
@@ -100,33 +98,41 @@ export default class MathSheet extends React.Component {
   }
 
   cellUpdate(state, changeCell, expr) {
-    const scope = _.mapValues(state, val =>
-      isNaN(val.value) ? 0 : parseFloat(val.value)
+    const scope = Object.fromEntries(
+      Object.entries(state).map(([key, { value }]) => [
+        key,
+        isNaN(value) ? 0 : parseFloat(value)
+      ])
     );
-    const updatedCell = _.assign(
+
+    const updatedCell = Object.assign(
       {},
       changeCell,
       this.computeExpr(changeCell.key, expr, scope)
     );
+
     state[changeCell.key] = updatedCell;
 
-    _.each(state, (cell, key) => {
+    Object.values(state).forEach(cell => {
       if (
         cell.expr.charAt(0) === "=" &&
         cell.expr.indexOf(changeCell.key) > -1 &&
-        key !== changeCell.key
+        cell.key !== changeCell.key
       ) {
         state = this.cellUpdate(state, cell, cell.expr);
       }
     });
+
     return state;
   }
 
   onCellsChanged(changes) {
-    const state = _.assign({}, this.state);
+    const state = { ...this.state };
+
     changes.forEach(({ cell, value }) => {
       this.cellUpdate(state, cell, value);
     });
+
     this.setState(state);
   }
 
