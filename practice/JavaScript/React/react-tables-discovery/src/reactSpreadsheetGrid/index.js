@@ -7,7 +7,7 @@ const ReactTableComponents = () => {
   return (
     <>
       <section>
-        <h1 style={{ textAlign: "center" }}>ReactDataSheet</h1>
+        <h1 style={{ textAlign: "center" }}>ReactSpreadsheetGrid</h1>
         <hr />
         <h2 style={{ textAlign: "center" }}>test</h2>
         <hr />
