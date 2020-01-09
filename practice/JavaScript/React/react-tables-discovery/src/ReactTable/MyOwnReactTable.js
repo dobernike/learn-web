@@ -74,14 +74,14 @@ const Styles = styled.div`
 `;
 
 function Table({ columns, data }) {
-  const defaultColumn = React.useMemo(
-    () => ({
-      minWidth: 150,
-      width: 150,
-      maxWidth: 400
-    }),
-    []
-  );
+  // const defaultColumn = React.useMemo(
+  //   () => ({
+  //     minWidth: 150,
+  //     width: 150,
+  //     maxWidth: 400
+  //   }),
+  //   []
+  // );
 
   const {
     getTableProps,
@@ -92,30 +92,35 @@ function Table({ columns, data }) {
   } = useTable(
     {
       columns,
-      data,
-      defaultColumn
+      data
+      // defaultColumn
     },
     useBlockLayout,
     useSticky
   );
+
+  console.log(headerGroups);
 
   return (
     <Styles>
       <div
         {...getTableProps()}
         className="table sticky"
-        style={{ width: 800, height: 400 }}
+        style={{ height: 400 }}
       >
         <div className="header">
-          {headerGroups.map(headerGroup => (
-            <div {...headerGroup.getHeaderGroupProps()} className="tr">
-              {headerGroup.headers.map(column => (
-                <div {...column.getHeaderProps()} className="th">
-                  {column.render("Header")}
+          {headerGroups.map(
+            (headerGroup, i) =>
+              i !== 0 && (
+                <div {...headerGroup.getHeaderGroupProps()} className="tr">
+                  {headerGroup.headers.map(column => (
+                    <div {...column.getHeaderProps()} className="th">
+                      {column.render("Header")}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          ))}
+              )
+          )}
         </div>
 
         <div {...getTableBodyProps()} className="body">
@@ -147,49 +152,84 @@ function App() {
         sticky: "left",
         columns: [
           {
-            Header: "First Name",
-            accessor: "firstName"
+            Header: "#",
+            accessor: "age",
+            width: 50
           },
           {
-            Header: "Last Name",
+            Header: "Наименование",
             accessor: "lastName"
           }
         ]
       },
       {
-        Header: "Info",
+        Header: "Ретро",
         columns: [
           {
-            Header: "Age",
-            accessor: "age",
-            width: 50
+            Header: "Январь",
+            accessor: "age"
           },
           {
-            Header: "Visits",
-            accessor: "visits",
-            width: 60
+            Header: "Февраль",
+            accessor: "visits"
           },
           {
-            Header: "Status",
+            Header: "Март",
+            accessor: "status"
+          },
+          {
+            Header: "Апрель",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
+            accessor: "status"
+          },
+          {
+            Header: "Май",
             accessor: "status"
           }
         ]
-      },
-      {
-        Header: " ",
-        sticky: "right",
-        columns: [
-          {
-            Header: "Profile Progress",
-            accessor: "progress"
-          }
-        ]
       }
+      // {
+      //   Header: " ",
+      //   columns: [
+      //     {
+      //       Header: "Profile Progress",
+      //       accessor: "progress"
+      //     }
+      //   ]
+      // }
     ],
     []
   );
 
   const data = React.useMemo(() => makeData(40), []);
+  console.log(data);
 
   return <Table columns={columns} data={data} />;
 }
