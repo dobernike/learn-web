@@ -34,7 +34,12 @@ const App: React.FC = () => {
               <Link to="/handsontable">handlesontable</Link>
             </li>
             <li>
-              <Link to="/reactspreadsheetgrid">reactspreadsheetgrid</Link>
+              <Link to="/reactspreadsheetgrid">
+                reactspreadsheetgrid{" "}
+                <b style={{ color: "red" }}>
+                  нет левого и вверхнего sticky, формул, readOnly
+                </b>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -10,7 +10,10 @@ class App extends React.Component {
       [
         "500",
         "300",
-        "=B1+B2",
+        {
+          data: "=B1+B2",
+          readOnly: true
+        },
         "=B3+B4",
         "=B5+B6",
         "=A1+A2",
