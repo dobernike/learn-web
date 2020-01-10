@@ -6,6 +6,7 @@ import ReactTableComponents from "./ReactTable";
 import ReactSpreadsheetComponents from "./reactSpreadsheet";
 import HandlesontableComponents from "./handsontable";
 import ReactSpreadsheetGridComponents from "./reactSpreadsheetGrid";
+import AgGrid from "./ag-grid";
 
 const App: React.FC = () => {
   return (
@@ -14,24 +15,23 @@ const App: React.FC = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/reactDataSheet">
-                ReactDataSheet{" "}
-                <b style={{ color: "blue" }}>нет левого и вверхнего sticky</b>
-              </Link>
-            </li>
-            <li>
               <Link to="/reactDataGrid">ReactDataGrid</Link>
             </li>
             <li>
               <Link to="/reactTable">ReactTable</Link>
             </li>
-            <li>
-              <Link to="/reactspread">
-                ReactSpreadsheet <b style={{ color: "red" }}>НЕ ПОДХОДИТ</b>
-              </Link>
-            </li>
+
             <li>
               <Link to="/handsontable">handlesontable</Link>
+            </li>
+            <li>
+              <Link to="/agGrid">agGrid</Link>
+            </li>
+            <li>
+              <Link to="/reactDataSheet">
+                ReactDataSheet{" "}
+                <b style={{ color: "blue" }}>нет левого и вверхнего sticky</b>
+              </Link>
             </li>
             <li>
               <Link to="/reactspreadsheetgrid">
@@ -39,6 +39,11 @@ const App: React.FC = () => {
                 <b style={{ color: "red" }}>
                   нет левого и вверхнего sticky, формул, readOnly
                 </b>
+              </Link>
+            </li>
+            <li>
+              <Link to="/reactspread">
+                ReactSpreadsheet <b style={{ color: "red" }}>НЕ ПОДХОДИТ</b>
               </Link>
             </li>
           </ul>
@@ -64,6 +69,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/reactspreadsheetgrid">
             <ReactSpreadsheetGridComponents />
+          </Route>
+          <Route path="/agGrid">
+            <AgGrid />
           </Route>
         </Switch>
       </BrowserRouter>
