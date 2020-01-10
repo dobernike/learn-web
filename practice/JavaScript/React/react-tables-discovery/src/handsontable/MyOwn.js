@@ -10,10 +10,7 @@ class App extends React.Component {
       [
         "500",
         "300",
-        {
-          data: "=B1+B2",
-          readOnly: true
-        },
+        "=B1+B2",
         "=B3+B4",
         "=B5+B6",
         "=A1+A2",
@@ -24,7 +21,6 @@ class App extends React.Component {
         "=A1+A2",
         "=A1+A2"
       ],
-
       [
         "500",
         "300",
@@ -244,7 +240,23 @@ class App extends React.Component {
             "Ноябрь",
             "Декабрь"
           ]}
-          rowHeaders={true}
+          rowHeaders={[
+            "Январь",
+            "Февраль",
+            "Март",
+            "Апрель",
+            "Май",
+            "Июнь",
+            "Июль",
+            "Август",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь",
+            "Декабрь",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь"
+          ]}
           licenseKey="non-commercial-and-evaluation"
           formulas={true}
           // width="99vw"
