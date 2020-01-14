@@ -129,7 +129,7 @@ function validate(obj: any): boolean {
   return isValid;
 }
 
-class Form {
+class Iform {
   @Required
   public email: string | void;
 
@@ -139,12 +139,12 @@ class Form {
 }
 
 // const form = new Form(); // error valid
-const form = new Form("v@mail.ru"); // valid
+const iform = new Iform("v@mail.ru"); // valid
 
-if (validate(form)) {
-  console.log("Valid: ", form);
+if (validate(iform)) {
+  console.log("Valid: ", iform);
 } else {
   console.log("Validation Error");
 }
 
-console.log(form);
+console.log(iform);
