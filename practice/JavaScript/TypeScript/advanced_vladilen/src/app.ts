@@ -1,5 +1,5 @@
-const btn: Element = document.querySelector("#btn")!;
+const btn1: Element = document.querySelector("#btn")!;
 
-btn.addEventListener("click", () => {
+btn1.addEventListener("click", () => {
   console.log("Btn clicked!");
 });
