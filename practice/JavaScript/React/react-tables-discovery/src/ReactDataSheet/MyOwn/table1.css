@@ -1,0 +1,51 @@
+.data-grid-container .data-grid {
+  width: 100%;
+}
+
+.data-grid-container .data-grid .cell.read-only .value-viewer {
+  text-align: start;
+}
+
+.data-grid-container .data-grid td.cell.read-only {
+  cursor: auto;
+  background-color: transparent;
+}
+
+.data-grid-container .data-grid td.cell:not(.read-only) {
+  background-color: white;
+}
+
+.data-grid-container .data-grid tr:first-child .cell {
+  font-weight: 700;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.data-grid-container
+  .data-grid
+  tr:first-child
+  .cell:not(:first-child)
+  .value-viewer {
+  text-align: end;
+}
+
+.data-grid-container .data-grid {
+  margin-bottom: 1.5rem;
+}
+
+.data-grid-container .data-grid tr > .cell:first-child {
+  width: 40%;
+}
+
+.data-grid-container .data-grid tr > .cell:last-child {
+  width: 30%;
+}
+
+.data-grid-container .data-grid .cell .value-viewer {
+  width: auto;
+}
+
+.data-grid-container .data-grid .cell.read-only .value-viewer {
+  color: black;
+}
