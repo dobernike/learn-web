@@ -15,16 +15,29 @@
   background-color: white;
 }
 
-.data-grid-container .data-grid tr:first-child .cell {
+.data-grid-container .data-grid tr:first-child .cell,
+.data-grid-container .data-grid tr:last-child .cell {
   font-weight: 700;
   border-top: 0;
   border-left: 0;
   border-right: 0;
 }
 
+.data-grid-container .data-grid tr:last-child {
+  margin-top: 1rem;
+
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
 .data-grid-container
   .data-grid
   tr:first-child
+  .cell:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  tr:last-child
   .cell:not(:first-child)
   .value-viewer {
   text-align: end;
