@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import MyOwnSheet from "./MyOwnSheet";
 // import MyOwn from "./MathSheetFC";
 import MyOwn from "./MyOwn/MyOwn";
-import Test from "./test";
+import MyOver from "./MyOver";
 import ReactDatasheet from "./BasicTypescript";
 import BasicSheet from "./BasicSheet";
 import ComponentSheet from "./ComponentSheet";
@@ -20,12 +20,11 @@ const ReactDataSheetComponents = () => {
         <hr />
         <h2 style={{ textAlign: "center" }}>test</h2>
         <hr />
-        <article style={{ padding: "0 5%", backgroundColor: "#F8F8F8" }}>
-          <MyOwn />
-        </article>
-        {/* MyOwnSheet */}
-        {/* <MyOwnSheet /> */}
+        <MyOwn />
         <hr />
+        <MyOver />
+        <hr />
+
         <h2
           style={{ textAlign: "center" }}
           onClick={() => setexamples(prev => !prev)}
