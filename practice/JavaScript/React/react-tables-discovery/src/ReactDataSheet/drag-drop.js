@@ -1,21 +1,12 @@
 import { DragSource, DropTarget } from "react-dnd";
 
-/**
- * Specifies which props to inject into your component.
- */
 function rowSourceCollect(connect, _monitor) {
   return {
-    // Call this function inside render()
-    // to let React DnD handle the drag events:
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview()
   };
 }
 
-/**
- * Specifies the drag source contract.
- * Only `beginDrag` function is required.
- */
 const rowSourceSpec = {
   beginDrag(props) {
     console.log("beginDrag", props.rowIndex, props);
