@@ -1,4 +1,4 @@
-// список
+// СПИСОК
 class List {
   constructor() {
     this.memory = [];
@@ -72,5 +72,21 @@ class List {
 
     return value;
   }
-  //...
 }
+
+// ХЕШ-ТАБЛИЦЫ
+class HashTable {
+  constructor() {
+    this.memory = [];
+  }
+
+  // hashKey('abc') => 96354
+  // hashKey('xyz') => 119193
+
+  // ...
+}
+
+var hashTable = new HashTable();
+
+hashTable.set("myKey", "myValue");
+hashTable.get("myKey"); // >> 'myValue'
