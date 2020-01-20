@@ -180,3 +180,41 @@ class Queue {
     return this.list[0];
   }
 }
+
+// ГРАФ
+class Graph {
+  constructor() {
+    this.nodes = [];
+  }
+
+  addNode(value) {
+    this.nodes.push({
+      value: value,
+      lines: []
+    });
+  }
+
+  find(value) {
+    return this.nodes.find(node => node.value === value);
+  }
+
+  addLine(startValue, endValue) {
+    // Найдём вершины для каждого из значений
+    var startNode = this.find(startValue);
+    var endNode = this.find(endValue);
+
+    // Ругнёмся, если не нашли одной или другой
+    if (!startNode || !endNode) {
+      throw new Error("Обе вершины должны существовать");
+    }
+
+    // В стартовую вершину startNode добавим ссылку на конечную вершину endNode
+    startNode.lines.push(endNode);
+  }
+}
+
+var graph = new Graph();
+graph.addNode(1);
+graph.addNode(2);
+graph.addLine(1, 2);
+var two = graph.find(1).lines[0];
