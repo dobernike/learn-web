@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import MyOwnSheet from "./MyOwnSheet";
 // import MyOwn from "./MathSheetFC";
 import MyOwn from "./MyOwn/MyOwn";
-import MyOver from "./MyOver";
+// import MyOver from "./MyOver";
 import ReactDatasheet from "./BasicTypescript";
 import BasicSheet from "./BasicSheet";
 import ComponentSheet from "./ComponentSheet";
@@ -22,7 +22,7 @@ const ReactDataSheetComponents = () => {
         <hr />
         <MyOwn />
         <hr />
-        <MyOver />
+        {/* <MyOver /> */}
         <hr />
 
         <h2
