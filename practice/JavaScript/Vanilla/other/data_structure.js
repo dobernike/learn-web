@@ -75,7 +75,7 @@ class List {
   }
 }
 
-// ХЕШ-ТАБЛИЦЫ
+// ХЕШ-ТАБЛИЦА
 class HashTable {
   constructor() {
     this.memory = [];
@@ -126,3 +126,30 @@ hashTable.get("myKey"); // >> 'myValue'
 
 hashTable.hashKey("abc"); // => 96354
 hashTable.hashKey("xyz"); // => 119193
+
+// СТЕК
+class Stack {
+  constructor() {
+    this.list = [];
+    this.length = 0;
+  }
+
+  push(value) {
+    this.length++;
+    this.list.push(value);
+  }
+
+  pop() {
+    // Нет элементов - ничего не делаем
+    if (this.length === 0) return;
+
+    // Возьмём последний элемент списка и вернём значение
+    this.length--;
+    return this.list.pop();
+  }
+
+  peek() {
+    // Возвращаем последний элемент, не удаляя его
+    return this.list[this.length - 1];
+  }
+}
