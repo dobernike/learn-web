@@ -52,6 +52,7 @@ class List {
     this.memory[this.length] = previous;
     this.length++;
   }
+
   // Shift — Удалить значение из начала.
   // O(N)
   shift() {
@@ -99,7 +100,23 @@ class HashTable {
     return this.memory[address];
   }
 
-  // ...
+  //O(1)
+  set(key, value) {
+    // и вновь начинаем с превращения ключа в адрес
+    var address = this.hashKey(key);
+    // Затем просто записываем значение по этому адресу
+    this.memory[address] = value;
+  }
+
+  // O(1)
+  remove(key) {
+    // Как обычно, хешируем ключ, получая адрес
+    var address = this.hashKey(key);
+    // Удаляем значение, если оно существует
+    if (this.memory[address]) {
+      delete this.memory[address];
+    }
+  }
 }
 
 var hashTable = new HashTable();
