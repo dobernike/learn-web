@@ -153,3 +153,30 @@ class Stack {
     return this.list[this.length - 1];
   }
 }
+
+// ОЧЕРЕДЬ
+class Queue {
+  constructor() {
+    this.list = [];
+    this.length = 0;
+  }
+
+  enqueue(value) {
+    this.length++;
+    this.list.push(value);
+  }
+
+  // O(N)
+  dequeue() {
+    // Нет элементов - ничего не делаем
+    if (this.length === 0) return;
+
+    // Убираем первый элемент методов shift и возвращает значение
+    this.length--;
+    return this.list.shift();
+  }
+
+  peek() {
+    return this.list[0];
+  }
+}
