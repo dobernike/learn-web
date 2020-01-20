@@ -130,12 +130,13 @@ export const table1 = {
     expr: ""
   },
   "07": { key: "7", value: "Комиссионные доходы", readOnly: true, expr: "" },
-  "08": {
-    key: "8",
-    value: "Итого от инвестиционной деятельности",
-    readOnly: true,
-    expr: ""
-  },
+  // "08": {
+  //   key: "8",
+  //   value: "Итого от инвестиционной деятельности",
+  //   readOnly: true,
+  //   expr: "",
+  //   className: "result"
+  // },
 
   A0: { key: "A0", value: "0.00", readOnly: true, expr: "=A1+A2+A3+A4+A5" },
   A1: { key: "A1", value: "0.00", expr: "" },
@@ -149,7 +150,13 @@ export const table1 = {
   A5: { key: "A5", value: "0.00", expr: "" },
   A6: { key: "A6", value: "0.00", expr: "" },
   A7: { key: "A7", value: "0.00", expr: "" },
-  A8: { key: "A8", value: "0.00", readOnly: true, expr: "=A0" },
+  // A8: {
+  //   key: "A8",
+  //   value: "0.00",
+  //   readOnly: true,
+  //   expr: "=A0",
+  //   className: "result"
+  // },
 
   B0: { key: "B0", value: "0.00", readOnly: true, expr: "" },
   B1: { key: "B1", value: "0.00", expr: "" },
@@ -159,7 +166,13 @@ export const table1 = {
   B5: { key: "B5", value: "0.00", expr: "" },
   B6: { key: "B6", value: "0.00", expr: "" },
   B7: { key: "B7", value: "0.00", expr: "" },
-  B8: { key: "B8", value: "0.00", readOnly: true, expr: "=B0" },
+  // B8: {
+  //   key: "B8",
+  //   value: "0.00",
+  //   readOnly: true,
+  //   expr: "=B0",
+  //   className: "result"
+  // },
 
   C0: { key: "C0", value: "0.00", readOnly: true, expr: "" },
   C1: { key: "C1", value: "0.00", expr: "" },
@@ -169,7 +182,13 @@ export const table1 = {
   C5: { key: "C5", value: "0.00", expr: "" },
   C6: { key: "C6", value: "0.00", expr: "" },
   C7: { key: "C7", value: "0.00", expr: "" },
-  C8: { key: "C8", value: "0.00", readOnly: true, expr: "=C0" },
+  // C8: {
+  //   key: "C8",
+  //   value: "0.00",
+  //   readOnly: true,
+  //   expr: "=C0",
+  //   className: "result"
+  // },
 
   D0: { key: "D0", value: "", readOnly: true, expr: "" },
   D1: { key: "D1", value: "-", expr: "" },
@@ -178,6 +197,228 @@ export const table1 = {
   D4: { key: "D4", value: "-", expr: "" },
   D5: { key: "D5", value: "-", expr: "" },
   D6: { key: "D6", value: "-", expr: "" },
+  D7: { key: "D7", value: "-", expr: "" }
+  // D8: { key: "D8", value: "", readOnly: true, expr: "", className: "result" }
+};
+
+export const table2 = {
+  "00": {
+    key: "0",
+    value: "Поступления от операционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  "01": {
+    key: "1",
+    value: "От реализации собственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "02": { key: "2", value: "От реализации услуг", readOnly: true, expr: "" },
+  "03": {
+    key: "3",
+    value: "От розничной реализации товаров",
+    readOnly: true,
+    expr: ""
+  },
+  "04": {
+    key: "4",
+    value: "От реализации сельскохозяйственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "05": {
+    key: "5",
+    value: "От строительной деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "06": {
+    key: "6",
+    value: "От прочих видов деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "07": { key: "7", value: "Комиссионные доходы", readOnly: true, expr: "" },
+  "08": {
+    key: "8",
+    value: "Поступления от операционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  "09": {
+    key: "9",
+    value: "От реализации собственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "010": { key: "10", value: "От реализации услуг", readOnly: true, expr: "" },
+  "011": {
+    key: "11",
+    value: "От розничной реализации товаров",
+    readOnly: true,
+    expr: ""
+  },
+  "012": {
+    key: "12",
+    value: "От реализации сельскохозяйственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "013": {
+    key: "13",
+    value: "От строительной деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "014": {
+    key: "14",
+    value: "От прочих видов деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "015": { key: "15", value: "Комиссионные доходы", readOnly: true, expr: "" },
+  "016": {
+    key: "16",
+    value: "Итого от инвестиционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "result"
+  },
+
+  A0: {
+    key: "A0",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A1+A2+A3+A4+A5",
+    className: "header"
+  },
+  A1: { key: "A1", value: "0.00", expr: "" },
+  A2: {
+    key: "A2",
+    value: "0.00",
+    expr: ""
+  },
+  A3: { key: "A3", value: "0.00", expr: "" },
+  A4: { key: "A4", value: "0.00", expr: "" },
+  A5: { key: "A5", value: "0.00", expr: "" },
+  A6: { key: "A6", value: "0.00", expr: "" },
+  A7: { key: "A7", value: "0.00", expr: "" },
+  A8: {
+    key: "A8",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A1+A2+A3+A4+A5",
+    className: "header"
+  },
+  A9: { key: "A9", value: "0.00", expr: "" },
+  A10: {
+    key: "A10",
+    value: "0.00",
+    expr: ""
+  },
+  A11: { key: "A11", value: "0.00", expr: "" },
+  A12: { key: "A12", value: "0.00", expr: "" },
+  A13: { key: "A13", value: "0.00", expr: "" },
+  A14: { key: "A14", value: "0.00", expr: "" },
+  A15: { key: "A15", value: "0.00", expr: "" },
+  A16: {
+    key: "A16",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A0+A8",
+    className: "result"
+  },
+
+  B0: {
+    key: "B0",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  B1: { key: "B1", value: "0.00", expr: "" },
+  B2: { key: "B2", value: "0.00", expr: "" },
+  B3: { key: "B3", value: "0.00", expr: "" },
+  B4: { key: "B4", value: "0.00", expr: "" },
+  B5: { key: "B5", value: "0.00", expr: "" },
+  B6: { key: "B6", value: "0.00", expr: "" },
+  B7: { key: "B7", value: "0.00", expr: "" },
+  B8: {
+    key: "B8",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  B9: { key: "B9", value: "0.00", expr: "" },
+  B10: { key: "B10", value: "0.00", expr: "" },
+  B11: { key: "B11", value: "0.00", expr: "" },
+  B12: { key: "B12", value: "0.00", expr: "" },
+  B13: { key: "B13", value: "0.00", expr: "" },
+  B14: { key: "B14", value: "0.00", expr: "" },
+  B15: { key: "B15", value: "0.00", expr: "" },
+  B16: {
+    key: "B16",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B0+B8",
+    className: "result"
+  },
+
+  C0: {
+    key: "C0",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  C1: { key: "C1", value: "0.00", expr: "" },
+  C2: { key: "C2", value: "0.00", expr: "" },
+  C3: { key: "C3", value: "0.00", expr: "" },
+  C4: { key: "C4", value: "0.00", expr: "" },
+  C5: { key: "C5", value: "0.00", expr: "" },
+  C6: { key: "C6", value: "0.00", expr: "" },
+  C7: { key: "C7", value: "0.00", expr: "" },
+  C8: {
+    key: "C8",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  C9: { key: "C9", value: "0.00", expr: "" },
+  C10: { key: "C10", value: "0.00", expr: "" },
+  C11: { key: "C11", value: "0.00", expr: "" },
+  C12: { key: "C12", value: "0.00", expr: "" },
+  C13: { key: "C13", value: "0.00", expr: "" },
+  C14: { key: "C14", value: "0.00", expr: "" },
+  C15: { key: "C15", value: "0.00", expr: "" },
+  C16: {
+    key: "C16",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C0+C8",
+    className: "result"
+  },
+
+  D0: { key: "D0", value: "", readOnly: true, expr: "", className: "header" },
+  D1: { key: "D1", value: "-", expr: "" },
+  D2: { key: "D2", value: "-", expr: "" },
+  D3: { key: "D3", value: "-", expr: "" },
+  D4: { key: "D4", value: "-", expr: "" },
+  D5: { key: "D5", value: "-", expr: "" },
+  D6: { key: "D6", value: "-", expr: "" },
   D7: { key: "D7", value: "-", expr: "" },
-  D8: { key: "D8", value: "", readOnly: true, expr: "" }
+  D8: { key: "D8", value: "", readOnly: true, expr: "", className: "header" },
+  D9: { key: "D9", value: "-", expr: "" },
+  D10: { key: "D10", value: "-", expr: "" },
+  D11: { key: "D11", value: "-", expr: "" },
+  D12: { key: "D12", value: "-", expr: "" },
+  D13: { key: "D13", value: "-", expr: "" },
+  D14: { key: "D14", value: "-", expr: "" },
+  D15: { key: "D15", value: "-", expr: "" },
+  D16: { key: "D16", value: "", readOnly: true, expr: "", className: "result" }
 };
