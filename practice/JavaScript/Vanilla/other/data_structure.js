@@ -80,8 +80,24 @@ class HashTable {
     this.memory = [];
   }
 
-  // hashKey('abc') => 96354
-  // hashKey('xyz') => 119193
+  hashKey(key) {
+    var hash = 0;
+    for (var index = 0; index < key.length; index++) {
+      // Ма-а-а-агия.
+      var code = key.charCodeAt(index);
+      hash = ((hash << 5) - hash + code) | 0;
+    }
+
+    return hash;
+  }
+
+  // O(1)
+  get(key) {
+    // Сперва получим адрес по ключу
+    var address = this.hashKey(key);
+    // Затем просто вернем значение, находящееся по этому адресу
+    return this.memory[address];
+  }
 
   // ...
 }
@@ -90,3 +106,6 @@ var hashTable = new HashTable();
 
 hashTable.set("myKey", "myValue");
 hashTable.get("myKey"); // >> 'myValue'
+
+hashTable.hashKey("abc"); // => 96354
+hashTable.hashKey("xyz"); // => 119193
