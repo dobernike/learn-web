@@ -1,0 +1,80 @@
+.data-grid-container .data-grid .cell.read-only .value-viewer {
+  text-align: start;
+}
+
+.data-grid-container .data-grid div.cell.read-only {
+  cursor: auto;
+  background-color: transparent;
+}
+
+.data-grid-container .data-grid .cell:not(.read-only) {
+  background-color: white;
+}
+
+.data-grid-container .data-grid .data-row div.header.cell,
+.data-grid-container .data-grid .data-row div.result.cell {
+  font-weight: 700;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.data-grid-container .data-grid .data-row div.header {
+  margin-top: 2rem;
+}
+
+.data-grid-container .data-grid .data-row div.result.cell {
+  margin-top: 2rem;
+
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.data-grid-container
+  .data-grid
+  .data-row
+  .header.cell:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .data-row
+  .result.cell:not(:first-child)
+  .value-viewer {
+  text-align: end;
+}
+
+.data-grid-container .data-grid {
+  margin-bottom: 1.5rem;
+}
+
+.data-grid-container .data-grid .data-row > .cell:first-child {
+  flex-grow: 3;
+}
+
+.data-grid-container .data-grid .data-row > .cell:last-child {
+  flex-grow: 2;
+}
+
+.data-grid-container .data-grid .cell .value-viewer {
+  width: auto;
+}
+
+.data-grid-container .data-grid .cell.read-only .value-viewer {
+  color: black;
+}
+
+.data-row {
+  display: flex;
+}
+.data-grid.custom-sheet {
+  flex-direction: column;
+}
+.data-grid-container .data-grid div.cell {
+  height: auto;
+}
+.data-grid-container .data-grid div.cell > input {
+  padding: 10px;
+
+  width: 100%;
+  height: 100%;
+}
