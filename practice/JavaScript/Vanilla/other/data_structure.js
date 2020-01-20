@@ -218,3 +218,90 @@ graph.addNode(1);
 graph.addNode(2);
 graph.addLine(1, 2);
 var two = graph.find(1).lines[0];
+
+// СВЯЗНЫЙ СПИСОК
+// Представление
+// {
+//   value: 1,
+//   next: {
+//       value: 2,
+//       next: {
+//           value: 3,
+//           next: {...}
+//       }
+//   }
+// }
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.length = 0;
+  }
+
+  get(position) {
+    // Выведем ошибку, если искомая позиция превосходит число вершин в списке
+    if (position >= this.length) {
+      throw new Error("Позиция выходит за пределы списка");
+    }
+
+    // Начнём с головного элемента списка
+    var current = this.head;
+
+    // Пройдём по всем элементам при помощи node.next,
+    // пока не достигнем требуемой позиции
+    for (var index = 0; index < position; index++) {
+      current = current.next;
+    }
+
+    // Вернём найденную вершину
+    return current;
+  }
+
+  add(value, position) {
+    // Сначала создадим вершину, содержащую значение
+    var node = {
+      value: value,
+      next: null
+    };
+
+    // Нужно обработать частный случай, когда вершина вставляется в начало
+    // Установим поле 'next' в текущий головной элемент и заменим
+    // головной элемент нашей вершиной
+    if (position === 0) {
+      node.text = this.head;
+      this.head = node;
+
+      // Если мы добавляем вершину на любую другую позицию, мы должны вставить её
+      // между текущей вершиной current и предыдущей previous
+    } else {
+      // Сперва найдем предыдущую и текущую вершины
+      var pre = this.get(position - 1);
+      var current = prev.next;
+      // Затем вставим новую вершину между ними, установив поле 'next'
+      // на текущую вершину current,
+      // и поле 'next' предыдущей вершины previous - на вставляемую
+      node.next = current;
+      prev.next = node;
+    }
+
+    // И увеличим длину
+    this.length++;
+  }
+
+  remove(position) {
+    // Если мы удаляем головной элемент, просто переставим указатель head
+    // на следующую вершину
+    if (position === 0) {
+      this.head = this.head.next;
+
+      // Для остальных случаев требуется найти предыдущую вершину и поставить
+      // в ней ссылку на вершину, следующую за текущей
+    } else {
+      var prev = this.get(position - 1);
+      prev.next = prev.next.next;
+    }
+
+    // И затем уменьшим длину
+    this.length--;
+  }
+}
