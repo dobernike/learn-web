@@ -17,22 +17,12 @@ export default ({ data }) => {
       .map(([_, filtredCell]) => filtredCell);
 
   const generateGrid = () =>
-    getRows(cells).map((row, i) =>
-      getCols(cells).map((col, j) => {
-        if (i === 0 && j === 0) {
-          return { readOnly: true, value: row.value, className: row.className };
-        }
-        if (j === 0) {
-          return { readOnly: true, value: row.value, className: row.className };
-        }
-
-        return cells[col + row.key];
-      })
-    );
+    getRows(cells).map(row => getCols(cells).map(col => cells[col + row.key]));
 
   const validateExp = (trailKeys, expr) => {
     let valid = true;
     const matches = expr.match(/[A-Z][1-9]+/g) || [];
+
     matches.map(match => {
       if (trailKeys.indexOf(match) > -1) {
         valid = false;
@@ -46,6 +36,7 @@ export default ({ data }) => {
 
   const computeExpr = (key, expr, scope) => {
     let value = null;
+
     if (expr.charAt(0) !== "=") {
       return { className: "", value: expr, expr: expr };
     } else {
@@ -54,6 +45,7 @@ export default ({ data }) => {
       } catch (e) {
         value = null;
       }
+
       if (value !== null && validateExp([key], expr)) {
         return { value, expr };
       } else {
@@ -103,28 +95,15 @@ export default ({ data }) => {
     setCells(copyCells);
   };
 
-  const handleSheetRenderer = props => {
-    return <div className={props.className}>{props.children}</div>;
-  };
+  const handleSheetRenderer = props => (
+    <div className={props.className}>{props.children}</div>
+  );
 
-  const handleRowRenderer = props => {
-    return <div className="data-row">{props.children}</div>;
-  };
+  const handleRowRenderer = props => (
+    <div className="data-row">{props.children}</div>
+  );
 
-  const handleCellRenderer = props => {
-    const {
-      cell,
-      row,
-      col,
-      attributesRenderer,
-      editing,
-      updated,
-      style,
-      ...rest
-    } = props;
-
-    return <div {...rest}>{props.children}</div>;
-  };
+  const handleCellRenderer = props => <div {...props}>{props.children}</div>;
 
   return (
     <DataSheet
