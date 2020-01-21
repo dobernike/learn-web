@@ -275,7 +275,7 @@ class LinkedList {
       // между текущей вершиной current и предыдущей previous
     } else {
       // Сперва найдем предыдущую и текущую вершины
-      var pre = this.get(position - 1);
+      var prev = this.get(position - 1);
       var current = prev.next;
       // Затем вставим новую вершину между ними, установив поле 'next'
       // на текущую вершину current,
@@ -303,5 +303,62 @@ class LinkedList {
 
     // И затем уменьшим длину
     this.length--;
+  }
+}
+
+// ДЕРЕВО
+/*
+  Tree {
+    root: {
+      value: 1,
+      children: [{
+        value: 2,
+        children: [...]
+      }, {
+        value: 3,
+        children: [...]
+      }]
+    }
+  }
+*/
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+
+  traverse(callback) {
+    // Определим функцию обхода walk, которую можно рекурсивно вызывать
+    // в каждой вершине дерева.
+    function walk(node) {
+      // Сперва вызовем callback на самой вершине.
+      callback(node);
+      // Затем рекурсивно вызовем walk на всех её потомках
+      node.children.forEach(walk);
+    }
+
+    // А теперь запустим процесс обхода
+    walk(this.root);
+  }
+
+  add(value, parentValue) {
+    var newNode = {
+      value: value,
+      children: []
+    };
+
+    // Если корня не существует, установим в него новую вершину
+    if (this.root === null) {
+      this.root = newNode;
+      return;
+    }
+
+    // В остальных случаях переберём внутреннее дерево, найдём вершину
+    // с соответствующим значением parentValue и добавим новую вершину
+    // к его потомкам.
+    this.traverse(node => {
+      if (node.value === parentValue) {
+        node.children.push(newNode);
+      }
+    });
   }
 }
