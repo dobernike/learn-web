@@ -1,93 +1,103 @@
 export const header = {
   "00": {
     key: "0",
-    value: "",
+    value: " ",
     readOnly: true,
     expr: ""
   },
   "01": {
     key: "1",
-    value: "2",
+    value: "Наименование статьи",
     readOnly: true,
-    expr: ""
+    expr: "",
+    className: "top-head"
   },
   "02": {
     key: "2",
-    value: "",
+    value: "Денежные средства на начало периода",
     readOnly: true,
-    expr: ""
-  },
-  "03": {
-    key: "3",
-    value: "",
-    readOnly: true,
-    expr: ""
-  },
-  "04": {
-    key: "4",
-    value: "",
-    readOnly: true,
-    expr: ""
+    expr: "",
+    className: "bot-head"
   },
   A0: {
     key: "A0",
-    value: "Ретроспективный анализ",
+    value: "",
     readOnly: true,
     expr: ""
   },
   A1: {
     key: "A1",
-    value: "Наименование статьи",
+    value: "Январь",
     readOnly: true,
-    expr: ""
+    expr: "",
+    className: "top-head"
   },
   A2: {
     key: "A2",
-    value: "Наименование статьи",
+    value: "0.00",
     readOnly: true,
-    expr: ""
-  },
-  A3: {
-    key: "A3",
-    value: "Наименование статьи",
-    readOnly: true,
-    expr: ""
-  },
-  A4: {
-    key: "A4",
-    value: "Наименование статьи",
-    readOnly: true,
-    expr: ""
+    expr: "",
+    className: "bot-head"
   },
   B0: {
     key: "B0",
-    value: "Наименование статьи",
+    value: "Ретроспективный анализ",
     readOnly: true,
     expr: ""
   },
   B1: {
     key: "B1",
-    value: "Наименование статьи",
+    value: "Февраль",
     readOnly: true,
-    expr: ""
+    expr: "",
+    className: "top-head"
   },
   B2: {
     key: "B2",
-    value: "Наименование статьи",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  C0: {
+    key: "C0",
+    value: "",
     readOnly: true,
     expr: ""
   },
-  B3: {
-    key: "B3",
-    value: "Наименование статьи",
+  C1: {
+    key: "C1",
+    value: "Март",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  C2: {
+    key: "C2",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  D0: {
+    key: "D0",
+    value: "",
     readOnly: true,
     expr: ""
   },
-  B4: {
-    key: "B4",
-    value: "Наименование статьи",
+  D1: {
+    key: "D1",
+    value: "Комментарий",
     readOnly: true,
-    expr: ""
+    expr: "",
+    className: "top-head"
+  },
+  D2: {
+    key: "D2",
+    value: "",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
   }
 };
 
@@ -421,4 +431,292 @@ export const table2 = {
   D14: { key: "D14", value: "-", expr: "" },
   D15: { key: "D15", value: "-", expr: "" },
   D16: { key: "D16", value: "", readOnly: true, expr: "", className: "result" }
+};
+
+export const table3 = {
+  "00": {
+    key: "0",
+    value: "Наименование статьи",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  "01": {
+    key: "1",
+    value: "Денежные средства на начало периода",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  "02": {
+    key: "2",
+    value: "Поступления от операционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  "03": {
+    key: "3",
+    value: "От реализации собственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "04": { key: "4", value: "От реализации услуг", readOnly: true, expr: "" },
+  "05": {
+    key: "5",
+    value: "От розничной реализации товаров",
+    readOnly: true,
+    expr: ""
+  },
+  "06": {
+    key: "6",
+    value: "От реализации сельскохозяйственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "07": {
+    key: "7",
+    value: "От строительной деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "08": {
+    key: "8",
+    value: "От прочих видов деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "09": { key: "9", value: "Комиссионные доходы", readOnly: true, expr: "" },
+  "010": {
+    key: "10",
+    value: "Поступления от операционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  "011": {
+    key: "11",
+    value: "От реализации собственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "012": { key: "12", value: "От реализации услуг", readOnly: true, expr: "" },
+  "013": {
+    key: "13",
+    value: "От розничной реализации товаров",
+    readOnly: true,
+    expr: ""
+  },
+  "014": {
+    key: "14",
+    value: "От реализации сельскохозяйственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  "015": {
+    key: "15",
+    value: "От строительной деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "016": {
+    key: "16",
+    value: "От прочих видов деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  "017": { key: "17", value: "Комиссионные доходы", readOnly: true, expr: "" },
+  "018": {
+    key: "18",
+    value: "Итого от инвестиционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "result"
+  },
+  A0: {
+    key: "A0",
+    value: "Январь",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  A1: {
+    key: "A1",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A10+A18",
+    className: "bot-head"
+  },
+  A2: {
+    key: "A2",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A3+A4+A5+A6+A7+A8+A9+A10",
+    className: "header"
+  },
+  A3: { key: "A3", value: "0.00", expr: "" },
+  A4: {
+    key: "A4",
+    value: "0.00",
+    expr: ""
+  },
+  A5: { key: "A5", value: "0.00", expr: "" },
+  A6: { key: "A6", value: "0.00", expr: "" },
+  A7: { key: "A7", value: "0.00", expr: "" },
+  A8: { key: "A8", value: "0.00", expr: "" },
+  A9: { key: "A9", value: "0.00", expr: "" },
+  A10: {
+    key: "A10",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A11+A12+A13+A14+A15+A16+A17+A18",
+    className: "header"
+  },
+  A11: { key: "A11", value: "0.00", expr: "" },
+  A12: {
+    key: "A12",
+    value: "0.00",
+    expr: ""
+  },
+  A13: { key: "A13", value: "0.00", expr: "" },
+  A14: { key: "A14", value: "0.00", expr: "" },
+  A15: { key: "A15", value: "0.00", expr: "" },
+  A16: { key: "A16", value: "0.00", expr: "" },
+  A17: { key: "A17", value: "0.00", expr: "" },
+  A18: {
+    key: "A18",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A0+A8",
+    className: "result"
+  },
+  B0: {
+    key: "B0",
+    value: "Февраль",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  B1: {
+    key: "B1",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  B2: {
+    key: "B2",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  B3: { key: "B3", value: "0.00", expr: "" },
+  B4: { key: "B4", value: "0.00", expr: "" },
+  B5: { key: "B5", value: "0.00", expr: "" },
+  B6: { key: "B6", value: "0.00", expr: "" },
+  B7: { key: "B7", value: "0.00", expr: "" },
+  B8: { key: "B8", value: "0.00", expr: "" },
+  B9: { key: "B9", value: "0.00", expr: "" },
+  B10: {
+    key: "B10",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  B11: { key: "B11", value: "0.00", expr: "" },
+  B12: { key: "B12", value: "0.00", expr: "" },
+  B13: { key: "B13", value: "0.00", expr: "" },
+  B14: { key: "B14", value: "0.00", expr: "" },
+  B15: { key: "B15", value: "0.00", expr: "" },
+  B16: { key: "B16", value: "0.00", expr: "" },
+  B17: { key: "B17", value: "0.00", expr: "" },
+  B18: {
+    key: "B18",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B0+B8",
+    className: "result"
+  },
+  C0: {
+    key: "C0",
+    value: "Март",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  C1: {
+    key: "C1",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  C2: {
+    key: "C2",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  C3: { key: "C3", value: "0.00", expr: "" },
+  C4: { key: "C4", value: "0.00", expr: "" },
+  C5: { key: "C5", value: "0.00", expr: "" },
+  C6: { key: "C6", value: "0.00", expr: "" },
+  C7: { key: "C7", value: "0.00", expr: "" },
+  C8: { key: "C8", value: "0.00", expr: "" },
+  C9: { key: "C9", value: "0.00", expr: "" },
+  C10: {
+    key: "C10",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  C11: { key: "C11", value: "0.00", expr: "" },
+  C12: { key: "C12", value: "0.00", expr: "" },
+  C13: { key: "C13", value: "0.00", expr: "" },
+  C14: { key: "C14", value: "0.00", expr: "" },
+  C15: { key: "C15", value: "0.00", expr: "" },
+  C16: { key: "C16", value: "0.00", expr: "" },
+  C17: { key: "C17", value: "0.00", expr: "" },
+  C18: {
+    key: "C18",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C0+C8",
+    className: "result"
+  },
+  D0: {
+    key: "D0",
+    value: "Комментарий",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  D1: {
+    key: "D1",
+    value: "",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  D2: { key: "D2", value: "", readOnly: true, expr: "", className: "header" },
+  D3: { key: "D3", value: "-", expr: "" },
+  D4: { key: "D4", value: "-", expr: "" },
+  D5: { key: "D5", value: "-", expr: "" },
+  D6: { key: "D6", value: "-", expr: "" },
+  D7: { key: "D7", value: "-", expr: "" },
+  D8: { key: "D8", value: "-", expr: "" },
+  D9: { key: "D9", value: "-", expr: "" },
+  D10: { key: "D10", value: "", readOnly: true, expr: "", className: "header" },
+  D11: { key: "D11", value: "-", expr: "" },
+  D12: { key: "D12", value: "-", expr: "" },
+  D13: { key: "D13", value: "-", expr: "" },
+  D14: { key: "D14", value: "-", expr: "" },
+  D15: { key: "D15", value: "-", expr: "" },
+  D16: { key: "D16", value: "-", expr: "" },
+  D17: { key: "D17", value: "-", expr: "" },
+  D18: { key: "D18", value: "", readOnly: true, expr: "", className: "result" }
 };
