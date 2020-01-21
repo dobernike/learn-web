@@ -362,3 +362,74 @@ class Tree {
     });
   }
 }
+
+// ДВОИЧНОЕ ДЕРЕВО ПОИСКА
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+
+  contains(value) {
+    //Начинаем с корня
+    var current = this.root;
+
+    // Мы будем продолжать обход, пока есть вершины, которые можно посетить
+    // Если мы достигнем левой или правой вершин, равных null, цикл закончится
+    while (current) {
+      // Если значение value больше current.value, двигаемся вправо
+      if (value > current.value) {
+        current = current.right;
+
+        // Если значение value меньше current.value, двигаемся влево
+      } else if (value < current.value) {
+        current = current.left;
+
+        // Иначе значения должны быть равны и мы возвращаем true
+      } else {
+        return true;
+      }
+    }
+
+    // Если мы не нашли ничего, возвращаем false
+    return false;
+  }
+
+  add(value) {
+    // Для начала создадим вершину
+    var node = {
+      value: value,
+      left: null,
+      right: null
+    };
+
+    // Частный случай, если не существует корневой вершины - добавим её
+    if (this.root === null) {
+      this.root = node;
+      return;
+    }
+
+    // Начнём обход с корня
+    var current = this.root;
+
+    // Мы собираемся циклически продолжать работу до тех пор, пока не добавим
+    // наш элемент или не обнаружим, что он уже находится в дереве.
+    while (true) {
+      // Если значение value больше current.value, двигаемся вправо
+      if (value > current.value) {
+        // Если правая вершина не существует, установим её и закончим обход
+        if (!current.right) {
+          current.right = node;
+          break;
+        }
+
+        // Иначе перейдём на правую вершину и продолжим
+        current = current.right;
+
+        // Если значение ни больше и не меньше, оно должно быть совпадать
+        // с текущим, значит ничего делать не надо
+      } else {
+        break;
+      }
+    }
+  }
+}
