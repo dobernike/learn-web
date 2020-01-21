@@ -78,3 +78,31 @@
   width: 100%;
   height: 100%;
 }
+
+.data-grid-container .data-grid .top-head.cell.read-only {
+  border-left: none;
+  border-right: none;
+  border-color: black;
+}
+
+.data-grid-container .data-grid .top-head.cell.read-only:first-child,
+.data-grid-container .data-grid .top-head.cell.read-only:last-child {
+  font-weight: 700;
+  border-top: none;
+}
+
+.data-grid-container .data-grid .cell.read-only.bot-head {
+  border: none;
+  padding-bottom: 1rem;
+}
+
+.data-grid-container
+  .data-grid
+  .cell.read-only.top-head:not(:first-child):not(:last-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.bot-head:not(:first-child)
+  .value-viewer {
+  text-align: end;
+}
