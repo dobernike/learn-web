@@ -1305,3 +1305,312 @@ export const table4 = [
     }
   ]
 ];
+
+export const table5 = {
+  "00": {
+    key: "00",
+    value: "Наименование статьи",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  A0: {
+    key: "A0",
+    value: "Январь",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  B0: {
+    key: "B0",
+    value: "Февраль",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  C0: {
+    key: "C0",
+    value: "Март",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  D0: {
+    key: "D0",
+    value: "Комментарий",
+    readOnly: true,
+    expr: "",
+    className: "top-head"
+  },
+  "01": {
+    key: "01",
+    value: "Денежные средства на начало периода",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  A1: {
+    key: "A1",
+    value: "20000",
+    readOnly: true,
+    expr: "=",
+    className: "bot-head"
+  },
+
+  B1: {
+    key: "B1",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  C1: {
+    key: "C1",
+    value: "0.00",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  D1: {
+    key: "D1",
+    value: "",
+    readOnly: true,
+    expr: "",
+    className: "bot-head"
+  },
+  "02": {
+    key: "02",
+    value: "Поступления от операционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  A2: {
+    key: "A2",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A3+A4+A5+A6+A7+A8+A9",
+    className: "header"
+  },
+  B2: {
+    key: "B2",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B3+B4+B5+B6+B7+B8+B9",
+    className: "header"
+  },
+  C2: {
+    key: "C2",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C3+C4+C5+C6+C7+C8+C9",
+    className: "header"
+  },
+  D2: { key: "D2", value: "", readOnly: true, expr: "", className: "header" },
+
+  "03": {
+    key: "03",
+    value: "От реализации собственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  A3: { key: "A3", value: "0.00", expr: "" },
+  B3: { key: "B3", value: "0.00", expr: "" },
+  C3: { key: "C3", value: "0.00", expr: "" },
+  D3: { key: "D3", value: "-", expr: "" },
+  "04": { key: "04", value: "От реализации услуг", readOnly: true, expr: "" },
+  A4: {
+    key: "A4",
+    value: "0.00",
+    expr: ""
+  },
+  B4: { key: "B4", value: "0.00", expr: "" },
+  C4: { key: "C4", value: "0.00", expr: "" },
+  D4: { key: "D4", value: "-", expr: "" },
+
+  "05": {
+    key: "05",
+    value: "От розничной реализации товаров",
+    readOnly: true,
+    expr: ""
+  },
+  A5: { key: "A5", value: "0.00", expr: "" },
+  B5: { key: "B5", value: "0.00", expr: "" },
+  C5: { key: "C5", value: "0.00", expr: "" },
+  D5: { key: "D5", value: "-", expr: "" },
+
+  "06": {
+    key: "06",
+    value: "От реализации сельскохозяйственной продукции",
+    readOnly: true,
+    expr: ""
+  },
+  A6: { key: "A6", value: "0.00", expr: "" },
+  B6: { key: "B6", value: "0.00", expr: "" },
+  C6: { key: "C6", value: "0.00", expr: "" },
+  D6: { key: "D6", value: "-", expr: "" },
+
+  "07": {
+    key: "07",
+    value: "От строительной деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  A7: { key: "A7", value: "0.00", expr: "" },
+  B7: { key: "B7", value: "0.00", expr: "" },
+  C7: { key: "C7", value: "0.00", expr: "" },
+  D7: { key: "D7", value: "-", expr: "" },
+
+  "08": {
+    key: "08",
+    value: "От прочих видов деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  A8: { key: "A8", value: "0.00", expr: "" },
+  B8: { key: "B8", value: "0.00", expr: "" },
+  C8: { key: "C8", value: "0.00", expr: "" },
+  D8: { key: "D8", value: "-", expr: "" },
+
+  "09": { key: "09", value: "Комиссионные доходы", readOnly: true, expr: "" },
+  A9: { key: "A9", value: "0.00", expr: "" },
+  B9: { key: "B9", value: "0.00", expr: "" },
+  C9: { key: "C9", value: "0.00", expr: "" },
+  D9: { key: "D9", value: "-", expr: "" },
+
+  "010": {
+    key: "010",
+    value: "Операционные расходы",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  A10: {
+    key: "A10",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A11+A12+A13+A14+A15+A16+A17",
+    className: "header"
+  },
+  B10: {
+    key: "B10",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B11+B12+B13+B14+B15+B16+B17",
+    className: "header"
+  },
+  C10: {
+    key: "C10",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C11+C12+C13+C14+C15+C16+C17",
+    className: "header"
+  },
+  D10: { key: "D10", value: "", readOnly: true, expr: "", className: "header" },
+
+  "011": {
+    key: "011",
+    value: "Закупка сырья и материалов",
+    readOnly: true,
+    expr: ""
+  },
+  A11: { key: "A11", value: "0.00", expr: "" },
+  B11: { key: "B11", value: "0.00", expr: "" },
+  C11: { key: "C11", value: "0.00", expr: "" },
+  D11: { key: "D11", value: "-", expr: "" },
+
+  "012": { key: "012", value: "От реализации услуг", readOnly: true, expr: "" },
+  A12: {
+    key: "A12",
+    value: "0.00",
+    expr: ""
+  },
+  B12: { key: "B12", value: "0.00", expr: "" },
+  C12: { key: "C12", value: "0.00", expr: "" },
+  D12: { key: "D12", value: "-", expr: "" },
+
+  "013": {
+    key: "013",
+    value: "Сырья и комплектующих (производство)",
+    readOnly: true,
+    expr: ""
+  },
+  A13: { key: "A13", value: "0.00", expr: "" },
+  B13: { key: "B13", value: "0.00", expr: "" },
+  C13: { key: "C13", value: "0.00", expr: "" },
+  D13: { key: "D13", value: "-", expr: "" },
+
+  "014": {
+    key: "014",
+    value: "Закупочная стоимость товаров, для розничной реализации",
+    readOnly: true,
+    expr: ""
+  },
+  A14: { key: "A14", value: "0.00", expr: "" },
+  B14: { key: "B14", value: "0.00", expr: "" },
+  C14: { key: "C14", value: "0.00", expr: "" },
+  D14: { key: "D14", value: "-", expr: "" },
+
+  "015": {
+    key: "015",
+    value: "Закупочная стоимость товаров, для оптовой реализации",
+    readOnly: true,
+    expr: ""
+  },
+  A15: { key: "A15", value: "0.00", expr: "" },
+  B15: { key: "B15", value: "0.00", expr: "" },
+  C15: { key: "C15", value: "0.00", expr: "" },
+  D15: { key: "D15", value: "-", expr: "" },
+
+  "016": {
+    key: "016",
+    value: "Сырья и комплектующих (сельское хозяйство)",
+    readOnly: true,
+    expr: ""
+  },
+  A16: { key: "A16", value: "0.00", expr: "" },
+  B16: { key: "B16", value: "0.00", expr: "" },
+  C16: { key: "C16", value: "0.00", expr: "" },
+  D16: { key: "D16", value: "-", expr: "" },
+
+  "017": {
+    key: "017",
+    value: "По прочим видам деятельности",
+    readOnly: true,
+    expr: ""
+  },
+  A17: { key: "A17", value: "0.00", expr: "" },
+  B17: { key: "B17", value: "0.00", expr: "" },
+  C17: { key: "C17", value: "0.00", expr: "" },
+  D17: { key: "D17", value: "-", expr: "" },
+
+  "018": {
+    key: "018",
+    value: "Итого от операционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "result"
+  },
+  A18: {
+    key: "A18",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A2-A10",
+    className: "result"
+  },
+  B18: {
+    key: "B18",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B2-B10",
+    className: "result"
+  },
+  C18: {
+    key: "C18",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C2-C10",
+    className: "result"
+  },
+  D18: { key: "D18", value: "", readOnly: true, expr: "", className: "result" }
+};
