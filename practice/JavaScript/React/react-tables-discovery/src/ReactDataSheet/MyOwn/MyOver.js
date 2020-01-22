@@ -8,16 +8,15 @@ export default ({ data }) => {
   const [cells, setCells] = useState(data);
 
   const getCols = cells => [
-    ...new Set(Object.keys(cells).map(cell => cell.charAt(0)))
+    ...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))
   ];
 
-  const getRows = cells =>
-    Object.entries(cells)
-      .filter(([key], idx) => +key.match(/.(\d+)/)[1] === idx)
-      .map(([_, filtredCell]) => filtredCell);
+  const getRows = cells => [
+    ...new Set(Object.values(cells).map(cell => cell.key.slice(1)))
+  ];
 
   const generateGrid = () =>
-    getRows(cells).map(row => getCols(cells).map(col => cells[col + row.key]));
+    getRows(cells).map(row => getCols(cells).map(col => cells[col + row]));
 
   const validateExp = (trailKeys, expr) => {
     let valid = true;
@@ -118,7 +117,6 @@ export default ({ data }) => {
     return <div {...rest}>{props.children}</div>;
   };
 
-  console.log(generateGrid());
   return (
     <DataSheet
       data={generateGrid()}
