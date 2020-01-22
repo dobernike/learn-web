@@ -489,46 +489,51 @@ export const table3 = {
   "09": { key: "9", value: "Комиссионные доходы", readOnly: true, expr: "" },
   "010": {
     key: "10",
-    value: "Поступления от операционной деятельности",
+    value: "Операционные расходы",
     readOnly: true,
     expr: "",
     className: "header"
   },
   "011": {
     key: "11",
-    value: "От реализации собственной продукции",
+    value: "Закупка сырья и материалов",
     readOnly: true,
     expr: ""
   },
   "012": { key: "12", value: "От реализации услуг", readOnly: true, expr: "" },
   "013": {
     key: "13",
-    value: "От розничной реализации товаров",
+    value: "Сырья и комплектующих (производство)",
     readOnly: true,
     expr: ""
   },
   "014": {
     key: "14",
-    value: "От реализации сельскохозяйственной продукции",
+    value: "Закупочная стоимость товаров, для розничной реализации",
     readOnly: true,
     expr: ""
   },
   "015": {
     key: "15",
-    value: "От строительной деятельности",
+    value: "Закупочная стоимость товаров, для оптовой реализации",
     readOnly: true,
     expr: ""
   },
   "016": {
     key: "16",
-    value: "От прочих видов деятельности",
+    value: "Сырья и комплектующих (сельское хозяйство)",
     readOnly: true,
     expr: ""
   },
-  "017": { key: "17", value: "Комиссионные доходы", readOnly: true, expr: "" },
+  "017": {
+    key: "17",
+    value: "По прочим видам деятельности",
+    readOnly: true,
+    expr: ""
+  },
   "018": {
     key: "18",
-    value: "Итого от инвестиционной деятельности",
+    value: "Итого от операционной деятельности",
     readOnly: true,
     expr: "",
     className: "result"
@@ -542,16 +547,16 @@ export const table3 = {
   },
   A1: {
     key: "A1",
-    value: "0.00",
+    value: "20000",
     readOnly: true,
-    expr: "=A10+A18",
+    expr: "=",
     className: "bot-head"
   },
   A2: {
     key: "A2",
     value: "0.00",
     readOnly: true,
-    expr: "=A3+A4+A5+A6+A7+A8+A9+A10",
+    expr: "=A3+A4+A5+A6+A7+A8+A9",
     className: "header"
   },
   A3: { key: "A3", value: "0.00", expr: "" },
@@ -569,7 +574,7 @@ export const table3 = {
     key: "A10",
     value: "0.00",
     readOnly: true,
-    expr: "=A11+A12+A13+A14+A15+A16+A17+A18",
+    expr: "=A11+A12+A13+A14+A15+A16+A17",
     className: "header"
   },
   A11: { key: "A11", value: "0.00", expr: "" },
@@ -587,7 +592,7 @@ export const table3 = {
     key: "A18",
     value: "0.00",
     readOnly: true,
-    expr: "=A0+A8",
+    expr: "=A2-A10",
     className: "result"
   },
   B0: {
@@ -608,7 +613,7 @@ export const table3 = {
     key: "B2",
     value: "0.00",
     readOnly: true,
-    expr: "",
+    expr: "=B3+B4+B5+B6+B7+B8+B9",
     className: "header"
   },
   B3: { key: "B3", value: "0.00", expr: "" },
@@ -622,7 +627,7 @@ export const table3 = {
     key: "B10",
     value: "0.00",
     readOnly: true,
-    expr: "",
+    expr: "=B11+B12+B13+B14+B15+B16+B17",
     className: "header"
   },
   B11: { key: "B11", value: "0.00", expr: "" },
@@ -636,7 +641,7 @@ export const table3 = {
     key: "B18",
     value: "0.00",
     readOnly: true,
-    expr: "=B0+B8",
+    expr: "=B2-B10",
     className: "result"
   },
   C0: {
@@ -657,7 +662,7 @@ export const table3 = {
     key: "C2",
     value: "0.00",
     readOnly: true,
-    expr: "",
+    expr: "=C3+C4+C5+C6+C7+C8+C9",
     className: "header"
   },
   C3: { key: "C3", value: "0.00", expr: "" },
@@ -671,7 +676,7 @@ export const table3 = {
     key: "C10",
     value: "0.00",
     readOnly: true,
-    expr: "",
+    expr: "=C11+C12+C13+C14+C15+C16+C17",
     className: "header"
   },
   C11: { key: "C11", value: "0.00", expr: "" },
@@ -685,7 +690,7 @@ export const table3 = {
     key: "C18",
     value: "0.00",
     readOnly: true,
-    expr: "=C0+C8",
+    expr: "=C2-C10",
     className: "result"
   },
   D0: {
@@ -720,3 +725,583 @@ export const table3 = {
   D17: { key: "D17", value: "-", expr: "" },
   D18: { key: "D18", value: "", readOnly: true, expr: "", className: "result" }
 };
+
+export const table4 = [
+  [
+    {
+      key: "0",
+      value: "Наименование статьи",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    {
+      key: "A0",
+      value: "Январь",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    {
+      key: "B0",
+      value: "Февраль",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    {
+      key: "C0",
+      value: "Март",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    {
+      key: "D0",
+      value: "Комментарий",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    }
+  ],
+  [
+    {
+      key: "1",
+      value: "Денежные средства на начало периода",
+      readOnly: true,
+      expr: "",
+      className: "bot-head"
+    },
+    {
+      key: "A1",
+      value: "20000",
+      readOnly: true,
+      expr: "=",
+      className: "bot-head"
+    },
+    {
+      key: "B1",
+      value: "0.00",
+      readOnly: true,
+      expr: "",
+      className: "bot-head"
+    },
+    {
+      key: "C1",
+      value: "0.00",
+      readOnly: true,
+      expr: "",
+      className: "bot-head"
+    },
+    {
+      key: "D1",
+      value: "",
+      readOnly: true,
+      expr: "",
+      className: "bot-head"
+    }
+  ],
+  [
+    {
+      key: "2",
+      value: "Поступления от операционной деятельности",
+      readOnly: true,
+      expr: "",
+      className: "header"
+    },
+    {
+      key: "A2",
+      value: "0.00",
+      readOnly: true,
+      expr: "=A3+A4+A5+A6+A7+A8+A9",
+      className: "header"
+    },
+    {
+      key: "B2",
+      value: "0.00",
+      readOnly: true,
+      expr: "=B3+B4+B5+B6+B7+B8+B9",
+      className: "header"
+    },
+    {
+      key: "C2",
+      value: "0.00",
+      readOnly: true,
+      expr: "=C3+C4+C5+C6+C7+C8+C9",
+      className: "header"
+    },
+    {
+      key: "D2",
+      value: "",
+      readOnly: true,
+      expr: "",
+      className: "header"
+    }
+  ],
+  [
+    {
+      key: "3",
+      value: "От реализации собственной продукции",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A3",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B3",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C3",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D3",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "4",
+      value: "От реализации услуг",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A4",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B4",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C4",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D4",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "5",
+      value: "От розничной реализации товаров",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A5",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B5",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C5",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D5",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "6",
+      value: "От реализации сельскохозяйственной продукции",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A6",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B6",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C6",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D6",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "7",
+      value: "От строительной деятельности",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A7",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B7",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C7",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D7",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "8",
+      value: "От прочих видов деятельности",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A8",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B8",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C8",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D8",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "9",
+      value: "Комиссионные доходы",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A9",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B9",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C9",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D9",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "10",
+      value: "Операционные расходы",
+      readOnly: true,
+      expr: "",
+      className: "header"
+    },
+    {
+      key: "A10",
+      value: "0.00",
+      readOnly: true,
+      expr: "=A11+A12+A13+A14+A15+A16+A17",
+      className: "header"
+    },
+    {
+      key: "B10",
+      value: "0.00",
+      readOnly: true,
+      expr: "=B11+B12+B13+B14+B15+B16+B17",
+      className: "header"
+    },
+    {
+      key: "C10",
+      value: "0.00",
+      readOnly: true,
+      expr: "=C11+C12+C13+C14+C15+C16+C17",
+      className: "header"
+    },
+    {
+      key: "D10",
+      value: "",
+      readOnly: true,
+      expr: "",
+      className: "header"
+    }
+  ],
+  [
+    {
+      key: "11",
+      value: "Закупка сырья и материалов",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A11",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B11",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C11",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D11",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "12",
+      value: "От реализации услуг",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A12",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B12",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C12",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D12",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "13",
+      value: "Сырья и комплектующих (производство)",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A13",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B13",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C13",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D13",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "14",
+      value: "Закупочная стоимость товаров, для розничной реализации",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A14",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B14",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C14",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D14",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "15",
+      value: "Закупочная стоимость товаров, для оптовой реализации",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A15",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B15",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C15",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D15",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "16",
+      value: "Сырья и комплектующих (сельское хозяйство)",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A16",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B16",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C16",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D16",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "17",
+      value: "По прочим видам деятельности",
+      readOnly: true,
+      expr: ""
+    },
+    {
+      key: "A17",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "B17",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "C17",
+      value: "0.00",
+      expr: ""
+    },
+    {
+      key: "D17",
+      value: "-",
+      expr: ""
+    }
+  ],
+  [
+    {
+      key: "18",
+      value: "Итого от операционной деятельности",
+      readOnly: true,
+      expr: "",
+      className: "result"
+    },
+    {
+      key: "A18",
+      value: "0.00",
+      readOnly: true,
+      expr: "=A2-A10",
+      className: "result"
+    },
+    {
+      key: "B18",
+      value: "0.00",
+      readOnly: true,
+      expr: "=B2-B10",
+      className: "result"
+    },
+    {
+      key: "C18",
+      value: "0.00",
+      readOnly: true,
+      expr: "=C2-C10",
+      className: "result"
+    },
+    {
+      key: "D18",
+      value: "",
+      readOnly: true,
+      expr: "",
+      className: "result"
+    }
+  ]
+];
