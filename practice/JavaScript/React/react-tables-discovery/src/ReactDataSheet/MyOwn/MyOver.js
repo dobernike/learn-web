@@ -103,8 +103,22 @@ export default ({ data }) => {
     <div className="data-row">{props.children}</div>
   );
 
-  const handleCellRenderer = props => <div {...props}>{props.children}</div>;
+  const handleCellRenderer = props => {
+    const {
+      cell,
+      row,
+      col,
+      attributesRenderer,
+      editing,
+      updated,
+      style,
+      ...rest
+    } = props;
 
+    return <div {...rest}>{props.children}</div>;
+  };
+
+  console.log(generateGrid());
   return (
     <DataSheet
       data={generateGrid()}
