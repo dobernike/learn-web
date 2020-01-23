@@ -1862,5 +1862,203 @@ export const table5 = {
     expr: "=C26-C29",
     className: "result"
   },
-  D35: { key: "D35", value: "", readOnly: true, expr: "", className: "result" }
+  D35: { key: "D35", value: "", readOnly: true, expr: "", className: "result" },
+  "036": {
+    key: "036",
+    value: "Финансовые доходы",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  A36: {
+    key: "A36",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A27+A28",
+    className: "header"
+  },
+  B36: {
+    key: "B36",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B27+B28",
+    className: "header"
+  },
+  C36: {
+    key: "C36",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C27+C28",
+    className: "header"
+  },
+  D36: { key: "D26", value: "", readOnly: true, expr: "", className: "header" },
+  "037": {
+    key: "037",
+    value: "Поступлене кредитов Сбербанка",
+    readOnly: true,
+    expr: ""
+  },
+  A37: { key: "A37", value: "0.00", expr: "" },
+  B37: { key: "B37", value: "0.00", expr: "" },
+  C37: { key: "C37", value: "0.00", expr: "" },
+  D37: { key: "D37", value: "-", expr: "" },
+  "038": {
+    key: "038",
+    value: "Поступление других кредитов и займов",
+    readOnly: true,
+    expr: ""
+  },
+  A38: { key: "A38", value: "0.00", expr: "" },
+  B38: { key: "B38", value: "0.00", expr: "" },
+  C38: { key: "C38", value: "0.00", expr: "" },
+  D38: { key: "D38", value: "-", expr: "" },
+  "039": {
+    key: "039",
+    value: "Вложение собственников",
+    readOnly: true,
+    expr: ""
+  },
+  A39: { key: "A39", value: "0.00", expr: "" },
+  B39: { key: "B39", value: "0.00", expr: "" },
+  C39: { key: "C39", value: "0.00", expr: "" },
+  D39: { key: "D39", value: "-", expr: "" },
+  "040": {
+    key: "040",
+    value: "Получение целевого и государственного финансирования",
+    readOnly: true,
+    expr: ""
+  },
+  A40: { key: "A40", value: "0.00", expr: "" },
+  B40: { key: "B40", value: "0.00", expr: "" },
+  C40: { key: "C40", value: "0.00", expr: "" },
+  D40: { key: "D40", value: "-", expr: "" },
+  "041": {
+    key: "041",
+    value: "Финансовые расходы",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  A41: {
+    key: "A41",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A27+A28",
+    className: "header"
+  },
+  B41: {
+    key: "B41",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B27+B28",
+    className: "header"
+  },
+  C41: {
+    key: "C41",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C27+C28",
+    className: "header"
+  },
+  D41: { key: "D41", value: "", readOnly: true, expr: "", className: "header" },
+  "042": {
+    key: "042",
+    value: "Погашение основного долга по кредитам Сбербанка",
+    readOnly: true,
+    expr: ""
+  },
+  A42: { key: "A42", value: "0.00", expr: "" },
+  B42: { key: "B42", value: "0.00", expr: "" },
+  C42: { key: "C42", value: "0.00", expr: "" },
+  D42: { key: "D42", value: "-", expr: "" },
+  "043": {
+    key: "043",
+    value:
+      "Гарантии на исполнение обязательств по Контракту, подлежащие закрытию",
+    readOnly: true,
+    expr: ""
+  },
+  A43: { key: "A43", value: "0.00", expr: "" },
+  B43: { key: "B43", value: "0.00", expr: "" },
+  C43: { key: "C43", value: "0.00", expr: "" },
+  D43: { key: "D43", value: "-", expr: "" },
+  "044": {
+    key: "044",
+    value: "Погашение процентов по кредитам и займам в Сбербанке",
+    readOnly: true,
+    expr: ""
+  },
+  A44: { key: "A44", value: "0.00", expr: "" },
+  B44: { key: "B44", value: "0.00", expr: "" },
+  C44: { key: "C44", value: "0.00", expr: "" },
+  D44: { key: "D44", value: "-", expr: "" },
+  "045": {
+    key: "045",
+    value: "Погашение основного долга других кредитов и займов",
+    readOnly: true,
+    expr: ""
+  },
+  A45: { key: "A45", value: "0.00", expr: "" },
+  B45: { key: "B45", value: "0.00", expr: "" },
+  C45: { key: "C45", value: "0.00", expr: "" },
+  D45: { key: "D45", value: "-", expr: "" },
+  "046": {
+    key: "046",
+    value: "Погашение процентов по другим кредитам и займам",
+    readOnly: true,
+    expr: ""
+  },
+  A46: { key: "A46", value: "0.00", expr: "" },
+  B46: { key: "B46", value: "0.00", expr: "" },
+  C46: { key: "C46", value: "0.00", expr: "" },
+  D46: { key: "D46", value: "-", expr: "" },
+  "047": {
+    key: "047",
+    value: "Лизинговые платежи",
+    readOnly: true,
+    expr: ""
+  },
+  A47: { key: "A47", value: "0.00", expr: "" },
+  B47: { key: "B47", value: "0.00", expr: "" },
+  C47: { key: "C47", value: "0.00", expr: "" },
+  D47: { key: "D47", value: "-", expr: "" },
+  "048": {
+    key: "048",
+    value: "Выплата дивидендов",
+    readOnly: true,
+    expr: ""
+  },
+  A48: { key: "A48", value: "0.00", expr: "" },
+  B48: { key: "B48", value: "0.00", expr: "" },
+  C48: { key: "C48", value: "0.00", expr: "" },
+  D48: { key: "D48", value: "-", expr: "" },
+  "049": {
+    key: "049",
+    value: "Итого от финансовой деятельности",
+    readOnly: true,
+    expr: "",
+    className: "result"
+  },
+  A49: {
+    key: "A49",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A26-A29",
+    className: "result"
+  },
+  B49: {
+    key: "B49",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B26-B29",
+    className: "result"
+  },
+  C49: {
+    key: "C49",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C26-C29",
+    className: "result"
+  },
+  D49: { key: "D49", value: "", readOnly: true, expr: "", className: "result" }
 };
