@@ -1586,31 +1586,281 @@ export const table5 = {
 
   "018": {
     key: "018",
-    value: "Итого от операционной деятельности",
+    value: "Расходы на текущую деятельность",
     readOnly: true,
     expr: "",
-    className: "result"
+    className: "header"
   },
   A18: {
     key: "A18",
     value: "0.00",
     readOnly: true,
-    expr: "=A2-A10",
-    className: "result"
+    expr: "=A19+A20+A21+A22+A23+A24",
+    className: "header"
   },
   B18: {
     key: "B18",
     value: "0.00",
     readOnly: true,
-    expr: "=B2-B10",
-    className: "result"
+    expr: "=B19+B20+B21+B22+B23+B24",
+
+    className: "header"
   },
   C18: {
     key: "C18",
     value: "0.00",
     readOnly: true,
-    expr: "=C2-C10",
+    expr: "=C19+C20+C21+C22+C23+C24",
+
+    className: "header"
+  },
+  D18: { key: "D18", value: "", readOnly: true, expr: "", className: "header" },
+  "019": {
+    key: "019",
+    value: "Заработная плата",
+    readOnly: true,
+    expr: ""
+  },
+  A19: { key: "A19", value: "0.00", expr: "" },
+  B19: { key: "B19", value: "0.00", expr: "" },
+  C19: { key: "C19", value: "0.00", expr: "" },
+  D19: { key: "D19", value: "-", expr: "" },
+  "020": {
+    key: "020",
+    value: "Арендная плата и коммунальные платежи",
+    readOnly: true,
+    expr: ""
+  },
+  A20: { key: "A20", value: "0.00", expr: "" },
+  B20: { key: "B20", value: "0.00", expr: "" },
+  C20: { key: "C20", value: "0.00", expr: "" },
+  D20: { key: "D20", value: "-", expr: "" },
+  "021": {
+    key: "021",
+    value: "Транспортные расходы",
+    readOnly: true,
+    expr: ""
+  },
+  A21: { key: "A21", value: "0.00", expr: "" },
+  B21: { key: "B21", value: "0.00", expr: "" },
+  C21: { key: "C21", value: "0.00", expr: "" },
+  D21: { key: "D21", value: "-", expr: "" },
+  "022": {
+    key: "022",
+    value: "Маркетинг",
+    readOnly: true,
+    expr: ""
+  },
+  A22: { key: "A22", value: "0.00", expr: "" },
+  B22: { key: "B22", value: "0.00", expr: "" },
+  C22: { key: "C22", value: "0.00", expr: "" },
+  D22: { key: "D22", value: "-", expr: "" },
+  "023": {
+    key: "023",
+    value: "Налоги (все)",
+    readOnly: true,
+    expr: ""
+  },
+  A23: { key: "A23", value: "0.00", expr: "" },
+  B23: { key: "B23", value: "0.00", expr: "" },
+  C23: { key: "C23", value: "0.00", expr: "" },
+  D23: { key: "D23", value: "-", expr: "" },
+  "024": {
+    key: "024",
+    value: "Прочие расходы",
+    readOnly: true,
+    expr: ""
+  },
+  A24: { key: "A24", value: "0.00", expr: "" },
+  B24: { key: "B24", value: "0.00", expr: "" },
+  C24: { key: "C24", value: "0.00", expr: "" },
+  D24: { key: "D24", value: "-", expr: "" },
+
+  "025": {
+    key: "025",
+    value: "Итого от операционной деятельности",
+    readOnly: true,
+    expr: "",
     className: "result"
   },
-  D18: { key: "D18", value: "", readOnly: true, expr: "", className: "result" }
+  A25: {
+    key: "A25",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A2-A10-A18",
+    className: "result"
+  },
+  B25: {
+    key: "B25",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B2-B10-B18",
+    className: "result"
+  },
+  C25: {
+    key: "C25",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C2-C10-C18",
+    className: "result"
+  },
+  D25: { key: "D25", value: "", readOnly: true, expr: "", className: "result" },
+  "026": {
+    key: "026",
+    value: "Доходы инвестиционные",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  A26: {
+    key: "A26",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A27+A28",
+    className: "header"
+  },
+  B26: {
+    key: "B26",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B27+B28",
+    className: "header"
+  },
+  C26: {
+    key: "C26",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C27+C28",
+    className: "header"
+  },
+  D26: { key: "D26", value: "", readOnly: true, expr: "", className: "header" },
+  "027": {
+    key: "027",
+    value:
+      "Продажа станков, оборудования, мебели, офисной техники, зданий и сооружений",
+    readOnly: true,
+    expr: ""
+  },
+  A27: { key: "A27", value: "0.00", expr: "" },
+  B27: { key: "B27", value: "0.00", expr: "" },
+  C27: { key: "C27", value: "0.00", expr: "" },
+  D27: { key: "D27", value: "-", expr: "" },
+  "028": {
+    key: "028",
+    value: "Продажа финансовых и инвестиционных активов",
+    readOnly: true,
+    expr: ""
+  },
+  A28: { key: "A28", value: "0.00", expr: "" },
+  B28: { key: "B28", value: "0.00", expr: "" },
+  C28: { key: "C28", value: "0.00", expr: "" },
+  D28: { key: "D28", value: "-", expr: "" },
+  "029": {
+    key: "029",
+    value: "Расходы инвестиционные",
+    readOnly: true,
+    expr: "",
+    className: "header"
+  },
+  A29: {
+    key: "A29",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A30+A31+A32+A33+A34",
+    className: "header"
+  },
+  B29: {
+    key: "B29",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B30+B31+B32+B33+B34",
+    className: "header"
+  },
+  C29: {
+    key: "C29",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C30+C31+C32+C33+C34",
+    className: "header"
+  },
+  D29: { key: "D29", value: "", readOnly: true, expr: "", className: "header" },
+  "030": {
+    key: "030",
+    value: "Приобретение и монтаж станков и оборудования",
+    readOnly: true,
+    expr: ""
+  },
+  A30: { key: "A30", value: "0.00", expr: "" },
+  B30: { key: "B30", value: "0.00", expr: "" },
+  C30: { key: "C30", value: "0.00", expr: "" },
+  D30: { key: "D30", value: "-", expr: "" },
+  "031": {
+    key: "031",
+    value: "Покупка мебели и офисной техники",
+    readOnly: true,
+    expr: ""
+  },
+  A31: { key: "A31", value: "0.00", expr: "" },
+  B31: { key: "B31", value: "0.00", expr: "" },
+  C31: { key: "C31", value: "0.00", expr: "" },
+  D31: { key: "D31", value: "-", expr: "" },
+  "032": {
+    key: "032",
+    value: "Приобретение зданий и ремонт помещений",
+    readOnly: true,
+    expr: ""
+  },
+  A32: { key: "A32", value: "0.00", expr: "" },
+  B32: { key: "B32", value: "0.00", expr: "" },
+  C32: { key: "C32", value: "0.00", expr: "" },
+  D32: { key: "D32", value: "-", expr: "" },
+  "033": {
+    key: "033",
+    value: "Приобретение финансовых и инвестиционных активов",
+    readOnly: true,
+    expr: ""
+  },
+  A33: { key: "A33", value: "0.00", expr: "" },
+  B33: { key: "B33", value: "0.00", expr: "" },
+  C33: { key: "C33", value: "0.00", expr: "" },
+  D33: { key: "D33", value: "-", expr: "" },
+  "034": {
+    key: "034",
+    value: "Другие расходы инвестиционного характера",
+    readOnly: true,
+    expr: ""
+  },
+  A34: { key: "A34", value: "0.00", expr: "" },
+  B34: { key: "B34", value: "0.00", expr: "" },
+  C34: { key: "C34", value: "0.00", expr: "" },
+  D34: { key: "D34", value: "-", expr: "" },
+  "035": {
+    key: "035",
+    value: "Итого от инвестиционной деятельности",
+    readOnly: true,
+    expr: "",
+    className: "result"
+  },
+  A35: {
+    key: "A35",
+    value: "0.00",
+    readOnly: true,
+    expr: "=A26-A29",
+    className: "result"
+  },
+  B35: {
+    key: "B35",
+    value: "0.00",
+    readOnly: true,
+    expr: "=B26-B29",
+    className: "result"
+  },
+  C35: {
+    key: "C35",
+    value: "0.00",
+    readOnly: true,
+    expr: "=C26-C29",
+    className: "result"
+  },
+  D35: { key: "D35", value: "", readOnly: true, expr: "", className: "result" }
 };
