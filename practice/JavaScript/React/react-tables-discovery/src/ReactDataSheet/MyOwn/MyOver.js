@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import DataSheet from "react-datasheet";
 import * as mathjs from "mathjs";
+// import Sticky from "react-sticky";
+import Sticky from "@wicked_query/react-sticky";
 
 import "./table2.css";
 
 export default ({ data }) => {
   const [cells, setCells] = useState(data);
+  const [offset, setOffset] = useState(0);
 
   const getCols = cells => [
     ...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))
@@ -37,25 +40,25 @@ export default ({ data }) => {
     let value = null;
 
     if (expr.charAt(0) !== "=") {
-      return { className: "", value: expr, expr: expr };
-    } else {
-      try {
-        value = mathjs.evaluate(expr.substring(1), scope);
-      } catch (e) {
-        value = null;
-      }
+      const fixedExpr = expr === "" ? (expr = "0.00") : expr.replace(",", ".");
 
-      if (value !== null && validateExp([key], expr)) {
-        return { value, expr };
-      } else {
-        return { className: "error", value: "error", expr: "" };
-      }
+      return { className: "", value: fixedExpr, expr: fixedExpr };
     }
+
+    try {
+      value = mathjs.evaluate(expr.substring(1), scope);
+    } catch (e) {
+      value = null;
+    }
+
+    if (value !== null && validateExp([key], expr)) {
+      return { value, expr };
+    }
+
+    return { className: "error", value: "error", expr: "" };
   };
 
   const cellUpdate = (copyCells, changeCell, expr) => {
-    if (expr === "") expr = "0.00";
-
     const scope = Object.fromEntries(
       Object.entries(copyCells).map(([key, { value }]) => [
         key,
@@ -98,9 +101,28 @@ export default ({ data }) => {
     <div className={props.className}>{props.children}</div>
   );
 
-  const handleRowRenderer = props => (
-    <div className="data-row">{props.children}</div>
-  );
+  const handleRowRenderer = props => {
+    if (props.children[0].props.cell.className === "top-head") {
+      return (
+        <Sticky
+          subscribe={props => setOffset(props.height)}
+          addClassName={"small"}
+        >
+          <div className="data-row data-row-sticky-top">{props.children}</div>
+        </Sticky>
+      );
+    }
+
+    if (props.children[0].props.cell.className === "bot-head") {
+      return (
+        <Sticky offset={offset} addClassName={"small"}>
+          <div className="data-row data-row-sticky-bot">{props.children}</div>
+        </Sticky>
+      );
+    }
+
+    return <div className="data-row">{props.children}</div>;
+  };
 
   const handleCellRenderer = props => {
     const {
