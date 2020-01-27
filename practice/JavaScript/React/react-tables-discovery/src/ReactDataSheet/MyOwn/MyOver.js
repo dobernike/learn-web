@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DataSheet from "react-datasheet";
 import * as mathjs from "mathjs";
-// import Sticky from "react-sticky";
 import Sticky from "@wicked_query/react-sticky";
 
 import "./table2.css";
@@ -139,9 +138,54 @@ export default ({ data }) => {
     return <div {...rest}>{props.children}</div>;
   };
 
+  const grid = generateGrid();
+
+  const handleSelect = ({ start: originStart, end: originEnd }) => {
+    const start = { row: originStart.i, col: originStart.j };
+    const end = { row: originEnd.i, col: originEnd.j };
+    let sumOfCol = 0;
+    let count = 0;
+
+    // console.log("start:", start, "end:", end);
+
+    if (start.row <= end.row && start.col === end.col) {
+      for (; start.row <= end.row; start.row++) {
+        sumOfCol += +grid[start.row][start.col].value;
+        count++;
+      }
+    } else if (start.row >= end.row && start.col === end.col) {
+      for (; start.row >= end.row; start.row--) {
+        sumOfCol += +grid[start.row][start.col].value;
+        count++;
+      }
+    } else if (start.col <= end.col && start.row === end.row) {
+      for (; start.col <= end.col; start.col++) {
+        sumOfCol += +grid[start.row][start.col].value;
+        count++;
+      }
+    } else if (start.col >= end.col && start.row === end.row) {
+      for (; start.col >= end.col; start.col--) {
+        sumOfCol += +grid[start.row][start.col].value;
+        count++;
+      }
+    }
+
+    // else if (start.row >= end.row && start.col >= end.col) {
+    //   for (; start.row > end.row; start.row--) {
+    //     for (; start.col > end.col; start.col--) {
+    //       console.log(grid[start.row][start.col]);
+    //       sumOfCol += +grid[start.row][start.col].value;
+    //     }
+    //   }
+    // }
+
+    const middleOfSum = isNaN(sumOfCol / count) ? 0 : sumOfCol / count;
+    console.log(middleOfSum);
+  };
+
   return (
     <DataSheet
-      data={generateGrid()}
+      data={grid}
       className="custom-sheet"
       sheetRenderer={handleSheetRenderer}
       rowRenderer={handleRowRenderer}
@@ -149,6 +193,7 @@ export default ({ data }) => {
       onCellsChanged={handleCellsChanged}
       dataRenderer={cell => cell.expr}
       valueRenderer={cell => cell.value}
+      onSelect={handleSelect}
     />
   );
 };
