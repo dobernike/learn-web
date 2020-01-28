@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import DataSheet from "react-datasheet";
 import * as mathjs from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
@@ -8,6 +8,8 @@ import "./table2.css";
 export default ({ data }) => {
   const [cells, setCells] = useState(data);
   const [offset, setOffset] = useState(0);
+  // const [selected, setSelected] = useState({ rows: 0, cols: 0 });
+  let selectedDiff = { rows: 0, cols: 0 };
 
   const getCols = cells => [
     ...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))
@@ -123,6 +125,10 @@ export default ({ data }) => {
     return <div className="data-row">{props.children}</div>;
   };
 
+  const handlePaste = event => {
+    console.log("paste", event);
+  };
+
   const handleCellRenderer = props => {
     const {
       cell,
@@ -134,6 +140,10 @@ export default ({ data }) => {
       style,
       ...rest
     } = props;
+
+    if (props.selected) {
+      // console.log(props.children.props.value);
+    }
 
     return <div {...rest}>{props.children}</div>;
   };
@@ -147,7 +157,34 @@ export default ({ data }) => {
     let count = 0;
 
     // console.log("start:", start, "end:", end);
-
+    // console.log(
+    //   "sRow",
+    //   start.row,
+    //   "eRow",
+    //   end.row,
+    //   "sCol",
+    //   start.col,
+    //   "eCol",
+    //   end.col
+    // );
+    // console.log(
+    //   "Diff row:",
+    //   Math.max(start.row, end.row),
+    //   "-",
+    //   Math.min(start.row, end.row),
+    //   "=",
+    //   Math.max(start.row, end.row) - Math.min(start.row, end.row),
+    //   "| Diff col:",
+    //   Math.max(start.col, end.col),
+    //   "-",
+    //   Math.min(start.col, end.col),
+    //   "=",
+    //   Math.max(start.col, end.col) - Math.min(start.col, end.col)
+    // );
+    const diffSelected = {
+      rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
+      cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
+    };
     if (start.row <= end.row && start.col === end.col) {
       for (; start.row <= end.row; start.row++) {
         sumOfCol += +grid[start.row][start.col].value;
@@ -180,7 +217,41 @@ export default ({ data }) => {
     // }
 
     const middleOfSum = isNaN(sumOfCol / count) ? 0 : sumOfCol / count;
-    console.log(middleOfSum);
+    selectedDiff = diffSelected;
+    // console.log(middleOfSum);
+  };
+
+  const handleDataRenderer = cell => {
+    // console.log("data:", cell);
+    return cell.expr;
+  };
+  const handleValueRenderer = cell => {
+    // console.log("value:", cell);
+    return cell.value;
+  };
+
+  const handleParsePaste = str => {
+    // console.log(str.split(/\r\n|\n|\r/));
+    let arr = str.split(/\r\n|\n|\r/).map(row => row.split("\t"));
+    console.log(arr);
+    if (
+      !!(arr[0].length === 1) &&
+      !arr[1] &&
+      (selectedDiff.rows !== 1 || selectedDiff.cols !== 1)
+    ) {
+      arr = [];
+      for (let i = 0; i < selectedDiff.rows; i++) {
+        console.log(arr, selectedDiff.rows, selectedDiff.cols);
+        arr[i] = [];
+        console.log(arr);
+        for (let j = 0; j < selectedDiff.cols; j++) {
+          arr[j].push(str);
+        }
+      }
+    }
+    console.log(selectedDiff);
+
+    return arr;
   };
 
   return (
@@ -191,9 +262,10 @@ export default ({ data }) => {
       rowRenderer={handleRowRenderer}
       cellRenderer={handleCellRenderer}
       onCellsChanged={handleCellsChanged}
-      dataRenderer={cell => cell.expr}
-      valueRenderer={cell => cell.value}
+      dataRenderer={handleDataRenderer}
+      valueRenderer={handleValueRenderer}
       onSelect={handleSelect}
+      parsePaste={handleParsePaste}
     />
   );
 };
