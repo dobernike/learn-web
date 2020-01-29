@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState } from "react";
 import DataSheet from "react-datasheet";
 import * as mathjs from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
@@ -8,7 +8,6 @@ import "./table2.css";
 export default ({ data }) => {
   const [cells, setCells] = useState(data);
   const [offset, setOffset] = useState(0);
-  // const [selected, setSelected] = useState({ rows: 0, cols: 0 });
   let selectedDiff = { rows: 0, cols: 0 };
 
   const getCols = cells => [
@@ -26,14 +25,14 @@ export default ({ data }) => {
     let valid = true;
     const matches = expr.match(/[A-Z][1-9]+/g) || [];
 
-    matches.map(match => {
+    for (let match of matches) {
       if (trailKeys.indexOf(match) > -1) {
         valid = false;
       } else {
         valid = validateExp([...trailKeys, match], cells[match].expr);
       }
-      return undefined;
-    });
+    }
+
     return valid;
   };
 
@@ -125,10 +124,6 @@ export default ({ data }) => {
     return <div className="data-row">{props.children}</div>;
   };
 
-  const handlePaste = event => {
-    console.log("paste", event);
-  };
-
   const handleCellRenderer = props => {
     const {
       cell,
@@ -140,10 +135,6 @@ export default ({ data }) => {
       style,
       ...rest
     } = props;
-
-    if (props.selected) {
-      // console.log(props.children.props.value);
-    }
 
     return <div {...rest}>{props.children}</div>;
   };
@@ -220,7 +211,7 @@ export default ({ data }) => {
 
     const middleOfSum = isNaN(sumOfCells / count) ? 0 : sumOfCells / count;
     selectedDiff = diffSelected;
-    console.log(middleOfSum);
+    // console.log(middleOfSum);
   };
 
   const handleDataRenderer = cell => cell.expr;
