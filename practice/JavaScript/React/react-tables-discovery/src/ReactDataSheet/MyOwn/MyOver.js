@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import DataSheet from "react-datasheet";
 import * as mathjs from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
@@ -18,7 +18,7 @@ export default ({ data }) => {
     ...new Set(Object.values(cells).map(cell => cell.key.slice(1)))
   ];
 
-  const generateGrid = () =>
+  const generateGrid = cells =>
     getRows(cells).map(row => getCols(cells).map(col => cells[col + row]));
 
   const validateExp = (trailKeys, expr) => {
@@ -97,34 +97,41 @@ export default ({ data }) => {
     setCells(copyCells);
   };
 
-  const handleSheetRenderer = props => (
-    <div className={props.className}>{props.children}</div>
+  const handleSheetRenderer = useCallback(
+    props => <div className={props.className}>{props.children}</div>,
+    []
   );
 
-  const handleRowRenderer = props => {
-    if (props.children[0].props.cell.className === "top-head") {
-      return (
-        <Sticky
-          subscribe={props => setOffset(props.height)}
-          addClassName={"small"}
-        >
-          <div className="data-row data-row-sticky-top">{props.children}</div>
-        </Sticky>
-      );
-    }
+  const handleRowRenderer = useCallback(
+    props => {
+      if (props.children[0].props.cell.className === "top-head") {
+        return (
+          <Sticky
+            subscribe={props => {
+              console.log(props);
+              setOffset(props.height);
+            }}
+            addClassName={"small"}
+          >
+            <div className="data-row data-row-sticky-top">{props.children}</div>
+          </Sticky>
+        );
+      }
 
-    if (props.children[0].props.cell.className === "bot-head") {
-      return (
-        <Sticky offset={offset} addClassName={"small"}>
-          <div className="data-row data-row-sticky-bot">{props.children}</div>
-        </Sticky>
-      );
-    }
+      if (props.children[0].props.cell.className === "bot-head") {
+        return (
+          <Sticky offset={offset} addClassName={"small"}>
+            <div className="data-row data-row-sticky-bot">{props.children}</div>
+          </Sticky>
+        );
+      }
 
-    return <div className="data-row">{props.children}</div>;
-  };
+      return <div className="data-row">{props.children}</div>;
+    },
+    [offset]
+  );
 
-  const handleCellRenderer = props => {
+  const handleCellRenderer = useCallback(props => {
     const {
       cell,
       row,
@@ -137,9 +144,9 @@ export default ({ data }) => {
     } = props;
 
     return <div {...rest}>{props.children}</div>;
-  };
+  }, []);
 
-  const grid = generateGrid();
+  const grid = generateGrid(cells);
 
   const handleSelect = ({ start: originStart, end: originEnd }) => {
     const start = { row: originStart.i, col: originStart.j };
@@ -211,11 +218,15 @@ export default ({ data }) => {
 
     const middleOfSum = isNaN(sumOfCells / count) ? 0 : sumOfCells / count;
     selectedDiff = diffSelected;
-    // console.log(middleOfSum);
+    console.log(middleOfSum);
   };
+  // const handleDataRenderer = cell => cell.expr;
+  // const handleDataRenderer = useMemo(cell => cell.expr, []);
+  const handleDataRenderer = useCallback(cell => cell.expr, []);
 
-  const handleDataRenderer = cell => cell.expr;
-  const handleValueRenderer = cell => cell.value;
+  // const handleValueRenderer = cell => cell.value;
+  // const handleValueRenderer = useMemo(cell => cell.value, []);
+  const handleValueRenderer = useCallback(cell => cell.value, []);
 
   const isMultiPasteWithOneParametr = arr =>
     !!(arr[0].length === 1) &&
