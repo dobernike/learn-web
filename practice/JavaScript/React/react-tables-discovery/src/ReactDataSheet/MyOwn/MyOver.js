@@ -153,7 +153,7 @@ export default ({ data }) => {
   const handleSelect = ({ start: originStart, end: originEnd }) => {
     const start = { row: originStart.i, col: originStart.j };
     const end = { row: originEnd.i, col: originEnd.j };
-    let sumOfCol = 0;
+    let sumOfCells = 0;
     let count = 0;
 
     // console.log("start:", start, "end:", end);
@@ -185,25 +185,27 @@ export default ({ data }) => {
       rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
       cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
     };
+
+    const addCellsToSum = () => {
+      sumOfCells += +grid[start.row][start.col].value;
+      count++;
+    };
+
     if (start.row <= end.row && start.col === end.col) {
       for (; start.row <= end.row; start.row++) {
-        sumOfCol += +grid[start.row][start.col].value;
-        count++;
+        addCellsToSum();
       }
     } else if (start.row >= end.row && start.col === end.col) {
       for (; start.row >= end.row; start.row--) {
-        sumOfCol += +grid[start.row][start.col].value;
-        count++;
+        addCellsToSum();
       }
     } else if (start.col <= end.col && start.row === end.row) {
       for (; start.col <= end.col; start.col++) {
-        sumOfCol += +grid[start.row][start.col].value;
-        count++;
+        addCellsToSum();
       }
     } else if (start.col >= end.col && start.row === end.row) {
       for (; start.col >= end.col; start.col--) {
-        sumOfCol += +grid[start.row][start.col].value;
-        count++;
+        addCellsToSum();
       }
     }
 
@@ -216,40 +218,26 @@ export default ({ data }) => {
     //   }
     // }
 
-    const middleOfSum = isNaN(sumOfCol / count) ? 0 : sumOfCol / count;
+    const middleOfSum = isNaN(sumOfCells / count) ? 0 : sumOfCells / count;
     selectedDiff = diffSelected;
-    // console.log(middleOfSum);
+    console.log(middleOfSum);
   };
 
-  const handleDataRenderer = cell => {
-    // console.log("data:", cell);
-    return cell.expr;
-  };
-  const handleValueRenderer = cell => {
-    // console.log("value:", cell);
-    return cell.value;
-  };
+  const handleDataRenderer = cell => cell.expr;
+  const handleValueRenderer = cell => cell.value;
+
+  const isMultiPasteWithOneParametr = arr =>
+    !!(arr[0].length === 1) &&
+    !arr[1] &&
+    (selectedDiff.rows !== 1 || selectedDiff.cols !== 1);
 
   const handleParsePaste = str => {
-    // console.log(str.split(/\r\n|\n|\r/));
     let arr = str.split(/\r\n|\n|\r/).map(row => row.split("\t"));
-    console.log(arr);
-    if (
-      !!(arr[0].length === 1) &&
-      !arr[1] &&
-      (selectedDiff.rows !== 1 || selectedDiff.cols !== 1)
-    ) {
-      arr = [];
-      for (let i = 0; i < selectedDiff.rows; i++) {
-        console.log(arr, selectedDiff.rows, selectedDiff.cols);
-        arr[i] = [];
-        console.log(arr);
-        for (let j = 0; j < selectedDiff.cols; j++) {
-          arr[j].push(str);
-        }
-      }
+
+    if (isMultiPasteWithOneParametr(arr)) {
+      const cols = new Array(selectedDiff.cols).fill(str);
+      arr = new Array(selectedDiff.rows).fill(cols);
     }
-    console.log(selectedDiff);
 
     return arr;
   };
