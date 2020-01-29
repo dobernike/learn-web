@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import DataSheet from "react-datasheet";
-import * as mathjs from "mathjs";
+import { evaluate } from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
 
 import "./table2.css";
@@ -20,6 +20,8 @@ export default ({ data }) => {
 
   const generateGrid = cells =>
     getRows(cells).map(row => getCols(cells).map(col => cells[col + row]));
+
+  const grid = generateGrid(cells);
 
   const validateExp = (trailKeys, expr) => {
     let valid = true;
@@ -46,8 +48,8 @@ export default ({ data }) => {
     }
 
     try {
-      value = mathjs.evaluate(expr.substring(1), scope);
-    } catch (e) {
+      value = evaluate(expr.substring(1), scope);
+    } catch {
       value = null;
     }
 
@@ -107,10 +109,7 @@ export default ({ data }) => {
       if (props.children[0].props.cell.className === "top-head") {
         return (
           <Sticky
-            subscribe={props => {
-              console.log(props);
-              setOffset(props.height);
-            }}
+            subscribe={props => setOffset(props.height)}
             addClassName={"small"}
           >
             <div className="data-row data-row-sticky-top">{props.children}</div>
@@ -146,8 +145,6 @@ export default ({ data }) => {
     return <div {...rest}>{props.children}</div>;
   }, []);
 
-  const grid = generateGrid(cells);
-
   const handleSelect = ({ start: originStart, end: originEnd }) => {
     const start = { row: originStart.i, col: originStart.j };
     const end = { row: originEnd.i, col: originEnd.j };
@@ -179,31 +176,34 @@ export default ({ data }) => {
     //   "=",
     //   Math.max(start.col, end.col) - Math.min(start.col, end.col)
     // );
-    const diffSelected = {
-      rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
-      cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
-    };
 
-    const addCellsToSum = () => {
-      sumOfCells += +grid[start.row][start.col].value;
+    const addCellsToSum = (row, col) => {
+      // sumOfCells += +grid[start.row][start.col].value;
+      sumOfCells += +grid[row][col].value;
       count++;
     };
 
     if (start.row <= end.row && start.col === end.col) {
-      for (; start.row <= end.row; start.row++) {
-        addCellsToSum();
+      for (let row = start.row; row <= end.row; row++) {
+        addCellsToSum(row, start.col);
       }
-    } else if (start.row >= end.row && start.col === end.col) {
-      for (; start.row >= end.row; start.row--) {
-        addCellsToSum();
+    }
+
+    if (start.row > end.row && start.col === end.col) {
+      for (let row = start.row; row >= end.row; row--) {
+        addCellsToSum(row, start.col);
       }
-    } else if (start.col <= end.col && start.row === end.row) {
-      for (; start.col <= end.col; start.col++) {
-        addCellsToSum();
+    }
+
+    if (start.col < end.col && start.row === end.row) {
+      for (let col = start.col; col <= end.col; col++) {
+        addCellsToSum(start.row, col);
       }
-    } else if (start.col >= end.col && start.row === end.row) {
-      for (; start.col >= end.col; start.col--) {
-        addCellsToSum();
+    }
+
+    if (start.col > end.col && start.row === end.row) {
+      for (let col = start.col; col >= end.col; col--) {
+        addCellsToSum(start.row, col);
       }
     }
 
@@ -211,23 +211,26 @@ export default ({ data }) => {
     //   for (; start.row > end.row; start.row--) {
     //     for (; start.col > end.col; start.col--) {
     //       console.log(grid[start.row][start.col]);
-    //       sumOfCol += +grid[start.row][start.col].value;
+    //       addCellsToSum();
     //     }
     //   }
     // }
 
-    const middleOfSum = isNaN(sumOfCells / count) ? 0 : sumOfCells / count;
+    const diffSelected = {
+      rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
+      cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
+    };
+
     selectedDiff = diffSelected;
+
+    const middleOfSum = isNaN(sumOfCells / count)
+      ? "Неверные данные"
+      : sumOfCells / count;
     console.log(middleOfSum);
   };
-  // const handleDataRenderer = cell => cell.expr;
-  // const handleDataRenderer = useMemo(cell => cell.expr, []);
+
   const handleDataRenderer = useCallback(cell => cell.expr, []);
-
-  // const handleValueRenderer = cell => cell.value;
-  // const handleValueRenderer = useMemo(cell => cell.value, []);
   const handleValueRenderer = useCallback(cell => cell.value, []);
-
   const isMultiPasteWithOneParametr = arr =>
     !!(arr[0].length === 1) &&
     !arr[1] &&
