@@ -106,3 +106,23 @@
   .value-viewer {
   text-align: end;
 }
+
+.data-grid-container .data-grid .data-row-sticky-top .cell:nth-child(3) {
+  position: relative;
+}
+
+.data-grid-container
+  .data-grid
+  .data-row-sticky-top
+  .cell:nth-child(3)::before {
+  content: "Ретроспективный анализ";
+
+  width: 200%;
+
+  position: absolute;
+  top: -80%;
+  left: -45%;
+
+  color: black;
+  font-weight: 700;
+}
