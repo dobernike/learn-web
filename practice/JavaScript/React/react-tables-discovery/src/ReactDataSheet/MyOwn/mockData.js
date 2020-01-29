@@ -547,9 +547,9 @@ export const table3 = {
   },
   A1: {
     key: "A1",
-    value: "20000",
+    value: "0",
     readOnly: true,
-    expr: "=",
+    expr: "=A3",
     className: "bot-head"
   },
   A2: {
@@ -604,9 +604,9 @@ export const table3 = {
   },
   B1: {
     key: "B1",
-    value: "0.00",
+    value: "0",
     readOnly: true,
-    expr: "",
+    expr: "=B2+B10",
     className: "bot-head"
   },
   B2: {
@@ -1351,9 +1351,9 @@ export const table5 = {
   },
   A1: {
     key: "A1",
-    value: "20000",
+    value: "0",
     readOnly: true,
-    expr: "=",
+    expr: "=A2+A3",
     className: "bot-head"
   },
 
