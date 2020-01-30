@@ -43,8 +43,13 @@ export default ({ data }) => {
   const computeExpr = (key, expr, scope) => {
     let value = null;
 
+    const toFixed = number =>
+      Number.parseFloat(number)
+        .toFixed(2)
+        .toLocaleLowerCase();
+
     if (expr.charAt(0) !== "=") {
-      const fixedExpr = expr === "" ? (expr = "0.00") : expr.replace(",", ".");
+      const fixedExpr = isNaN(expr) ? "0.00" : toFixed(expr.replace(",", "."));
 
       return { className: "", value: fixedExpr, expr: fixedExpr };
     }
@@ -56,6 +61,8 @@ export default ({ data }) => {
     }
 
     if (value !== null && validateExp([key], expr)) {
+      value = toFixed(value);
+
       return { value, expr };
     }
 
@@ -66,7 +73,7 @@ export default ({ data }) => {
     const scope = Object.fromEntries(
       Object.entries(copyCells).map(([key, { value }]) => [
         key,
-        isNaN(value) ? 0 : parseFloat(value)
+        isNaN(value) ? 0.0 : parseFloat(value)
       ])
     );
 
