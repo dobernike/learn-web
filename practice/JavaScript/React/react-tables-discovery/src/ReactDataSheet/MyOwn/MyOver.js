@@ -8,7 +8,9 @@ import "./table2.css";
 export default ({ data }) => {
   const [cells, setCells] = useState(data);
   const [offset, setOffset] = useState(0);
+
   let selectedDiff = { rows: 0, cols: 0 };
+  let middleOfSum = "";
 
   const getCols = cells => [
     ...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))
@@ -151,34 +153,7 @@ export default ({ data }) => {
     let sumOfCells = 0;
     let count = 0;
 
-    // console.log("start:", start, "end:", end);
-    // console.log(
-    //   "sRow",
-    //   start.row,
-    //   "eRow",
-    //   end.row,
-    //   "sCol",
-    //   start.col,
-    //   "eCol",
-    //   end.col
-    // );
-    // console.log(
-    //   "Diff row:",
-    //   Math.max(start.row, end.row),
-    //   "-",
-    //   Math.min(start.row, end.row),
-    //   "=",
-    //   Math.max(start.row, end.row) - Math.min(start.row, end.row),
-    //   "| Diff col:",
-    //   Math.max(start.col, end.col),
-    //   "-",
-    //   Math.min(start.col, end.col),
-    //   "=",
-    //   Math.max(start.col, end.col) - Math.min(start.col, end.col)
-    // );
-
     const addCellsToSum = (row, col) => {
-      // sumOfCells += +grid[start.row][start.col].value;
       sumOfCells += +grid[row][col].value;
       count++;
     };
@@ -207,15 +182,6 @@ export default ({ data }) => {
       }
     }
 
-    // else if (start.row >= end.row && start.col >= end.col) {
-    //   for (; start.row > end.row; start.row--) {
-    //     for (; start.col > end.col; start.col--) {
-    //       console.log(grid[start.row][start.col]);
-    //       addCellsToSum();
-    //     }
-    //   }
-    // }
-
     const diffSelected = {
       rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
       cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
@@ -223,14 +189,14 @@ export default ({ data }) => {
 
     selectedDiff = diffSelected;
 
-    const middleOfSum = isNaN(sumOfCells / count)
+    middleOfSum = isNaN(sumOfCells / count)
       ? "Неверные данные"
       : sumOfCells / count;
-    console.log(middleOfSum);
   };
 
   const handleDataRenderer = useCallback(cell => cell.expr, []);
   const handleValueRenderer = useCallback(cell => cell.value, []);
+
   const isMultiPasteWithOneParametr = arr =>
     !!(arr[0].length === 1) &&
     !arr[1] &&
