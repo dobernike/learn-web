@@ -44,14 +44,14 @@ export default ({ data }) => {
     let value = null;
 
     const toFixed = number =>
-      Number.parseFloat(number)
-        .toFixed(2)
-        .toLocaleLowerCase();
+      Number(parseFloat(number).toFixed(2)).toLocaleString();
 
     if (expr.charAt(0) !== "=") {
-      const fixedExpr = isNaN(expr) ? "0.00" : toFixed(expr.replace(",", "."));
+      const fixedExpr =
+        isNaN(expr) || expr === "" ? "0.00" : expr.replace(",", ".");
+      const fixedValue = toFixed(fixedExpr);
 
-      return { className: "", value: fixedExpr, expr: fixedExpr };
+      return { className: "", value: fixedValue, expr: fixedExpr };
     }
 
     try {
