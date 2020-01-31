@@ -6,11 +6,15 @@ export default class Post {
   }
 
   toString() {
-    return JSON.stringify({
-      title: this.titile,
-      date: this.date.toJSON(),
-      img: this.img
-    });
+    return JSON.stringify(
+      {
+        title: this.titile,
+        date: this.date.toJSON(),
+        img: this.img
+      },
+      null,
+      2
+    );
   }
 
   get uppercaseTitle() {
