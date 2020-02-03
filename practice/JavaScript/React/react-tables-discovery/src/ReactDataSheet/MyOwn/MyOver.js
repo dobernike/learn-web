@@ -8,6 +8,7 @@ import "./table2.css";
 export default ({ data }) => {
   const [cells, setCells] = useState(data);
   const [offset, setOffset] = useState(0);
+  const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
 
   let selectedDiff = { rows: 0, cols: 0 };
   let middleOfSum = "";
@@ -134,6 +135,26 @@ export default ({ data }) => {
             <div className="data-row data-row-sticky-bot">{props.children}</div>
           </Sticky>
         );
+      }
+
+      if (isEmptyRowsHide) {
+        let count = 0;
+        let empty = 0;
+
+        React.Children.forEach(props.children, child => {
+          const value = child.props.cell.value;
+          const expr = child.props.cell.expr;
+
+          if (isNaN(value)) return;
+
+          count += 1;
+
+          if (value === "0.00" && expr === "") {
+            empty += 1;
+          }
+        });
+
+        if (count === empty) return <div />;
       }
 
       return <div className="data-row">{props.children}</div>;
