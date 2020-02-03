@@ -57,7 +57,6 @@ export default ({ data }) => {
 
     try {
       value = evaluate(expr.substring(1), scope);
-      console.log(value, expr.substring(1), scope);
     } catch {
       value = null;
     }
