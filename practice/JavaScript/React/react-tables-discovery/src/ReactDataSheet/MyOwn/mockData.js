@@ -2158,14 +2158,14 @@ export const table6 = {
     readOnly: true,
     expr: ""
   },
-  A3: { key: "A3", value: "0.00", expr: "" },
-  B3: { key: "B3", value: "0.00", expr: "" },
+  A3: { key: "A3", value: "2", expr: "" },
+  B3: { key: "B3", value: "3", expr: "" },
   C3: { key: "C3", value: "0.00", expr: "" },
 
   "04": { key: "04", value: "От реализации услуг", readOnly: true, expr: "" },
   A4: {
     key: "A4",
-    value: "0.00",
+    value: "1",
     expr: ""
   },
   B4: { key: "B4", value: "0.00", expr: "" },
@@ -2179,7 +2179,7 @@ export const table6 = {
   },
   A5: { key: "A5", value: "0.00", expr: "" },
   B5: { key: "B5", value: "0.00", expr: "" },
-  C5: { key: "C5", value: "0.00", expr: "" },
+  C5: { key: "C5", value: "3", expr: "" },
 
   "06": {
     key: "06",
