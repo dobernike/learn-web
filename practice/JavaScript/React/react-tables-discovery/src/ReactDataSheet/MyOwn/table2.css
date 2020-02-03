@@ -19,8 +19,22 @@
   border-right: 0;
 }
 
-.data-grid-container .data-grid .data-row div.header {
-  margin-top: 2rem;
+.data-grid-container .data-grid .data-row div.header,
+.data-grid-container .data-grid .data-row .result-of-month__top,
+.data-grid-container .data-grid .data-row .nchdp__top {
+  margin-top: 1rem;
+}
+
+.data-grid-container .data-grid .data-row .result-of-month__top.cell,
+.data-grid-container .data-grid .data-row .nchdp__top.cell {
+  border: none;
+}
+
+.data-grid-container .data-grid .data-row .result-of-month__bot.cell,
+.data-grid-container .data-grid .data-row .nchdp__bot.cell {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 .data-grid-container .data-grid .data-row div.result.cell {
@@ -39,8 +53,36 @@
   .data-grid
   .data-row
   .result.cell:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.top-head:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.bot-head:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.result-of-month__top:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.result-of-month__bot:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.nchdp__top:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid
+  .cell.read-only.nchdp__bot:not(:first-child)
   .value-viewer {
   text-align: end;
+}
+
+.data-grid-container .data-grid .cell.read-only.nchdp__top .value-viewer {
+  font-weight: 700;
 }
 
 .data-grid-container .data-grid {
@@ -95,17 +137,6 @@
   border-right: none;
 }
 
-.data-grid-container
-  .data-grid
-  .cell.read-only.top-head:not(:first-child)
-  .value-viewer,
-.data-grid-container
-  .data-grid
-  .cell.read-only.bot-head:not(:first-child)
-  .value-viewer {
-  text-align: end;
-}
-
 .data-grid-container .data-grid .data-row-sticky {
   background-color: whitesmoke;
 }
@@ -131,5 +162,28 @@
 }
 
 .data-grid-container .data-grid .value-error {
-  color: brown;
+  color: red;
+}
+
+.comment__title {
+  padding: 10px;
+
+  flex-grow: 1;
+  font-weight: 700;
+}
+
+.comment__wrapper {
+  height: 150px;
+  display: flex;
+
+  border: 2px solid black;
+}
+
+.comment__text {
+  padding: 10px;
+  flex-grow: 3;
+
+  font-size: 16px;
+  border: none;
+  border-left: 2px solid black;
 }
