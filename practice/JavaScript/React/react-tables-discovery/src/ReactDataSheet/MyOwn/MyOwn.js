@@ -11,7 +11,7 @@ export default () => {
         paddingTop: "1rem"
       }}
     >
-      <h2 style={{ textAlign: "left", marginBottom: "2rem" }}>
+      <h2 style={{ textAlign: "left", marginBottom: "3rem" }}>
         Движение денежных средств
       </h2>
       <TableOver data={table6} />
