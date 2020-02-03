@@ -1,6 +1,6 @@
 import React from "react";
 import TableOver from "./MyOver";
-import { table6 } from "./mockData";
+import { table7 } from "./mockData";
 
 export default () => {
   return (
@@ -11,10 +11,10 @@ export default () => {
         paddingTop: "1rem"
       }}
     >
-      <h2 style={{ textAlign: "left", marginBottom: "3rem" }}>
+      <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>
         Движение денежных средств
       </h2>
-      <TableOver data={table6} />
+      <TableOver data={table7} />
     </article>
   );
 };
