@@ -2043,7 +2043,7 @@ export const table5 = {
     key: "A49",
     value: "0.00",
     readOnly: true,
-    expr: "=A26-A29",
+    expr: "=A36-A29",
     className: "result"
   },
   B49: {
@@ -2835,9 +2835,9 @@ export const table7 = {
     },
     A1: {
       key: "A1",
-      value: "0",
+      value: "2 000 000.00",
       readOnly: true,
-      expr: "=A2+A3",
+      expr: "",
       className: "bot-head"
     },
 
@@ -2845,14 +2845,14 @@ export const table7 = {
       key: "B1",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=A51",
       className: "bot-head"
     },
     C1: {
       key: "C1",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=B51",
       className: "bot-head"
     },
 
@@ -2891,14 +2891,14 @@ export const table7 = {
       readOnly: true,
       expr: ""
     },
-    A3: { key: "A3", value: "2", expr: "" },
-    B3: { key: "B3", value: "3", expr: "" },
+    A3: { key: "A3", value: "0.00", expr: "" },
+    B3: { key: "B3", value: "0.00", expr: "" },
     C3: { key: "C3", value: "0.00", expr: "" },
 
     "04": { key: "04", value: "От реализации услуг", readOnly: true, expr: "" },
     A4: {
       key: "A4",
-      value: "1",
+      value: "0.00",
       expr: ""
     },
     B4: { key: "B4", value: "0.00", expr: "" },
@@ -2912,7 +2912,7 @@ export const table7 = {
     },
     A5: { key: "A5", value: "0.00", expr: "" },
     B5: { key: "B5", value: "0.00", expr: "" },
-    C5: { key: "C5", value: "3", expr: "" },
+    C5: { key: "C5", value: "0.00", expr: "" },
 
     "06": {
       key: "06",
@@ -3341,21 +3341,21 @@ export const table7 = {
       key: "A36",
       value: "0.00",
       readOnly: true,
-      expr: "=A27+A28",
+      expr: "=A37+A38+A39+A40",
       className: "header"
     },
     B36: {
       key: "B36",
       value: "0.00",
       readOnly: true,
-      expr: "=B27+B28",
+      expr: "=B37+B38+B39+B40",
       className: "header"
     },
     C36: {
       key: "C36",
       value: "0.00",
       readOnly: true,
-      expr: "=C27+C28",
+      expr: "=C37+C38+C39+C40",
       className: "header"
     },
 
@@ -3410,21 +3410,21 @@ export const table7 = {
       key: "A41",
       value: "0.00",
       readOnly: true,
-      expr: "=A27+A28",
+      expr: "=A42+A43+A44+A45+A46+A47+A48",
       className: "header"
     },
     B41: {
       key: "B41",
       value: "0.00",
       readOnly: true,
-      expr: "=B27+B28",
+      expr: "=B42+B43+B44+B45+B46+B47+B48",
       className: "header"
     },
     C41: {
       key: "C41",
       value: "0.00",
       readOnly: true,
-      expr: "=C27+C28",
+      expr: "=C42+C43+C44+C45+C46+C47+C48",
       className: "header"
     },
 
@@ -3510,21 +3510,21 @@ export const table7 = {
       key: "A49",
       value: "0.00",
       readOnly: true,
-      expr: "=A26-A29",
+      expr: "=A36-A41",
       className: "result"
     },
     B49: {
       key: "B49",
       value: "0.00",
       readOnly: true,
-      expr: "=B26-B29",
+      expr: "=B36-B41",
       className: "result"
     },
     C49: {
       key: "C49",
       value: "0.00",
       readOnly: true,
-      expr: "=C26-C29",
+      expr: "=C36-C41",
       className: "result"
     },
     "050": {
@@ -3538,21 +3538,21 @@ export const table7 = {
       key: "A50",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=A25+A35+A49",
       className: "result-of-month__top"
     },
     B50: {
       key: "B50",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=B25+B35+B49",
       className: "result-of-month__top"
     },
     C50: {
       key: "C50",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=C25+C35+C49",
       className: "result-of-month__top"
     },
     "051": {
@@ -3564,23 +3564,23 @@ export const table7 = {
     },
     A51: {
       key: "A51",
-      value: "0.00",
+      value: "2 000 000.00",
       readOnly: true,
-      expr: "",
+      expr: "=A1+A50",
       className: "result-of-month__bot"
     },
     B51: {
       key: "B51",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=B1+B50",
       className: "result-of-month__bot"
     },
     C51: {
       key: "C51",
       value: "0.00",
       readOnly: true,
-      expr: "",
+      expr: "=C1+C50",
       className: "result-of-month__bot"
     },
     "052": {
