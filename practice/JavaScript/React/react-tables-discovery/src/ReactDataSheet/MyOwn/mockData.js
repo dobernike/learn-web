@@ -27,7 +27,7 @@ export const header = {
   },
   A1: {
     key: "A1",
-    value: "Январь",
+    value: "Январь 2019 г.",
     readOnly: true,
     expr: "",
     className: "top-head"
@@ -47,7 +47,7 @@ export const header = {
   },
   B1: {
     key: "B1",
-    value: "Февраль",
+    value: "Февраль 2019 г.",
     readOnly: true,
     expr: "",
     className: "top-head"
@@ -67,7 +67,7 @@ export const header = {
   },
   C1: {
     key: "C1",
-    value: "Март",
+    value: "Март 2019 г.",
     readOnly: true,
     expr: "",
     className: "top-head"
@@ -2073,21 +2073,21 @@ export const table6 = {
   },
   A0: {
     key: "A0",
-    value: "Январь",
+    value: "Январь 2019 г.",
     readOnly: true,
     expr: "",
     className: "top-head"
   },
   B0: {
     key: "B0",
-    value: "Февраль",
+    value: "Февраль 2019 г.",
     readOnly: true,
     expr: "",
     className: "top-head"
   },
   C0: {
     key: "C0",
-    value: "Март",
+    value: "Март 2019 г.",
     readOnly: true,
     expr: "",
     className: "top-head"
