@@ -53,7 +53,9 @@ export default ({ data }) => {
       expr = isNaN(expr) || expr === "" ? "0.00" : expr.replace(",", ".");
       value = toFixed(expr);
 
-      return { className: "", value, expr };
+      const className = expr < 0 ? "value-error" : "";
+
+      return { className, value, expr };
     }
 
     try {
