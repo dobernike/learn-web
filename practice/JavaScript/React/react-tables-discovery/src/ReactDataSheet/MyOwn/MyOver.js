@@ -123,7 +123,7 @@ export default ({ data }) => {
       if (props.children[0].props.cell.className === "top-head") {
         return (
           <Sticky subscribe={props => setOffset(props.height)}>
-            <div className="data-row data-row-sticky-top">{props.children}</div>
+            <div className="data-row data-row-sticky data-row-sticky__top">{props.children}</div>
           </Sticky>
         );
       }
@@ -131,7 +131,7 @@ export default ({ data }) => {
       if (props.children[0].props.cell.className === "bot-head") {
         return (
           <Sticky offset={offset}>
-            <div className="data-row data-row-sticky-bot">{props.children}</div>
+            <div className="data-row data-row-sticky">{props.children}</div>
           </Sticky>
         );
       }
