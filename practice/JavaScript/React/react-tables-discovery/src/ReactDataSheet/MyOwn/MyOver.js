@@ -6,7 +6,8 @@ import Sticky from "@wicked_query/react-sticky";
 import "./table2.css";
 
 export default ({ data }) => {
-  const [cells, setCells] = useState(data);
+  const [cells, setCells] = useState(data.table);
+  const [comment, setComment] = useState(data.comment);
   const [offset, setOffset] = useState(0);
   const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
 
@@ -123,7 +124,9 @@ export default ({ data }) => {
       if (props.children[0].props.cell.className === "top-head") {
         return (
           <Sticky subscribe={props => setOffset(props.height)}>
-            <div className="data-row data-row-sticky data-row-sticky__top">{props.children}</div>
+            <div className="data-row data-row-sticky data-row-sticky__top">
+              {props.children}
+            </div>
           </Sticky>
         );
       }
@@ -243,17 +246,31 @@ export default ({ data }) => {
   };
 
   return (
-    <DataSheet
-      data={grid}
-      className="custom-sheet"
-      sheetRenderer={handleSheetRenderer}
-      rowRenderer={handleRowRenderer}
-      cellRenderer={handleCellRenderer}
-      onCellsChanged={handleCellsChanged}
-      dataRenderer={handleDataRenderer}
-      valueRenderer={handleValueRenderer}
-      onSelect={handleSelect}
-      parsePaste={handleParsePaste}
-    />
+    <>
+      <DataSheet
+        data={grid}
+        className="custom-sheet"
+        sheetRenderer={handleSheetRenderer}
+        rowRenderer={handleRowRenderer}
+        cellRenderer={handleCellRenderer}
+        onCellsChanged={handleCellsChanged}
+        dataRenderer={handleDataRenderer}
+        valueRenderer={handleValueRenderer}
+        onSelect={handleSelect}
+        parsePaste={handleParsePaste}
+      />
+      <Comment comment={comment} />
+    </>
   );
 };
+
+const Comment = ({ comment }) => (
+  <div className="comment__wrapper">
+    <div className="comment__title">{comment.title}</div>
+    <textarea
+      className="comment__text"
+      type="text"
+      defaultValue={comment.text}
+    />
+  </div>
+);
