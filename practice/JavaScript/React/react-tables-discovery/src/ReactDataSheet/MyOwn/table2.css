@@ -48,11 +48,11 @@
 }
 
 .data-grid-container .data-grid .data-row > .cell:first-child {
-  flex-grow: 3;
+  flex-grow: 5;
 }
 
-.data-grid-container .data-grid .data-row > .cell:last-child {
-  flex-grow: 2;
+.data-grid-container .data-grid .data-row > .cell {
+  flex-grow: 1;
 }
 
 .data-grid-container .data-grid .cell .value-viewer {
@@ -85,20 +85,19 @@
   border-color: black;
 }
 
-.data-grid-container .data-grid .top-head.cell.read-only:first-child,
-.data-grid-container .data-grid .top-head.cell.read-only:last-child {
+.data-grid-container .data-grid .top-head.cell.read-only:first-child {
   font-weight: 700;
   border-top: none;
 }
 
 .data-grid-container .data-grid .cell.read-only.bot-head {
-  border: none;
-  padding-bottom: 1rem;
+  border-left: none;
+  border-right: none;
 }
 
 .data-grid-container
   .data-grid
-  .cell.read-only.top-head:not(:first-child):not(:last-child)
+  .cell.read-only.top-head:not(:first-child)
   .value-viewer,
 .data-grid-container
   .data-grid
@@ -107,13 +106,17 @@
   text-align: end;
 }
 
-.data-grid-container .data-grid .data-row-sticky-top .cell:nth-child(3) {
+.data-grid-container .data-grid .data-row-sticky {
+  background-color: whitesmoke;
+}
+
+.data-grid-container .data-grid .data-row-sticky__top .cell:nth-child(3) {
   position: relative;
 }
 
 .data-grid-container
   .data-grid
-  .data-row-sticky-top
+  .data-row-sticky__top
   .cell:nth-child(3)::before {
   content: "Ретроспективный анализ";
 
@@ -121,7 +124,7 @@
 
   position: absolute;
   top: -80%;
-  left: -45%;
+  left: -50%;
 
   color: black;
   font-weight: 700;
