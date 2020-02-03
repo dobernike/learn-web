@@ -44,18 +44,20 @@ export default ({ data }) => {
     let value = null;
 
     const toFixed = number =>
-      Number(parseFloat(number).toFixed(2)).toLocaleString();
+      parseFloat(number)
+        .toFixed(2)
+        .replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 ");
 
     if (expr.charAt(0) !== "=") {
-      const fixedExpr =
-        isNaN(expr) || expr === "" ? "0.00" : expr.replace(",", ".");
-      const fixedValue = toFixed(fixedExpr);
+      expr = isNaN(expr) || expr === "" ? "0.00" : expr.replace(",", ".");
+      value = toFixed(expr);
 
-      return { className: "", value: fixedValue, expr: fixedExpr };
+      return { className: "", value, expr };
     }
 
     try {
       value = evaluate(expr.substring(1), scope);
+      console.log(value, expr.substring(1), scope);
     } catch {
       value = null;
     }
@@ -71,10 +73,11 @@ export default ({ data }) => {
 
   const cellUpdate = (copyCells, changeCell, expr) => {
     const scope = Object.fromEntries(
-      Object.entries(copyCells).map(([key, { value }]) => [
-        key,
-        isNaN(value) ? 0.0 : parseFloat(value)
-      ])
+      Object.entries(copyCells).map(([key, { value }]) => {
+        const parsedValue = parseFloat(value.replace(/\s/g, ""));
+
+        return [key, isNaN(parsedValue) ? 0.0 : parsedValue];
+      })
     );
 
     const updatedCell = Object.assign(
