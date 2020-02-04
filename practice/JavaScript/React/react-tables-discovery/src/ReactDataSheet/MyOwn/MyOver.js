@@ -275,6 +275,8 @@ export default ({ data }) => {
     setCells(store);
   };
 
+  if (!data) return;
+
   return (
     <>
       <button onClick={handleEmpty}>Empty</button>
