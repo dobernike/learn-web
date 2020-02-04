@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import DataSheet from "react-datasheet";
 import { evaluate } from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
@@ -14,18 +14,19 @@ export default ({ data }) => {
   let selectedDiff = { rows: 0, cols: 0 };
   let middleOfSum = "";
 
-  const getCols = cells => [
-    ...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))
-  ];
+  const cols = useMemo(
+    () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
+    cells
+  );
 
-  const getRows = cells => [
-    ...new Set(Object.values(cells).map(cell => cell.key.slice(1)))
-  ];
+  const rows = useMemo(
+    () => [...new Set(Object.values(cells).map(cell => cell.key.slice(1)))],
+    cells
+  );
 
-  const generateGrid = cells =>
-    getRows(cells).map(row => getCols(cells).map(col => cells[col + row]));
+  const generateGrid = () => rows.map(row => cols.map(col => cells[col + row]));
 
-  const grid = generateGrid(cells);
+  const grid = generateGrid();
 
   const validateExp = (trailKeys, expr) => {
     let valid = true;
