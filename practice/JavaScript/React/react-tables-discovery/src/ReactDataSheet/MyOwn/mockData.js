@@ -2836,7 +2836,6 @@ export const table7 = {
     A1: {
       key: "A1",
       value: "2 000 000.00",
-      readOnly: true,
       expr: "",
       className: "bot-head"
     },
