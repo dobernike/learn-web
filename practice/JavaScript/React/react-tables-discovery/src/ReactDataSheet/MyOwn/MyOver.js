@@ -10,21 +10,29 @@ export default ({ data }) => {
   const [comment, setComment] = useState(data.comment);
   const [offset, setOffset] = useState(0);
   const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
+  const [isReadOnly, setIsReadOnly] = useState(false);
 
   let selectedDiff = { rows: 0, cols: 0 };
   let middleOfSum = "";
 
   const cols = useMemo(
     () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
-    cells
+    []
   );
 
   const rows = useMemo(
     () => [...new Set(Object.values(cells).map(cell => cell.key.slice(1)))],
-    cells
+    []
   );
 
-  const generateGrid = () => rows.map(row => cols.map(col => cells[col + row]));
+  const generateGrid = () =>
+    rows.map(row =>
+      cols.map(col =>
+        isReadOnly
+          ? { ...cells[col + row], readOnly: true }
+          : { ...cells[col + row] }
+      )
+    );
 
   const grid = generateGrid();
 
@@ -162,7 +170,7 @@ export default ({ data }) => {
 
       return <div className="data-row">{props.children}</div>;
     },
-    [offset]
+    [offset, isEmptyRowsHide]
   );
 
   const handleCellRenderer = useCallback(props => {
@@ -246,8 +254,19 @@ export default ({ data }) => {
     return arr;
   };
 
+  const handleEmpty = () => setIsEmptyRowsHide(prev => !prev);
+  const handleClear = () => {};
+  const handleReadOnly = () => setIsReadOnly(prev => !prev);
+
   return (
     <>
+      <button onClick={handleEmpty}>Empty</button>
+      <button onClick={handleClear}>Clear</button>
+      <button onClick={handleReadOnly}>ReadOnly</button>
+
+      <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>
+        Движение денежных средств
+      </h2>
       <DataSheet
         data={grid}
         className="custom-sheet"
