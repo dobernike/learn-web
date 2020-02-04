@@ -156,7 +156,7 @@ export default ({ data }) => {
           const value = child.props.cell.value;
           const expr = child.props.cell.expr;
 
-          if (isNaN(value)) return;
+          if (isNaN(parseFloat(value))) return;
 
           count += 1;
 
@@ -255,8 +255,25 @@ export default ({ data }) => {
   };
 
   const handleEmpty = () => setIsEmptyRowsHide(prev => !prev);
-  const handleClear = () => {};
   const handleReadOnly = () => setIsReadOnly(prev => !prev);
+
+  const handleClear = () => {
+    const copyCells = { ...cells };
+
+    const store = Object.fromEntries(
+      Object.entries(copyCells).map(([key, cell]) => {
+        const value = Number.isFinite(parseFloat(cell.value))
+          ? "0.00"
+          : cell.value;
+
+        const expr = cell.expr.charAt(0) !== "=" ? "" : cell.expr;
+
+        return [key, { ...cell, value, expr }];
+      })
+    );
+
+    setCells(store);
+  };
 
   return (
     <>
