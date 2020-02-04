@@ -11,9 +11,6 @@ export default () => {
         paddingTop: "1rem"
       }}
     >
-      <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>
-        Движение денежных средств
-      </h2>
       <TableOver data={table7} />
     </article>
   );
