@@ -1,7 +1,3 @@
-.data-grid-container .data-grid .cell.read-only .value-viewer {
-  text-align: start;
-}
-
 .data-grid-container .data-grid div.cell.read-only {
   cursor: auto;
   background-color: transparent;
@@ -54,29 +50,23 @@
   .data-row
   .result.cell:not(:first-child)
   .value-viewer,
+.data-grid-container .data-grid .cell.top-head:not(:first-child) .value-viewer,
+.data-grid-container .data-grid .cell.bot-head:not(:first-child) .value-viewer,
 .data-grid-container
   .data-grid
-  .cell.read-only.top-head:not(:first-child)
+  .cell.result-of-month__top:not(:first-child)
   .value-viewer,
 .data-grid-container
   .data-grid
-  .cell.read-only.bot-head:not(:first-child)
+  .cell.result-of-month__bot:not(:first-child)
   .value-viewer,
 .data-grid-container
   .data-grid
-  .cell.read-only.result-of-month__top:not(:first-child)
+  .cell.nchdp__top:not(:first-child)
   .value-viewer,
 .data-grid-container
   .data-grid
-  .cell.read-only.result-of-month__bot:not(:first-child)
-  .value-viewer,
-.data-grid-container
-  .data-grid
-  .cell.read-only.nchdp__top:not(:first-child)
-  .value-viewer,
-.data-grid-container
-  .data-grid
-  .cell.read-only.nchdp__bot:not(:first-child)
+  .cell.nchdp__bot:not(:first-child)
   .value-viewer {
   text-align: end;
 }
@@ -93,8 +83,16 @@
   flex-grow: 5;
 }
 
+.data-grid-container .data-grid .data-row > .cell:first-child .value-viewer {
+  text-align: start;
+}
+
 .data-grid-container .data-grid .data-row > .cell {
   flex-grow: 1;
+}
+
+.data-grid-container .data-grid .data-row > .cell .value-viewer {
+  text-align: end;
 }
 
 .data-grid-container .data-grid .cell .value-viewer {
