@@ -3,6 +3,7 @@ import DataSheet from "react-datasheet";
 import { evaluate } from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
 
+import "./react-datasheet.css";
 import "./table2.css";
 
 export default ({ data }) => {
