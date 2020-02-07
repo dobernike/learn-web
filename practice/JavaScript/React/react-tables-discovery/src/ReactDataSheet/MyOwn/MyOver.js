@@ -14,7 +14,8 @@ export default ({ data }) => {
   const [isReadOnly, setIsReadOnly] = useState(false);
 
   let selectedDiff = { rows: 0, cols: 0 };
-  let middleOfSum = "";
+  // let middleOfSum = "";
+  const [middleOfSum, setMiddleOfSum] = useState(0);
 
   const cols = useMemo(
     () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
@@ -231,9 +232,9 @@ export default ({ data }) => {
 
     selectedDiff = diffSelected;
 
-    middleOfSum = isNaN(sumOfCells / count)
-      ? "Неверные данные"
-      : sumOfCells / count;
+    setMiddleOfSum(
+      isNaN(sumOfCells / count) ? "Неверные данные" : sumOfCells / count
+    );
   };
 
   const handleDataRenderer = useCallback(cell => cell.expr, []);
@@ -283,6 +284,8 @@ export default ({ data }) => {
       <button onClick={handleEmpty}>Empty</button>
       <button onClick={handleClear}>Clear</button>
       <button onClick={handleReadOnly}>ReadOnly</button>
+
+      <h2>Среднее: {middleOfSum}</h2>
 
       <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>
         Движение денежных средств
