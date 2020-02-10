@@ -68,7 +68,7 @@
   .data-grid
   .cell.nchdp__bot:not(:first-child)
   .value-viewer {
-  text-align: end;
+  text-align: right;
 }
 
 .data-grid-container .data-grid .cell.read-only.nchdp__top .value-viewer {
@@ -84,7 +84,7 @@
 }
 
 .data-grid-container .data-grid .data-row > .cell:first-child .value-viewer {
-  text-align: start;
+  text-align: left;
 }
 
 .data-grid-container .data-grid .data-row > .cell {
@@ -92,7 +92,7 @@
 }
 
 .data-grid-container .data-grid .data-row > .cell .value-viewer {
-  text-align: end;
+  text-align: right;
 }
 
 .data-grid-container .data-grid .cell .value-viewer {
