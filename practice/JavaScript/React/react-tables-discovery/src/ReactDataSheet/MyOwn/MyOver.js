@@ -13,9 +13,8 @@ export default ({ data }) => {
   const [comment, setComment] = useState(data.comment);
   const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(false);
-
-  let selectedDiff = { rows: 0, cols: 0 };
   const [middleOfSum, setMiddleOfSum] = useState(0);
+  const [selectedDiff, setSelectedDiff] = useState({ rows: 0, cols: 0 });
 
   const cols = useMemo(
     () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
@@ -27,16 +26,17 @@ export default ({ data }) => {
     []
   );
 
-  const generateGrid = () =>
-    rows.map(row =>
-      cols.map(col =>
-        isReadOnly
-          ? { ...cells[col + row], readOnly: true }
-          : { ...cells[col + row] }
-      )
-    );
-
-  const grid = generateGrid();
+  const grid = useMemo(
+    () =>
+      rows.map(row =>
+        cols.map(col =>
+          isReadOnly
+            ? { ...cells[col + row], readOnly: true }
+            : { ...cells[col + row] }
+        )
+      ),
+    [cells]
+  );
 
   const validateExp = (trailKeys, expr) => {
     let valid = true;
@@ -107,15 +107,18 @@ export default ({ data }) => {
     return copyCells;
   };
 
-  const handleCellsChanged = changes => {
-    const copyCells = { ...cells };
+  const handleCellsChanged = useCallback(
+    changes => {
+      const copyCells = { ...cells };
 
-    changes.forEach(({ cell, value }) => {
-      cellUpdate(copyCells, cell, value);
-    });
+      changes.forEach(({ cell, value }) => {
+        cellUpdate(copyCells, cell, value);
+      });
 
-    setCells(copyCells);
-  };
+      setCells(copyCells);
+    },
+    [cells]
+  );
 
   const handleSheetRenderer = useCallback(
     props => (
@@ -193,54 +196,57 @@ export default ({ data }) => {
     return <div {...rest}>{props.children}</div>;
   }, []);
 
-  const handleSelect = ({ start: originStart, end: originEnd }) => {
-    const start = { row: originStart.i, col: originStart.j };
-    const end = { row: originEnd.i, col: originEnd.j };
-    let sumOfCells = 0;
-    let count = 0;
+  const handleSelect = useCallback(
+    ({ start: originStart, end: originEnd }) => {
+      const start = { row: originStart.i, col: originStart.j };
+      const end = { row: originEnd.i, col: originEnd.j };
+      let sumOfCells = 0;
+      let count = 0;
 
-    const addCellsToSum = (row, col) => {
-      sumOfCells += +grid[row][col].value;
-      count++;
-    };
+      const addCellsToSum = (row, col) => {
+        sumOfCells += +grid[row][col].value;
+        count++;
+      };
 
-    if (start.row <= end.row && start.col === end.col) {
-      for (let row = start.row; row <= end.row; row++) {
-        addCellsToSum(row, start.col);
+      if (start.row <= end.row && start.col === end.col) {
+        for (let row = start.row; row <= end.row; row++) {
+          addCellsToSum(row, start.col);
+        }
       }
-    }
 
-    if (start.row > end.row && start.col === end.col) {
-      for (let row = start.row; row >= end.row; row--) {
-        addCellsToSum(row, start.col);
+      if (start.row > end.row && start.col === end.col) {
+        for (let row = start.row; row >= end.row; row--) {
+          addCellsToSum(row, start.col);
+        }
       }
-    }
 
-    if (start.col < end.col && start.row === end.row) {
-      for (let col = start.col; col <= end.col; col++) {
-        addCellsToSum(start.row, col);
+      if (start.col < end.col && start.row === end.row) {
+        for (let col = start.col; col <= end.col; col++) {
+          addCellsToSum(start.row, col);
+        }
       }
-    }
 
-    if (start.col > end.col && start.row === end.row) {
-      for (let col = start.col; col >= end.col; col--) {
-        addCellsToSum(start.row, col);
+      if (start.col > end.col && start.row === end.row) {
+        for (let col = start.col; col >= end.col; col--) {
+          addCellsToSum(start.row, col);
+        }
       }
-    }
 
-    const diffSelected = {
-      rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
-      cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
-    };
+      const diffSelected = {
+        rows: Math.max(start.row, end.row) - Math.min(start.row, end.row) + 1,
+        cols: Math.max(start.col, end.col) - Math.min(start.col, end.col) + 1
+      };
 
-    selectedDiff = diffSelected;
+      setSelectedDiff(diffSelected);
 
-    setMiddleOfSum(
-      isNaN(sumOfCells / count)
-        ? "Неверные данные"
-        : numberToFormat(sumOfCells / count)
-    );
-  };
+      setMiddleOfSum(
+        isNaN(sumOfCells / count)
+          ? "Неверные данные"
+          : numberToFormat(sumOfCells / count)
+      );
+    },
+    [cells]
+  );
 
   const handleDataRenderer = useCallback(cell => cell.expr, []);
   const handleValueRenderer = useCallback(
@@ -250,21 +256,22 @@ export default ({ data }) => {
   );
 
   const isMultiPasteWithOneParametr = arr =>
-    !!(arr[0].length === 1) &&
+    arr[0].length === 1 &&
     !arr[1] &&
     (selectedDiff.rows !== 1 || selectedDiff.cols !== 1);
 
-  const handleParsePaste = str => {
-    let arr = str.split(/\r\n|\n|\r/).map(row => row.split("\t"));
+  const handleParsePaste = useCallback(
+    str => {
+      const arr = str.split(/\r\n|\n|\r/).map(row => row.split("\t"));
 
-    if (isMultiPasteWithOneParametr(arr)) {
-      const cols = new Array(selectedDiff.cols).fill(str);
+      if (!isMultiPasteWithOneParametr(arr)) {
+        return arr;
+      }
 
-      arr = new Array(selectedDiff.rows).fill(cols);
-    }
-
-    return arr;
-  };
+      return Array(selectedDiff.rows).fill(Array(selectedDiff.cols).fill(str));
+    },
+    [selectedDiff]
+  );
 
   const handleEmpty = () => setIsEmptyRowsHide(prev => !prev);
   const handleReadOnly = () => setIsReadOnly(prev => !prev);
@@ -300,6 +307,7 @@ export default ({ data }) => {
       <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>
         Движение денежных средств
       </h2>
+
       <DataSheet
         data={grid}
         className="custom-sheet"
