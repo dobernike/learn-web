@@ -112,12 +112,12 @@
 .data-grid-container .data-grid div.cell {
   height: auto;
 }
-.data-grid-container .data-grid div.cell > input {
-  /* padding: 10px;
+/* .data-grid-container .data-grid div.cell > input { */
+/* padding: 10px;
 
   width: 100%;
   height: 100%; */
-}
+/* } */
 
 .data-grid-container .data-grid .top-head.cell.read-only {
   border-left: none;
