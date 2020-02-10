@@ -18,6 +18,7 @@
     "@wicked_query/react-sticky": "^1.0.0-rc1",
     "ag-grid-community": "^22.1.1",
     "ag-grid-react": "^22.1.1",
+    "core-js": "^3.6.4",
     "faker": "^4.1.0",
     "framer-motion": "^1.7.0",
     "handsontable": "^7.3.0",
@@ -72,7 +73,7 @@
     "development": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "ie >= 11"
     ]
   },
   "devDependencies": {
