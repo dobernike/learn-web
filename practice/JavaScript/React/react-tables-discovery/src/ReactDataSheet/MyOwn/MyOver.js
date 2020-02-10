@@ -3,8 +3,10 @@ import DataSheet from "react-datasheet";
 import { evaluate } from "mathjs";
 import Sticky from "@wicked_query/react-sticky";
 
+import numberToFormat from "./utils/numberToFormat";
 import "./react-datasheet.css";
 import "./table2.css";
+import "./styles.css";
 
 export default ({ data }) => {
   const [cells, setCells] = useState(data.table);
@@ -14,7 +16,6 @@ export default ({ data }) => {
   const [isReadOnly, setIsReadOnly] = useState(false);
 
   let selectedDiff = { rows: 0, cols: 0 };
-  // let middleOfSum = "";
   const [middleOfSum, setMiddleOfSum] = useState(0);
 
   const cols = useMemo(
@@ -56,18 +57,13 @@ export default ({ data }) => {
   const computeExpr = (key, expr, scope) => {
     let value = null;
 
-    const toFixed = number =>
-      parseFloat(number)
-        .toFixed(2)
-        .replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 ");
-
     if (expr.charAt(0) !== "=") {
-      expr = isNaN(expr) || expr === "" ? "0.00" : expr.replace(",", ".");
-      value = toFixed(expr);
+      expr = expr.replace(",", ".");
+      expr = isNaN(expr) || expr === "" ? "0.00" : expr;
 
       const className = expr < 0 ? "value-error" : "";
 
-      return { className, value, expr };
+      return { className, value: expr, expr };
     }
 
     try {
@@ -77,8 +73,6 @@ export default ({ data }) => {
     }
 
     if (value !== null && validateExp([key], expr)) {
-      value = toFixed(value);
-
       return { value, expr };
     }
 
@@ -87,11 +81,10 @@ export default ({ data }) => {
 
   const cellUpdate = (copyCells, changeCell, expr) => {
     const scope = Object.fromEntries(
-      Object.entries(copyCells).map(([key, { value }]) => {
-        const parsedValue = parseFloat(value.replace(/\s/g, ""));
-
-        return [key, isNaN(parsedValue) ? 0.0 : parsedValue];
-      })
+      Object.entries(copyCells).map(([key, { value }]) => [
+        key,
+        isNaN(value) ? 0.0 : value
+      ])
     );
 
     const updatedCell = Object.assign(
@@ -233,12 +226,18 @@ export default ({ data }) => {
     selectedDiff = diffSelected;
 
     setMiddleOfSum(
-      isNaN(sumOfCells / count) ? "Неверные данные" : sumOfCells / count
+      isNaN(sumOfCells / count)
+        ? "Неверные данные"
+        : numberToFormat(sumOfCells / count)
     );
   };
 
   const handleDataRenderer = useCallback(cell => cell.expr, []);
-  const handleValueRenderer = useCallback(cell => cell.value, []);
+  const handleValueRenderer = useCallback(
+    cell =>
+      isNaN(parseFloat(cell.value)) ? cell.value : numberToFormat(cell.value),
+    []
+  );
 
   const isMultiPasteWithOneParametr = arr =>
     !!(arr[0].length === 1) &&
@@ -250,6 +249,7 @@ export default ({ data }) => {
 
     if (isMultiPasteWithOneParametr(arr)) {
       const cols = new Array(selectedDiff.cols).fill(str);
+
       arr = new Array(selectedDiff.rows).fill(cols);
     }
 
