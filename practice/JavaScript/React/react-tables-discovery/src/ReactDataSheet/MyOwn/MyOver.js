@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from "react";
 import DataSheet from "react-datasheet";
 import { evaluate } from "mathjs";
-import Sticky from "@wicked_query/react-sticky";
+import { StickyContainer, Sticky } from "react-sticky";
 
 import numberToFormat from "./utils/numberToFormat";
 import "./react-datasheet.css";
@@ -11,7 +11,6 @@ import "./styles.css";
 export default ({ data }) => {
   const [cells, setCells] = useState(data.table);
   const [comment, setComment] = useState(data.comment);
-  const [offset, setOffset] = useState(0);
   const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(false);
 
@@ -119,26 +118,37 @@ export default ({ data }) => {
   };
 
   const handleSheetRenderer = useCallback(
-    props => <div className={props.className}>{props.children}</div>,
+    props => (
+      <StickyContainer>
+        <div className={props.className}>{props.children}</div>
+      </StickyContainer>
+    ),
     []
   );
+
+  let topHead;
 
   const handleRowRenderer = useCallback(
     props => {
       if (props.children[0].props.cell.className === "top-head") {
-        return (
-          <Sticky subscribe={props => setOffset(props.height)}>
-            <div className="data-row data-row-sticky data-row-sticky__top">
-              {props.children}
-            </div>
-          </Sticky>
+        topHead = (
+          <div className="data-row data-row-sticky data-row-sticky__top">
+            {props.children}
+          </div>
         );
+
+        return null;
       }
 
       if (props.children[0].props.cell.className === "bot-head") {
         return (
-          <Sticky offset={offset}>
-            <div className="data-row data-row-sticky">{props.children}</div>
+          <Sticky>
+            {({ style }) => (
+              <div style={style}>
+                {topHead}
+                <div className="data-row data-row-sticky">{props.children}</div>
+              </div>
+            )}
           </Sticky>
         );
       }
@@ -165,7 +175,7 @@ export default ({ data }) => {
 
       return <div className="data-row">{props.children}</div>;
     },
-    [offset, isEmptyRowsHide]
+    [isEmptyRowsHide]
   );
 
   const handleCellRenderer = useCallback(props => {
