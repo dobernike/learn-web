@@ -57,8 +57,8 @@ const columns = [
   }
 ];
 
-const ROW_COUNT = 15000;
-const rows = createRowData(15000);
+const ROW_COUNT = 1500;
+const rows = createRowData(ROW_COUNT);
 
 function HelloWorld() {
   return (
