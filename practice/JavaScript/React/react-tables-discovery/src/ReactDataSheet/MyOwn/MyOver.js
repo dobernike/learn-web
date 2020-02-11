@@ -35,7 +35,7 @@ export default ({ data }) => {
             : { ...cells[col + row] }
         )
       ),
-    [cells]
+    [cells, isReadOnly]
   );
 
   const validateExp = (trailKeys, expr) => {
@@ -241,7 +241,7 @@ export default ({ data }) => {
 
       setMiddleOfSum(
         isNaN(sumOfCells / count)
-          ? "Неверные данные"
+          ? "Wrong data"
           : numberToFormat(sumOfCells / count)
       );
     },
@@ -302,11 +302,8 @@ export default ({ data }) => {
       <button onClick={handleClear}>Clear</button>
       <button onClick={handleReadOnly}>ReadOnly</button>
 
-      <h2>Среднее: {middleOfSum}</h2>
-
-      <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>
-        Движение денежных средств
-      </h2>
+      <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>H2 TITLE</h2>
+      <h2>Middle result of selected: {middleOfSum}</h2>
 
       <DataSheet
         data={grid}

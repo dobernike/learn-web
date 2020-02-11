@@ -147,7 +147,7 @@
   .data-grid
   .data-row-sticky__top
   .cell:nth-child(3)::before {
-  content: "Ретроспективный анализ";
+  content: "type of analysis";
 
   width: 200%;
 
