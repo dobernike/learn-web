@@ -1,11 +1,10 @@
-const webpack = require("webpack");
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyjsWebpackPlugin = require("uglifyjs-webpack-plugin");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const isDev = process.env.NODE_ENV === "development";
@@ -15,14 +14,13 @@ const optimization = () => {
   const config = {
     splitChunks: {
       chunks: "all"
-    },
-    runtimeChunk: true
+    }
   };
 
   if (isProd) {
     config.minimizer = [
       new OptimizeCssAssetsWebpackPlugin(),
-      new UglifyjsWebpackPlugin()
+      new TerserWebpackPlugin()
     ];
   }
 
@@ -65,8 +63,6 @@ const babelOptions = preset => {
 
 const jsLoaders = () => {
   const loaders = [
-    "cache-loader",
-    "thread-loader",
     {
       loader: "babel-loader",
       options: babelOptions()
@@ -97,11 +93,6 @@ const plugins = () => {
     ]),
     new MiniCssExtractPlugin({
       filename: filename("css")
-    }),
-    new webpack.HashedModuleIdsPlugin({
-      hashFunction: "md4",
-      hashDigest: "base64",
-      hashDigestLength: 4 // 8
     })
   ];
 
@@ -174,26 +165,18 @@ module.exports = {
       {
         test: /\.ts$/,
         exclude: /node_modules/,
-        use: [
-          "cache-loader",
-          "thread-loader",
-          {
-            loader: "babel-loader",
-            options: babelOptions("@babel/preset-typescript")
-          }
-        ]
+        loader: {
+          loader: "babel-loader",
+          options: babelOptions("@babel/preset-typescript")
+        }
       },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        use: [
-          "cache-loader",
-          "thread-loader",
-          {
-            loader: "babel-loader",
-            options: babelOptions("@babel/preset-react")
-          }
-        ]
+        loader: {
+          loader: "babel-loader",
+          options: babelOptions("@babel/preset-react")
+        }
       }
     ]
   }

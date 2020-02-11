@@ -22,12 +22,12 @@ console.log("JSON", json);
 console.log("XML", xml);
 
 const App = () => (
-  <div class="container">
+  <div className="container">
     <h1>Webpack Course</h1>
 
     <hr />
 
-    <div class="logo"></div>
+    <div className="logo"></div>
 
     <hr />
 
@@ -35,11 +35,11 @@ const App = () => (
 
     <hr />
 
-    <div class="box">
+    <div className="box">
       <h2>Less</h2>
     </div>
 
-    <div class="card">
+    <div className="card">
       <h2>SCSS</h2>
     </div>
   </div>

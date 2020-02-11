@@ -9,7 +9,7 @@ export default class Post {
     return JSON.stringify(
       {
         title: this.titile,
-        date: this.date.toJSON(),
+        date: this.date,
         img: this.img
       },
       null,
