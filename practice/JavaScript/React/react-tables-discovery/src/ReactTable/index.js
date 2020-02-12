@@ -35,7 +35,9 @@ const ReactTableComponents = () => {
         <hr />
         <h2 style={{ textAlign: "center" }}>test</h2>
         <hr />
-        <MyOwnReactTable />
+        {/* <MyOwnReactTable /> */}
+        <VirtualizedRows />
+        <KitchenSink />
         <hr />
         <h2
           style={{ textAlign: "center", cursor: "pointer" }}
