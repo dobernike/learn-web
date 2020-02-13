@@ -1,4 +1,5 @@
 import "core-js/stable";
+import "whatwg-fetch";
 // import "react-app-polyfill/ie11";
 // import "react-app-polyfill/stable";
 

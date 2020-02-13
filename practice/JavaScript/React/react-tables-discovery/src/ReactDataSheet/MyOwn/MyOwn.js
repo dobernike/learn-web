@@ -1,6 +1,7 @@
 import React from "react";
 import TableOver from "./MyOver";
-import { table8 } from "./mockData";
+import TableOver2 from "./MyOwn2/MyOver";
+import { table7, table9 } from "./mockData";
 
 export default () => {
   return (
@@ -11,7 +12,11 @@ export default () => {
         paddingTop: "1rem"
       }}
     >
-      <TableOver data={table8} />
+      <TableOver2 data={table9} />
+      <hr />
+      <br />
+      <hr />
+      <TableOver data={table7} />
     </article>
   );
 };
