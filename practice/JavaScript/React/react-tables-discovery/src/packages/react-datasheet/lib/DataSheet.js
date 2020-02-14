@@ -648,7 +648,7 @@ var DataSheet = (function(_PureComponent) {
             // setTimeout makes sure that component is done handling the event before we take over
             setTimeout(function() {
               func();
-              _this4.dgDom && _this4.dgDom.focus();
+              // _this4.dgDom && _this4.dgDom.focus();
             }, 1);
           }
         }
@@ -759,7 +759,7 @@ var DataSheet = (function(_PureComponent) {
       key: "onRevert",
       value: function onRevert() {
         this._setState({ editing: {} });
-        this.dgDom && this.dgDom.focus();
+        // this.dgDom && this.dgDom.focus();
       }
     },
     {
