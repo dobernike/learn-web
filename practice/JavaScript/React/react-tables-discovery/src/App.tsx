@@ -7,6 +7,7 @@ import ReactSpreadsheetComponents from "./reactSpreadsheet";
 import HandlesontableComponents from "./handsontable";
 import ReactSpreadsheetGridComponents from "./reactSpreadsheetGrid";
 import AgGrid from "./ag-grid";
+import Dhtmlx from "./dhtmlxSpreadSheet";
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,9 @@ const App: React.FC = () => {
             </li>
             <li>
               <Link to="/agGrid">agGrid</Link>
+            </li>
+            <li>
+              <Link to="/Dhtmlx">Dhtmlx</Link>
             </li>
             <li>
               <Link to="/reactDataSheet">
@@ -72,6 +76,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/agGrid">
             <AgGrid />
+          </Route>
+          <Route path="/Dhtmlx">
+            <Dhtmlx />
           </Route>
         </Switch>
       </BrowserRouter>
