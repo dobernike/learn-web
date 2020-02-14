@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
-import DataSheet from "react-datasheet";
+// import DataSheet from "react-datasheet";
+import DataSheet from "../../packages/react-datasheet";
 import { evaluate } from "mathjs";
 import { StickyContainer, Sticky } from "react-sticky";
 

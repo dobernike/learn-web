@@ -1,5 +1,6 @@
-import React, { useState, useCallback, useMemo } from "react";
-import DataSheet from "react-datasheet";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
+// import DataSheet from "react-datasheet";
+import DataSheet from "../../../packages/react-datasheet/";
 import { evaluate } from "mathjs";
 import { StickyContainer, Sticky } from "react-sticky";
 
@@ -7,7 +8,6 @@ import numberToFormat from "../utils/numberToFormat";
 import "../react-datasheet.css";
 import "../table2.css";
 import "../styles.css";
-import { NavItem } from "react-bootstrap";
 
 export default ({ data }) => {
   const [cells, setCells] = useState(data.table);
