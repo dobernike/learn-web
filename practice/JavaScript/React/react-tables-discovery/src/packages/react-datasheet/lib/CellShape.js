@@ -1,14 +1,14 @@
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _propTypes = require('prop-types');
+var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 /*
 readOnly    Bool    false   Cell will never go in edit mode
@@ -28,13 +28,19 @@ var CellShape = {
   readOnly: _propTypes2.default.bool,
   key: _propTypes2.default.string,
   className: _propTypes2.default.string,
-  component: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func]),
+  component: _propTypes2.default.oneOfType([
+    _propTypes2.default.element,
+    _propTypes2.default.func
+  ]),
   forceComponent: _propTypes2.default.bool,
   disableEvents: _propTypes2.default.bool,
   colSpan: _propTypes2.default.number,
   rowSpan: _propTypes2.default.number,
-  width: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-  overflow: _propTypes2.default.oneOf(['wrap', 'nowrap', 'clip']),
+  width: _propTypes2.default.oneOfType([
+    _propTypes2.default.number,
+    _propTypes2.default.string
+  ]),
+  overflow: _propTypes2.default.oneOf(["wrap", "nowrap", "clip"]),
   dataEditor: _propTypes2.default.func,
   valueViewer: _propTypes2.default.func
 };
