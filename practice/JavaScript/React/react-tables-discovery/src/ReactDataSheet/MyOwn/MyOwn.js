@@ -12,7 +12,7 @@ export default () => {
         paddingTop: "1rem"
       }}
     >
-      <TableOver2 data={table9} />
+      {/* <TableOver2 data={table9} /> */}
       <hr />
       <br />
       <hr />

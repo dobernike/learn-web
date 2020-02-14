@@ -301,7 +301,7 @@ export default ({ data }) => {
       // const copyCells = { ...cells };
       // copyCells[props.col + "" + props.row] = e.target.value;
       // setCells(copyCells);
-      props.onCommit(e.target.value, e);
+      props.onCommit(e.target.value);
     }
   };
 
@@ -344,19 +344,19 @@ export default ({ data }) => {
         valueRenderer={handleValueRenderer}
         onSelect={handleSelect}
         parsePaste={handleParsePaste}
-        // dataEditor={props => {
-        //   console.log(props.onCommit);
-        //   return (
-        //     <input
-        //       autoFocus
-        //       className="data-editor"
-        //       onChange={e => props.onChange(e.target.value)}
-        //       onKeyDown={e => handleKey(e, props)}
-        //       // onKeyDown={e => props.onKeyDown(e)}
-        //       value={props.value}
-        //     />
-        //   );
-        // }}
+        dataEditor={props => {
+          console.log(props.onCommit);
+          return (
+            <input
+              autoFocus
+              className="data-editor"
+              onChange={e => props.onChange(e.target.value)}
+              onKeyDown={e => handleKey(e, props)}
+              // onKeyDown={e => props.onKeyDown(e)}
+              value={props.value}
+            />
+          );
+        }}
       />
 
       {/* <Comment comment={comment} /> */}

@@ -194,7 +194,17 @@ export default ({ data }) => {
       ...rest
     } = props;
 
-    return <div {...rest}>{props.children}</div>;
+    console.log(props.onMouseDown);
+    return (
+      <div
+        onMouseDown={props.onMouseDown}
+        onMouseOver={props.onMouseOver}
+        onDoubleClick={props.onDoubleClick}
+        className={props.className}
+      >
+        {props.children}
+      </div>
+    );
   }, []);
 
   const handleSelect = useCallback(
@@ -295,6 +305,31 @@ export default ({ data }) => {
     setCells(store);
   };
 
+  const handleKey = (e, props) => {
+    if (e.key === "Enter") {
+      // props.onChange(props.row, props.col, e.target.value);
+      // const copyCells = { ...cells };
+      // copyCells[props.col + "" + props.row] = e.target.value;
+      // setCells(copyCells);
+      props.onCommit(e.target.value);
+      props.onRevert();
+    }
+  };
+
+  const handleDataEditor = props => {
+    console.log(props.onCommit);
+    return (
+      <input
+        autoFocus
+        className="data-editor"
+        onChange={e => props.onChange(e.target.value)}
+        onKeyDown={e => handleKey(e, props)}
+        // onKeyDown={e => props.onKeyDown(e)}
+        value={props.value}
+      />
+    );
+  };
+
   if (!data) return;
 
   return (
@@ -317,6 +352,7 @@ export default ({ data }) => {
         valueRenderer={handleValueRenderer}
         onSelect={handleSelect}
         parsePaste={handleParsePaste}
+        // dataEditor={handleDataEditor}
       />
       <Comment comment={comment} />
     </>
