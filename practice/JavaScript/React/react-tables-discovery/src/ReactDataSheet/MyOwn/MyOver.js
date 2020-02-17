@@ -1,13 +1,9 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useEffect,
-  useRef
-} from "react";
+import React, { useState, useCallback, useMemo } from "react";
 // import DataSheet from "react-datasheet";
 import DataSheet from "../../packages/react-datasheet";
 import "../../packages/react-datasheet/lib/react-datasheet.css";
+// import DataSheet from "../../packages/react-datasheet-last";
+// import "../../packages/react-datasheet-last/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
 import { StickyContainer, Sticky } from "react-sticky";
 
@@ -16,8 +12,6 @@ import numberToFormat from "./utils/numberToFormat";
 import "./table2.css";
 import "./styles.css";
 
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-
 export default ({ data }) => {
   const [cells, setCells] = useState(data.table);
   // const [comment, setComment] = useState(data.comment);
@@ -25,49 +19,6 @@ export default ({ data }) => {
   const [isReadOnly, setIsReadOnly] = useState(false);
   const [middleOfSum, setMiddleOfSum] = useState(0);
   const [selectedDiff, setSelectedDiff] = useState({ rows: 0, cols: 0 });
-
-  // const wh = window.offsetTop;
-  const rref = useRef(null);
-
-  let top = 2000;
-  let left = 1;
-
-  // useScrollPosition(({ prevPos, currPos }) => {
-  // if (left !== 0) {
-  // left = currPos.x;
-  // console.log(currPos.x);
-  // }
-  // console.log(-currPos.y);
-  // if (-currPos.y > 0) {
-  // top = -currPos.y;
-  // console.log(-currPos.y);
-  // }
-  //   top = 200;
-  // });
-
-  // useEffect(() => {
-  // const refTop = rref.current.offsetTop;
-  // const refLeft = rref.current.offsetLeft;
-  // const top = document.body.offsetTop;
-  // const left = document.body.offsetLeft;
-
-  // console.log(
-  //   document,
-  //   "top:",
-  //   top,
-  //   "refTop",
-  //   refTop,
-  //   "left",
-  //   left,
-  //   "refLeft",
-  //   refLeft
-  // );
-  //   console.log(top);
-
-  //   setTimeout(() => {
-  //     window.scrollTo(left, top);
-  //   }, 100);
-  // }, [cells]);
 
   const cols = useMemo(
     () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
@@ -383,7 +334,7 @@ export default ({ data }) => {
   if (!data) return;
 
   return (
-    <div ref={rref}>
+    <div>
       <button onClick={handleEmpty}>Empty</button>
       <button onClick={handleClear}>Clear</button>
       <button onClick={handleReadOnly}>ReadOnly</button>
@@ -391,7 +342,6 @@ export default ({ data }) => {
       <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>H2 TITLE</h2>
       <h2>Middle result of selected: {middleOfSum}</h2>
 
-      {/* <div ref={rref}> */}
       <DataSheet
         data={grid}
         className="custom-sheet"
@@ -405,7 +355,6 @@ export default ({ data }) => {
         parsePaste={handleParsePaste}
         // dataEditor={handleDataEditor}
       />
-      {/* </div> */}
       {/* <Comment comment={comment} /> */}
     </div>
   );
