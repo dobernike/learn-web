@@ -1,7 +1,8 @@
 import React from "react";
 import TableOver from "./MyOver";
-import TableOver2 from "./MyOwn2/MyOver";
-import { table7, table9 } from "./mockData";
+import Table from "./MyOwn2/MyOver";
+// import TableOver2 from "./MyOwn2/MyOver";
+import { table7, table8 } from "./mockData";
 
 export default () => {
   return (
@@ -16,7 +17,8 @@ export default () => {
       <hr />
       <br />
       <hr />
-      <TableOver data={table7} />
+      {/* <TableOver data={table7} /> */}
+      <TableOver data={table8} />
     </article>
   );
 };

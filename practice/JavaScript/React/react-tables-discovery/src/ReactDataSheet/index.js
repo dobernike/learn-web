@@ -11,7 +11,8 @@ import MathSheet from "./MathSheet";
 import OverrideEverythingSheet from "./OverrideEverythingSheet";
 
 const ReactDataSheetComponents = () => {
-  const [examples, setexamples] = useState(false);
+  // const [examples, setexamples] = useState(false);
+  const examples = false;
 
   return (
     <>
@@ -27,7 +28,7 @@ const ReactDataSheetComponents = () => {
 
         <h2
           style={{ textAlign: "center" }}
-          onClick={() => setexamples(prev => !prev)}
+          // onClick={() => setexamples(prev => !prev)}
         >
           exaples
         </h2>

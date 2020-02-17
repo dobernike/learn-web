@@ -1,6 +1,6 @@
 import React from "react";
 import Handsontable from "handsontable";
-import { HotTable, HotColumn } from "@handsontable/react";
+import { HotTable } from "@handsontable/react";
 
 import "handsontable/dist/handsontable.min.css";
 

@@ -1,21 +1,73 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+  useRef
+} from "react";
 // import DataSheet from "react-datasheet";
 import DataSheet from "../../packages/react-datasheet";
+import "../../packages/react-datasheet/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
 import { StickyContainer, Sticky } from "react-sticky";
 
 import numberToFormat from "./utils/numberToFormat";
-import "./react-datasheet.css";
+// import "./react-datasheet.css";
 import "./table2.css";
 import "./styles.css";
 
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+
 export default ({ data }) => {
   const [cells, setCells] = useState(data.table);
-  const [comment, setComment] = useState(data.comment);
+  // const [comment, setComment] = useState(data.comment);
   const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(false);
   const [middleOfSum, setMiddleOfSum] = useState(0);
   const [selectedDiff, setSelectedDiff] = useState({ rows: 0, cols: 0 });
+
+  // const wh = window.offsetTop;
+  const rref = useRef(null);
+
+  let top = 2000;
+  let left = 1;
+
+  // useScrollPosition(({ prevPos, currPos }) => {
+  // if (left !== 0) {
+  // left = currPos.x;
+  // console.log(currPos.x);
+  // }
+  // console.log(-currPos.y);
+  // if (-currPos.y > 0) {
+  // top = -currPos.y;
+  // console.log(-currPos.y);
+  // }
+  //   top = 200;
+  // });
+
+  // useEffect(() => {
+  // const refTop = rref.current.offsetTop;
+  // const refLeft = rref.current.offsetLeft;
+  // const top = document.body.offsetTop;
+  // const left = document.body.offsetLeft;
+
+  // console.log(
+  //   document,
+  //   "top:",
+  //   top,
+  //   "refTop",
+  //   refTop,
+  //   "left",
+  //   left,
+  //   "refLeft",
+  //   refLeft
+  // );
+  //   console.log(top);
+
+  //   setTimeout(() => {
+  //     window.scrollTo(left, top);
+  //   }, 100);
+  // }, [cells]);
 
   const cols = useMemo(
     () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
@@ -183,18 +235,17 @@ export default ({ data }) => {
   );
 
   const handleCellRenderer = useCallback(props => {
-    const {
-      cell,
-      row,
-      col,
-      attributesRenderer,
-      editing,
-      updated,
-      style,
-      ...rest
-    } = props;
+    // const {
+    //   cell,
+    //   row,
+    //   col,
+    //   attributesRenderer,
+    //   editing,
+    //   updated,
+    //   style,
+    //   ...rest
+    // } = props;
 
-    console.log(props.onMouseDown);
     return (
       <div
         onMouseDown={props.onMouseDown}
@@ -305,35 +356,34 @@ export default ({ data }) => {
     setCells(store);
   };
 
-  const handleKey = (e, props) => {
-    if (e.key === "Enter") {
-      // props.onChange(props.row, props.col, e.target.value);
-      // const copyCells = { ...cells };
-      // copyCells[props.col + "" + props.row] = e.target.value;
-      // setCells(copyCells);
-      props.onCommit(e.target.value);
-      props.onRevert();
-    }
-  };
+  // const handleKey = (e, props) => {
+  //   if (e.key === "Enter") {
+  //     // props.onChange(props.row, props.col, e.target.value);
+  //     // const copyCells = { ...cells };
+  //     // copyCells[props.col + "" + props.row] = e.target.value;
+  //     // setCells(copyCells);
+  //     props.onCommit(e.target.value);
+  //     props.onRevert();
+  //   }
+  // };
 
-  const handleDataEditor = props => {
-    console.log(props.onCommit);
-    return (
-      <input
-        autoFocus
-        className="data-editor"
-        onChange={e => props.onChange(e.target.value)}
-        onKeyDown={e => handleKey(e, props)}
-        // onKeyDown={e => props.onKeyDown(e)}
-        value={props.value}
-      />
-    );
-  };
+  // const handleDataEditor = props => {
+  //   return (
+  //     <input
+  //       autoFocus
+  //       className="data-editor"
+  //       onChange={e => props.onChange(e.target.value)}
+  //       onKeyDown={e => handleKey(e, props)}
+  //       // onKeyDown={e => props.onKeyDown(e)}
+  //       value={props.value}
+  //     />
+  //   );
+  // };
 
   if (!data) return;
 
   return (
-    <>
+    <div ref={rref}>
       <button onClick={handleEmpty}>Empty</button>
       <button onClick={handleClear}>Clear</button>
       <button onClick={handleReadOnly}>ReadOnly</button>
@@ -341,6 +391,7 @@ export default ({ data }) => {
       <h2 style={{ textAlign: "left", marginBottom: "4rem" }}>H2 TITLE</h2>
       <h2>Middle result of selected: {middleOfSum}</h2>
 
+      {/* <div ref={rref}> */}
       <DataSheet
         data={grid}
         className="custom-sheet"
@@ -354,18 +405,19 @@ export default ({ data }) => {
         parsePaste={handleParsePaste}
         // dataEditor={handleDataEditor}
       />
-      <Comment comment={comment} />
-    </>
+      {/* </div> */}
+      {/* <Comment comment={comment} /> */}
+    </div>
   );
 };
 
-const Comment = ({ comment }) => (
-  <div className="comment__wrapper">
-    <div className="comment__title">{comment.title}</div>
-    <textarea
-      className="comment__text"
-      type="text"
-      defaultValue={comment.text}
-    />
-  </div>
-);
+// const Comment = ({ comment }) => (
+//   <div className="comment__wrapper">
+//     <div className="comment__title">{comment.title}</div>
+//     <textarea
+//       className="comment__text"
+//       type="text"
+//       defaultValue={comment.text}
+//     />
+//   </div>
+// );

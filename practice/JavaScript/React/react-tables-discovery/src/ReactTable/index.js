@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import MyOwnReactTable from "./MyOwnReactTable";
+// import MyOwnReactTable from "./MyOwnReactTable";
 import Basic from "./Basic";
 import Footers from "./Footers";
 import Sorting from "./Sorting";

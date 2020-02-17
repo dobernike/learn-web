@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 // import DataSheet from "react-datasheet";
 import DataSheet from "../../../packages/react-datasheet/";
 import { evaluate } from "mathjs";
@@ -345,14 +345,12 @@ export default ({ data }) => {
         onSelect={handleSelect}
         parsePaste={handleParsePaste}
         dataEditor={props => {
-          console.log(props.onCommit);
           return (
             <input
               autoFocus
               className="data-editor"
               onChange={e => props.onChange(e.target.value)}
               onKeyDown={e => handleKey(e, props)}
-              // onKeyDown={e => props.onKeyDown(e)}
               value={props.value}
             />
           );
