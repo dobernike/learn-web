@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import ReactDataSheetComponents from "./ReactDataSheet";
+import HooksPerfomed from "./ReactDataSheet/MyOwn/performance/Director";
 import ReactDataGreedComponents from "./ReactDataGrid";
 import ReactTableComponents from "./ReactTable";
 import ReactSpreadsheetComponents from "./reactSpreadsheet";
@@ -36,6 +37,12 @@ const App: React.FC = () => {
                 ReactDataSheet{" "}
                 <b style={{ color: "blue" }}>нет левого и вверхнего sticky</b>
               </Link>
+              <ul>
+                <li>
+                  <Link to="/reactDataSheet-hooksTables">hooksTables</Link>
+                </li>
+                <Link to="/reactDataSheet">Rx</Link>
+              </ul>
             </li>
             <li>
               <Link to="/reactspreadsheetgrid">
@@ -58,6 +65,9 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/reactDataSheet">
             <ReactDataSheetComponents />
+          </Route>
+          <Route path="/reactDataSheet-hooksTables">
+            <HooksPerfomed />
           </Route>
           <Route path="/reactDataGrid">
             <ReactDataGreedComponents />
