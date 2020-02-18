@@ -1,9 +1,9 @@
 .cell,
 .value-viewer {
-  padding: 10px;
+  padding: 8px;
   width: 120px;
 }
 
 .data-editor {
-  padding: 14px 0;
+  padding: 10px 1px;
 }

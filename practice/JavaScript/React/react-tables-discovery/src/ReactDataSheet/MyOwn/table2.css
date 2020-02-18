@@ -1,3 +1,7 @@
+.data-grid-container .data-grid {
+  font-size: 14px;
+}
+
 .data-grid-container .data-grid div.cell.read-only {
   cursor: auto;
   background-color: transparent;

@@ -2,8 +2,12 @@
   width: 100%;
 }
 
+.data-grid-container .data-grid {
+  font-size: 14px;
+}
+
 .data-grid-container .data-grid .cell.read-only .value-viewer {
-  text-align: start;
+  text-align: left;
 }
 
 .data-grid-container .data-grid td.cell.read-only {
@@ -40,7 +44,7 @@
   tr:last-child
   .cell:not(:first-child)
   .value-viewer {
-  text-align: end;
+  text-align: right;
 }
 
 .data-grid-container .data-grid {
