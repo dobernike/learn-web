@@ -102,7 +102,6 @@ export default () => {
   const handleUpdateHead = () => {
     heads["head"] = [];
 
-    console.log(generals["generalBottom"]);
     const updatedResult = Object.fromEntries(
       Object.entries(head).map(([key, cell], idx) => {
         if (idx > 5) {
