@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useMemo, memo, useEffect } from "react";
-import DataSheet from "../../../packages/react-datasheet";
-import "../../../packages/react-datasheet/lib/react-datasheet.css";
+import DataSheet from "../../../../packages/react-datasheet";
+import "../../../../packages/react-datasheet/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
 // import { StickyContainer, Sticky } from "react-sticky";
-import numberToFormat from "../utils/numberToFormat";
-import "../table2.css";
-import "../styles.css";
+import numberToFormat from "../../utils/numberToFormat";
+import "../../table2.css";
+import "../../styles.css";
 
 export default ({ data, onUpdate, name }) => {
-  const [cells, setCells] = useState(data);
+  const [grid, setCells] = useState(data);
   const [isEmptyRowsHide, setIsEmptyRowsHide] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(false);
   const [middleOfSum, setMiddleOfSum] = useState(0);
@@ -16,27 +16,27 @@ export default ({ data, onUpdate, name }) => {
 
   useEffect(() => setCells(data), [data]);
 
-  const cols = useMemo(
-    () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
-    []
-  );
+  // const cols = useMemo(
+  //   () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
+  //   []
+  // );
 
-  const rows = useMemo(
-    () => [...new Set(Object.values(cells).map(cell => cell.key.slice(1)))],
-    []
-  );
+  // const rows = useMemo(
+  //   () => [...new Set(Object.values(cells).map(cell => cell.key.slice(1)))],
+  //   []
+  // );
 
-  const grid = useMemo(
-    () =>
-      rows.map(row =>
-        cols.map(col =>
-          isReadOnly
-            ? { ...cells[col + row], readOnly: true }
-            : { ...cells[col + row] }
-        )
-      ),
-    [cells, isReadOnly]
-  );
+  // const grid = useMemo(
+  //   () =>
+  //     rows.map(row =>
+  //       cols.map(col =>
+  //         isReadOnly
+  //           ? { ...cells[col + row], readOnly: true }
+  //           : { ...cells[col + row] }
+  //       )
+  //     ),
+  //   [cells, isReadOnly]
+  // );
 
   const validateExp = (trailKeys, expr) => {
     let valid = true;
@@ -46,7 +46,7 @@ export default ({ data, onUpdate, name }) => {
       if (trailKeys.indexOf(match) > -1) {
         valid = false;
       } else {
-        valid = validateExp([...trailKeys, match], cells[match].expr);
+        valid = validateExp([...trailKeys, match], grid[match].expr);
       }
     }
 
@@ -79,20 +79,30 @@ export default ({ data, onUpdate, name }) => {
   };
 
   const cellUpdate = (copyCells, changeCell, expr) => {
-    const scope = Object.fromEntries(
-      Object.entries(copyCells).map(([key, { value }]) => [
-        key,
-        isNaN(value) ? 0.0 : value
-      ])
-    );
+    console.log(copyCells, changeCell, expr);
 
-    const updatedCell = Object.assign(
-      {},
-      changeCell,
-      computeExpr(changeCell.key, expr, scope)
+    const scope = copyCells.map(arr =>
+      arr.map(cell => {
+        cell.value = isNaN(cell.value) ? 0.0 : cell.value;
+        return cell;
+      })
     );
+    // const scope = Object.fromEntries(
+    //   Object.entries(copyCells).map(([key, { value }]) => [
+    //     key,
+    //     isNaN(value) ? 0.0 : value
+    //   ])
+    // );
 
-    copyCells[changeCell.key] = updatedCell;
+    const updatedCell = computeExpr(changeCell.key, expr, scope);
+    // Object.assign(
+    //   {},
+    //   changeCell,
+    //   computeExpr(changeCell.key, expr, scope)
+    // );
+
+    // copyCells[changeCell.key] = updatedCell;
+    copyCells[1][1] = updatedCell;
 
     Object.values(copyCells).forEach(cell => {
       if (
@@ -109,29 +119,19 @@ export default ({ data, onUpdate, name }) => {
 
   const handleCellsChanged = useCallback(
     changes => {
-      const copyCells = { ...cells };
+      const copyCells = [...grid];
 
       changes.forEach(({ cell, value }) => {
         cellUpdate(copyCells, cell, value);
       });
 
-      const values = Object.values(copyCells);
-      const updateCells = [];
-      for (let i = 0; i < cols.length; i++) {
-        updateCells.push(values[i].value);
-      }
-      onUpdate(updateCells, name);
       setCells(copyCells);
     },
-    [cells]
+    [grid]
   );
 
   const handleSheetRenderer = useCallback(
-    props => (
-      // <StickyContainer>
-      <div className={props.className}>{props.children}</div>
-      // </StickyContainer>
-    ),
+    props => <div className={props.className}>{props.children}</div>,
     []
   );
 
@@ -151,16 +151,10 @@ export default ({ data, onUpdate, name }) => {
 
       if (props.children[0].props.cell.className === "bot-head") {
         return (
-          // <Sticky>
-          // {({ style }) => (
-          // <div style={style}>
           <>
             {topHead}
             <div className="data-row data-row-sticky">{props.children}</div>
           </>
-          // </div>
-          // )}
-          // </Sticky>
         );
       }
 
@@ -252,7 +246,7 @@ export default ({ data, onUpdate, name }) => {
           : numberToFormat(sumOfCells / count)
       );
     },
-    [cells]
+    [grid]
   );
 
   const handleDataRenderer = useCallback(cell => cell.expr, []);

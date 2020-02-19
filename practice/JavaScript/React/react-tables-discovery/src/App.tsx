@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import ReactDataSheetComponents from "./ReactDataSheet";
 import HooksPerfomed from "./ReactDataSheet/MyOwn/performance/Director";
+import RxPerfomed from "./ReactDataSheet/MyOwn/performance/rx/Director";
+import NewJSONSheet from "./ReactDataSheet/MyOwn/performance/newJson/Director";
 import ReactDataGreedComponents from "./ReactDataGrid";
 import ReactTableComponents from "./ReactTable";
 import ReactSpreadsheetComponents from "./reactSpreadsheet";
@@ -41,7 +43,12 @@ const App: React.FC = () => {
                 <li>
                   <Link to="/reactDataSheet-hooksTables">hooksTables</Link>
                 </li>
-                <Link to="/reactDataSheet">Rx</Link>
+                <li>
+                  <Link to="/reactDataSheet-rxTables">rxTables</Link>
+                </li>
+                <li>
+                  <Link to="/reactDataSheet-jsonTables">JSONTable</Link>
+                </li>
               </ul>
             </li>
             <li>
@@ -68,6 +75,12 @@ const App: React.FC = () => {
           </Route>
           <Route path="/reactDataSheet-hooksTables">
             <HooksPerfomed />
+          </Route>
+          <Route path="/reactDataSheet-rxTables">
+            <RxPerfomed />
+          </Route>
+          <Route path="/reactDataSheet-jsonTables">
+            <NewJSONSheet />
           </Route>
           <Route path="/reactDataGrid">
             <ReactDataGreedComponents />
