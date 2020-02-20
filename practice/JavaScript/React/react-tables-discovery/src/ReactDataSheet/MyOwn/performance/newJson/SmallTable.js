@@ -16,28 +16,6 @@ export default ({ data, onUpdate, name }) => {
 
   useEffect(() => setCells(data), [data]);
 
-  // const cols = useMemo(
-  //   () => [...new Set(Object.values(cells).map(cell => cell.key.charAt(0)))],
-  //   []
-  // );
-
-  // const rows = useMemo(
-  //   () => [...new Set(Object.values(cells).map(cell => cell.key.slice(1)))],
-  //   []
-  // );
-
-  // const grid = useMemo(
-  //   () =>
-  //     rows.map(row =>
-  //       cols.map(col =>
-  //         isReadOnly
-  //           ? { ...cells[col + row], readOnly: true }
-  //           : { ...cells[col + row] }
-  //       )
-  //     ),
-  //   [cells, isReadOnly]
-  // );
-
   const validateExp = (trailKeys, expr) => {
     let valid = true;
     const matches = expr.match(/[A-Z][1-9]+/g) || [];
@@ -87,21 +65,9 @@ export default ({ data, onUpdate, name }) => {
         return cell;
       })
     );
-    // const scope = Object.fromEntries(
-    //   Object.entries(copyCells).map(([key, { value }]) => [
-    //     key,
-    //     isNaN(value) ? 0.0 : value
-    //   ])
-    // );
 
     const updatedCell = computeExpr(changeCell.key, expr, scope);
-    // Object.assign(
-    //   {},
-    //   changeCell,
-    //   computeExpr(changeCell.key, expr, scope)
-    // );
 
-    // copyCells[changeCell.key] = updatedCell;
     copyCells[1][1] = updatedCell;
 
     Object.values(copyCells).forEach(cell => {
