@@ -2,7 +2,6 @@ import React, { useState, useCallback, useMemo, memo, useEffect } from "react";
 import DataSheet from "../../../../packages/react-datasheet";
 import "../../../../packages/react-datasheet/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
-// import { StickyContainer, Sticky } from "react-sticky";
 import numberToFormat from "../../utils/numberToFormat";
 import "../../table2.css";
 import "../../styles.css";
@@ -120,8 +119,6 @@ export default ({ data, onUpdate, name }) => {
       for (let i = 0; i < cols.length; i++) {
         updateCells.push(values[i].value);
       }
-
-      // console.log(changes);
       onUpdate(updateCells, name);
       setCells(copyCells);
     },
@@ -295,7 +292,7 @@ export default ({ data, onUpdate, name }) => {
       dataRenderer={handleDataRenderer}
       valueRenderer={handleValueRenderer}
       onSelect={handleSelect}
-      parsePaste={handleParsePaste}
+      // parsePaste={handleParsePaste}
     />
   );
 };
