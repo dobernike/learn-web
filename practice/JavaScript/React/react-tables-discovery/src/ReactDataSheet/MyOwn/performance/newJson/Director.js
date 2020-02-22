@@ -213,28 +213,8 @@ export default () => {
       <hr />
       <br />
       <hr />
-      {/* <StickyContainer>
-        <Sticky>
-          {({ style }) => (
-            <div style={style}>
-              <TableSmall data={head} onUpdate={() => {}} />
-            </div>
-          )}
-        </Sticky> */}
+
       <TableSmall data={grid} onUpdate={handleUpdate9} name={"table1"} />
-      {/* <TableSmall data={table91} onUpdate={handleUpdate9} name={"table2"} />
-        <TableSmall data={table91} onUpdate={handleUpdate9} name={"table3"} />
-        <TableSmall data={result9} />
-        <TableSmall data={table91} onUpdate={handleUpdate10} name={"table4"} />
-        <TableSmall data={table91} onUpdate={handleUpdate10} name={"table5"} />
-        <TableSmall data={result10} />
-        <TableSmall data={table91} onUpdate={handleUpdate11} name={"table6"} />
-        <TableSmall data={table91} onUpdate={handleUpdate11} name={"table7"} />
-        <TableSmall data={result11} />
-        <TableSmall data={generalTop} />
-        <TableSmall data={generalBottom} />
-        <TableSmall data={nchpd} /> */}
-      {/* </StickyContainer> */}
     </article>
   );
 };
