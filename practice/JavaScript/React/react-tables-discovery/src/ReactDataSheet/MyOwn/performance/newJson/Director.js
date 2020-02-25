@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { StickyContainer, Sticky } from "react-sticky";
 
 import TableSmall from "./SmallTable";
 import { table9 } from "../../mockData";
@@ -11,8 +10,6 @@ export default () => {
   const [generalTop, setGeneralTop] = useState(table9.generalTop);
   const [generalBottom, setGeneralBottom] = useState(table9.generalBottom);
   const [head, setHead] = useState(table9.head);
-
-  const [nchpd, setNchpd] = useState(table9.nchdp);
 
   const table91 = useMemo(() => table9.table1.table, [table9]);
 
@@ -142,49 +139,6 @@ export default () => {
       setResult9(updatedResult);
     },
     [result9]
-  );
-
-  const handleUpdate10 = useCallback(
-    (updated, name) => {
-      tables[name] = updated;
-      results["result2"] = [];
-
-      const updatedResult = Object.fromEntries(
-        Object.entries(result10).map(([key, cell], idx) => {
-          if (idx !== 0) {
-            cell.value = +tables["table4"][idx] - +tables["table5"][idx];
-          }
-          results["result2"].push(cell.value);
-
-          return [key, cell];
-        })
-      );
-
-      setResult10(updatedResult);
-    },
-    [result10]
-  );
-
-  const handleUpdate11 = useCallback(
-    (updated, name) => {
-      tables[name] = updated;
-      results["result3"] = [];
-
-      const updatedResult = Object.fromEntries(
-        Object.entries(result11).map(([key, cell], idx) => {
-          if (idx !== 0) {
-            cell.value = +tables["table6"][idx] - +tables["table7"][idx];
-          }
-
-          results["result3"].push(cell.value);
-
-          return [key, cell];
-        })
-      );
-
-      setResult11(updatedResult);
-    },
-    [result11]
   );
 
   const cols = useMemo(
