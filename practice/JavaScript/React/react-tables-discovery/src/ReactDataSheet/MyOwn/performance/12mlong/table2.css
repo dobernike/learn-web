@@ -1,0 +1,217 @@
+.data-grid-container .data-grid.mlong-sheet {
+  font-size: 14px;
+  width: 5000px;
+}
+
+.data-grid-container .data-grid.mlong-sheet div.cell.read-only {
+  cursor: auto;
+  background-color: transparent;
+}
+
+.data-grid-container .data-grid.mlong-sheet .cell:not(.read-only) {
+  background-color: white;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row div.header.cell,
+.data-grid-container .data-grid.mlong-sheet .data-row div.result.cell {
+  font-weight: 700;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row div.header,
+.data-grid-container .data-grid.mlong-sheet .data-row .result-of-month__top,
+.data-grid-container .data-grid.mlong-sheet .data-row .nchdp__top {
+  margin-top: 1rem;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row
+  .result-of-month__top.cell,
+.data-grid-container .data-grid.mlong-sheet .data-row .nchdp__top.cell {
+  border: none;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row
+  .result-of-month__bot.cell,
+.data-grid-container .data-grid.mlong-sheet .data-row .nchdp__bot.cell {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row div.result.cell {
+  margin-top: 2rem;
+
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row
+  .header.cell:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row
+  .result.cell:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.top-head:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.bot-head:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.result-of-month__top:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.result-of-month__bot:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.nchdp__top:not(:first-child)
+  .value-viewer,
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.nchdp__bot:not(:first-child)
+  .value-viewer {
+  text-align: right;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .cell.read-only.nchdp__top
+  .value-viewer {
+  font-weight: 700;
+}
+
+.data-grid-container .data-grid.mlong-sheet {
+  margin-bottom: 1.5rem;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row > .cell:first-child {
+  flex-grow: 0;
+  width: 400px;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row
+  > .cell:first-child
+  .value-viewer {
+  text-align: left;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row > .cell {
+  flex-grow: 0;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row > .cell .value-viewer {
+  text-align: right;
+}
+
+.data-grid-container .data-grid.mlong-sheet .cell .value-viewer {
+  width: auto;
+}
+
+.data-grid-container .data-grid.mlong-sheet .cell.read-only .value-viewer {
+  color: black;
+}
+
+.data-row {
+  display: flex;
+}
+.data-grid.mlong-sheet {
+  flex-direction: column;
+}
+.data-grid-container .data-grid.mlong-sheet div.cell {
+  height: auto;
+}
+/* .data-grid-container .data-grid div.cell > input { */
+/* padding: 10px;
+
+  width: 100%;
+  height: 100%; */
+/* } */
+
+.data-grid-container .data-grid.mlong-sheet .top-head.cell.read-only {
+  border-left: none;
+  border-right: none;
+  border-color: black;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .top-head.cell.read-only:first-child {
+  font-weight: 700;
+  border-top: none;
+}
+
+.data-grid-container .data-grid.mlong-sheet .cell.read-only.bot-head {
+  border-left: none;
+  border-right: none;
+}
+
+.data-grid-container .data-grid.mlong-sheet .data-row-sticky {
+  background-color: whitesmoke;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row-sticky__top
+  .cell:nth-child(3) {
+  position: relative;
+}
+
+.data-grid-container
+  .data-grid.mlong-sheet
+  .data-row-sticky__top
+  .cell:nth-child(3)::before {
+  content: "type of analysis";
+
+  width: 200%;
+
+  position: absolute;
+  top: -80%;
+  left: -50%;
+
+  color: black;
+  font-weight: 700;
+}
+
+.data-grid-container .data-grid.mlong-sheet .value-error {
+  color: red;
+}
+
+.comment__title {
+  padding: 10px;
+
+  flex-grow: 0;
+  font-weight: 700;
+}
+
+.comment__wrapper {
+  height: 150px;
+  display: flex;
+
+  border: 2px solid black;
+}
+
+.comment__text {
+  padding: 10px;
+  flex-grow: 0;
+
+  font-size: 16px;
+  border: none;
+  border-left: 2px solid black;
+}

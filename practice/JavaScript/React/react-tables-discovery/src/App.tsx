@@ -11,6 +11,7 @@ import HandlesontableComponents from "./handsontable";
 import ReactSpreadsheetGridComponents from "./reactSpreadsheetGrid";
 import AgGrid from "./ag-grid";
 import Dhtmlx from "./dhtmlxSpreadSheet";
+import Perfomed12mlong from "./ReactDataSheet/MyOwn/performance/12mlong/Director";
 
 const App: React.FC = () => {
   return (
@@ -47,6 +48,9 @@ const App: React.FC = () => {
                   <Link to="/reactDataSheet-rxTables">rxTables</Link>
                 </li>
                 <li>
+                  <Link to="/reactDataSheet-12mlong">12mlong</Link>
+                </li>
+                <li>
                   <Link to="/reactDataSheet-jsonTables">JSONTable</Link>
                 </li>
               </ul>
@@ -78,6 +82,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/reactDataSheet-rxTables">
             <RxPerfomed />
+          </Route>
+          <Route path="/reactDataSheet-12mlong">
+            <Perfomed12mlong />
           </Route>
           <Route path="/reactDataSheet-jsonTables">
             <NewJSONSheet />
