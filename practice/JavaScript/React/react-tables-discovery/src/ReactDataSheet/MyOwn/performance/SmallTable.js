@@ -135,7 +135,7 @@ export default ({ data, onUpdate, name }) => {
   const handleRowRenderer = useCallback(
     props => {
       if (props.children[0].props.cell.className === "top-head") {
-        topHead = (
+        return (
           <div className="data-row data-row-sticky data-row-sticky__top">
             {props.children}
           </div>
@@ -145,12 +145,7 @@ export default ({ data, onUpdate, name }) => {
       }
 
       if (props.children[0].props.cell.className === "bot-head") {
-        return (
-          <>
-            {topHead}
-            <div className="data-row data-row-sticky">{props.children}</div>
-          </>
-        );
+        return <div className="data-row data-row-sticky">{props.children}</div>;
       }
 
       if (isEmptyRowsHide) {
