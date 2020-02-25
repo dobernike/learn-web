@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useMemo } from "react";
-// import DataSheet from "react-datasheet";
-import DataSheet from "../../packages/react-datasheet";
-import "../../packages/react-datasheet/lib/react-datasheet.css";
+import DataSheet from "react-datasheet";
+// import DataSheet from "../../packages/react-datasheet";
+// import "../../packages/react-datasheet/lib/react-datasheet.css";
 // import DataSheet from "../../packages/react-datasheet-last";
 // import "../../packages/react-datasheet-last/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
 import { StickyContainer, Sticky } from "react-sticky";
 
 import numberToFormat from "./utils/numberToFormat";
-// import "./react-datasheet.css";
+import "react-datasheet/lib/react-datasheet.css";
 import "./table2.css";
 import "./styles.css";
 
