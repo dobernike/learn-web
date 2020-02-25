@@ -140,8 +140,6 @@ export default ({ data, onUpdate, name }) => {
             {props.children}
           </div>
         );
-
-        return null;
       }
 
       if (props.children[0].props.cell.className === "bot-head") {
