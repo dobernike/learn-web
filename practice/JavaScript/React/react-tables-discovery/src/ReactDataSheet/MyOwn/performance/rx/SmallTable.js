@@ -3,8 +3,8 @@ import DataSheet from "../../../../packages/react-datasheet";
 import "../../../../packages/react-datasheet/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
 import numberToFormat from "../../utils/numberToFormat";
-import "../../table2.css";
-import "../../styles.css";
+import "./table2.css";
+import "./styles.css";
 
 export default ({ data, onUpdate, name }) => {
   const [cells, setCells] = useState(data);
