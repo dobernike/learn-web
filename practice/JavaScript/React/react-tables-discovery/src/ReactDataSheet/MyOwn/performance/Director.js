@@ -2,41 +2,41 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { StickyContainer, Sticky } from "react-sticky";
 
 import TableSmall from "./SmallTable";
-import { table9 } from "../mockData";
+import { table12 as table9 } from "../mockData";
 
 export default () => {
-  const [result9, setResult9] = useState(table9.result.table);
-  const [result10, setResult10] = useState(table9.result.table);
-  const [result11, setResult11] = useState(table9.result.table);
+  const [result9, setResult9] = useState(table9.results.result1);
+  const [result10, setResult10] = useState(table9.results.result2);
+  const [result11, setResult11] = useState(table9.results.result3);
+
   const [generalTop, setGeneralTop] = useState(table9.generalTop);
   const [generalBottom, setGeneralBottom] = useState(table9.generalBottom);
+
   const [head, setHead] = useState(table9.head);
 
   const [nchpd, setNchpd] = useState(table9.nchdp);
 
-  const table91 = useMemo(() => table9.table1.table, [table9]);
+  const tables91 = useMemo(() => table9.tables, [table9]);
 
-  const tables = useMemo(
-    () => ({
-      table1: [0, 0, 0, 0],
-      table2: [0, 0, 0, 0],
-      table3: [0, 0, 0, 0],
-      table4: [0, 0, 0, 0],
-      table5: [0, 0, 0, 0],
-      table6: [0, 0, 0, 0],
-      table7: [0, 0, 0, 0]
-    }),
-    []
-  );
+  const tables = useMemo(() => {
+    const obj = {};
 
-  const results = useMemo(
-    () => ({
-      result1: [0, 0, 0, 0],
-      result2: [0, 0, 0, 0],
-      result3: [0, 0, 0, 0]
-    }),
-    []
-  );
+    Object.keys(tables91).forEach(
+      (_, idx) => (obj[`table${idx + 1}`] = [0, 0, 0, 0])
+    );
+
+    return obj;
+  }, []);
+
+  const results = useMemo(() => {
+    const obj = {};
+
+    Object.keys(table9.results).forEach(
+      (_, idx) => (obj[`result${idx + 1}`] = [0, 0, 0, 0])
+    );
+
+    return obj;
+  }, []);
 
   const generals = useMemo(
     () => ({
@@ -64,7 +64,7 @@ export default () => {
     setGeneralTop(updatedResult);
   };
 
-  useEffect(() => handleGeneralTopUpdate(), [result9, result10, result11]);
+  useEffect(() => handleGeneralTopUpdate, [result9, result10, result11]);
 
   const handleGeneralBottomUpdate = () => {
     generals["generalBottom"] = [];
@@ -90,7 +90,7 @@ export default () => {
     setGeneralBottom(updatedResult);
   };
 
-  useEffect(() => handleGeneralBottomUpdate(), [generalTop]);
+  useEffect(() => handleGeneralBottomUpdate, [generalTop]);
 
   const heads = useMemo(
     () => ({
@@ -206,15 +206,43 @@ export default () => {
             </div>
           )}
         </Sticky>
-        <TableSmall data={table91} onUpdate={handleUpdate9} name={"table1"} />
-        <TableSmall data={table91} onUpdate={handleUpdate9} name={"table2"} />
-        <TableSmall data={table91} onUpdate={handleUpdate9} name={"table3"} />
+        <TableSmall
+          data={tables91.table1.table}
+          onUpdate={handleUpdate9}
+          name={tables91.table1.name}
+        />
+        <TableSmall
+          data={tables91.table2.table}
+          onUpdate={handleUpdate9}
+          name={tables91.table2.name}
+        />
+        <TableSmall
+          data={tables91.table3.table}
+          onUpdate={handleUpdate9}
+          name={tables91.table3.name}
+        />
         <TableSmall data={result9} />
-        <TableSmall data={table91} onUpdate={handleUpdate10} name={"table4"} />
-        <TableSmall data={table91} onUpdate={handleUpdate10} name={"table5"} />
+        <TableSmall
+          data={tables91.table4.table}
+          onUpdate={handleUpdate10}
+          name={tables91.table4.name}
+        />
+        <TableSmall
+          data={tables91.table5.table}
+          onUpdate={handleUpdate10}
+          name={tables91.table5.name}
+        />
         <TableSmall data={result10} />
-        <TableSmall data={table91} onUpdate={handleUpdate11} name={"table6"} />
-        <TableSmall data={table91} onUpdate={handleUpdate11} name={"table7"} />
+        <TableSmall
+          data={tables91.table6.table}
+          onUpdate={handleUpdate11}
+          name={tables91.table6.name}
+        />
+        <TableSmall
+          data={tables91.table7.table}
+          onUpdate={handleUpdate11}
+          name={tables91.table7.name}
+        />
         <TableSmall data={result11} />
         <TableSmall data={generalTop} />
         <TableSmall data={generalBottom} />
