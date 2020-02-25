@@ -1,8 +1,7 @@
-import React, { useState, useCallback, useMemo, memo, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import DataSheet from "../../../packages/react-datasheet";
 import "../../../packages/react-datasheet/lib/react-datasheet.css";
 import { evaluate } from "mathjs";
-// import { StickyContainer, Sticky } from "react-sticky";
 import numberToFormat from "../utils/numberToFormat";
 import "../table2.css";
 import "../styles.css";
@@ -127,11 +126,7 @@ export default ({ data, onUpdate, name }) => {
   );
 
   const handleSheetRenderer = useCallback(
-    props => (
-      // <StickyContainer>
-      <div className={props.className}>{props.children}</div>
-      // </StickyContainer>
-    ),
+    props => <div className={props.className}>{props.children}</div>,
     []
   );
 
@@ -151,16 +146,10 @@ export default ({ data, onUpdate, name }) => {
 
       if (props.children[0].props.cell.className === "bot-head") {
         return (
-          // <Sticky>
-          // {({ style }) => (
-          // <div style={style}>
           <>
             {topHead}
             <div className="data-row data-row-sticky">{props.children}</div>
           </>
-          // </div>
-          // )}
-          // </Sticky>
         );
       }
 
@@ -293,7 +282,7 @@ export default ({ data, onUpdate, name }) => {
       dataRenderer={handleDataRenderer}
       valueRenderer={handleValueRenderer}
       onSelect={handleSelect}
-      // parsePaste={handleParsePaste}
+      parsePaste={handleParsePaste}
     />
   );
 };
