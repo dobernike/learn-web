@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import ReactDataSheetComponents from "./ReactDataSheet";
-import HooksPerfomed from "./ReactDataSheet/MyOwn/performance/Director";
+import HooksPerfomed from "./ReactDataSheet/MyOwn/performance/3m/Director";
 import RxPerfomed from "./ReactDataSheet/MyOwn/performance/rx/Director";
 import NewJSONSheet from "./ReactDataSheet/MyOwn/performance/newJson/Director";
 import ReactDataGreedComponents from "./ReactDataGrid";

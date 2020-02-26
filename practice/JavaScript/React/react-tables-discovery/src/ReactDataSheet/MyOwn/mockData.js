@@ -7023,218 +7023,63 @@ export const table11 = {
 };
 
 export const table12 = {
-  table1: {
-    name: "table1",
-    table: {
-      "01": {
-        key: "01",
-        value: "Поступления от операционной деятельности",
-        readOnly: true,
-        expr: "",
-        className: "header"
-      },
-      A1: {
-        key: "A1",
-        value: "0.00",
-        readOnly: true,
-        expr: "=A2+A3+A4+A5+A6+A7+A8",
-        className: "header"
-      },
-      B1: {
-        key: "B1",
-        value: "0.00",
-        readOnly: true,
-        expr: "=B2+B3+B4+B5+B6+B7+B8",
-        className: "header"
-      },
-      C1: {
-        key: "C1",
-        value: "0.00",
-        readOnly: true,
-        expr: "=C2+C3+C4+C5+C6+C7+C8",
-        className: "header"
-      },
+  head: {
+    "00": {
+      key: "00",
+      value: "Top head",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    A0: {
+      key: "A0",
+      value: "Top head title",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    B0: {
+      key: "B0",
+      value: "Top head title",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
+    C0: {
+      key: "C0",
+      value: "Top head title",
+      readOnly: true,
+      expr: "",
+      className: "top-head"
+    },
 
-      "02": {
-        key: "02",
-        value: "От реализации собственной продукции",
-        readOnly: true,
-        expr: ""
-      },
-      A2: { key: "A2", value: "0.00", expr: "" },
-      B2: { key: "B2", value: "0.00", expr: "" },
-      C2: { key: "C2", value: "0.00", expr: "" },
+    "01": {
+      key: "01",
+      value: "Bot head",
+      readOnly: true,
+      expr: "",
+      className: "bot-head"
+    },
+    A1: {
+      key: "A1",
+      value: "2000000.00",
+      expr: "",
+      className: "bot-head"
+    },
 
-      "03": {
-        key: "03",
-        value: "От реализации услуг",
-        readOnly: true,
-        expr: ""
-      },
-      A3: {
-        key: "A3",
-        value: "0.00",
-        expr: ""
-      },
-      B3: { key: "B3", value: "0.00", expr: "" },
-      C3: { key: "C3", value: "0.00", expr: "" },
-
-      "04": {
-        key: "04",
-        value: "От розничной реализации товаров",
-        readOnly: true,
-        expr: ""
-      },
-      A4: { key: "A4", value: "0.00", expr: "" },
-      B4: { key: "B4", value: "0.00", expr: "" },
-      C4: { key: "C4", value: "0.00", expr: "" },
-
-      "05": {
-        key: "05",
-        value: "От реализации сельскохозяйственной продукции",
-        readOnly: true,
-        expr: ""
-      },
-      A5: { key: "A5", value: "0.00", expr: "" },
-      B5: { key: "B5", value: "0.00", expr: "" },
-      C5: { key: "C5", value: "0.00", expr: "" },
-
-      "06": {
-        key: "06",
-        value: "От строительной деятельности",
-        readOnly: true,
-        expr: ""
-      },
-      A6: { key: "A6", value: "0.00", expr: "" },
-      B6: { key: "B6", value: "0.00", expr: "" },
-      C6: { key: "C6", value: "0.00", expr: "" },
-
-      "07": {
-        key: "07",
-        value: "От прочих видов деятельности",
-        readOnly: true,
-        expr: ""
-      },
-      A7: { key: "A7", value: "0.00", expr: "" },
-      B7: { key: "B7", value: "0.00", expr: "" },
-      C7: { key: "C7", value: "0.00", expr: "" },
-
-      "08": {
-        key: "08",
-        value: "Комиссионные доходы",
-        readOnly: true,
-        expr: ""
-      },
-      A8: { key: "A8", value: "0.00", expr: "" },
-      B8: { key: "B8", value: "0.00", expr: "" },
-      C8: { key: "C8", value: "0.00", expr: "" }
-    }
-  },
-  table2: {
-    name: "table2",
-    table: {
-      "01": {
-        key: "01",
-        value: "Поступления от операционной деятельности",
-        readOnly: true,
-        expr: "",
-        className: "header"
-      },
-      A1: {
-        key: "A1",
-        value: "0.00",
-        readOnly: true,
-        expr: "=A2+A3+A4+A5+A6+A7+A8",
-        className: "header"
-      },
-      B1: {
-        key: "B1",
-        value: "0.00",
-        readOnly: true,
-        expr: "=B2+B3+B4+B5+B6+B7+B8",
-        className: "header"
-      },
-      C1: {
-        key: "C1",
-        value: "0.00",
-        readOnly: true,
-        expr: "=C2+C3+C4+C5+C6+C7+C8",
-        className: "header"
-      },
-
-      "02": {
-        key: "02",
-        value: "От реализации собственной продукции",
-        readOnly: true,
-        expr: ""
-      },
-      A2: { key: "A2", value: "0.00", expr: "" },
-      B2: { key: "B2", value: "0.00", expr: "" },
-      C2: { key: "C2", value: "0.00", expr: "" },
-
-      "03": {
-        key: "03",
-        value: "От реализации услуг",
-        readOnly: true,
-        expr: ""
-      },
-      A3: {
-        key: "A3",
-        value: "0.00",
-        expr: ""
-      },
-      B3: { key: "B3", value: "0.00", expr: "" },
-      C3: { key: "C3", value: "0.00", expr: "" },
-
-      "04": {
-        key: "04",
-        value: "От розничной реализации товаров",
-        readOnly: true,
-        expr: ""
-      },
-      A4: { key: "A4", value: "0.00", expr: "" },
-      B4: { key: "B4", value: "0.00", expr: "" },
-      C4: { key: "C4", value: "0.00", expr: "" },
-
-      "05": {
-        key: "05",
-        value: "От реализации сельскохозяйственной продукции",
-        readOnly: true,
-        expr: ""
-      },
-      A5: { key: "A5", value: "0.00", expr: "" },
-      B5: { key: "B5", value: "0.00", expr: "" },
-      C5: { key: "C5", value: "0.00", expr: "" },
-
-      "06": {
-        key: "06",
-        value: "От строительной деятельности",
-        readOnly: true,
-        expr: ""
-      },
-      A6: { key: "A6", value: "0.00", expr: "" },
-      B6: { key: "B6", value: "0.00", expr: "" },
-      C6: { key: "C6", value: "0.00", expr: "" },
-
-      "07": {
-        key: "07",
-        value: "От прочих видов деятельности",
-        readOnly: true,
-        expr: ""
-      },
-      A7: { key: "A7", value: "0.00", expr: "" },
-      B7: { key: "B7", value: "0.00", expr: "" },
-      C7: { key: "C7", value: "0.00", expr: "" },
-
-      "08": {
-        key: "08",
-        value: "Комиссионные доходы",
-        readOnly: true,
-        expr: ""
-      },
-      A8: { key: "A8", value: "0.00", expr: "" },
-      B8: { key: "B8", value: "0.00", expr: "" },
-      C8: { key: "C8", value: "0.00", expr: "" }
+    B1: {
+      key: "B1",
+      value: "0.00",
+      readOnly: true,
+      expr: "=A51",
+      className: "bot-head"
+    },
+    C1: {
+      key: "C1",
+      value: "0.00",
+      readOnly: true,
+      expr: "=B51",
+      className: "bot-head"
     }
   },
   tables: {
@@ -8196,65 +8041,6 @@ export const table12 = {
       readOnly: true,
       expr: "",
       className: "nchdp__bot"
-    }
-  },
-  head: {
-    "00": {
-      key: "00",
-      value: "Top head",
-      readOnly: true,
-      expr: "",
-      className: "top-head"
-    },
-    A0: {
-      key: "A0",
-      value: "Top head title",
-      readOnly: true,
-      expr: "",
-      className: "top-head"
-    },
-    B0: {
-      key: "B0",
-      value: "Top head title",
-      readOnly: true,
-      expr: "",
-      className: "top-head"
-    },
-    C0: {
-      key: "C0",
-      value: "Top head title",
-      readOnly: true,
-      expr: "",
-      className: "top-head"
-    },
-
-    "01": {
-      key: "01",
-      value: "Bot head",
-      readOnly: true,
-      expr: "",
-      className: "bot-head"
-    },
-    A1: {
-      key: "A1",
-      value: "2000000.00",
-      expr: "",
-      className: "bot-head"
-    },
-
-    B1: {
-      key: "B1",
-      value: "0.00",
-      readOnly: true,
-      expr: "=A51",
-      className: "bot-head"
-    },
-    C1: {
-      key: "C1",
-      value: "0.00",
-      readOnly: true,
-      expr: "=B51",
-      className: "bot-head"
     }
   }
 };
