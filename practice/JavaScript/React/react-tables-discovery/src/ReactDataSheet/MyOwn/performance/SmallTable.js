@@ -130,8 +130,6 @@ export default ({ data, onUpdate, name }) => {
     []
   );
 
-  let topHead;
-
   const handleRowRenderer = useCallback(
     props => {
       if (props.children[0].props.cell.className === "top-head") {
