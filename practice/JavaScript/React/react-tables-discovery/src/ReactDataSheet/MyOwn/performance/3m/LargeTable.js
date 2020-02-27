@@ -1,28 +1,63 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import TableSmall from "./SmallTable";
 
+const getSummaryObjectOfArrays = (selector, name) => {
+  const obj = {};
+
+  Object.values(selector).forEach((_, idx) => {
+    console.log(_);
+    obj[`${idx}`] = [0, 0, 0, 0];
+  });
+
+  return obj;
+};
+
 export default props => {
-  const tables = Object.values(props.tables).map(table => table);
-  console.log(tables);
+  const [result, setResult] = useState(props.block.result);
+
+  const tables = useMemo(
+    () => getSummaryObjectOfArrays(props.block.tables, "table"),
+    []
+  );
+
+  const handleUpdate = (updated, name) => {
+    console.log(updated);
+    tables[name] = updated;
+    // results["result1"] = [];
+
+    // При условии того, что первая таблица всегда идет в +, а остальные в -
+    const updatedResult = Object.fromEntries(
+      Object.entries(result).map(([key, cell], index) => {
+        if (index !== 0) {
+          Object.values(tables).forEach((table, idx) => {
+            if (idx === 0) {
+              cell.value = table[index];
+            } else {
+              cell.value -= table[index];
+            }
+          });
+        }
+
+        // results["result1"].push(cell.value);
+
+        return [key, cell];
+      })
+    );
+
+    setResult(updatedResult);
+  };
 
   return (
     <>
-      <TableSmall
-        data={props.tables.table1.table}
-        onUpdate={props.onUpdate}
-        name={props.tables.table1.name}
-      />
-      <TableSmall
-        data={props.tables.table2.table}
-        onUpdate={props.onUpdate}
-        name={props.tables.table2.name}
-      />
-      <TableSmall
-        data={props.tables.table3.table}
-        onUpdate={props.onUpdate}
-        name={props.tables.table3.name}
-      />
-      <TableSmall data={props.result} />
+      {props.block.tables.map((table, idx) => (
+        <TableSmall
+          key={`small-${idx}`}
+          data={table}
+          onUpdate={handleUpdate}
+          name={idx}
+        />
+      ))}
+      <TableSmall data={result} />
     </>
   );
 };
