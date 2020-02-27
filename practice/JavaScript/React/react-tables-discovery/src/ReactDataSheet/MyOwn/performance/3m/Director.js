@@ -201,60 +201,21 @@ export default () => {
       <br />
       <hr />
       <StickyContainer>
-        <Sticky>
+        {/* <Sticky>
           {({ style }) => (
             <div style={style}>
               <TableSmall data={head} onUpdate={() => {}} />
             </div>
           )}
-        </Sticky>
+        </Sticky> */}
 
-        <LargeTable tables={tables91} onUpdate={handleUpdate9} result={result9}>
-          {/* <TableSmall
-            data={tables91.table1.table}
-            onUpdate={handleUpdate9}
-            name={tables91.table1.name}
-          />
-          <TableSmall
-            data={tables91.table2.table}
-            onUpdate={handleUpdate9}
-            name={tables91.table2.name}
-          />
-          <TableSmall
-            data={tables91.table3.table}
-            onUpdate={handleUpdate9}
-            name={tables91.table3.name}
-          />
-          <TableSmall data={result9} /> */}
-        </LargeTable>
-
-        {/* <TableSmall
-          data={tables91.table4.table}
-          onUpdate={handleUpdate10}
-          name={tables91.table4.name}
-        />
-        <TableSmall
-          data={tables91.table5.table}
-          onUpdate={handleUpdate10}
-          name={tables91.table5.name}
-        />
-        <TableSmall data={result10} />
-
-        <TableSmall
-          data={tables91.table6.table}
-          onUpdate={handleUpdate11}
-          name={tables91.table6.name}
-        />
-        <TableSmall
-          data={tables91.table7.table}
-          onUpdate={handleUpdate11}
-          name={tables91.table7.name}
-        />
-        <TableSmall data={result11} />
+        {table9.blocks.map((block, idx) => (
+          <LargeTable key={`large-${idx}`} block={block} />
+        ))}
 
         <TableSmall data={generalTop} />
-        <TableSmall data={generalBottom} />
-        <TableSmall data={nchpd} /> */}
+        {/* <TableSmall data={generalBottom} />
+        <TableSmall data={nchpd} />   */}
       </StickyContainer>
     </article>
   );
