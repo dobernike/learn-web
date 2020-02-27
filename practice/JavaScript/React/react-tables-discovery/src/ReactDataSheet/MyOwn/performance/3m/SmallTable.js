@@ -116,10 +116,16 @@ export default ({ data, onUpdate, name }) => {
 
       const values = Object.values(copyCells);
       const updateCells = [];
+
       for (let i = 0; i < cols.length; i++) {
-        updateCells.push(values[i].value);
+        const value = +values[i].value;
+        const validValue = isNaN(value) ? 0 : value;
+
+        updateCells.push(validValue);
       }
+
       onUpdate(updateCells, name);
+
       setCells(copyCells);
     },
     [cells]
