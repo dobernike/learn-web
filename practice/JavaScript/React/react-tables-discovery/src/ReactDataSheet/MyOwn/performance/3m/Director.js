@@ -8,90 +8,100 @@ const getSummaryObjectOfArrays = (selector, name) => {
   const obj = {};
 
   Object.values(selector).forEach((_, idx) => {
-    obj[`${name}${idx + 1}`] = [0, 0, 0, 0];
+    obj[`${name}-${idx}`] = [0, 0, 0, 0];
   });
 
   return obj;
 };
 
+const res = getSummaryObjectOfArrays(table9.results, "result");
+
 export default () => {
-  const [result9, setResult9] = useState(table9.results.result1);
-  const [result10, setResult10] = useState(table9.results.result2);
-  const [result11, setResult11] = useState(table9.results.result3);
-
-  const [generalTop, setGeneralTop] = useState(table9.generalTop);
-  const [generalBottom, setGeneralBottom] = useState(table9.generalBottom);
-
   const [head, setHead] = useState(table9.head);
-
-  // const [nchpd, setNchpd] = useState(table9.nchdp);
-
-  const tables91 = useMemo(() => table9.tables, [table9]);
-
-  const tables = useMemo(
-    () => getSummaryObjectOfArrays(table9.tables, "table"),
-    []
+  const [results, setResults] = useState(res);
+  const [generalResult, setGeneralResult] = useState(
+    table9.generals.generalResult
   );
-
-  const results = useMemo(
-    () => getSummaryObjectOfArrays(table9.results, "result"),
-    []
+  const [generalResultNextMonth, setGeneralResultNextMonth] = useState(
+    table9.generals.generalResultNextMonth
   );
+  const [nchpd, setNchpd] = useState(table9.generals.nchdp);
 
   const generals = useMemo(
     () => ({
-      generalTop: [0, 0, 0, 0],
-      generalBottom: [0, 0, 0, 0]
+      generalResult: [0, 0, 0, 0],
+      generalResultNextMonth: [0, 0, 0, 0]
     }),
     []
   );
 
-  const handleGeneralTopUpdate = () => {
-    generals["generalTop"] = [];
+  const handleGeneralResultUpdate = results => {
+    generals["generalResult"] = [];
 
     const updatedResult = Object.fromEntries(
-      Object.entries(generalTop).map(([key, cell], idx) => {
+      Object.entries(generalResult).map(([key, cell], idx) => {
         if (idx !== 0) {
-          cell.value =
-            +results["result1"][idx] +
-            +results["result2"][idx] +
-            +results["result3"][idx];
-        }
-        generals["generalTop"].push(cell.value);
-
-        return [key, cell];
-      })
-    );
-    setGeneralTop(updatedResult);
-  };
-
-  useEffect(() => handleGeneralTopUpdate, [result9, result10, result11]);
-
-  const handleGeneralBottomUpdate = () => {
-    generals["generalBottom"] = [];
-
-    const updatedResult = Object.fromEntries(
-      Object.entries(generalBottom).map(([key, cell], idx) => {
-        if (idx !== 0) {
-          if (idx !== 1) {
-            cell.value =
-              +generals["generalBottom"][idx - 1] +
-              +generals["generalTop"][idx];
-          } else {
-            cell.value = +head.A1.value + +generals["generalTop"][idx];
+          cell.value = 0;
+          for (let result of Object.values(results)) {
+            console.log(result[idx]);
+            cell.value += result[idx];
           }
         }
 
-        generals["generalBottom"].push(cell.value);
+        generals["generalResult"].push(cell.value);
+
+        return [key, cell];
+      })
+    );
+    setGeneralResult(updatedResult);
+  };
+
+  useEffect(() => handleGeneralResultUpdate(results), [results]);
+
+  const handleGeneralResultNextMonthUpdate = () => {
+    generals["generalResultNextMonth"] = [];
+
+    const updatedResult = Object.fromEntries(
+      Object.entries(generalResultNextMonth).map(([key, cell], idx) => {
+        if (idx !== 0) {
+          if (idx !== 1) {
+            cell.value =
+              +generals["generalResultNextMonth"][idx - 1] +
+              +generals["generalResult"][idx];
+          } else {
+            cell.value = +head.A1.value + +generals["generalResult"][idx];
+          }
+        }
+
+        generals["generalResultNextMonth"].push(cell.value);
 
         return [key, cell];
       })
     );
 
-    setGeneralBottom(updatedResult);
+    setGeneralResultNextMonth(updatedResult);
   };
 
-  useEffect(() => handleGeneralBottomUpdate, [generalTop]);
+  useEffect(() => handleGeneralResultNextMonthUpdate, [
+    generalResult,
+    head.A1.value
+  ]);
+
+  const handleNchdpUpdate = () => {
+    const updatedResult = Object.fromEntries(
+      Object.entries(nchpd).map(([key, cell], idx) => {
+        if (idx !== 0) {
+          cell.value = +generals["generalResultNextMonth"][idx];
+        }
+
+        return [key, cell];
+      })
+    );
+
+    setNchpd(updatedResult);
+  };
+
+  useEffect(() => handleNchdpUpdate, [generalResultNextMonth]);
 
   const heads = useMemo(
     () => ({
@@ -100,13 +110,15 @@ export default () => {
     []
   );
 
-  const handleUpdateHead = () => {
+  const handleUpdateHead = (_, __, value) => {
     heads["head"] = [];
 
     const updatedResult = Object.fromEntries(
       Object.entries(head).map(([key, cell], idx) => {
-        if (idx > 5) {
-          cell.value = +generals["generalBottom"][idx - 5];
+        if (value && idx > 4) {
+          cell.value = value;
+        } else if (idx > 5) {
+          cell.value = +generals["generalResultNextMonth"][idx - 5];
         }
 
         heads["head"].push(cell.value);
@@ -118,76 +130,10 @@ export default () => {
     setHead(updatedResult);
   };
 
-  useEffect(() => handleUpdateHead, [generalBottom]);
+  useEffect(() => handleUpdateHead, [generalResultNextMonth]);
 
-  const handleUpdate9 = useCallback(
-    (updated, name) => {
-      tables[name] = updated;
-      results["result1"] = [];
-
-      const updatedResult = Object.fromEntries(
-        Object.entries(result9).map(([key, cell], idx) => {
-          if (idx !== 0) {
-            cell.value =
-              +tables["table1"][idx] +
-              +tables["table2"][idx] -
-              +tables["table3"][idx];
-          }
-
-          results["result1"].push(cell.value);
-
-          return [key, cell];
-        })
-      );
-
-      setResult9(updatedResult);
-    },
-    [result9]
-  );
-
-  // const handleUpdate10 = useCallback(
-  //   (updated, name) => {
-  //     tables[name] = updated;
-  //     results["result2"] = [];
-
-  //     const updatedResult = Object.fromEntries(
-  //       Object.entries(result10).map(([key, cell], idx) => {
-  //         if (idx !== 0) {
-  //           cell.value = +tables["table4"][idx] - +tables["table5"][idx];
-  //         }
-
-  //         results["result2"].push(cell.value);
-
-  //         return [key, cell];
-  //       })
-  //     );
-
-  //     setResult10(updatedResult);
-  //   },
-  //   [result10]
-  // );
-
-  // const handleUpdate11 = useCallback(
-  //   (updated, name) => {
-  //     tables[name] = updated;
-  //     results["result3"] = [];
-
-  //     const updatedResult = Object.fromEntries(
-  //       Object.entries(result11).map(([key, cell], idx) => {
-  //         if (idx !== 0) {
-  //           cell.value = +tables["table6"][idx] - +tables["table7"][idx];
-  //         }
-
-  //         results["result3"].push(cell.value);
-
-  //         return [key, cell];
-  //       })
-  //     );
-
-  //     setResult11(updatedResult);
-  //   },
-  //   [result11]
-  // );
+  const handleUpdateResult = (name, result) =>
+    setResults(prev => ({ ...prev, [name]: result }));
 
   return (
     <article
@@ -197,25 +143,27 @@ export default () => {
         paddingTop: "1rem"
       }}
     >
-      <hr />
-      <br />
-      <hr />
       <StickyContainer>
-        {/* <Sticky>
+        <Sticky>
           {({ style }) => (
             <div style={style}>
-              <TableSmall data={head} onUpdate={() => {}} />
+              <TableSmall data={head} onUpdate={handleUpdateHead} />
             </div>
           )}
-        </Sticky> */}
+        </Sticky>
 
         {table9.blocks.map((block, idx) => (
-          <LargeTable key={`large-${idx}`} block={block} />
+          <LargeTable
+            key={`large-${idx}`}
+            name={`result-${idx}`}
+            block={block}
+            onUpdateResult={handleUpdateResult}
+          />
         ))}
 
-        <TableSmall data={generalTop} />
-        {/* <TableSmall data={generalBottom} />
-        <TableSmall data={nchpd} />   */}
+        <TableSmall data={generalResult} />
+        <TableSmall data={generalResultNextMonth} />
+        <TableSmall data={nchpd} />
       </StickyContainer>
     </article>
   );

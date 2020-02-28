@@ -5,6 +5,7 @@ import { evaluate } from "mathjs";
 import numberToFormat from "../../utils/numberToFormat";
 import "./table2.css";
 import "./styles.css";
+import "./react-datasheet.css";
 
 export default ({ data, onUpdate, name }) => {
   const [cells, setCells] = useState(data);
@@ -124,7 +125,8 @@ export default ({ data, onUpdate, name }) => {
         updateCells.push(validValue);
       }
 
-      onUpdate(updateCells, name);
+      const changedValue = +changes[0].value;
+      onUpdate(updateCells, name, changedValue);
 
       setCells(copyCells);
     },

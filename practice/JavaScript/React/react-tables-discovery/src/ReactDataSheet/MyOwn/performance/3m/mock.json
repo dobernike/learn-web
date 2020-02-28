@@ -404,758 +404,795 @@
           "className": "result"
         }
       }
+    },
+    {
+      "tables": [
+        {
+          "01": {
+            "key": "01",
+            "value": "Поступления от операционной деятельности",
+            "readOnly": true,
+            "expr": "",
+            "className": "header"
+          },
+          "A1": {
+            "key": "A1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=A2+A3+A4+A5+A6+A7+A8",
+            "className": "header"
+          },
+          "B1": {
+            "key": "B1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=B2+B3+B4+B5+B6+B7+B8",
+            "className": "header"
+          },
+          "C1": {
+            "key": "C1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=C2+C3+C4+C5+C6+C7+C8",
+            "className": "header"
+          },
+
+          "02": {
+            "key": "02",
+            "value": "От реализации собственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A2": { "key": "A2", "value": "0.00", "expr": "" },
+          "B2": { "key": "B2", "value": "0.00", "expr": "" },
+          "C2": { "key": "C2", "value": "0.00", "expr": "" },
+
+          "03": {
+            "key": "03",
+            "value": "От реализации услуг",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A3": {
+            "key": "A3",
+            "value": "0.00",
+            "expr": ""
+          },
+          "B3": { "key": "B3", "value": "0.00", "expr": "" },
+          "C3": { "key": "C3", "value": "0.00", "expr": "" },
+
+          "04": {
+            "key": "04",
+            "value": "От розничной реализации товаров",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A4": { "key": "A4", "value": "0.00", "expr": "" },
+          "B4": { "key": "B4", "value": "0.00", "expr": "" },
+          "C4": { "key": "C4", "value": "0.00", "expr": "" },
+
+          "05": {
+            "key": "05",
+            "value": "От реализации сельскохозяйственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A5": { "key": "A5", "value": "0.00", "expr": "" },
+          "B5": { "key": "B5", "value": "0.00", "expr": "" },
+          "C5": { "key": "C5", "value": "0.00", "expr": "" },
+
+          "06": {
+            "key": "06",
+            "value": "От строительной деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A6": { "key": "A6", "value": "0.00", "expr": "" },
+          "B6": { "key": "B6", "value": "0.00", "expr": "" },
+          "C6": { "key": "C6", "value": "0.00", "expr": "" },
+
+          "07": {
+            "key": "07",
+            "value": "От прочих видов деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A7": { "key": "A7", "value": "0.00", "expr": "" },
+          "B7": { "key": "B7", "value": "0.00", "expr": "" },
+          "C7": { "key": "C7", "value": "0.00", "expr": "" },
+
+          "08": {
+            "key": "08",
+            "value": "Комиссионные доходы",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A8": { "key": "A8", "value": "0.00", "expr": "" },
+          "B8": { "key": "B8", "value": "0.00", "expr": "" },
+          "C8": { "key": "C8", "value": "0.00", "expr": "" }
+        },
+        {
+          "01": {
+            "key": "01",
+            "value": "Поступления от операционной деятельности",
+            "readOnly": true,
+            "expr": "",
+            "className": "header"
+          },
+          "A1": {
+            "key": "A1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=A2+A3+A4+A5+A6+A7+A8",
+            "className": "header"
+          },
+          "B1": {
+            "key": "B1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=B2+B3+B4+B5+B6+B7+B8",
+            "className": "header"
+          },
+          "C1": {
+            "key": "C1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=C2+C3+C4+C5+C6+C7+C8",
+            "className": "header"
+          },
+
+          "02": {
+            "key": "02",
+            "value": "От реализации собственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A2": { "key": "A2", "value": "0.00", "expr": "" },
+          "B2": { "key": "B2", "value": "0.00", "expr": "" },
+          "C2": { "key": "C2", "value": "0.00", "expr": "" },
+
+          "03": {
+            "key": "03",
+            "value": "От реализации услуг",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A3": {
+            "key": "A3",
+            "value": "0.00",
+            "expr": ""
+          },
+          "B3": { "key": "B3", "value": "0.00", "expr": "" },
+          "C3": { "key": "C3", "value": "0.00", "expr": "" },
+
+          "04": {
+            "key": "04",
+            "value": "От розничной реализации товаров",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A4": { "key": "A4", "value": "0.00", "expr": "" },
+          "B4": { "key": "B4", "value": "0.00", "expr": "" },
+          "C4": { "key": "C4", "value": "0.00", "expr": "" },
+
+          "05": {
+            "key": "05",
+            "value": "От реализации сельскохозяйственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A5": { "key": "A5", "value": "0.00", "expr": "" },
+          "B5": { "key": "B5", "value": "0.00", "expr": "" },
+          "C5": { "key": "C5", "value": "0.00", "expr": "" },
+
+          "06": {
+            "key": "06",
+            "value": "От строительной деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A6": { "key": "A6", "value": "0.00", "expr": "" },
+          "B6": { "key": "B6", "value": "0.00", "expr": "" },
+          "C6": { "key": "C6", "value": "0.00", "expr": "" },
+
+          "07": {
+            "key": "07",
+            "value": "От прочих видов деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A7": { "key": "A7", "value": "0.00", "expr": "" },
+          "B7": { "key": "B7", "value": "0.00", "expr": "" },
+          "C7": { "key": "C7", "value": "0.00", "expr": "" },
+
+          "08": {
+            "key": "08",
+            "value": "Комиссионные доходы",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A8": { "key": "A8", "value": "0.00", "expr": "" },
+          "B8": { "key": "B8", "value": "0.00", "expr": "" },
+          "C8": { "key": "C8", "value": "0.00", "expr": "" }
+        },
+        {
+          "01": {
+            "key": "01",
+            "value": "Поступления от операционной деятельности",
+            "readOnly": true,
+            "expr": "",
+            "className": "header"
+          },
+          "A1": {
+            "key": "A1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=A2+A3+A4+A5+A6+A7+A8",
+            "className": "header"
+          },
+          "B1": {
+            "key": "B1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=B2+B3+B4+B5+B6+B7+B8",
+            "className": "header"
+          },
+          "C1": {
+            "key": "C1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=C2+C3+C4+C5+C6+C7+C8",
+            "className": "header"
+          },
+
+          "02": {
+            "key": "02",
+            "value": "От реализации собственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A2": { "key": "A2", "value": "0.00", "expr": "" },
+          "B2": { "key": "B2", "value": "0.00", "expr": "" },
+          "C2": { "key": "C2", "value": "0.00", "expr": "" },
+
+          "03": {
+            "key": "03",
+            "value": "От реализации услуг",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A3": {
+            "key": "A3",
+            "value": "0.00",
+            "expr": ""
+          },
+          "B3": { "key": "B3", "value": "0.00", "expr": "" },
+          "C3": { "key": "C3", "value": "0.00", "expr": "" },
+
+          "04": {
+            "key": "04",
+            "value": "От розничной реализации товаров",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A4": { "key": "A4", "value": "0.00", "expr": "" },
+          "B4": { "key": "B4", "value": "0.00", "expr": "" },
+          "C4": { "key": "C4", "value": "0.00", "expr": "" },
+
+          "05": {
+            "key": "05",
+            "value": "От реализации сельскохозяйственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A5": { "key": "A5", "value": "0.00", "expr": "" },
+          "B5": { "key": "B5", "value": "0.00", "expr": "" },
+          "C5": { "key": "C5", "value": "0.00", "expr": "" },
+
+          "06": {
+            "key": "06",
+            "value": "От строительной деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A6": { "key": "A6", "value": "0.00", "expr": "" },
+          "B6": { "key": "B6", "value": "0.00", "expr": "" },
+          "C6": { "key": "C6", "value": "0.00", "expr": "" },
+
+          "07": {
+            "key": "07",
+            "value": "От прочих видов деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A7": { "key": "A7", "value": "0.00", "expr": "" },
+          "B7": { "key": "B7", "value": "0.00", "expr": "" },
+          "C7": { "key": "C7", "value": "0.00", "expr": "" },
+
+          "08": {
+            "key": "08",
+            "value": "Комиссионные доходы",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A8": { "key": "A8", "value": "0.00", "expr": "" },
+          "B8": { "key": "B8", "value": "0.00", "expr": "" },
+          "C8": { "key": "C8", "value": "0.00", "expr": "" }
+        }
+      ],
+      "result": {
+        "035": {
+          "key": "035",
+          "value": "Result",
+          "readOnly": true,
+          "expr": "",
+          "className": "result"
+        },
+        "A35": {
+          "key": "A35",
+          "value": "0.00",
+          "readOnly": true,
+          "expr": "=A26-A29",
+          "className": "result"
+        },
+        "B35": {
+          "key": "B35",
+          "value": "0.00",
+          "readOnly": true,
+          "expr": "=B26-B29",
+          "className": "result"
+        },
+        "C35": {
+          "key": "C35",
+          "value": "0.00",
+          "readOnly": true,
+          "expr": "=C26-C29",
+          "className": "result"
+        }
+      }
+    },
+    {
+      "tables": [
+        {
+          "01": {
+            "key": "01",
+            "value": "Поступления от операционной деятельности",
+            "readOnly": true,
+            "expr": "",
+            "className": "header"
+          },
+          "A1": {
+            "key": "A1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=A2+A3+A4+A5+A6+A7+A8",
+            "className": "header"
+          },
+          "B1": {
+            "key": "B1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=B2+B3+B4+B5+B6+B7+B8",
+            "className": "header"
+          },
+          "C1": {
+            "key": "C1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=C2+C3+C4+C5+C6+C7+C8",
+            "className": "header"
+          },
+
+          "02": {
+            "key": "02",
+            "value": "От реализации собственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A2": { "key": "A2", "value": "0.00", "expr": "" },
+          "B2": { "key": "B2", "value": "0.00", "expr": "" },
+          "C2": { "key": "C2", "value": "0.00", "expr": "" },
+
+          "03": {
+            "key": "03",
+            "value": "От реализации услуг",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A3": {
+            "key": "A3",
+            "value": "0.00",
+            "expr": ""
+          },
+          "B3": { "key": "B3", "value": "0.00", "expr": "" },
+          "C3": { "key": "C3", "value": "0.00", "expr": "" },
+
+          "04": {
+            "key": "04",
+            "value": "От розничной реализации товаров",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A4": { "key": "A4", "value": "0.00", "expr": "" },
+          "B4": { "key": "B4", "value": "0.00", "expr": "" },
+          "C4": { "key": "C4", "value": "0.00", "expr": "" },
+
+          "05": {
+            "key": "05",
+            "value": "От реализации сельскохозяйственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A5": { "key": "A5", "value": "0.00", "expr": "" },
+          "B5": { "key": "B5", "value": "0.00", "expr": "" },
+          "C5": { "key": "C5", "value": "0.00", "expr": "" },
+
+          "06": {
+            "key": "06",
+            "value": "От строительной деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A6": { "key": "A6", "value": "0.00", "expr": "" },
+          "B6": { "key": "B6", "value": "0.00", "expr": "" },
+          "C6": { "key": "C6", "value": "0.00", "expr": "" },
+
+          "07": {
+            "key": "07",
+            "value": "От прочих видов деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A7": { "key": "A7", "value": "0.00", "expr": "" },
+          "B7": { "key": "B7", "value": "0.00", "expr": "" },
+          "C7": { "key": "C7", "value": "0.00", "expr": "" },
+
+          "08": {
+            "key": "08",
+            "value": "Комиссионные доходы",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A8": { "key": "A8", "value": "0.00", "expr": "" },
+          "B8": { "key": "B8", "value": "0.00", "expr": "" },
+          "C8": { "key": "C8", "value": "0.00", "expr": "" }
+        },
+        {
+          "01": {
+            "key": "01",
+            "value": "Поступления от операционной деятельности",
+            "readOnly": true,
+            "expr": "",
+            "className": "header"
+          },
+          "A1": {
+            "key": "A1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=A2+A3+A4+A5+A6+A7+A8",
+            "className": "header"
+          },
+          "B1": {
+            "key": "B1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=B2+B3+B4+B5+B6+B7+B8",
+            "className": "header"
+          },
+          "C1": {
+            "key": "C1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=C2+C3+C4+C5+C6+C7+C8",
+            "className": "header"
+          },
+
+          "02": {
+            "key": "02",
+            "value": "От реализации собственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A2": { "key": "A2", "value": "0.00", "expr": "" },
+          "B2": { "key": "B2", "value": "0.00", "expr": "" },
+          "C2": { "key": "C2", "value": "0.00", "expr": "" },
+
+          "03": {
+            "key": "03",
+            "value": "От реализации услуг",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A3": {
+            "key": "A3",
+            "value": "0.00",
+            "expr": ""
+          },
+          "B3": { "key": "B3", "value": "0.00", "expr": "" },
+          "C3": { "key": "C3", "value": "0.00", "expr": "" },
+
+          "04": {
+            "key": "04",
+            "value": "От розничной реализации товаров",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A4": { "key": "A4", "value": "0.00", "expr": "" },
+          "B4": { "key": "B4", "value": "0.00", "expr": "" },
+          "C4": { "key": "C4", "value": "0.00", "expr": "" },
+
+          "05": {
+            "key": "05",
+            "value": "От реализации сельскохозяйственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A5": { "key": "A5", "value": "0.00", "expr": "" },
+          "B5": { "key": "B5", "value": "0.00", "expr": "" },
+          "C5": { "key": "C5", "value": "0.00", "expr": "" },
+
+          "06": {
+            "key": "06",
+            "value": "От строительной деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A6": { "key": "A6", "value": "0.00", "expr": "" },
+          "B6": { "key": "B6", "value": "0.00", "expr": "" },
+          "C6": { "key": "C6", "value": "0.00", "expr": "" },
+
+          "07": {
+            "key": "07",
+            "value": "От прочих видов деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A7": { "key": "A7", "value": "0.00", "expr": "" },
+          "B7": { "key": "B7", "value": "0.00", "expr": "" },
+          "C7": { "key": "C7", "value": "0.00", "expr": "" },
+
+          "08": {
+            "key": "08",
+            "value": "Комиссионные доходы",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A8": { "key": "A8", "value": "0.00", "expr": "" },
+          "B8": { "key": "B8", "value": "0.00", "expr": "" },
+          "C8": { "key": "C8", "value": "0.00", "expr": "" }
+        },
+        {
+          "01": {
+            "key": "01",
+            "value": "Поступления от операционной деятельности",
+            "readOnly": true,
+            "expr": "",
+            "className": "header"
+          },
+          "A1": {
+            "key": "A1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=A2+A3+A4+A5+A6+A7+A8",
+            "className": "header"
+          },
+          "B1": {
+            "key": "B1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=B2+B3+B4+B5+B6+B7+B8",
+            "className": "header"
+          },
+          "C1": {
+            "key": "C1",
+            "value": "0.00",
+            "readOnly": true,
+            "expr": "=C2+C3+C4+C5+C6+C7+C8",
+            "className": "header"
+          },
+
+          "02": {
+            "key": "02",
+            "value": "От реализации собственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A2": { "key": "A2", "value": "0.00", "expr": "" },
+          "B2": { "key": "B2", "value": "0.00", "expr": "" },
+          "C2": { "key": "C2", "value": "0.00", "expr": "" },
+
+          "03": {
+            "key": "03",
+            "value": "От реализации услуг",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A3": {
+            "key": "A3",
+            "value": "0.00",
+            "expr": ""
+          },
+          "B3": { "key": "B3", "value": "0.00", "expr": "" },
+          "C3": { "key": "C3", "value": "0.00", "expr": "" },
+
+          "04": {
+            "key": "04",
+            "value": "От розничной реализации товаров",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A4": { "key": "A4", "value": "0.00", "expr": "" },
+          "B4": { "key": "B4", "value": "0.00", "expr": "" },
+          "C4": { "key": "C4", "value": "0.00", "expr": "" },
+
+          "05": {
+            "key": "05",
+            "value": "От реализации сельскохозяйственной продукции",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A5": { "key": "A5", "value": "0.00", "expr": "" },
+          "B5": { "key": "B5", "value": "0.00", "expr": "" },
+          "C5": { "key": "C5", "value": "0.00", "expr": "" },
+
+          "06": {
+            "key": "06",
+            "value": "От строительной деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A6": { "key": "A6", "value": "0.00", "expr": "" },
+          "B6": { "key": "B6", "value": "0.00", "expr": "" },
+          "C6": { "key": "C6", "value": "0.00", "expr": "" },
+
+          "07": {
+            "key": "07",
+            "value": "От прочих видов деятельности",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A7": { "key": "A7", "value": "0.00", "expr": "" },
+          "B7": { "key": "B7", "value": "0.00", "expr": "" },
+          "C7": { "key": "C7", "value": "0.00", "expr": "" },
+
+          "08": {
+            "key": "08",
+            "value": "Комиссионные доходы",
+            "readOnly": true,
+            "expr": ""
+          },
+          "A8": { "key": "A8", "value": "0.00", "expr": "" },
+          "B8": { "key": "B8", "value": "0.00", "expr": "" },
+          "C8": { "key": "C8", "value": "0.00", "expr": "" }
+        }
+      ],
+      "result": {
+        "035": {
+          "key": "035",
+          "value": "Result",
+          "readOnly": true,
+          "expr": "",
+          "className": "result"
+        },
+        "A35": {
+          "key": "A35",
+          "value": "0.00",
+          "readOnly": true,
+          "expr": "=A26-A29",
+          "className": "result"
+        },
+        "B35": {
+          "key": "B35",
+          "value": "0.00",
+          "readOnly": true,
+          "expr": "=B26-B29",
+          "className": "result"
+        },
+        "C35": {
+          "key": "C35",
+          "value": "0.00",
+          "readOnly": true,
+          "expr": "=C26-C29",
+          "className": "result"
+        }
+      }
     }
   ],
-  "tables": {
-    "table1": {
-      "name": "table1",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
+  "generals": {
+    "generalResult": {
+      "050": {
+        "key": "050",
+        "value": "General result top",
+        "readOnly": true,
+        "expr": "",
+        "className": "result-of-month__top"
+      },
+      "A50": {
+        "key": "A50",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "=A25+A35+A49",
+        "className": "result-of-month__top"
+      },
+      "B50": {
+        "key": "B50",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "=B25+B35+B49",
+        "className": "result-of-month__top"
+      },
+      "C50": {
+        "key": "C50",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "=C25+C35+C49",
+        "className": "result-of-month__top"
       }
     },
-    "table2": {
-      "name": "table2",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
+    "generalResultNextMonth": {
+      "051": {
+        "key": "051",
+        "value": "General result bot",
+        "readOnly": true,
+        "expr": "",
+        "className": "result-of-month__bot"
+      },
+      "A51": {
+        "key": "A51",
+        "value": "2000000.00",
+        "readOnly": true,
+        "expr": "=A1+A50",
+        "className": "result-of-month__bot"
+      },
+      "B51": {
+        "key": "B51",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "=B1+B50",
+        "className": "result-of-month__bot"
+      },
+      "C51": {
+        "key": "C51",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "=C1+C50",
+        "className": "result-of-month__bot"
       }
     },
-    "table3": {
-      "name": "table3",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
-      }
-    },
-    "table4": {
-      "name": "table4",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
-      }
-    },
-    "table5": {
-      "name": "table5",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
-      }
-    },
-    "table6": {
-      "name": "table6",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
-      }
-    },
-    "table7": {
-      "name": "table7",
-      "table": {
-        "01": {
-          "key": "01",
-          "value": "Поступления от операционной деятельности",
-          "readOnly": true,
-          "expr": "",
-          "className": "header"
-        },
-        "A1": {
-          "key": "A1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=A2+A3+A4+A5+A6+A7+A8",
-          "className": "header"
-        },
-        "B1": {
-          "key": "B1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=B2+B3+B4+B5+B6+B7+B8",
-          "className": "header"
-        },
-        "C1": {
-          "key": "C1",
-          "value": "0.00",
-          "readOnly": true,
-          "expr": "=C2+C3+C4+C5+C6+C7+C8",
-          "className": "header"
-        },
-
-        "02": {
-          "key": "02",
-          "value": "От реализации собственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A2": { "key": "A2", "value": "0.00", "expr": "" },
-        "B2": { "key": "B2", "value": "0.00", "expr": "" },
-        "C2": { "key": "C2", "value": "0.00", "expr": "" },
-
-        "03": {
-          "key": "03",
-          "value": "От реализации услуг",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A3": {
-          "key": "A3",
-          "value": "0.00",
-          "expr": ""
-        },
-        "B3": { "key": "B3", "value": "0.00", "expr": "" },
-        "C3": { "key": "C3", "value": "0.00", "expr": "" },
-
-        "04": {
-          "key": "04",
-          "value": "От розничной реализации товаров",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A4": { "key": "A4", "value": "0.00", "expr": "" },
-        "B4": { "key": "B4", "value": "0.00", "expr": "" },
-        "C4": { "key": "C4", "value": "0.00", "expr": "" },
-
-        "05": {
-          "key": "05",
-          "value": "От реализации сельскохозяйственной продукции",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A5": { "key": "A5", "value": "0.00", "expr": "" },
-        "B5": { "key": "B5", "value": "0.00", "expr": "" },
-        "C5": { "key": "C5", "value": "0.00", "expr": "" },
-
-        "06": {
-          "key": "06",
-          "value": "От строительной деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A6": { "key": "A6", "value": "0.00", "expr": "" },
-        "B6": { "key": "B6", "value": "0.00", "expr": "" },
-        "C6": { "key": "C6", "value": "0.00", "expr": "" },
-
-        "07": {
-          "key": "07",
-          "value": "От прочих видов деятельности",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A7": { "key": "A7", "value": "0.00", "expr": "" },
-        "B7": { "key": "B7", "value": "0.00", "expr": "" },
-        "C7": { "key": "C7", "value": "0.00", "expr": "" },
-
-        "08": {
-          "key": "08",
-          "value": "Комиссионные доходы",
-          "readOnly": true,
-          "expr": ""
-        },
-        "A8": { "key": "A8", "value": "0.00", "expr": "" },
-        "B8": { "key": "B8", "value": "0.00", "expr": "" },
-        "C8": { "key": "C8", "value": "0.00", "expr": "" }
+    "nchdp": {
+      "052": {
+        "key": "052",
+        "value": "Other result top",
+        "readOnly": true,
+        "expr": "",
+        "className": "nchdp__top"
+      },
+      "A52": {
+        "key": "A52",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "",
+        "className": "nchdp__top"
+      },
+      "B52": {
+        "key": "B52",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "",
+        "className": "nchdp__top"
+      },
+      "C52": {
+        "key": "C52",
+        "value": "0.00",
+        "readOnly": true,
+        "expr": "",
+        "className": "nchdp__top"
       }
     }
+  },
+  "comment": {
+    "label": "Базовый комментарий",
+    "text": ""
   },
   "results": {
     "result1": {
@@ -1247,124 +1284,6 @@
         "expr": "=C26-C29",
         "className": "result"
       }
-    }
-  },
-  "generalTop": {
-    "050": {
-      "key": "050",
-      "value": "General result top",
-      "readOnly": true,
-      "expr": "",
-      "className": "result-of-month__top"
-    },
-    "A50": {
-      "key": "A50",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "=A25+A35+A49",
-      "className": "result-of-month__top"
-    },
-    "B50": {
-      "key": "B50",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "=B25+B35+B49",
-      "className": "result-of-month__top"
-    },
-    "C50": {
-      "key": "C50",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "=C25+C35+C49",
-      "className": "result-of-month__top"
-    }
-  },
-  "generalBottom": {
-    "051": {
-      "key": "051",
-      "value": "General result bot",
-      "readOnly": true,
-      "expr": "",
-      "className": "result-of-month__bot"
-    },
-    "A51": {
-      "key": "A51",
-      "value": "2000000.00",
-      "readOnly": true,
-      "expr": "=A1+A50",
-      "className": "result-of-month__bot"
-    },
-    "B51": {
-      "key": "B51",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "=B1+B50",
-      "className": "result-of-month__bot"
-    },
-    "C51": {
-      "key": "C51",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "=C1+C50",
-      "className": "result-of-month__bot"
-    }
-  },
-  "nchdp": {
-    "052": {
-      "key": "052",
-      "value": "Other result top",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__top"
-    },
-    "A52": {
-      "key": "A52",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__top"
-    },
-    "B52": {
-      "key": "B52",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__top"
-    },
-    "C52": {
-      "key": "C52",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__top"
-    },
-    "053": {
-      "key": "053",
-      "value": "Other result bot",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__bot"
-    },
-    "A53": {
-      "key": "A53",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__bot"
-    },
-    "B53": {
-      "key": "B53",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__bot"
-    },
-    "C53": {
-      "key": "C53",
-      "value": "0.00",
-      "readOnly": true,
-      "expr": "",
-      "className": "nchdp__bot"
     }
   }
 }

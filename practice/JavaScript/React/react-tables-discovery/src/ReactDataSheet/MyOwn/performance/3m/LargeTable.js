@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import TableSmall from "./SmallTable";
 
-const getSummaryObjectOfArrays = (selector, name) => {
+const getSummaryObjectOfArrays = selector => {
   const obj = {};
 
   Object.values(selector).forEach((_, idx) => {
@@ -15,13 +15,13 @@ export default props => {
   const [result, setResult] = useState(props.block.result);
 
   const tables = useMemo(
-    () => getSummaryObjectOfArrays(props.block.tables, "table"),
+    () => getSummaryObjectOfArrays(props.block.tables),
     []
   );
 
   const handleUpdate = (updated, name) => {
     tables[name] = updated;
-    // results["result1"] = [];
+    const arr = [];
 
     // При условии того, что первая таблица всегда идет в +, а остальные в -
     const updatedResult = Object.fromEntries(
@@ -36,11 +36,13 @@ export default props => {
           });
         }
 
-        // results["result1"].push(cell.value);
+        arr.push(cell.value);
 
         return [key, cell];
       })
     );
+
+    props.onUpdateResult(props.name, arr);
 
     setResult(updatedResult);
   };
