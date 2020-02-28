@@ -5,7 +5,6 @@ const getSummaryObjectOfArrays = (selector, name) => {
   const obj = {};
 
   Object.values(selector).forEach((_, idx) => {
-    console.log(_);
     obj[`${idx}`] = [0, 0, 0, 0];
   });
 
@@ -21,7 +20,6 @@ export default props => {
   );
 
   const handleUpdate = (updated, name) => {
-    console.log(updated);
     tables[name] = updated;
     // results["result1"] = [];
 
