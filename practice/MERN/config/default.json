@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "jwtSecret": "dobernike mern",
+  "mongoUri": "mongodb+srv://dobernike:1992@cluster0-4qspt.azure.mongodb.net/app?retryWrites=true&w=majority"
+}
