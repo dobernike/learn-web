@@ -1,5 +1,6 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
 import { rootReducer } from "./redux/rootReducer";
 import {
@@ -29,7 +30,18 @@ const themeBtn = document.getElementById("theme");
 //   };
 // }
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+// const store = createStore(
+//   rootReducer,
+//   compose(
+//     applyMiddleware(thunk, logger),
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   )
+// );
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk, logger))
+);
 
 addBtn.addEventListener("click", () => {
   store.dispatch(increment());
