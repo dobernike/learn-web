@@ -1,6 +1,14 @@
-import { createStore } from "./createStore";
-import "./styles.css";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
 import { rootReducer } from "./redux/rootReducer";
+import {
+  increment,
+  decrement,
+  asyncIncrement,
+  changeTheme
+} from "./redux/actions";
+import "./styles.css";
 
 const counter = document.getElementById("counter");
 const addBtn = document.getElementById("add");
@@ -8,28 +16,43 @@ const subBtn = document.getElementById("sub");
 const asyncBtn = document.getElementById("async");
 const themeBtn = document.getElementById("theme");
 
-const store = createStore(rootReducer, 0);
+// function logger(state) {
+//   return function(next) {
+//     return function(action) {
+//       console.log("Prev State", state.getState());
+//       console.log("Action", action);
+//       const newState = next(action);
 
-window.store = store;
+//       console.log("New State", state.getState());
+//       return newState;
+//     };
+//   };
+// }
+
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 addBtn.addEventListener("click", () => {
-  store.dispatch({ type: "INCREMENT" });
+  store.dispatch(increment());
 });
 
 subBtn.addEventListener("click", () => {
-  store.dispatch({ type: "DECREMENT" });
+  store.dispatch(decrement());
 });
 
-asyncBtn.addEventListener("click", () => {});
+asyncBtn.addEventListener("click", () => {
+  store.dispatch(asyncIncrement());
+});
 
 store.subscribe(() => {
   const state = store.getState();
 
-  counter.textContent = state;
+  counter.textContent = state.counter;
+  document.body.className = state.theme.value;
 });
 
 store.dispatch({ type: "INIT_APPLICATION" });
 
 themeBtn.addEventListener("click", () => {
-  // document.body.classList.toggle("dark");
+  const newTheme = document.body.classList.contains("light") ? "dark" : "ligth";
+  store.dispatch(changeTheme(newTheme));
 });
