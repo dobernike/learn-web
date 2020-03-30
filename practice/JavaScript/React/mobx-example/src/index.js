@@ -2,28 +2,39 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import { observable, computed } from "mobx";
+import { observable, computed, configure, action } from "mobx";
 import { observer } from "mobx-react";
 
-const nickName = observable({
-  firstName: `Paul`,
-  age: 26,
+configure({ enforceActions: `observed` });
 
-  get nickName() {
-    console.log("Generate nickName!");
-    return `${this.firstName}${this.age}`;
+const nickName = observable(
+  {
+    firstName: `Paul`,
+    age: 26,
+
+    get nickName() {
+      console.log("Generate nickName!");
+      return `${this.firstName}${this.age}`;
+    },
+
+    increment() {
+      this.age++;
+    },
+
+    decrement() {
+      this.age--;
+    }
   },
-
-  increment() {
-    this.age++;
+  {
+    increment: action(`Plus one`), // for debug
+    decrement: action
   },
-
-  decrement() {
-    this.age--;
+  {
+    name: "nickNamePbservable" // for debug
   }
-});
+);
 
-const todos = observable([{ text: `Learn React` }, { text: `Learn MobX` }]);
+// const todos = observable([{ text: `Learn React` }, { text: `Learn MobX` }]);
 
 @observer
 class Counter extends Component {
@@ -37,16 +48,16 @@ class Counter extends Component {
   render() {
     return (
       <div className="App">
-        {/* <h1>{this.props.store.nickName}</h1>
+        <h1>{this.props.store.nickName}</h1>
         <h1>{this.props.store.age}</h1>
         <button onClick={this.handleDecrement}>-1</button>
-        <button onClick={this.handleIncrement}>+1</button> */}
+        <button onClick={this.handleIncrement}>+1</button>
 
-        <ul>
+        {/* <ul>
           {todos.map(({ text }) => (
             <li key={text}>{text}</li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     );
   }
@@ -54,11 +65,11 @@ class Counter extends Component {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter store={todos} />
+    <Counter store={nickName} />
   </React.StrictMode>,
   document.getElementById("root")
 );
 
-todos.push({ text: `Learn Redux` });
+// todos.push({ text: `Learn Redux` });
 
 serviceWorker.unregister();
