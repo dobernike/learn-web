@@ -8,26 +8,57 @@ import { observer } from "mobx-react";
 configure({ enforceActions: `observed` });
 
 class Store {
-  devsList = [
+ devsList = [
     { name: "Jack", sp: 12 },
     { name: "Max", sp: 10 },
     { name: "Leo", sp: 8 }
   ];
 
+  filter = '';
+
   get totalSum() {
-    return 0;
+    return this.devsList.reduce((sum, { sp }) => sum += sp, 0);
   }
 
   get topPerformer() {
-    return {
-      name: "Name"
-    };
+    const maxSp = Math.max(...this.devsList.map(({sp}) => sp))
+
+    return this.devsList.find(({sp, name}) => {
+      if (maxSp === sp) {
+        return name;
+      }
+    })
   }
 
-  clearList() {}
+  get filteredDevelopers() {
+    const matchesFilter = new RegExp(this.filter, 'i')
 
-  addDeveloper(dev) {}
+    return this.devsList.filter(({name}) => !this.filter || matchesFilter.test(name))
+  }
+
+  clearList() {
+    this.devsList = []
+  }
+
+  addDeveloper(dev) {
+    this.devsList.push(dev)
+  }
+
+  updateFilter(value) {
+    this.filter = value
+  }
 }
+
+decorate(Store, {
+  devsList: observable,
+  filter: observable,
+  totalSum: computed,
+  topPerformer: computed,
+  filteredDevelopers: computed,
+  clearList: action,
+  addDeveloper: action,
+  updateFilter: action
+})
 
 const appStore = new Store();
 
@@ -40,7 +71,7 @@ const Row = ({ data: { name, sp } }) => {
   );
 };
 
-class Table extends Component {
+@observer class Table extends Component {
   render() {
     const { store } = this.props;
 
@@ -53,7 +84,7 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {store.devsList.map((dev, i) => (
+          {store.filteredDevelopers.map((dev, i) => (
             <Row key={i} data={dev} />
           ))}
         </tbody>
@@ -72,10 +103,10 @@ class Table extends Component {
   }
 }
 
-class Controls extends Component {
+@observer class Controls extends Component {
   addDeveloper = () => {
-    const name = window.promt("The name:");
-    const sp = parseInt(window.promt("The story points:"), 10);
+    const name = prompt("The name:");
+    const sp = parseInt(prompt("The story points:"), 10);
     this.props.store.addDeveloper({ name, sp });
   };
 
@@ -83,17 +114,21 @@ class Controls extends Component {
     this.props.store.clearList();
   };
 
+  filterDevelopers = ({target: {value}}) => {
+    this.props.store.updateFilter(value)
+  }
+
   render() {
     return (
       <div className="controls">
         <button onClick={this.clearList}>Clear table</button>
         <button onClick={this.addDeveloper}>Add record</button>
+        <input value={this.props.store.filter} onChange={this.filterDevelopers} />
       </div>
     );
-  }
-}
+  }}
 
-class App extends Component {
+ class App extends Component {
   render() {
     return (
       <div>
