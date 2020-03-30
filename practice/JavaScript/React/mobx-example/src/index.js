@@ -35,7 +35,7 @@ const Row = ({ data: { name, sp } }) => {
   return (
     <tr>
       <td>{name}</td>
-      <td>{age}</td>
+      <td>{sp}</td>
     </tr>
   );
 };
@@ -74,8 +74,8 @@ class Table extends Component {
 
 class Controls extends Component {
   addDeveloper = () => {
-    const name = promt("The name:");
-    const sp = parseInt(promt("The story points:"), 10);
+    const name = window.promt("The name:");
+    const sp = parseInt(window.promt("The story points:"), 10);
     this.props.store.addDeveloper({ name, sp });
   };
 
