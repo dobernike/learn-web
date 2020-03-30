@@ -2,19 +2,25 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import { observable } from "mobx";
+import { observable, computed } from "mobx";
 import { observer } from "mobx-react";
 
-const counterState = observable({
-  count: 0
-});
+const nickName = new (class UserNickName {
+  @observable firstName = "Paul";
+  @observable age = 26;
 
-counterState.increment = function() {
-  this.count++;
+  @computed get nickName() {
+    console.log("Generate nickName!");
+    return `${this.firstName}${this.age}`;
+  }
+})();
+
+nickName.increment = function() {
+  this.age++;
 };
 
-counterState.decrement = function() {
-  this.count--;
+nickName.decrement = function() {
+  this.age--;
 };
 
 @observer
@@ -29,7 +35,8 @@ class Counter extends Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.props.store.count}</h1>
+        <h1>{this.props.store.nickName}</h1>
+        <h1>{this.props.store.age}</h1>
         <button onClick={this.handleDecrement}>-1</button>
         <button onClick={this.handleIncrement}>+1</button>
       </div>
@@ -39,7 +46,7 @@ class Counter extends Component {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter store={counterState} />
+    <Counter store={nickName} />
   </React.StrictMode>,
   document.getElementById("root")
 );
