@@ -1,0 +1,14 @@
+{
+  "name": "gqlapollo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Fedushin <fedushin.pavel@gmail.com> (https://dobernike.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
