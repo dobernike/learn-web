@@ -252,3 +252,9 @@ https://khalilstemmler.com/img/blog/ddd-intro/events.svg
    Ломаем систему и смотрим, что у нас получится
 
 ---
+
+## How to Develop a High-load System Based on Node.js, Cassandra and Redis
+
+[https://magora-systems.com/high-load-system-node-js-cassandra-redis/](https://magora-systems.com/high-load-system-node-js-cassandra-redis/)
+
+---
