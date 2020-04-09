@@ -1,29 +1,31 @@
 # Project Overview
 
-Client (browser)
+- Client (browser)
 
----
+  ***
 
-React App
-Apollo
+  React App
 
----
+  Apollo
 
-Graphiql
+  ***
 
-Server (Node.js)
+- Graphiql
 
----
+- Server (Node.js)
 
-Express App
-GraphQl Server
+  ***
 
----
+  Express App
 
-Database
+  GraphQl Server
 
----
+  ***
 
-MongoDB
+- Database
 
----
+  ***
+
+  MongoDB
+
+  ***
