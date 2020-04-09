@@ -257,4 +257,189 @@ https://khalilstemmler.com/img/blog/ddd-intro/events.svg
 
 [https://magora-systems.com/high-load-system-node-js-cassandra-redis/](https://magora-systems.com/high-load-system-node-js-cassandra-redis/)
 
+https://magora-systems.com/uploads/pages/96/GPAS_article_image_1.jpg
+
+https://magora-systems.com/uploads/pages/96/GPAS_article_image_2.jpg
+
+---
+
+## Особенности разработки высоконагруженных клиентских приложений
+
+[https://www.youtube.com/watch?v=t_Zp2ZVKpU0](https://www.youtube.com/watch?v=t_Zp2ZVKpU0)
+
+### Высоконагруженные клиентские приложения - что это?
+
+- Высоконагруженные данными (Data-Driven)
+  ВСТРЕЧАЕТСЯ НА КЛИЕНТЕ
+
+- Высоконагруженные вычисления,
+  динамические приложения (Calculation-Driven)
+  НЕ ВСТРЕЧАЕТСЯ НА КЛИЕНТЕ
+
+- В контексте React
+  (огромные графы или деревья)
+
+### Data fetching в React-приложениях
+
+Из документации по React:
+
+- Superagent
+  легковестная библиотека для Ajax
+
+- Falcor
+  от Netflix
+
+- Request
+  Упрощенный клиент для HTTP-запросов
+
+- Axios
+  Promise based HTTP client for the browser and node.js
+
+- Apollo
+  GraphQL клиент
+
+- Relay Modern
+  JavaScript framework для разработки нагруженных данными React-приложений
+
+Форматы общения клиента с сервером:
+
+REST
+
+gRPC / JSON-RPC
+
+GraphQL
+
+XML vs JSON vs ProtoBuf vs FlatBuf
+
+### На чем сейчас остановимся?
+
+1. React <-> REST
+2. React <-> Relay
+
+- Relay Modern: основной инстументарий
+
+### Проектирование: базовые принципы и архитектура React-приложения
+
+- Придерживаемся концепции `Shared Nothing`
+- Структуризация данных в небольших сторах (`Effector`)
+- Один стор == Одинь модуль / сервис
+- Кэшируем все, что только можно. Согласованность кэша
+- Не используем JOIN-ы, если этого на самом деле не требуется
+- Организовываем центральный диспетчер событий и мутации данных
+
+### Архитектурные уровни приложения
+
+- Network layer
+  Как мы будем получать данные
+
+- Data layer
+  Как данные будут структоризироваться на клиенте
+
+- Functional layer
+  Уровень самих компонентов
+
+### Что делать, если Redux?
+
+- Разделение на бизнес-логику и логику представления
+
+- Декларативная реализая представления
+
+- createNamespaceReducer
+  (@ghadyani-framework/redux-utils)
+
+- Создание отдельных сервисов для мониторинга данных уровня бизнес-логики
+
+- Использование селекторов свойств
+
+Вещать на Middlewares сервисы like API (хорошее, но такое)
+
+Лучше Effector
+
+### Relay Modern
+
+- композитная, декларативная выборка данных - GraphQL => модуляризация выборок
+
+- Совместные определения данных и представлений
+
+```js
+const UserProfile = Relay.createFragmentContainer(
+  // View: React-component (fc or class)
+  props => {
+    const user = props.data;
+    // ...
+  },
+  // Data: GraphQL-fragment
+  // Фрагмент сам по себе матчится с тем, что ожидается в props.
+  graphql`
+    fragment UserProfile on User {
+      name
+      photo { uri }
+    }
+  `
+);
+
+// Дальше контейнер фрагмента используется как React-component:
+<UserProfile data={...} />
+```
+
+Старый relay (БЫЛО)
+
+```js
+// Некоторый компонент, в котором определяется Fragment
+Greeting = Relay.createContainer(Greeting, {
+  fragments: {
+    greetings: () => Relay.QL`
+      fragment on Greetings {
+        hello
+      }
+    `,
+  },
+});
+
+// Другой компонент, в котором используется Fragment первого
+App = Relay.createContainer(App, {
+  fragments: {
+    greetings: () => Relay.QL`
+       fragment on Greetings {
+        username
+        ${Greeting.getFragments("greetings")},
+      }
+    `,
+  },
+});
+```
+
+relay modern (СТАЛО)
+
+```js
+// Некоторый компонент, в котором определяется Fragment
+Greeting = createContainer(
+  Greeting,
+  graphql`
+    fragment Greetings_greting on Greetings {
+      hello
+    }
+  `
+);
+
+// Другой компонент, в котором используется Fragment первого
+App = createContainer(
+  App,
+  graphql`
+    fragment App_greetings on Greetings {
+      username
+      ...Greeting_greeting
+    }
+  `
+);
+```
+
+### Relay: Refetch Container
+
+### Relay: Mutations
+
+### Relay: Subscriptions
+
+https://t.me/relaymodern
+
 ---
