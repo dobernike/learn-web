@@ -16,14 +16,14 @@ class AddBook extends Component {
     const data = this.props.data;
 
     if (data.loading) {
-      return (
-        <option disabled>
-          <div>Loading Authors...</div>
-        </option>
-      );
+      return <option disabled>Loading Authors...</option>;
     }
 
-    return data.books.map((book) => <li key={book.id}>{book.name}</li>);
+    return data.authors.map((author) => (
+      <option key={author.id} value={author.id}>
+        {author.name}
+      </option>
+    ));
   }
 
   render() {
@@ -48,6 +48,7 @@ class AddBook extends Component {
             Author:
             <select>
               <option>Select author</option>
+              {this.displayAuthors()}
             </select>
           </label>
         </div>
