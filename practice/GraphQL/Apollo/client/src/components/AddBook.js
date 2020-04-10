@@ -12,6 +12,20 @@ const getAuthorsQuery = gql`
 `;
 
 class AddBook extends Component {
+  displayAuthors() {
+    const data = this.props.data;
+
+    if (data.loading) {
+      return (
+        <option disabled>
+          <div>Loading Authors...</div>
+        </option>
+      );
+    }
+
+    return data.books.map((book) => <li key={book.id}>{book.name}</li>);
+  }
+
   render() {
     return (
       <form id="add-book">
@@ -44,4 +58,4 @@ class AddBook extends Component {
   }
 }
 
-export default graphql(getBooksQuery)(BookList);
+export default graphql(getAuthorsQuery)(AddBook);
