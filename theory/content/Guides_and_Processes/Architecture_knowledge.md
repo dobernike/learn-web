@@ -830,3 +830,331 @@ https://m.signalvnoise.com/the-majestic-monolith/
 Strudel.js is another modest framework on similar lines. In 2019, we can probably supplement using contemporary DOM library like RE:DOM.
 
 ---
+
+## Архитектурные этюды как не угробить архитектуру своего проекта
+
+[https://www.youtube.com/watch?v=rEU7hogGwzA](https://www.youtube.com/watch?v=rEU7hogGwzA)
+
+### О чем доклад
+
+- Архитектура
+- Типичные ошибки
+- Решения
+
+### PouchDB БД на клиенте
+
+```js
+var db = new PouchDB("dbname");
+
+db.put({
+  /*...*/
+});
+
+db.changes().on("change", function () {
+  console.log("Пора обновить данные");
+});
+```
+
+Конфликты (не поддерживает)
+
+CRDT
+conflict-free replicated data type
+Мы разрулим все конфликты когда-нибудь потом
+
+Это АВТОР в 2010
+
+### нельзя так делать!
+
+### Почему?
+
+Писал на 2х фреймворках (react, angular) и решил выбрать для проекта новый (Vue), еще не зная, что придется писать.
+
+Есть ТЗ, посмотрел туториал по нему, придерается к строчке в туториале, решает, что нужно делать лучше (цитата Линуса про структуры данных) и переосмыслевает код (вместо локал стоража, добавляет фетч).
+Потом прочитал статью на хабре про недостатки фетча месячной давности и внедряет оттуда axios (которая еще была не проверена).
+Решил что интерфейс должен быть оптимистичный (без ошибок и алертов).
+Прочитал про конкурента mongoDB и внедрил PounchDB (WTF?!).
+Услашал 1 доклад про CRDT (модное слово), прочитал доку и внедрил.
+
+### Архитектура
+
+#### Решения
+
+- Важные
+- Неотложные
+
+Уровни архитектуры
+
+- Код (Мы тут)
+- Требования (Не полные могут быть)
+- Процесс (отчитывается по времени - аутсорс. или метрикам - продукт)
+- Бизнес (деньги платят)
+
+`- А что делать мне?`
+`- Будь проще и ленивее`
+
+#### Один из принципов Lean
+
+Предельно отсроченное принятие решений
+
+Пока не приперло - не выбирайте ничего.
+
+Если впилим что-нибудь - принесет денег?
+
+```js
+function fetch() {
+  var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+  todos.forEach(function (todo, index) {
+    todo.id = index;
+  });
+
+  todoStorage.uid = todos.length;
+
+  return todos;
+}
+```
+
+Какой следующий шаг?
+Все-таки нужно подключить к серверу
+
+А как же тесты?! (видел на конфе)
+
+1. Данные прочитаны из localStorage
+2. Всем данным выставлен правильный id
+3. Записан правильный UID
+
+```js
+async function fetch(offset, limit) {
+  // var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+// Ассинхронность же
+  // var todos = api.fetch(`/api/tasks?offset=${offset}&limit=${limit}`)
+  var todos = await api.getTasks(offset, limit)
+
+  // todos.forEach(function (todo, index) {
+  //   todo.id = index;
+  // });
+  todos.forEach(/*Кастомный обработчик*/)
+
+  // todoStorage.uid = todos.length;
+  todoStorage.uid = /*другой способ получения*/
+
+  return todos;
+}
+```
+
+Как вы думаете, что станет с тестами?
+
+(тесты падают)
+
+Нужен рефакторинг
+
+или...
+
+### SOLID
+
+#### S
+
+Класс должен иметь только одну причину для изменения
+(Какие на йух классы?!)
+
+До
+
+```js
+function addAndMultiply(x, y, z) {
+  return (x + y) * z;
+}
+```
+
+После
+
+```js
+function add(x1, x2) {
+  return x1 + x2;
+}
+function multiply(x1, x2) {
+  return x1 * x2;
+}
+function addAndMultiply(x1, x2, x3) {
+  return multiple(add(x1 + x2), x3);
+}
+
+function multiplyAndAdd(x1, x2, x3) {
+  return add(multiple(x1, x2), x3);
+}
+```
+
+Принципы тоже нужно применять лениво
+
+```js
+async function fetch(offset, limit) {
+  var todos = await getTasks(offset, limit); // Получить задачи
+
+  // var todos = await api.getTasks(offset, limit)
+  // todos.forEach(/*Кастомный обработчик*/)
+
+  setStorageHash(todoStorage, todos); // Обновить хеш, для вью
+
+  // todoStorage.uid = /*другой способ получения*/
+
+  return todos;
+}
+```
+
+Нужно протестировать
+
+- Функции вызвались в нужном порядке (пока забьем)
+- Мы правильно получили данные (в отдельной функции)
+- Мы правильно посчитали хэш (в отдельной фунции)
+
+Типизация для наглядности
+
+```ts
+async function fetch(offset: Number, limit: Number): Promise<Array<ToDo>> {
+  var todos: Array<ToDo> = await getTasks(offset, limit);
+
+  setStorageHash(todoStorage, todos);
+
+  return todos;
+}
+```
+
+Меньше тестов будет с типизацией
+
+#### O
+
+открыто для расширения, но закрыто для изменения
+
+```ts
+async function fetch(offset: Number, limit: Number): Promise<Array<ToDo>> {
+  var todos: Array<ToDo> = await getTasks(offset, limit);
+
+  // function setStorageHash(taks: Array<ToDo>, todoStorage: TodoStorage) {
+  //   todoStorage.uid = task.length;
+  // }
+
+  function setStorageHashByLength(items: Array, storage: Storage) {
+    storage.uid = items.length;
+  }
+
+  setStorageHashByLength(todoStorage, todos);
+
+  return todos;
+}
+```
+
+#### I
+
+Принцип разделения интерфейса
+
+Клиенты не должны зависеть от методов, которые они не используют
+
+Загружаем что-то еще
+
+```ts
+// Нужно еще что-то грузить, переименуем в fetchTasks
+async function fetchTasks(offset: Number, limit: Number): Promise<Array<ToDo>> {
+  var todos: Array<ToDo> = await getTasks(offset, limit);
+
+  setStorageHash(todoStorage, todos);
+
+  return todos;
+}
+
+// Нужно еще для Users
+async function fetchUsers(offset: Number, limit: Number): Promise<Array<User>> {
+  var users: Array<User> = await getUsers(offset, limit);
+
+  setStorageHash(usersStorage, users);
+
+  return users;
+}
+```
+
+<!-- НАДО -->
+
+```ts
+async function fetch(offset: Number, limit: Number): Promise<Array<any>> {
+  var items: Array<any> = await getUsers(offset, limit);
+
+  setStorageHash(usersStorage, users);
+
+  return users;
+}
+```
+
+#### D
+
+Принцип инверсии зависимостей
+(android - берем любой android телефон и не замечаем, что заменили телефон)
+
+Модули верхних уровней не должны зависеть от модулей нижних уровней. Оба типа модулей должны зависеть от абстракций.
+
+Абстракции не должны зависеть от деталей.
+Детали должны зависеть от абстракций
+
+```ts
+// async function fetch(offset: Number, limit: Number): Promise<Array<any>> {
+//   var items: Array<any> = await getUsers(offset, limit);
+//   setStorageHash(usersStorage, users);
+//   return users;
+// }
+
+// =============================
+
+// interface Fetcher {
+//   fetch(offset: Number, limit: Number): Promise;
+// }
+
+// class UserFetcher implements Fetcher {
+//   fetch(offset: Number, limit: Number) {
+//     /*...*/
+//   }
+// }
+// class TaskFetcher implements Fetcher {
+//   /*...*/
+// }
+
+// async function fetch(/*...*/ storage: Storage, fetcher: Fetcher) /*...*/ {
+//   var items: Array<any> = await fetcher.fetch(offset, limit);
+//   setStorageHash(storage, users);
+//   return users;
+// }
+
+// =========================
+
+async function fetch(/*...*/ storage: Storage, fetcher: Fetcher) /*...*/ {
+  var items: Array<any> = await fetcher.fetch(offset, limit);
+  setStorageHash(storage, users);
+  return users;
+}
+
+async function fetchUsersFromServer(
+  offset: Number,
+  limit: Number
+): Promise<Array<any>> {
+  /*...*/
+}
+async function fetchTasksFromServer(
+  offset: Number,
+  limit: Number
+): Promise<Array<any>> {
+  /*...*/
+}
+
+function setStorageHash(/*...*/) {
+  /*...*/
+}
+```
+
+Функции == Dependency injection в ООП
+
+Чтобы писать DRY, нужно писать SOLID
+(4 из 5 - S O I D) L - не для js
+
+Vue.js - дураки?
+Они выполняют Бизнес
+
+От фреймворка ничего не зависит!
+
+---
