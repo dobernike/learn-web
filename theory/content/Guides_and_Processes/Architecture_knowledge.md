@@ -1505,7 +1505,7 @@ Owasp ZAP + ZAP Plugin + Any Report Plugin
 Arachni + Text Finder Plugin + Any Report Plugin
 
 Статическая проверка
-ESLint + securyti plugin
+ESLint + eslint-plugin-security
 
 NSP
 run npm install nsp
