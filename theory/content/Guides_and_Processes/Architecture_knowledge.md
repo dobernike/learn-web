@@ -1527,3 +1527,145 @@ run snyk test
 - Используйти тулы для статического анализа
 
 ---
+
+## Системы типов в двух словах
+
+[https://www.youtube.com/watch?v=nFtO6419A5k](https://www.youtube.com/watch?v=nFtO6419A5k)
+
+Примитивные типы
+like boolean, number etc
+
+### лямбда(l)-исчисления
+
+- x, y, a-z - переменная
+- M, N, A-Z - терм (выражения)
+- lx.M - абстракция (анонимная функция)
+- (M N) - применение (вызов функции)
+
+(lx . x) z -> z
+(lx. x) (lx. x) -> (lx. x)
+
+identity function
+
+```js
+function identity(x) {
+  return x;
+}
+```
+
+Типов изначально в лямбде не было
+
+Simply-Typed Lamda
+(lx: Bool . x): Bool
+
+```ts
+function identity(x: number): number {
+  return x;
+}
+```
+
+(lx:Int y:Int . x \* y): Int
+
+```ts
+function mult(x: number, y: number): number {
+  return x * y;
+}
+```
+
+Полиморфизм
+(Ad-hoc и Параметрический)
+
+Ad-hoc
+
+```js
+function saySomething(cat: Cat) {
+  return "Meow";
+}
+function saySomething(dog: Dog) {
+  return "Woof";
+}
+
+> saySomething(cat);
+"Meow"
+
+> saySomething(dog);
+"Woof"
+```
+
+Параметрический
+
+```ts
+function identity<T>(arg: T): T {
+  return arg;
+}
+```
+
+System F
+Абстракция на типах
+
+lX. lx x
+id = lX. lx:X. x
+
+lx:Bool. x
+
+Дженерики в Go
+
+```go
+var x []int
+// intSum has type func([]int) int
+intSum := Sum(int)
+total := intSum(x)
+```
+
+Soundness
+
+- Прогресс
+- Сохранение типов
+
+Прогресс
+
+`(lx:Int y:Int . x * y) a b`
+Если a и b это Int
+
+Сохранение типов
+
+`(lx:Int y:Int . x * y) a b`
+->
+a \* b
+
+Типы зависят от типов
+
+```h
+function List(ty: Type): Type {
+  return Array<ty>
+}
+function list<T>(x: T): List(T) {
+  return [x]
+}
+```
+
+Типы зависят от значений
+
+```js
+function random(n: Nat): Fin<n> {
+  return ...;
+}
+```
+
+Верификация ПО
+Не будет ошибок, только при разработки.
+
+CompCert и Project Everest
+
+SLTC -> Elm, TypeScript, ReasonML, Java -> Haskell -> Coq, Agda Idris
+
+- Сабтайпинг
+- Линейные типы (Rust)
+- Сессионные типы
+- HoTT
+
+С чего начать?
+
+- Type-Driven Developments with Idris
+
+---
