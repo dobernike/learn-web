@@ -1,0 +1,16 @@
+{
+  "name": "rest_api",
+  "version": "1.0.0",
+  "description": "step-by-step practice\r https://www.youtube.com/watch?v=lzQIhjElV_g",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Paul Fedushin <fedushin.pavel@gmail.com> (https://dobernike.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^7.0.3"
+  }
+}
