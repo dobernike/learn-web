@@ -1158,3 +1158,130 @@ Vue.js - дураки?
 От фреймворка ничего не зависит!
 
 ---
+
+## Solution architecture и JavaScript
+
+[https://www.youtube.com/watch?v=UVRi9LoFyfI](https://www.youtube.com/watch?v=UVRi9LoFyfI)
+
+### Stakeholders
+
+Заинтересованные стороны
+
+Определить заинтерисованные стороны
+
+### Goals
+
+Цели
+
+Определение бизнес целей.
+
+Использование технологий - это не цели бизнеса
+
+### Constains
+
+Ограничения
+
+Технические
+Бюджетные
+По людям
+
+### Quality Attributes
+
+Полезные атрибыты
+
+Знание где и как будет пользоваться приложение и ожидания
+
+Люди в лесу должны открывать сайт за 3 сек
+
+### Architecture
+
+#### FE Perfomance Tactics
+
+- Impove User Experience (не помогу в нашем ТЗ)
+- Optimize Resources (js, css, images, fonts, etc)
+- Caching
+- Critical Path (не помогу в нашем ТЗ)
+- Compression
+- HTTP/2
+
+#### Fault Tolerance
+
+Отказоустойчивость
+
+#### Summary
+
+Validation
+Service
+Discovery
+Circuit Breaker
+Leaky Bucket
+|
+Validation
+Logger Service
+Discovery
+
+### Choice of technology
+
+#### Architectural Kata is ...
+
+- Provide improvements for current digital platform
+- 400 consumer static websites
+- High Cost and Long Time to Market for Upgrades
+- Expensive content management workflows
+- Drupal
+
+#### Solution
+
+MERN + redis + redux
+or
+Drupal
+or
+Other Solution?
+
+#### Define Goals
+
+Business Driver
+Удовлетворить заказчика
+
+Как?
+
+Business Golas
+Оптимизировать затраты
+
+Мы можем ...
+
+Objectives
+Уменьшить время выхода на рынок на X%
+
+Уменьшить время на content management на X%
+
+#### Define Constrains
+
+(новые детали)
+
+- Can`t say goodbye to Drupal
+- ReactJS and VueJS is used in the company
+
+#### Define Quality Attributes
+
+- Maintainability
+- Testability
+- Re-usability
+- Performance
+- Accessibility
+
+#### Design - C4
+
+visit - web site
+ingeneer - add themes/components
+content - add/edit Content Hub
+
+#### Technology Solution
+
+Template Service -> Nuxt/Next (for static)
+
+db -> github (md)
+
+`We need JAM stack!`
+
+---
