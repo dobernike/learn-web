@@ -2566,3 +2566,7 @@ class Accordion extends React.Component {
 ```
 
 ---
+
+## Structure and Interpretation of Computer Programs — JavaScript Adaptation
+
+[https://sicp.comp.nus.edu.sg/](https://sicp.comp.nus.edu.sg/)
