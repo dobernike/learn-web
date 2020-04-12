@@ -1867,3 +1867,281 @@ $("body").append(list.getView().getHtml());
 ```
 
 ---
+
+## MVC
+
+[https://habr.com/ru/company/ruvds/blog/333856/](https://habr.com/ru/company/ruvds/blog/333856/)
+
+https://hsto.org/getpro/habr/post_images/24b/538/8c6/24b5388c6f410e7388338602538b6236.png
+
+Контроллер PenguinController занимается обработкой событий и служит посредником между представлением и моделью. Он выясняет, что произошло, когда пользователь выполняет некое действие (например, щёлкает по кнопке или нажимает клавишу на клавиатуре). Логика клиентских приложений может быть реализована в контроллере. В более крупных системах, в которых нужно обрабатывать множество событий, этот элемент можно разбить на несколько модулей. Контроллер является входной точкой для событий и единственным посредником между представлением и данными.
+
+Представление PenguinView взаимодействует с DOM. DOM — это API браузера, с помощью которого работают с HTML. В MVC только представление отвечает за изменения DOM. Представление может выполнять подключение обработчиков событий пользовательского интерфейса, но обработка событий — прерогатива контроллера. Основная задача, решаемая представлением — управлять тем, что пользователь видит на экране. В нашем проекте представление будет выполнять манипуляции с DOM, используя JavaScript.
+
+Модель PenguinModel отвечает за работу с данными. В клиентском JS это означает выполнение Ajax-операций. Одно из преимуществ шаблона MVC заключается в том, что всё взаимодействие с источником данных, например — с сервером, сосредоточено в одном месте. Такой подход помогает программистам, которые не знакомы с проектом, разобраться в нём. Модель в этом шаблоне проектирования занята исключительно работой с JSON или объектами, которые поступают с сервера.
+
+Модель не должна работать с HTML. Представление не должно выполнять Ajax-запросов. Контроллер должен играть роль посредника, не заботясь о деталях реализации других компонентов.
+
+### Контроллер
+
+Контроллер взаимодействует с представлением и моделью. Компоненты, необходимые для работы контроллера, имеются в его конструкторе:
+
+```js
+var PenguinController = function PenguinController(penguinView, penguinModel) {
+  this.penguinView = penguinView;
+  this.penguinModel = penguinModel;
+};
+```
+
+Затем подключаются события, связанные со взаимодействием с пользователем:
+
+```js
+PenguinController.prototype.initialize = function initialize() {
+  this.penguinView.onClickGetPenguin = this.onClickGetPenguin.bind(this);
+};
+
+PenguinController.prototype.onClickGetPenguin = function onClickGetPenguin(e) {
+  var target = e.currentTarget;
+  var index = parseInt(target.dataset.penguinIndex, 10);
+
+  this.penguinModel.getPenguin(index, this.showPenguin.bind(this));
+};
+```
+
+```js
+PenguinController.prototype.showPenguin = function showPenguin(
+  penguinModelData
+) {
+  var penguinViewModel = {
+    name: penguinModelData.name,
+    imageUrl: penguinModelData.imageUrl,
+    size: penguinModelData.size,
+    favoriteFood: penguinModelData.favoriteFood,
+  };
+
+  penguinViewModel.previousIndex = penguinModelData.index - 1;
+  penguinViewModel.nextIndex = penguinModelData.index + 1;
+
+  if (penguinModelData.index === 0) {
+    penguinViewModel.previousIndex = penguinModelData.count - 1;
+  }
+
+  if (penguinModelData.index === penguinModelData.count - 1) {
+    penguinViewModel.nextIndex = 0;
+  }
+
+  this.penguinView.render(penguinViewModel);
+};
+```
+
+Представленные здесь модульные тесты построены по модели AAA (Arrange, Act, Assert — размещение, действие, утверждение). Вот модульный тест для стандартного сценария показа информации о пингвине:
+
+```js
+var PenguinViewMock = function PenguinViewMock() {
+  this.calledRenderWith = null;
+};
+
+PenguinViewMock.prototype.render = function render(penguinViewModel) {
+  this.calledRenderWith = penguinViewModel;
+};
+
+// Arrange
+var penguinViewMock = new PenguinViewMock();
+
+var controller = new PenguinController(penguinViewMock, null);
+
+var penguinModelData = {
+  name: "Chinstrap",
+  imageUrl: "http://chinstrapl.jpg",
+  size: "5.0kg (m), 4.8kg (f)",
+  favoriteFood: "krill",
+  index: 2,
+  count: 5,
+};
+
+// Act
+controller.showPenguin(penguinModelData);
+
+// Assert
+assert.strictEqual(penguinViewMock.calledRenderWith.name, "Chinstrap");
+assert.strictEqual(
+  penguinViewMock.calledRenderWith.imageUrl,
+  "http://chinstrapl.jpg"
+);
+assert.strictEqual(
+  penguinViewMock.calledRenderWith.size,
+  "5.0kg (m), 4.8kg (f)"
+);
+assert.strictEqual(penguinViewMock.calledRenderWith.favoriteFood, "krill");
+assert.strictEqual(penguinViewMock.calledRenderWith.previousIndex, 1);
+assert.strictEqual(penguinViewMock.calledRenderWith.nextIndex, 3);
+```
+
+контроллер не заботится о деталях реализации. Он полагается на контракт, который предоставляет представление, вроде this.render(). Именно такого подхода необходимо придерживаться для написания чистого кода. Контроллер, при таком подходе, может доверить компоненту выполнение тех задач, о возможности выполнения которых заявил этот компонент. Это делает структуру проекта прозрачной, что улучшает читаемость кода.
+
+### Представление
+
+Представление заботится лишь об элементах DOM и о подключении обработчиков событий. Например:
+
+```js
+var PenguinView = function PenguinView(element) {
+  this.element = element;
+
+  this.onClickGetPenguin = null;
+};
+```
+
+Вот как реализуется в коде воздействие представления на то, что видит пользователь:
+
+```js
+PenguinView.prototype.render = function render(viewModel) {
+  this.element.innerHTML =
+    "<h3>" +
+    viewModel.name +
+    "</h3>" +
+    '<img class="penguin-image" src="' +
+    viewModel.imageUrl +
+    '" alt="' +
+    viewModel.name +
+    '" />' +
+    "<p><b>Size:</b> " +
+    viewModel.size +
+    "</p>" +
+    "<p><b>Favorite food:</b> " +
+    viewModel.favoriteFood +
+    "</p>" +
+    '<a id="previousPenguin" class="previous button" href="javascript:void(0);"' +
+    ' data-penguin-index="' +
+    viewModel.previousIndex +
+    '">Previous</a> ' +
+    '<a id="nextPenguin" class="next button" href="javascript:void(0);"' +
+    ' data-penguin-index="' +
+    viewModel.nextIndex +
+    '">Next</a>';
+
+  this.previousIndex = viewModel.previousIndex;
+  this.nextIndex = viewModel.nextIndex;
+
+  // Подключение обработчиков событий щелчков по кнопкам и передача задачи обработки событий контроллеру
+  var previousPenguin = this.element.querySelector("#previousPenguin");
+  previousPenguin.addEventListener("click", this.onClickGetPenguin);
+
+  var nextPenguin = this.element.querySelector("#nextPenguin");
+  nextPenguin.addEventListener("click", this.onClickGetPenguin);
+  nextPenguin.focus();
+};
+```
+
+основная задача представления заключается в том, чтобы превратить данные, полученные из модели, в HTML, и поменять состояние приложения. Ещё одна задача — подключение обработчиков событий и передача функций их обработки контроллеру Обработчики событий подключаются к DOM после изменения состояния. Этот подход позволяет просто и удобно управлять событиями.
+
+Для того, чтобы всё это протестировать, мы можем проверить обновление элементов и изменение состояния приложения:
+
+```js
+var ElementMock = function ElementMock() {
+  this.innerHTML = null;
+};
+
+// Функции-заглушки, необходимые для того, чтобы провести тестирование
+ElementMock.prototype.querySelector = function querySelector() {};
+ElementMock.prototype.addEventListener = function addEventListener() {};
+ElementMock.prototype.focus = function focus() {};
+
+// Arrange
+var elementMock = new ElementMock();
+
+var view = new PenguinView(elementMock);
+
+var viewModel = {
+  name: "Chinstrap",
+  imageUrl: "http://chinstrap1.jpg",
+  size: "5.0kg (m), 4.8kg (f)",
+  favoriteFood: "krill",
+  previousIndex: 1,
+  nextIndex: 2,
+};
+
+// Act
+view.render(viewModel);
+
+// Assert
+assert(elementMock.innerHTML.indexOf(viewModel.name) > 0);
+assert(elementMock.innerHTML.indexOf(viewModel.imageUrl) > 0);
+assert(elementMock.innerHTML.indexOf(viewModel.size) > 0);
+assert(elementMock.innerHTML.indexOf(viewModel.favoriteFood) > 0);
+assert(elementMock.innerHTML.indexOf(viewModel.previousIndex) > 0);
+assert(elementMock.innerHTML.indexOf(viewModel.nextIndex) > 0);
+```
+
+### Модель
+
+В шаблоне MVC модель занята взаимодействием с источником данных. В нашем случае — с севером. Например:
+
+```js
+var PenguinModel = function PenguinModel(XMLHttpRequest) {
+  this.XMLHttpRequest = XMLHttpRequest;
+};
+```
+
+модуль XMLHttpRequest внедрён в конструктор модели. Это, кроме прочего, подсказка для других программистов касательно компонентов, необходимых модели. Если модель нуждается в различных способах работы с данными, в неё можно внедрить и другие модули.
+
+```js
+PenguinModel.prototype.getPenguin = function getPenguin(index, fn) {
+  var oReq = new this.XMLHttpRequest();
+
+  oReq.onload = function onLoad(e) {
+    var ajaxResponse = JSON.parse(e.currentTarget.responseText);
+    // Индекс должен быть целым числом, иначе это работать не будет
+    var penguin = ajaxResponse[index];
+
+    penguin.index = index;
+    penguin.count = ajaxResponse.length;
+
+    fn(penguin);
+  };
+
+  oReq.open("GET", "https://codepen.io/beautifulcoder/pen/vmOOLr.js", true);
+  oReq.send();
+};
+```
+
+Тут осуществляется подключение к серверу и загрузка с него данных. Проверим компонент с помощью модульного теста и условных тестовых данных:
+
+```js
+var LIST_OF_PENGUINS =
+  '[{"name":"Emperor","imageUrl":"http://imageUrl",' +
+  '"size":"36.7kg (m), 28.4kg (f)","favoriteFood":"fish and squid"}]';
+
+var XMLHttpRequestMock = function XMLHttpRequestMock() {
+  // Для целей тестирования нужно это установить, иначе тест не удастся
+  this.onload = null;
+};
+
+XMLHttpRequestMock.prototype.open = function open(method, url, async) {
+  // Внутренние проверки, система должна иметь конечные точки method и url
+  assert(method);
+  assert(url);
+  // Если Ajax не асинхронен, значит наша реализация весьма неудачна :-)
+  assert.strictEqual(async, true);
+};
+
+XMLHttpRequestMock.prototype.send = function send() {
+  // Функция обратного вызова симулирует Ajax-запрос
+  this.onload({ currentTarget: { responseText: LIST_OF_PENGUINS } });
+};
+
+// Arrange
+var penguinModel = new PenguinModel(XMLHttpRequestMock);
+
+// Act
+penguinModel.getPenguin(0, function onPenguinData(penguinData) {
+  // Assert
+  assert.strictEqual(penguinData.name, "Emperor");
+  assert(penguinData.imageUrl);
+  assert.strictEqual(penguinData.size, "36.7kg (m), 28.4kg (f)");
+  assert.strictEqual(penguinData.favoriteFood, "fish and squid");
+  assert.strictEqual(penguinData.index, 0);
+  assert.strictEqual(penguinData.count, 1);
+});
+```
+
+---
