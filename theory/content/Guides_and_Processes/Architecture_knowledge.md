@@ -1669,3 +1669,9 @@ SLTC -> Elm, TypeScript, ReasonML, Java -> Haskell -> Coq, Agda Idris
 - Type-Driven Developments with Idris
 
 ---
+
+## Архитектурные паттерны
+
+[https://addyosmani.com/resources/essentialjsdesignpatterns/book/](https://addyosmani.com/resources/essentialjsdesignpatterns/book/)
+
+---
