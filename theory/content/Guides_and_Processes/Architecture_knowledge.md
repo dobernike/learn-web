@@ -2211,3 +2211,258 @@ penguinModel.getPenguin(0, function onPenguinData(penguinData) {
 ```
 
 ---
+
+## Inversion of Control
+
+[https://kentcdodds.com/blog/inversion-of-control](https://kentcdodds.com/blog/inversion-of-control)
+
+### What is Inversion of Control in code?
+
+```js
+// let's pretend that Array.prototype.filter does not exist
+
+function filter(array) {
+  let newArray = [];
+
+  for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+
+    if (element !== null && element !== undefined) {
+      newArray[newArray.length] = element;
+    }
+  }
+
+  return newArray;
+}
+
+// use case:
+
+filter([0, 1, undefined, 2, null, 3, "four", ""]);
+
+// [0, 1, 2, 3, 'four', '']
+```
+
+Now let's play out the typical "lifecycle of an abstraction" by throwing a bunch of new related use cases at this abstraction and "thoughtlessly enhance" it to support those new use cases:
+
+```js
+// let's pretend that Array.prototype.filter does not exist
+
+function filter(
+  array,
+
+  {
+    filterNull = true,
+
+    filterUndefined = true,
+
+    filterZero = false,
+
+    filterEmptyString = false,
+  } = {}
+) {
+  let newArray = [];
+
+  for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+
+    if (
+      (filterNull && element === null) ||
+      (filterUndefined && element === undefined) ||
+      (filterZero && element === 0) ||
+      (filterEmptyString && element === "")
+    ) {
+      continue;
+    }
+
+    newArray[newArray.length] = element;
+  }
+
+  return newArray;
+}
+
+filter([0, 1, undefined, 2, null, 3, "four", ""]);
+
+// [0, 1, 2, 3, 'four', '']
+
+filter([0, 1, undefined, 2, null, 3, "four", ""], { filterNull: false });
+
+// [0, 1, 2, null, 3, 'four', '']
+
+filter([0, 1, undefined, 2, null, 3, "four", ""], { filterUndefined: false });
+
+// [0, 1, 2, undefined, 3, 'four', '']
+
+filter([0, 1, undefined, 2, null, 3, "four", ""], { filterZero: true });
+
+// [1, 2, 3, 'four', '']
+
+filter([0, 1, undefined, 2, null, 3, "four", ""], { filterEmptyString: true });
+
+// [0, 1, 2, 3, 'four']
+```
+
+Alright, so now, let's apply some thoughtful abstraction on this function and apply inversion of control to support all these use cases:
+
+```js
+// let's pretend that Array.prototype.filter does not exist
+
+function filter(array, filterFn) {
+  let newArray = [];
+
+  for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+
+    if (filterFn(element)) {
+      newArray[newArray.length] = element;
+    }
+  }
+
+  return newArray;
+}
+
+filter(
+  [0, 1, undefined, 2, null, 3, "four", ""],
+
+  (el) => el !== null && el !== undefined
+);
+
+// [0, 1, 2, 3, 'four', '']
+
+filter([0, 1, undefined, 2, null, 3, "four", ""], (el) => el !== undefined);
+
+// [0, 1, 2, null, 3, 'four', '']
+
+filter([0, 1, undefined, 2, null, 3, "four", ""], (el) => el !== null);
+
+// [0, 1, 2, undefined, 3, 'four', '']
+
+filter(
+  [0, 1, undefined, 2, null, 3, "four", ""],
+
+  (el) => el !== undefined && el !== null && el !== 0
+);
+
+// [1, 2, 3, 'four', '']
+
+filter(
+  [0, 1, undefined, 2, null, 3, "four", ""],
+
+  (el) => el !== undefined && el !== null && el !== ""
+);
+
+// [0, 1, 2, 3, 'four']
+```
+
+### Compound Components
+
+Let's say you want to build a Menu component that has a button for opening the menu and a list of menu items to display when it's clicked. Then when an item is selected, it will perform some action. A common approach to this kind of component is to create props for each of these things:
+
+```js
+function App() {
+  return (
+    <Menu
+      buttonContents={
+        <>
+          Actions <span aria-hidden>▾</span>
+        </>
+      }
+      items={[
+        { contents: "Download", onSelect: () => alert("Download") },
+
+        { contents: "Create a Copy", onSelect: () => alert("Create a Copy") },
+
+        { contents: "Delete", onSelect: () => alert("Delete") },
+      ]}
+    />
+  );
+}
+```
+
+When you're thinking about how to create a nice API for people who are trying to do things slightly differently, instead of reaching for if statements and ternaries, consider the possibility of inverting control. In this case, what if we just gave rendering responsibility to the user of our menu? Let's use one of React's greatest strengths of composibility:
+
+```js
+function App() {
+  return (
+    <Menu>
+      <MenuButton>
+        Actions <span aria-hidden>▾</span>
+      </MenuButton>
+
+      <MenuList>
+        <MenuItem onSelect={() => alert("Download")}>Download</MenuItem>
+
+        <MenuItem onSelect={() => alert("Copy")}>Create a Copy</MenuItem>
+
+        <MenuItem onSelect={() => alert("Delete")}>Delete</MenuItem>
+      </MenuList>
+    </Menu>
+  );
+}
+```
+
+### State Reducer
+
+```js
+function stateReducer(state, changes) {
+  switch (changes.type) {
+    case Downshift.stateChangeTypes.keyDownEnter:
+
+    case Downshift.stateChangeTypes.clickItem:
+      return {
+        ...changes,
+
+        // we're fine with any changes Downshift wants to make
+
+        // except we're going to leave isOpen and highlightedIndex as-is.
+
+        isOpen: state.isOpen,
+
+        highlightedIndex: state.highlightedIndex,
+      };
+
+    default:
+      return changes;
+  }
+}
+
+// then when you render the component
+
+// <Downshift stateReducer={stateReducer} {...restOfTheProps} />
+```
+
+### Render Props
+
+Just giving a quick shout-out to the render props pattern which is a perfect example of inversion of control, but we don't need them as often anymore, so I'm not going to talk about them.
+(hooks)
+
+### A word of caution
+
+Inversion of control is a fantastic way to side-step the issue of making an incorrect assumption about the future use cases of our reusable code. But before you go, I just want to give you some advice. Let's go back to our contrived example really quick:
+
+```js
+// let's pretend that Array.prototype.filter does not exist
+
+function filter(array) {
+  let newArray = [];
+
+  for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+
+    if (element !== null && element !== undefined) {
+      newArray[newArray.length] = element;
+    }
+  }
+
+  return newArray;
+}
+
+// use case:
+
+filter([0, 1, undefined, 2, null, 3, "four", ""]);
+
+// [0, 1, 2, 3, 'four', '']
+```
+
+What if that's all we ever needed filter to do and we never ran into a situation where we needed to filter on anything but null and undefined? In that case, adding inversion of control for a single use case would just make the code more complicated and not provide much value.
+
+---
