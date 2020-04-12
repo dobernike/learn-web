@@ -1,0 +1,41 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    // The text 'Hello World' has 11 characters
+    // The text '' hase No characters
+    function CharacterCount({ text }) {
+      // js
+      //   const length = text.length ? text.length : "No";
+      //   React.createElement('div', null, if (statements)) // error
+      return (
+        // <div>
+        //   {`The text "${text}" has `} <strong>{length}</strong> characters
+        // </div>
+
+        // <div>
+        //   {`The text "${text}" has `}
+        //   <strong>{text.length ? text.length : "No"}</strong> characters
+        // </div>
+
+        <div>
+          {/* js */ `The text "${text}" has `}
+          {text.length ? <strong>{text.length}</strong> : "No"}
+          {" characters"}
+        </div>
+        // js
+      );
+    }
+
+    const element = (
+      <>
+        <CharacterCount text="Hello World" />
+        <CharacterCount text="" />
+      </>
+    );
+
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
