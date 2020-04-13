@@ -1,0 +1,112 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    //   https://github.com/donavon/hook-flow
+    function Child() {
+      console.log(`%c  Child: render start`, `color: MediumSpringGreen`);
+
+      const [count, setCount] = React.useState(() => {
+        console.log(`%c  Child: useState callback`, `color: tomato`);
+        return 0;
+      });
+
+      React.useEffect(() => {
+        console.log(`%c Child: useEffect no deps clenup`, "color: lightCoral");
+      });
+
+      React.useEffect(() => {
+        console.log(`%c Child: useEffect empty deps`, "color: MediumTurqoise");
+        return () => {
+          console.log(
+            `%c Child: useEffect empty deps cleanup`,
+            "color: HotPink"
+          );
+        };
+      }, []);
+
+      React.useEffect(() => {
+        console.log(`%c Child: useEffect with dep`, "color: HotPink");
+        return () => {
+          console.log(`%c Child: useEffect with dep cleanup`, "color: HotPink");
+        };
+      }, [count]);
+
+      const element = (
+        <button onClick={() => setCount((previousCount) => previousCount + 1)}>
+          {count}
+        </button>
+      );
+
+      console.log(`%c Child: render end`, "color: MediumSpringGreen");
+
+      return element;
+    }
+
+    function App() {
+      console.log(`%c App: render start`, "color: MediumSpringGreen");
+
+      const [showChild, setShowChild] = React.useState(() => {
+        console.log(`%c App: useState callback`, "color: tomato");
+        return false;
+      });
+
+      React.useEffect(() => {
+        console.log(`%c App: useEffect no deps`, "color: LightCoral");
+        return () => {
+          console.log(`%c App: useEffect no deps cleanup`, "color: LightCoral");
+        };
+      });
+
+      React.useEffect(() => {
+        console.log(`%c App: useEffect empty deps`, "color: MediumTurqoise");
+        return () => {
+          console.log(
+            `%c App: useEffect  empty deps cleanup`,
+            "color: HotPink"
+          );
+        };
+      }, []);
+
+      React.useEffect(() => {
+        console.log(`%c App: useEffect with dep`, "color: HotPink");
+        return () => {
+          console.log(`%c App: useEffect with dep cleanup`, "color: HotPink");
+        };
+      }, [showChild]);
+
+      const element = (
+        <>
+          <label>
+            <input
+              type="checkbox"
+              checked={showChild}
+              onChange={(e) => setShowChild(e.target.checked)}
+            />
+            show child
+          </label>
+          <div
+            style={{
+              padding: 10,
+              margin: 10,
+              height: 30,
+              width: 30,
+              border: "solid",
+            }}
+          >
+            {" "}
+            {showChild ? <Child /> : null}
+          </div>
+        </>
+      );
+
+      console.log(`%c App: render end`, "color: MediumSpringGreen");
+
+      return element;
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
