@@ -23,12 +23,7 @@
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="usernameInput">Username:</label>
-            <input
-              id="usernameInput"
-              type="text"
-              onChange={handleChange}
-              value={username}
-            />
+            <input id="usernameInput" type="text" onChange={handleChange} />
           </div>
           <div style={{ color: "red" }}>{error}</div>
           <button disabled={Boolean(error)} type="submit">
