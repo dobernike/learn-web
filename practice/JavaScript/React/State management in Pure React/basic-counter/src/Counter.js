@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const getStateFromLocalStorage = () => {
   const storage = localStorage.getItem("counterState");
@@ -12,54 +12,32 @@ const storeStateInLocalStorage = (state) => {
 
 document.title = "Hello";
 
-export default class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = getStateFromLocalStorage();
+const Counter = ({ max, step }) => {
+  const [count, setCount] = React.useState(0);
 
-    this.increment = this.increment.bind(this);
-    this.decrement = this.decrement.bind(this);
-    this.reset = this.reset.bind(this);
-    this.updateDocumentTitle = this.updateDocumentTitle.bind(this);
-  }
+  const increment = () => {
+    setCount((c) => {
+      if (c >= max) return c;
+      return c + step;
+    });
+  };
+  const decrement = () => setCount(count - 1);
+  const reset = () => setCount(0);
 
-  updateDocumentTitle() {
-    document.title = this.state.count;
-  }
+  return (
+    <section className="Counter">
+      <h1>Count: {count}</h1>
+      <button onClick={increment} className="full-width">
+        Increment
+      </button>
+      <button onClick={decrement} className="full-width">
+        Decrement
+      </button>
+      <button onClick={reset} className="full-width">
+        Reset
+      </button>
+    </section>
+  );
+};
 
-  increment() {
-    this.setState((state, props) => {
-      const { max, step } = props;
-      if (state.count >= max) return;
-      return { count: state.count + step };
-    }, this.updateDocumentTitle);
-
-    console.log("Before!", this.state);
-  }
-
-  decrement() {
-    this.setState({ count: this.state.count - 1 }, this.updateDocumentTitle);
-  }
-
-  reset() {
-    this.setState({ count: 0 }, this.updateDocumentTitle);
-  }
-
-  render() {
-    const { count } = this.state;
-    return (
-      <section className="Counter">
-        <h1>Count: {count}</h1>
-        <button onClick={this.increment} className="full-width">
-          Increment
-        </button>
-        <button onClick={this.decrement} className="full-width">
-          Decrement
-        </button>
-        <button onClick={this.reset} className="full-width">
-          Reset
-        </button>
-      </section>
-    );
-  }
-}
+export default Counter;
