@@ -10,6 +10,8 @@ const storeStateInLocalStorage = (state) => {
   localStorage.setItem("counterState", JSON.stringify(state));
 };
 
+document.title = "Hello";
+
 export default class Counter extends Component {
   constructor(props) {
     super(props);
