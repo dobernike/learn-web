@@ -24,7 +24,8 @@ const useLocalStorage = (initialState, key) => {
 
 const Counter = ({ max, step }) => {
   const [count, setCount] = useLocalStorage(0, "count");
-
+  const countRef = React.useRef();
+  countRef.current = count;
   const increment = () => {
     setCount((c) => {
       if (c >= max) return c;
@@ -36,11 +37,9 @@ const Counter = ({ max, step }) => {
   const reset = () => setCount(0);
 
   useEffect(() => {
-    document.title = `Counter: ${count}`;
-  }, [count]);
-
-  useEffect(() => {
-    storeStateInLocalStorage(count);
+    setTimeout(() => {
+      console.log(`Count: ${count}`);
+    }, 3000);
   }, [count]);
 
   return (
