@@ -11,7 +11,9 @@
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "tachyogns": "^4.11.1"
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "tachyons": "^4.11.1"
   },
   "scripts": {
     "start": "react-scripts start",
