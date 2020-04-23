@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`expect to render ErrorBoundary component 1`] = `ShallowWrapper {}`;
-
 exports[`expect to render Scroll component 1`] = `ShallowWrapper {}`;

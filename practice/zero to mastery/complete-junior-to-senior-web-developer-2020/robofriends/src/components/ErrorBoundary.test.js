@@ -3,5 +3,8 @@ import React from 'react';
 import ErrorBoundary from './ErrorBoundary';
 
 it('expect to render ErrorBoundary component', () => {
-  expect(shallow(<ErrorBoundary>mock</ErrorBoundary>)).toMatchSnapshot();
+  const mockChildren = <div>children</div>;
+  expect(
+    shallow(<ErrorBoundary>{mockChildren}</ErrorBoundary>)
+  ).toMatchSnapshot();
 });
