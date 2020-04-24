@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import CounterButton from './CounterButton';
 
-class Header extends Component {
+class Header extends React.Component {
   render() {
     return (
       <div>

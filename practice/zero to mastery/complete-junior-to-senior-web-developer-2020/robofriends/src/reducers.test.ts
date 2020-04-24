@@ -13,7 +13,9 @@ describe('searchRobots', () => {
   };
 
   it('should return the initial state', () => {
-    expect(reducers.searchRobots(undefined, {})).toEqual(initialStateSearch);
+    expect(reducers.searchRobots(undefined, { type: 'UNDEFINED' })).toEqual(
+      initialStateSearch
+    );
   });
 
   it('should handle CHANGE_SEARCH_FIELD', () => {
@@ -36,7 +38,9 @@ describe('requestRobots', () => {
   };
 
   it('should return the initial state', () => {
-    expect(reducers.requestRobots(undefined, {})).toEqual(initialStateRobots);
+    expect(reducers.requestRobots(undefined, { type: 'UNDEFINED' })).toEqual(
+      initialStateRobots
+    );
   });
 
   it('should handle REQUEST_ROBOTS_PENDING action', () => {

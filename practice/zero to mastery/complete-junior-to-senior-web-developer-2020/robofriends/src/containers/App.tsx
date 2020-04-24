@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
+import { IRobot } from '../reducers';
 
 import './App.css';
 
@@ -17,12 +18,22 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onSearchChange: (event: React.SyntheticEvent<HTMLInputElement>) =>
+      dispatch(setSearchField(event.currentTarget.value)),
     onRequestRobots: () => dispatch(requestRobots()),
   };
 };
 
-class App extends Component {
+export interface IAppProps {
+  isPending: boolean;
+  searchField: string;
+  robots: IRobot[];
+  onRequestRobots: () => void;
+  onSearchChange(event: React.SyntheticEvent<HTMLInputElement>): void;
+  error: string;
+}
+
+class App extends React.Component<IAppProps> {
   render() {
     return <MainPage {...this.props} />;
   }

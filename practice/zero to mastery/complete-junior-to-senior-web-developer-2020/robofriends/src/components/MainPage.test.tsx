@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import MainPage from './MainPage';
 
 let wrapper;
@@ -25,7 +25,7 @@ it('filters robots correctly', () => {
     searchField: 'john',
     robots: [
       {
-        id: 3,
+        id: '3',
         name: 'John',
         email: 'john@gmail.com',
       },
@@ -40,7 +40,7 @@ it('filters robots correctly', () => {
 
   expect(wrapper2.instance().filterRobots()).toEqual([
     {
-      id: 3,
+      id: '3',
       name: 'John',
       email: 'john@gmail.com',
     },
@@ -52,7 +52,7 @@ it('filters robots correctly 2', () => {
     searchField: 'a',
     robots: [
       {
-        id: 3,
+        id: '3',
         name: 'John',
         email: 'john@gmail.com',
       },

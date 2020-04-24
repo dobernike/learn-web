@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import CardList from '../components/CardList';
-import SearchBox from '../components/SearchBox';
-import Scroll from '../components/Scroll';
-import ErrorBoundary from '../components/ErrorBoundary';
-import Header from '../components/Header';
+import * as React from 'react';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+import Scroll from './Scroll';
+import ErrorBoundary from './ErrorBoundary';
+import Header from './Header';
+import { IAppProps } from '../containers/App';
 
 import './MainPage.css';
 
-class MainPage extends Component {
-  componentDidMount() {
+class MainPage extends React.Component<IAppProps> {
+  componentDidMount(): void {
     this.props.onRequestRobots();
   }
 
@@ -20,8 +21,8 @@ class MainPage extends Component {
     );
   };
 
-  render() {
-    const { onSearchChange, robots, isPending } = this.props;
+  render(): JSX.Element {
+    const { onSearchChange, isPending } = this.props;
 
     return (
       <div className="tc">

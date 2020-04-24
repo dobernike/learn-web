@@ -1,6 +1,14 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class ErrorBoundary extends Component {
+interface IProps {
+  children: React.ReactNode;
+}
+
+interface IState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
 
@@ -9,7 +17,7 @@ class ErrorBoundary extends Component {
     };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch() {
     this.setState({ hasError: true });
   }
 
