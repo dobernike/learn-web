@@ -14,8 +14,9 @@ services:
       - postgres
     ports:
       - 3000:3000
-    # volumes:
-    #  - C:\job\learn\learn-web\practice\zero to mastery\complete-junior-to-senior-web-developer-2020\smart-brain-api:/usr/src/smart-brain-api
+    volumes:
+     - ./:/usr/src/smart-brain-api
+     - /usr/src/smart-brain-api/node_modules
 
   # Postgres
   postgres:
