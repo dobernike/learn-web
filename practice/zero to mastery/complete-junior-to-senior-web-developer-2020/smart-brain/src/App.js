@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import Particles from 'react-particles-js';
-import FaceRecognition from './components/FaceRecognition/FaceRecognition';
-import Navigation from './components/Navigation/Navigation';
-import Signin from './components/Signin/Signin';
-import Register from './components/Register/Register';
-import Logo from './components/Logo/Logo';
-import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import Rank from './components/Rank/Rank';
-import Modal from './components/Modal/Modal';
-import Profile from './components/Profile/Profile';
-import './App.css';
+import React, { Component } from "react";
+import Particles from "react-particles-js";
+import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
+import Navigation from "./components/Navigation/Navigation";
+import Signin from "./components/Signin/Signin";
+import Register from "./components/Register/Register";
+import Logo from "./components/Logo/Logo";
+import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
+import Rank from "./components/Rank/Rank";
+import Modal from "./components/Modal/Modal";
+import Profile from "./components/Profile/Profile";
+import "./App.css";
 
 const particlesOptions = {
   particles: {
@@ -24,20 +24,20 @@ const particlesOptions = {
 };
 
 const initialState = {
-  input: '',
-  imageUrl: '',
+  input: "",
+  imageUrl: "",
   boxes: [],
-  route: 'signin',
+  route: "signin",
   isSignedIn: false,
   isProfileOpen: false,
   user: {
-    id: '',
-    name: '',
-    email: '',
+    id: "",
+    name: "",
+    email: "",
     entries: 0,
-    joined: '',
-    pet: '',
-    age: '',
+    joined: "",
+    pet: "",
+    age: "",
   },
 };
 
@@ -45,6 +45,27 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState;
+  }
+
+  componentDidMount() {
+    const token = window.sessionStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3000/signin", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + token,
+          Authorization: token,
+        },
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (data && data.id) {
+            console.log("success we need to get user profile");
+          }
+        })
+        .catch(console.log);
+    }
   }
 
   loadUser = (data) => {
@@ -62,7 +83,7 @@ class App extends Component {
   calculateFaceLocations = (data) => {
     return data.outputs[0].data.regions.map((face) => {
       const clarifaiFace = face.region_info.bounding_box;
-      const image = document.getElementById('inputimage');
+      const image = document.getElementById("inputimage");
       const width = Number(image.width);
       const height = Number(image.height);
       return {
@@ -84,9 +105,9 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch('http://localhost:3000/imageurl', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("http://localhost:3000/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         input: this.state.input,
       }),
@@ -94,9 +115,9 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch('http://localhost:3000/image', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
+          fetch("http://localhost:3000/image", {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               id: this.state.user.id,
             }),
@@ -113,9 +134,9 @@ class App extends Component {
   };
 
   onRouteChange = (route) => {
-    if (route === 'signout') {
+    if (route === "signout") {
       return this.setState(initialState);
-    } else if (route === 'home') {
+    } else if (route === "home") {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });
@@ -154,7 +175,7 @@ class App extends Component {
             />
           </Modal>
         )}
-        {route === 'home' ? (
+        {route === "home" ? (
           <div>
             <Logo />
             <Rank
@@ -167,7 +188,7 @@ class App extends Component {
             />
             <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
           </div>
-        ) : route === 'signin' ? (
+        ) : route === "signin" ? (
           <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
           <Register

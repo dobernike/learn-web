@@ -1,12 +1,12 @@
-import React from 'react';
-import './Signin.css';
+import React from "react";
+import "./Signin.css";
 
 class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: '',
-      signInPassword: '',
+      signInEmail: "",
+      signInPassword: "",
     };
   }
 
@@ -18,10 +18,14 @@ class Signin extends React.Component {
     this.setState({ signInPassword: event.target.value });
   };
 
+  saveAuthTokenInSession = (token) => {
+    window.sessionStorage.setItem("token", token);
+  };
+
   onSubmitSignIn = () => {
-    fetch('http://localhost:3000/signin', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("http://localhost:3000/signin", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.signInEmail,
         password: this.state.signInPassword,
@@ -29,9 +33,10 @@ class Signin extends React.Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.userId) {
+        if (data.userId && data.success === "true") {
+          this.saveAuthTokenInSession(data.token);
           this.props.loadUser(data);
-          this.props.onRouteChange('home');
+          this.props.onRouteChange("home");
         }
       });
   };
@@ -79,7 +84,7 @@ class Signin extends React.Component {
             </div>
             <div className="lh-copy mt3">
               <p
-                onClick={() => onRouteChange('register')}
+                onClick={() => onRouteChange("register")}
                 className="f6 link dim black db pointer"
               >
                 Register
