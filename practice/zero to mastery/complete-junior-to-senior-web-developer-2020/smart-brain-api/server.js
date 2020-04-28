@@ -22,9 +22,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('ITS WORKING');
+  reed('ITS WORKING');
 });
-app.post('/signin', signin.handleSignin(db, bcrypt));
+app.post('/signin', signin.signinAuthentication(db, bcrypt));
 app.post('/register', (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
