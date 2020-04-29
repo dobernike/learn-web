@@ -46,7 +46,7 @@ class Profile extends React.Component {
   };
 
   render() {
-    const { isProfileOpen, toggleModal, user } = this.props;
+    const { toggleModal, user } = this.props;
     const { name, age, pet } = this.state;
     return (
       <div className="profile-modal">
