@@ -1,13 +1,15 @@
 class Department {
-  name: string; // = public name: string
+  //   private id: string;
+  //   private name: string;
   private employees: string[] = [];
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(private id: string, public name: string) {
+    // this.id = id;
+    // this.name = n;
   }
 
   describe(this: Department) {
-    console.log(`Department: ${this.name}`);
+    console.log(`Department: (${this.id}): ${this.name}`);
   }
 
   addEmployee(employee: string) {
@@ -21,12 +23,12 @@ class Department {
   }
 }
 
-const accounting = new Department('Accounting');
+const accounting = new Department('d1', 'Accounting');
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
 
-accounting.employees[2] = 'Anna';
+// accounting.employees[2] = 'Anna';
 
 accounting.describe(); // Accounting
 accounting.printEmployeeInformation();
