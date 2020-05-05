@@ -286,3 +286,235 @@ Flash в качестве запасного варианта
 Backend с чем-нибудь, например JavaScript
 Батарейки на backend: IVR, ASR, TTS ...
 Интеграция с телефонией: SIP и не только
+
+## WebRTC-шная тема | Технострим
+
+[https://www.youtube.com/watch?v=nqigzFbAYM0]
+
+- Video
+
+  - VP8 Codec
+  - Jitter Buffer
+
+- Audio
+
+  - iSAC/iLBC
+  - NetEQ
+  - Echo/Noise
+
+- Transport
+  - SRTP
+  - STUN | TURN | ICE
+
+WebRTC API
+
+RTCPeerConnection - общий класс подключения
+
+все крутиться вокруг него
+
+1. Все начинается с конструктора
+
+```js
+initConnection = (id: string): RTCPeerConnection => {
+  const peerConnection = new RTCPeerConnection({
+    iceServers: [
+      { urls: 'stun:4.l.google.com:19302' },
+      {
+        urls: 'turn:turn.interpals.net:3478',
+        credential: 'meow',
+        username: 'pewdiepie',
+      },
+    ],
+  });
+};
+```
+
+1. Interactive Connectivity Establishment (ICE)
+
+Это процесс нахождения "соединения" между двумя клиентами
+
+Между P2P может быть 3 ситуации
+
+Только один пользователь за NAT
+оба за NAT
+оба без NAT
+
+По этому есть
+
+STUN - Simple Traversal Utilities 4 NAT
+TURN - Traversal Using Relay NAT
+
+STUN - 1 клиент за NAT (публичные)
+TURN - оба клиента за NAT (приватные)
+
+2. addStream / createDataChannel
+
+```js
+// NOTE
+// The addStream method that used to exist on RTCPeerConnection is easy to polyfill as:
+
+RTCPeerConnection.prototype.addStream = function (stream) {
+  stream.ggetTracks().forEach((track) => this.addTrack(track, stream));
+};
+```
+
+Но сначала нужно получить его
+
+Media Capture and Streams
+
+```js
+window.navigator.getUserMedia(
+  {
+    audion: true,
+    video: {
+      width: 1024,
+      height: 720,
+    },
+  },
+  this.getUserMediaSuccess,
+  this.getUserMediaFail
+);
+```
+
+on ice candidate
+
+```js
+peerConnection.onicecandidate = (event) => {
+  if (event.candidate) {
+    this.props.wsRTCSignal(
+      'RTC_ICE_CANDIDATE',
+      this.props.call.room,
+      this.clientId,
+      id,
+      event.candidate
+    );
+  }
+};
+```
+
+Что такое signal server?
+
+XMLHttpRequest or Web Sockets
+
+```js
+EventEmitterWS.on('RTC_OFFER', this.filterMessage(this.onRTCOffer));
+EventEmitterWS.on('RTC_ANSWER', this.filterMessage(this.onRTCAnswer));
+EventEmitterWS.on('RTC_ICE_CANDIDATE', this.filterMessage(this.onIceCandidate));
+```
+
+Звонящий
+
+1. createOffer(offer)
+
+2. setLocalDescription(offer)
+
+3. SIGNALING RTC_OFFER
+
+Принимающий - ON_OFFER(offer)
+
+1. setRemoteDescription(offer)
+
+2. createAnswer(answer)
+
+3. setLocalDescription(answer)
+
+4. SIGNALING RTC_ANSWER
+
+Звонящий - RTC_ANSWER(answer)
+
+setRemoteDescription(answer)
+
+SDP - Session Description Protocol
+
+```js
+declare type RTCSessionDescriptionInit = {
+  type: 'offer' | 'answer',
+  sdp: string,
+};
+```
+
+iceConnectionState & connectionState
+
+```js
+declare type RTCPeerConnectionState =
+  | 'new'
+  | 'connecting'
+  | 'connected'
+  | 'disconnected'
+  | 'failed'
+  | 'closed';
+
+declare type RTCIceConnectionState =
+  | 'new'
+  | 'checking'
+  | 'connected'
+  | 'completed'
+  | 'failed'
+  | 'disconnected'
+  | 'closed';
+```
+
+### Реализация
+
+Вызывающий
+
+1. window.open('/call/make-call')
+
+Принимающий
+
+1. window.open('/call/video/{id}')
+
+Вызывающий CallHandler
+
+1. POST /call/v1
+2. POST /message/v1
+
+Принимающий - CallHandler
+
+1. PUT /call/v1/{id}/action/accept
+
+Что такео Call?
+
+```js
+export type CallEntity = {
+  id: string,
+  uid: string,
+  target_id: string,
+  participants: Array<UserResponse>,
+  type: 'video' | 'audio',
+  status: CallEntityStatus,
+  duration: number,
+  created: string,
+  room: string,
+};
+```
+
+ClientId = random string
+
+```js
+clientId: string = generateFakeId();
+connections: Map<string, RTCPeerConnection> = new Map();
+```
+
+P2P - Каждый с каждым
+
+Room = HEX(randomInt());
+
+```js
+EventEmitter.on('open', () => {
+  this.props.wsRoomJoin(call.room, this.clientId);
+});
+```
+
+Extensions
+
+```js
+createDataChannel(
+    label: string | null,
+    dataChannelDict?: RTCDataChannelInit
+): RTCDataChannel;
+
+getStats(
+    selector?: MediaStreamTrack | null
+): Promise<RTCStatsReport>
+```
