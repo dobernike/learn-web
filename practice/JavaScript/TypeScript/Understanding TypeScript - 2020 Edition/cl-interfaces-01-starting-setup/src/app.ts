@@ -12,6 +12,8 @@ add = (n1: number, n2: number) => {
 interface Named {
   readonly name?: string;
   outputName?: string;
+
+  //   greet?(): void;
 }
 
 interface Greetable extends Named {
