@@ -1,14 +1,39 @@
 const { app, BrowserWindow } = require('electron');
-const url = require('url');
+// const url = require('url');
+
+let win = null;
 
 function boot() {
-  win = new BrowserWindow();
-  win.loadURL(
-    url.format({
-      pathname: 'index.html',
-      slashes: true,
-    })
-  );
+  console.log(process.type);
+  win = new BrowserWindow({
+    width: 1000,
+    height: 500,
+    resizable: false,
+  });
+  //   win.loadURL(
+  //     url.format({
+  //       pathname: 'index.html',
+  //       slashes: true,
+  //     })
+  //   );
+  win.loadURL(`file://${__dirname}/index.html`);
+
+  win2 = new BrowserWindow({
+    width: 1000,
+    height: 500,
+    resizable: false,
+    parent: win,
+  });
+  //   win.loadURL(
+  //     url.format({
+  //       pathname: 'index.html',
+  //       slashes: true,
+  //     })
+  //   );
+  win2.loadURL('http://example.com');
+  win2.on('closed', (_) => {
+    console.log('win2 was closed');
+  });
 }
 
 app.on('ready', boot);
