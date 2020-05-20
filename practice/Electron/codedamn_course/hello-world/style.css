@@ -9,11 +9,38 @@ div {
   font-size: 3rem;
   font-family: calibri;
 }
+header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  background: #353535;
+  align-self: stretch;
+  -webkit-app-region: drag;
+}
 
-body {
+#content {
   display: flex;
   height: 100vh;
-  justify-content: center;
+  flex-direction: column;
   background: black;
   align-items: center;
+}
+
+#text {
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.option {
+  color: white;
+  padding: 10px 25px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+.option:hover {
+  background: red;
 }
