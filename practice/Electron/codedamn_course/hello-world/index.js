@@ -9,6 +9,9 @@ function boot() {
     width: 600,
     height: 400,
     frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+    },
     // resizable: false,
   });
   //   win.loadURL(
@@ -18,6 +21,9 @@ function boot() {
   //     })
   //   );
   win.loadURL(`file://${__dirname}/index.html`);
+  win.on('closed', () => {
+    win = null;
+  });
 
   //   win2 = new BrowserWindow({
   //     width: 1000,
