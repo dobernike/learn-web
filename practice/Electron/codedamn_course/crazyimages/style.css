@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  -webkit-app-region: drag;
+  background: black;
+}
+
+.option {
+  padding: 10px 25px;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+  -webkit-app-region: no-drag;
+}
+
+.option:hover {
+  background: red;
+}
