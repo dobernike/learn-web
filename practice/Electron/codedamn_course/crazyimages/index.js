@@ -7,6 +7,9 @@ let boot = () => {
     width: 700,
     heigth: 500,
     frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+    },
   });
 
   win.loadURL(`file://${__dirname}/index.html`);
