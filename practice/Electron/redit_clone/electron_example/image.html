@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image</title>
+    <style>
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const urlParams = new URLSearchParams(location.search);
+      image = urlParams.get('image');
+      s = urlParams.get('s');
+
+      document.body.innerHTML = `
+        <img src="${image}&s=${s}" alt="image">
+      `;
+    </script>
+  </body>
+</html>

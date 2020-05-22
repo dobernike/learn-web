@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reddit clone electron</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <style>
+      body {
+        padding: 24px;
+      }
+
+      .list-group-item {
+        cursor: pointer;
+      }
+
+      .list-group-item:hover {
+        background-color: #eee;
+      }
+
+      .thumbnail {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        margin-right: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="posts" class="list-group list-group-flush"></ul>
+
+    <script>
+      const axios = require('axios');
+      const { remote, ipcRenderer } = require('electron');
+      const { BrowserWindow, Menu } = remote;
+
+      this.initMenu();
+
+      let posts = [];
+
+      axios
+        .get('https://reddit.com/r/aww.json')
+        .then((response) => {
+          posts = response.data.data.children;
+          this.renderPosts(posts);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      function renderPosts(posts) {
+        posts.forEach((post) => {
+          document.getElementById('posts').innerHTML =
+            document.getElementById('posts').innerHTML +
+            `<li class="list-group-item d-flex align-items-center" data-image="${post.data.preview.images[0].source.url}">
+                <img
+                src="${post.data.thumbnail}"
+                alt="thumb"
+                class="thumbnail"
+                />
+                <div>${post.data.title}</div>
+            </li>`;
+        });
+
+        this.addEventListeners();
+      }
+
+      function addEventListeners() {
+        document.querySelectorAll('.list-group-item').forEach((element) => {
+          element.addEventListener('click', function () {
+            let imageWindow = new BrowserWindow({
+              width: 500,
+              height: 500,
+            });
+
+            imageWindow.on('window-all-closed', () => {
+              if (process.platform !== 'darwin') {
+                app.quit();
+              }
+            });
+
+            imageWindow.loadURL(
+              'file://' +
+                __dirname +
+                '/image.html?image=' +
+                this.getAttribute('data-image')
+            );
+
+            imageWindow.show();
+          });
+        });
+      }
+
+      function initMenu() {
+        const menu = Menu.buildFromTemplate([
+          {
+            label: 'File',
+            submenu: [
+              { label: 'New Window' },
+              {
+                label: 'Settings',
+                accelerator: 'CmdOrCtrl+,',
+                click: () => {
+                  ipcRenderer.send('toggle-settings');
+                },
+              },
+              { type: 'separator' },
+              {
+                label: 'Quit',
+                accelerator: 'CmdOrCtrl+Q',
+              },
+            ],
+          },
+          {
+            label: 'Edit',
+            submenu: [
+              { label: 'Menu Item 1' },
+              { label: 'Menu Item 2' },
+              { label: 'Menu Item 3' },
+            ],
+          },
+        ]);
+
+        Menu.setApplicationMenu(menu);
+      }
+    </script>
+  </body>
+</html>
