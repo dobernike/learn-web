@@ -231,3 +231,7 @@ function Comment(props) {
 ## ReactBaseClasses.js
 
 [https://github.com/facebook/react/blob/master/packages/react/src/ReactBaseClasses.js]
+
+## ReactElement.js
+
+[https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react/src/ReactElement.js#L175]
