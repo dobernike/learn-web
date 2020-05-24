@@ -227,3 +227,7 @@ function Comment(props) {
 `React-компоненты обязаны вести себя как чистые функции по отношению к своим пропсам.`
 
 ---
+
+## ReactBaseClasses.js
+
+[https://github.com/facebook/react/blob/master/packages/react/src/ReactBaseClasses.js]
