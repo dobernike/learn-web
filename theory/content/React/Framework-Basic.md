@@ -429,3 +429,135 @@ class SignUpDialog extends React.Component {
 Если вы хотите повторно использовать функциональность, отличную от пользовательского интерфейса, между компонентами, мы предлагаем извлечь её в отдельный модуль JavaScript. Компоненты могут импортировать его и использовать эту функцию, объект или класс, без расширения (наследования).
 
 ---
+
+## Why Do We Write super(props)?
+[https://overreacted.io/why-do-we-write-super-props/]
+
+I wrote super(props) more times in my life than I’d like to know:
+
+```jsx
+class Checkbox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOn: true };
+  }
+  // ...
+}
+```
+
+Of course, the class fields proposal lets us skip the ceremony:
+
+```jsx
+class Checkbox extends React.Component {
+  state = { isOn: true };
+  // ...
+}
+```
+
+Why do we call super? Can we not call it? If we have to call it, what happens if we don’t pass props? Are there any other arguments? Let’s find out.
+
+In JavaScript, super refers to the parent class constructor. (In our example, it points to the React.Component implementation.)
+
+Importantly, you can’t use this in a constructor until after you’ve called the parent constructor. JavaScript won’t let you:
+
+```jsx
+class Checkbox extends React.Component {
+  constructor(props) {
+    // 🔴 Can’t use `this` yet
+    super(props);
+    // ✅ Now it’s okay though
+    this.state = { isOn: true };
+  }
+  // ...
+}
+```
+
+There’s a good reason for why JavaScript enforces that parent constructor runs before you touch this. Consider a class hierarchy:
+
+```jsx
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class PolitePerson extends Person {
+  constructor(name) {
+    this.greetColleagues(); // 🔴 This is disallowed, read below why
+    super(name);
+  }
+  greetColleagues() {
+    alert('Good morning folks!');
+  }
+}
+```
+
+Imagine using this before super call was allowed. A month later, we might change greetColleagues to include the person’s name in the message:
+
+```jsx
+ greetColleagues() {
+    alert('Good morning folks!');
+    alert('My name is ' + this.name + ', nice to meet you!');
+  }
+```
+
+You might think that passing props down to super is necessary so that the base React.Component constructor can initialize this.props:
+
+```jsx
+// Inside React
+class Component {
+  constructor(props) {
+    this.props = props;
+    // ...
+  }
+}
+```
+
+But somehow, even if you call super() without the props argument, you’ll still be able to access this.props in the render and other methods. (If you don’t believe me, try it yourself!)
+
+How does that work? It turns out that React also assigns props on the instance right after calling your constructor:
+
+```jsx
+ // Inside React
+  const instance = new YourComponent(props);
+  instance.props = props;
+```
+
+So even if you forget to pass props to super(), React would still set them right afterwards. There is a reason for that.
+
+```jsx
+// Inside React
+class Component {
+  constructor(props) {
+    this.props = props;
+    // ...
+  }
+}
+
+// Inside your code
+class Button extends React.Component {
+  constructor(props) {
+    super(); // 😬 We forgot to pass props
+    console.log(props);      // ✅ {}
+    console.log(this.props); // 😬 undefined 
+  }
+  // ...
+}
+```
+
+It can be even more challenging to debug if this happens in some method that’s called from the constructor. And that’s why I recommend always passing down super(props), even though it isn’t strictly necessary:
+
+```jsx
+class Button extends React.Component {
+  constructor(props) {
+    super(props); // ✅ We passed props
+    console.log(props);      // ✅ {}
+    console.log(this.props); // ✅ {}
+  }
+  // ...
+}
+```
+
+This ensures this.props is set even before the constructor exits.
+
+---
