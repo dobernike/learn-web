@@ -616,3 +616,81 @@ const result = instance.render(); // <p>Hello</p>
 In both cases React’s goal is to get the rendered node (in this example, <p>Hello</p>). But the exact steps depend on how Greeting is defined.
 
 ---
+
+## Why Do React Elements Have a $$typeof Property
+[https://overreacted.io/why-do-react-elements-have-typeof-property/]
+
+You might think you’re writing JSX:
+
+```jsx
+<marquee bgcolor="#ffa7c4">hi</marquee>
+```
+
+But really, you’re calling a function:
+
+```jsx
+React.createElement(
+  /* type */ 'marquee',
+  /* props */ { bgcolor: '#ffa7c4' },
+  /* children */ 'hi'
+)
+```
+
+And that function gives you back an object. We call this object a React element. It tells React what to render next. Your components return a tree of them.
+
+```jsx
+{
+  type: 'marquee',
+  props: {
+    bgcolor: '#ffa7c4',
+    children: 'hi',
+  },
+  key: null,
+  ref: null,
+  $$typeof: Symbol.for('react.element'), // 🧐 Who dis
+}
+```
+
+if your server has a hole that lets the user store an arbitrary JSON object while the client code expects a string, this could become a problem:
+
+```jsx
+// Server could have a hole that lets user store JSON
+let expectedTextButGotJSON = {
+  type: 'div',
+  props: {
+    dangerouslySetInnerHTML: {
+      __html: '/* put your exploit here */'
+    },
+  },
+  // ...
+};
+let message = { text: expectedTextButGotJSON };
+
+// Dangerous in React 0.13
+<p>
+  {message.text}
+</p>
+```
+
+In that case, React 0.13 would be vulnerable to an XSS attack. To clarify, again, this attack depends on an existing server hole. Still, React could do a better job of protecting people against it. And starting with React 0.14, it does.
+
+The fix in React 0.14 was to tag every React element with a Symbol:
+
+```jsx
+{
+  type: 'marquee',
+  props: {
+    bgcolor: '#ffa7c4',
+    children: 'hi',
+  },
+  key: null,
+  ref: null,
+  $$typeof: Symbol.for('react.element'),
+}
+```
+
+This works because you can’t just put Symbols in JSON. So even if the server has a security hole and returns JSON instead of text, that JSON can’t include Symbol.for('react.element'). React will check element.$$typeof, and will refuse to process the element if it’s missing or invalid.
+
+---
+
+# "Framework Architecture State and Lifecycle"
