@@ -561,3 +561,58 @@ class Button extends React.Component {
 This ensures this.props is set even before the constructor exits.
 
 ---
+
+## How Does React Tell a Class from a Function?
+[https://overreacted.io/how-does-react-tell-a-class-from-a-function/]
+
+```jsx
+function Greeting() {
+  return <p>Hello</p>;
+}
+
+class Greeting extends React.Component {
+  render() {
+    return <p>Hello</p>;
+  }
+}
+```
+
+When you want to render a <Greeting />, you don’t care how it’s defined:
+
+```jsx
+// Class or function — whatever.
+<Greeting />
+```
+
+But React itself cares about the difference!
+
+If Greeting is a function, React needs to call it:
+
+```jsx
+// Your code
+function Greeting() {
+  return <p>Hello</p>;
+}
+
+// Inside React
+const result = Greeting(props); // <p>Hello</p>
+```
+
+But if Greeting is a class, React needs to instantiate it with the new operator and then call the render method on the just created instance:
+
+```jsx
+// Your code
+class Greeting extends React.Component {
+  render() {
+    return <p>Hello</p>;
+  }
+}
+
+// Inside React
+const instance = new Greeting(props); // Greeting {}
+const result = instance.render(); // <p>Hello</p>
+```
+
+In both cases React’s goal is to get the rendered node (in this example, <p>Hello</p>). But the exact steps depend on how Greeting is defined.
+
+---
