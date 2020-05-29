@@ -873,3 +873,21 @@ function FormattedDate(props) {
 В React-приложениях, имеет ли компонент состояние или нет — это внутренняя деталь реализации компонента, которая может меняться со временем. Можно использовать компоненты без состояния в компонентах с состоянием, и наоборот.
 
 ---
+
+## React Component Lifecycle Old vs New
+[https://medium.com/@kartikag01/react-component-lifecycle-old-vs-new-32757aee5850]
+
+Methods Deprecated in 16.4
+  componentWillMount()
+  componentWillReceiveProps()
+  componentWillUpdate()
+New Methods introduced
+  getDerivedStateFromProps()
+  getSnapshotBeforeUpdate()
+
+componentWillMount() → UNSAFE_componentWillMount()
+componentWillReceiveProps() → UNSAFE_componentWillReceiveProps()
+componentWillUpdate() → UNSAFE_componentWillUpdate()
+
+---
+
