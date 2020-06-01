@@ -1533,3 +1533,66 @@ fiber.hooks = hooks;
 ```
 
 This is roughly how each useState() call gets the right state. As we’ve learned earlier, “matching things up” isn’t new to React — reconciliation relies on the elements matching up between renders in a similar way.
+
+---
+
+## Reconciliation
+[https://reactjs.org/docs/reconciliation.html]
+
+ This article explains the choices we made in React’s “diffing” algorithm so that component updates are predictable while being fast enough for high-performance apps.
+
+ React implements a heuristic O(n) algorithm based on two assumptions:
+
+Two elements of different types will produce different trees.
+The developer can hint at which child elements may be stable across different renders with a key prop.
+
+### The Diffing Algorithm
+When diffing two trees, React first compares the two root elements. The behavior is different depending on the types of the root elements.
+
+#### Elements Of Different Types
+
+Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. 
+
+When tearing down a tree, old DOM nodes are destroyed. Component instances receive componentWillUnmount(). When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive componentWillMount() and then componentDidMount(). Any state associated with the old tree is lost.
+
+#### DOM Elements Of The Same Type
+
+When comparing two React DOM elements of the same type, React looks at the attributes of both, keeps the same underlying DOM node, and only updates the changed attributes.
+
+#### Component Elements Of The Same Type
+
+When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls componentWillReceiveProps() and componentWillUpdate() on the underlying instance.
+
+#### Recursing On Children
+
+By default, when recursing on the children of a DOM node, React just iterates over both lists of children at the same time and generates a mutation whenever there’s a difference.
+
+If you implement it naively, inserting an element at the beginning has worse performance. For example, converting between these two trees works poorly:
+
+```jsx
+<ul>
+  <li>Duke</li>
+  <li>Villanova</li>
+</ul>
+
+<ul>
+  <li>Connecticut</li>
+  <li>Duke</li>
+  <li>Villanova</li>
+</ul>
+```
+
+React will mutate every child instead of realizing it can keep the <li>Duke</li> and <li>Villanova</li> subtrees intact. This inefficiency can be a problem.
+
+#### Keys
+
+In order to solve this issue, React supports a key attribute. When children have keys, React uses the key to match children in the original tree with children in the subsequent tree.
+
+As a last resort, you can pass an item’s index in the array as a key. This can work well if the items are never reordered, but reorders will be slow.
+
+### Tradeoffs
+
+1. The algorithm will not try to match subtrees of different component types. If you see yourself alternating between two component types with very similar output, you may want to make it the same type. In practice, we haven’t found this to be an issue.
+2. Keys should be stable, predictable, and unique. Unstable keys (like those produced by Math.random()) will cause many component instances and DOM nodes to be unnecessarily recreated, which can cause performance degradation and lost state in child components.
+
+---
