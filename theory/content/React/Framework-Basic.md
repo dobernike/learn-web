@@ -1596,3 +1596,44 @@ As a last resort, you can pass an item’s index in the array as a key. This can
 2. Keys should be stable, predictable, and unique. Unstable keys (like those produced by Math.random()) will cause many component instances and DOM nodes to be unnecessarily recreated, which can cause performance degradation and lost state in child components.
 
 ---
+
+## Get derived state from props react
+[https://www.youtube.com/watch?time_continue=26&v=XqFCMObsyKk]
+
+React 16.3
+
+componentWillMount -> componentDidMount
+componentWillReceiveProps -> getDerivedStateFromProps
+componentWillUpdate -> componentDidUpdate
+
+```jsx
+export class Names extends React.Component {
+  static propTypes = {
+    names: PropTypes.array.isRequired,
+    color: PropTypes.string.isRequired
+  }
+
+  state = {
+    names: [],
+    sortedNames: []
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.names !== nextProps.names) {
+      return {
+        names: nextProps.names,
+        sortedNames: sort(nextProps.names)
+      }
+    }
+    return null;
+  }
+
+  render() {
+    return (
+      sortedNames.map(name => <li key={name}>{name}</li>)
+    )
+  }
+}
+```
+
+---
