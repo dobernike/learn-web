@@ -1669,3 +1669,8 @@ this.setState((state, props) => {
 ` setState(stateChange[, callback]) `
 
 ---
+
+## Component.prototype.setState
+[https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react/src/ReactBaseClasses.js#L58]
+
+---
