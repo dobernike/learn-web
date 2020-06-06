@@ -1537,21 +1537,23 @@ This is roughly how each useState() call gets the right state. As we’ve learne
 ---
 
 ## Reconciliation
+
 [https://reactjs.org/docs/reconciliation.html]
 
- This article explains the choices we made in React’s “diffing” algorithm so that component updates are predictable while being fast enough for high-performance apps.
+This article explains the choices we made in React’s “diffing” algorithm so that component updates are predictable while being fast enough for high-performance apps.
 
- React implements a heuristic O(n) algorithm based on two assumptions:
+React implements a heuristic O(n) algorithm based on two assumptions:
 
 Two elements of different types will produce different trees.
 The developer can hint at which child elements may be stable across different renders with a key prop.
 
 ### The Diffing Algorithm
+
 When diffing two trees, React first compares the two root elements. The behavior is different depending on the types of the root elements.
 
 #### Elements Of Different Types
 
-Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. 
+Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch.
 
 When tearing down a tree, old DOM nodes are destroyed. Component instances receive componentWillUnmount(). When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive componentWillMount() and then componentDidMount(). Any state associated with the old tree is lost.
 
@@ -1598,6 +1600,7 @@ As a last resort, you can pass an item’s index in the array as a key. This can
 ---
 
 ## Get derived state from props react
+
 [https://www.youtube.com/watch?time_continue=26&v=XqFCMObsyKk]
 
 React 16.3
@@ -1610,28 +1613,26 @@ componentWillUpdate -> componentDidUpdate
 export class Names extends React.Component {
   static propTypes = {
     names: PropTypes.array.isRequired,
-    color: PropTypes.string.isRequired
-  }
+    color: PropTypes.string.isRequired,
+  };
 
   state = {
     names: [],
-    sortedNames: []
-  }
+    sortedNames: [],
+  };
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.names !== nextProps.names) {
       return {
         names: nextProps.names,
-        sortedNames: sort(nextProps.names)
-      }
+        sortedNames: sort(nextProps.names),
+      };
     }
     return null;
   }
 
   render() {
-    return (
-      sortedNames.map(name => <li key={name}>{name}</li>)
-    )
+    return sortedNames.map((name) => <li key={name}>{name}</li>);
   }
 }
 ```
@@ -1639,11 +1640,12 @@ export class Names extends React.Component {
 ---
 
 ## setState()
+
 [https://ru.react.js.org/docs/react-component.html#setstate]
 
-` setState(updater[, callback]) `
+`setState(updater[, callback])`
 
-setState () ставит в очередь изменения в состояние компонента и указывает React, что этот компонент и его дочерние элементы должны быть повторно отрисованы с обновлённым состоянием. 
+setState () ставит в очередь изменения в состояние компонента и указывает React, что этот компонент и его дочерние элементы должны быть повторно отрисованы с обновлённым состоянием.
 
 React не гарантирует незамедлительного применения изменений в состоянии.
 
@@ -1658,7 +1660,7 @@ state — ссылка на состояние компонента при из�
 
 ```jsx
 this.setState((state, props) => {
-  return {counter: state.counter + props.step};
+  return { counter: state.counter + props.step };
 });
 ```
 
@@ -1666,13 +1668,21 @@ this.setState((state, props) => {
 
 В качестве первого аргумента setState(), вместо функции, вы можете передать объект:
 
-` setState(stateChange[, callback]) `
+`setState(stateChange[, callback])`
 
 ---
 
 ## Component.prototype.setState
-[https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react/src/ReactBaseClasses.js#L58]
-[https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react-reconciler/src/ReactFiberClassComponent.js#L184]
+
+[https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react/src/ReactBaseClasses.js#L58][https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react-reconciler/src/reactfiberclasscomponent.js#l184]
 [https://github.com/facebook/react/blob/2afeebdcc4ed8a78ab5b36792f768078d70e1ffd/packages/react-reconciler/src/ReactUpdateQueue.js#L208]
+
+---
+
+# Framework Advantages Handling Events & Forms
+
+## React events in depth w/ Kent C. Dodds, Ben Alpert, & Dan Abramov
+
+[https://www.youtube.com/watch?v=dRo_egw7tBc]
 
 ---
