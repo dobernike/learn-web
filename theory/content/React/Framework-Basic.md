@@ -1845,3 +1845,43 @@ React нормализует события так, чтобы они содер
 Обработчики ниже вызываются на фазе всплытия (bubbling). А чтобы зарегистрировать событие на фазе перехвата (capture), просто добавьте Capture к имени события; например, вместо использования onClick используйте onClickCapture, чтобы обработать событие на фазе перехвата.
 
 ---
+
+## Final Form: Form state management via Observers
+[https://youtu.be/fxEW4jgoX-4]
+
+### why are forms hard?
+
+- Maximum user interaction
+- Rapid state change
+- A lot of state
+
+### Redux form (redux-form.com)
+
+- only React
+- only Redux
+- much rerendering
+- over 26k gzipped
+
+### Final Form
+
+- standalone form state management engine
+- Framework agnostic
+- Subscription based
+- Plugin capabilities
+- Zero dependencies
+- 4.6 kB gzipped
+
+### React final form
+
+- React binding for final form
+- Maps form and field state to render props
+- Handles React SyntheticEvent
+- Even smaller: 2.9 kB gzipped
+- Total: 7.5 kb gzipped
+
+### React final form hooks
+
+- useForm and useField
+- 843 bytes gzipped
+
+---
