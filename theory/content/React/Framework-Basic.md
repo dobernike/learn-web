@@ -1810,11 +1810,12 @@ class LoggingButton extends React.Component {
 ---
 
 ## SyntheticEvent
+
 [https://ru.reactjs.org/docs/events.html]
 
 Ваши обработчики событий получают экземпляр SyntheticEvent, это кроссбраузерная обёртка над нативным экземпляром события. У неё такой же интерфейс, как и у нативного события, включая методы stopPropagation() и preventDefault(). Эта обёртка помогает событиям работать одинаково во всех браузерах.
 
-Если вам всё-таки нужно получить нативное браузерное событие, обратитесь к атрибуту nativeEvent. 
+Если вам всё-таки нужно получить нативное браузерное событие, обратитесь к атрибуту nativeEvent.
 
 События SyntheticEvent содержатся в пуле. Это означает, что объект SyntheticEvent будет повторно использован, а все его свойства будут очищены после вызова обработчика события. Это необходимо из соображений производительности. Именно поэтому нельзя использовать синтетические события асинхронно.
 
@@ -1824,21 +1825,20 @@ function onClick(event) {
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
-  setTimeout(function() {
+  setTimeout(function () {
     console.log(event.type); // => null
     console.log(eventType); // => "click"
   }, 0);
 
   // Не сработает, поскольку this.state.clickEvent будет содержать только null-значения.
-  this.setState({clickEvent: event});
+  this.setState({ clickEvent: event });
 
   // По-прежнему можно экспортировать свойства события.
-  this.setState({eventType: event.type});
+  this.setState({ eventType: event.type });
 }
 ```
 
 Если вы всё же хотите обратиться к полям события асинхронно, вам нужно вызвать event.persist() на событии. Тогда оно будет извлечено из пула, что позволит вашему коду удерживать ссылки на это событие.
-
 
 React нормализует события так, чтобы они содержали одинаковые свойства во всех браузерах.
 
@@ -1847,6 +1847,7 @@ React нормализует события так, чтобы они содер
 ---
 
 ## Final Form: Form state management via Observers
+
 [https://youtu.be/fxEW4jgoX-4]
 
 ### why are forms hard?
@@ -1883,5 +1884,92 @@ React нормализует события так, чтобы они содер
 
 - useForm and useField
 - 843 bytes gzipped
+
+---
+
+## Back to Basics: Event Handling in React
+
+[https://alligator.io/react/event-handling/]
+
+The Basics of React Event Handling
+
+camelCase vs lowercase
+
+```jsx
+// React Code
+<button
+  onclick={handleClick()}     // 🙅
+  onClick={this.handleClick}  // 👌
+>
+```
+
+This is pretty much 90% of the difficulty (or ease?) of learning React event handling. Well, there’s the curious way that handleClick is defined on the LoudButton class… but that’s more of a ES6 classes matter.
+
+onClick
+only accepts a single function
+
+Also this.handleClick wasn’t invoked. This contrasts with HTML/JS where onclick can be any arbitrary amount of JavaScript code:
+
+```html
+<button onclick="handleClick(); const pizza = true; hazPizza(pizza);">
+  Click Me
+</button>
+```
+
+Additional Examples
+
+So far we’ve only looked at click events, so let’s look at a few other events. Below is a code snippet that has 3 different events. It’s interesting to see how the event (or e argument) varies between different kinds of events:
+
+```jsx
+class App extends Component {
+  state = {
+    inputText: '',
+    mouseX: 0,
+    mouseY: 0
+  }
+  handleInput = (e) => {
+    this.setState({inputText: e.target.value});
+  }
+  handleSubmit = () => {
+    alert(`Quoteth Shakespeare, "You cad! ${this.state.inputText}"`);
+  }
+  handleMouse = (e) => {
+    this.setState({ mouseX: e.screenX, mouseY: e.screenY });
+  }
+  render() {
+    return (
+      <div>
+
+        <input
+          onChange={this.handleInput}  {/* ⌨ input text */}
+          value={this.state.inputText}
+        />
+
+        <form onSubmit={this.handleSubmit}>  {/* 📥 onsubmit */}
+          <input value={this.state.inputText}/>
+          <button type="submit">submit dis</button>
+        </form>
+
+        <div>
+          <img
+            src="doggo.jpeg"
+            onMouseMove={this.handleMouse} {/* 🖱️ mouse movement */}
+          />
+          {this.state.mouseX}px / {this.state.mouseY}px
+        </div>
+
+      </div>
+    )
+  }
+}
+```
+
+You’ll commonly see the word handle... used. This is merely a popular convention. For example, sometimes I’ll even mirror the prop name because I’m mildly OCD: <button onClick={this.onClick}/>. Just use whatever works!
+
+The event argument
+
+Notice the e argument. It’s automatically passed into the handler whenever the event is emitted. And depending on the kind of handler, sometimes the e argument has a slightly different API (eg., e.target.value vs e.screenX). If you haven’t written too many event handlers before… don’t worry about remembering the differences! You’ll start to remember the different e APIs as you use them.
+
+Frankly, I only use ~3 different kinds of events with any kind of frequency. Just keep the React docs for Synthetic Events close-by for reference purposes. 😉
 
 ---
