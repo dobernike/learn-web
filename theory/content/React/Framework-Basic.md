@@ -2679,3 +2679,11 @@ This is a controlled input. It only updates the DOM when state has changed in ou
 If you're using function components for form elements, read about using state hoisting to move new state up the component tree.
 
 ---
+
+# Common knowledge
+
+## Awesome React
+
+[https://github.com/enaqx/awesome-react]
+
+---
