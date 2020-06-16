@@ -2684,6 +2684,10 @@ If you're using function components for form elements, read about using state ho
 
 [https://www.youtube.com/watch?v=SuzutbwjUp8]
 
+[https://www.youtube.com/watch?v=ubxtorojilu]
+
+[https://codesandbox.io/s/github/kentcdodds/advanced-react-patterns-v2]
+
 ---
 
 ## Изоморфный React на микрофронтендах
