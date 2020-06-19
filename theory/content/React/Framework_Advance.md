@@ -1148,6 +1148,232 @@ function ProfilePage() {
 Он будет ловить ошибки рендера и ошибки получения данных в задержке. У нас может быть столько предохранителей, сколько мы захотим, но лучше расставлять их избирательно.
 [https://aweary.dev/fault-tolerance-react/]
 
+## Concurrent UI Patterns
+[https://ru.reactjs.org/docs/concurrent-mode-patterns.html]
+
+defer an update from appearing on the screen.
+
+### Transitions
+
+It would be nice if we could «skip» it and wait for some content to load before transitioning to the new screen.
+
+React offers a new built-in useTransition() Hook to help with this.
+
+ReactDOM.createRoot() rather than ReactDOM.render() for this feature to work:
+
+```jsx
+const rootElement = document.getElementById("root");
+// Opt into Concurrent Mode
+ReactDOM.createRoot(rootElement).render(<App />);
+```
+
+Next, we’ll add an import for the useTransition Hook from React:
+
+```jsx
+import React, { useState, useTransition, Suspense } from "react";
+```
+
+Finally, we’ll use it inside the App component:
+
+```jsx
+function App() {
+  const [resource, setResource] = useState(initialResource);
+  const [startTransition, isPending] = useTransition({
+    timeoutMs: 3000
+  });
+  // ...
+```
+
+By itself, this code doesn’t do anything yet
+
+There are two values returned from useTransition:
+
+- startTransition is a function. We’ll use it to tell React which state update we want to defer.
+- isPending is a boolean. It’s React telling us whether that transition is ongoing at the moment.
+
+Note we passed a configuration object to useTransition. Its timeoutMs property specifies how long we’re willing to wait for the transition to finish. By passing {timeoutMs: 3000}, we say «If the next profile takes more than 3 seconds to load, show the big spinner — but before that timeout it’s okay to keep showing the previous screen».
+
+### Wrapping setState in a Transition
+
+Our «Next» button click handler sets the state that switches the current profile in the state:
+
+```jsx
+<button
+  onClick={() => {
+    const nextUserId = getNextId(resource.userId);
+    setResource(fetchProfileData(nextUserId));
+  }}
+>
+```
+
+We’ll wrap that state update into startTransition. That’s how we tell React we don’t mind React delaying that state update if it leads to an undesirable loading state:
+
+```jsx
+<button
+  onClick={() => {
+    startTransition(() => {
+      const nextUserId = getNextId(resource.userId);
+      setResource(fetchProfileData(nextUserId));
+    });
+  }}
+>
+```
+
+Instead of immediately seeing an empty screen on click, we now keep seeing the previous page for a while. 
+
+### Adding a Pending Indicator
+
+But having no indication of progress at all feels even worse! 
+
+Our useTransition() call returns two values: startTransition and isPending.
+
+```jsx
+const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
+```
+
+we’re currently waiting for this transition to finish
+
+```jsx
+return (
+  <>
+    <button
+      disabled={isPending}
+      onClick={() => {
+        startTransition(() => {
+          const nextUserId = getNextId(resource.userId);
+          setResource(fetchProfileData(nextUserId));
+        });
+      }}
+    >
+      Next
+    </button>
+    {isPending ? " Loading..." : null}
+    <ProfilePage resource={resource} />
+  </>
+);
+```
+
+### Reviewing the Changes
+
+```jsx
+function App() {
+  const [resource, setResource] = useState(initialResource);
+  const [startTransition, isPending] = useTransition({
+    timeoutMs: 3000
+  });
+  return (
+    <>
+      <button
+        disabled={isPending}
+        onClick={() => {
+          startTransition(() => {
+            const nextUserId = getNextId(resource.userId);
+            setResource(fetchProfileData(nextUserId));
+          });
+        }}
+      >
+        Next
+      </button>
+      {isPending ? " Loading..." : null}
+      <ProfilePage resource={resource} />
+    </>
+  );
+}
+```
+
+### Transitions Are Everywhere
+
+Just like before, to avoid showing an undesirable loading state, we can wrap the state update in a transition:
+
+```jsx
+function ProfilePage() {
+  const [startTransition, isPending] = useTransition({
+    // Wait 10 seconds before fallback
+    timeoutMs: 10000
+  });
+  const [resource, setResource] = useState(initialResource);
+
+  function handleRefreshClick() {
+    startTransition(() => {
+      setResource(fetchProfileData());
+    });
+  }
+
+  return (
+    <Suspense fallback={<h1>Loading profile...</h1>}>
+      <ProfileDetails resource={resource} />
+      <button
+        onClick={handleRefreshClick}
+        disabled={isPending}
+      >
+        {isPending ? "Refreshing..." : "Refresh"}
+      </button>
+      <Suspense fallback={<h1>Loading posts...</h1>}>
+        <ProfileTimeline resource={resource} />
+      </Suspense>
+    </Suspense>
+  );
+}
+```
+
+### Baking Transitions Into the Design System
+
+ we generally recommend to bake useTransition into the design system components of your app.
+
+```jsx
+function Button({ children, onClick }) {
+  const [startTransition, isPending] = useTransition({
+    timeoutMs: 10000
+  });
+
+  function handleClick() {
+    startTransition(() => {
+      onClick();
+    });
+  }
+
+  const spinner = (
+    // ...
+  );
+
+  return (
+    <>
+      <button
+        onClick={handleClick}
+        disabled={isPending}
+      >
+        {children}
+      </button>
+      {isPending ? spinner : null}
+    </>
+  );
+}
+```
+
+Note that the button doesn’t care what state we’re updating
+
+```jsx
+function ProfilePage() {
+  const [resource, setResource] = useState(initialResource);
+
+  function handleRefreshClick() {
+    setResource(fetchProfileData());
+  }
+
+  return (
+    <Suspense fallback={<h1>Loading profile...</h1>}>
+      <ProfileDetails resource={resource} />
+      <Button onClick={handleRefreshClick}>
+        Refresh
+      </Button>
+      <Suspense fallback={<h1>Loading posts...</h1>}>
+        <ProfileTimeline resource={resource} />
+      </Suspense>
+    </Suspense>
+  );
+}
+```
+
 ---
 
 # Common knowledge
