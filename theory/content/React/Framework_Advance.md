@@ -1148,6 +1148,8 @@ function ProfilePage() {
 Он будет ловить ошибки рендера и ошибки получения данных в задержке. У нас может быть столько предохранителей, сколько мы захотим, но лучше расставлять их избирательно.
 [https://aweary.dev/fault-tolerance-react/]
 
+---
+
 ## Concurrent UI Patterns
 [https://ru.reactjs.org/docs/concurrent-mode-patterns.html]
 
@@ -1374,6 +1376,8 @@ function ProfilePage() {
 }
 ```
 
+---
+
 ## Использование конкурентного режима
 [https://ru.reactjs.org/docs/concurrent-mode-adoption.html]
 
@@ -1426,6 +1430,33 @@ ReactDOM.createRoot(
 - `Конкурентный режим`: `ReactDOM.createRoot(rootNode).render(<App />)`. В настоящее время экспериментальный. В будущем, после стабилизации, мы намерены сделать его основным режимом React. Данный режим задействует все новые возможности.
 
 Вы можете рассматривать блокирующий режим как «отказоустойчивую» версию конкурентного режима. В конечном итоге, в долгосрочной перспективе, у нас будет возможность объединить оба режима и перестать рассматривать их как отдельные друг от друга
+
+---
+
+## Dan Abramov: Beyond React 16 | JSConf Iceland
+[https://youtu.be/nLF0n9SACd4]
+
+CPU - creating nodes / re-rendering
+
+IO - data fetching / code splitting
+
+Suspense: 
+
+- Pause any state update until the data is ready
+- Add async data to any component without "plumbing"
+- On a fast network, render after the whole tree is ready
+- On a slow network, precisely control the loading states
+- There`s both a high-level and a low-level API
+
+CPU - time slicing
+
+IO - suspense
+
+CPU + IO: Async Rendering with React
+
+- Adapt to user`s device and network
+- Fast interactions feel instant
+- Slower interactions feel responsive
 
 ---
 
