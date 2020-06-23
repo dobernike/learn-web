@@ -1460,6 +1460,11 @@ CPU + IO: Async Rendering with React
 
 ---
 
+## Building Great User Experiences with Concurrent Mode and Suspense
+[https://ru.reactjs.org/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html]
+
+---
+
 # Common knowledge
 
 ## Как современные библиотеки и фреймворки работают с DOM (Осторожно! Доклад 2017 года)
