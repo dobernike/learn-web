@@ -1460,6 +1460,12 @@ CPU + IO: Async Rendering with React
 
 ---
 
+## Modern React Workshop: Hooks and Suspense
+[https://www.youtube.com/watch?v=xcZXS_VEJS0]
+
+[https://codesandbox.io/s/github/kentcdodds/modern-react]
+---
+
 ## Building Great User Experiences with Concurrent Mode and Suspense
 [https://ru.reactjs.org/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html]
 
