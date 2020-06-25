@@ -1,0 +1,15 @@
+{
+  "name": "JSDoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "doc": "jsdoc -c jsdoc.json"
+  },
+  "keywords": [],
+  "author": "Paul Fedushin <fedushin.pavel@gmail.com> (https://dobernike.github.io)",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdoc": "^3.6.4"
+  }
+}
