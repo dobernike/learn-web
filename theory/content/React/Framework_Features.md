@@ -1,5 +1,13 @@
 # Framework Features
 
+# JSX In Depth
+
+## JSX в деталях
+
+[https://ru.reactjs.org/docs/jsx-in-depth.html]
+
+---
+
 # Redux
 
 ## Usage with React
@@ -11,14 +19,14 @@
 components/Todo.js
 
 ```js
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Todo = ({ onClick, completed, text }) => (
   <li
     onClick={onClick}
     style={{
-      textDecoration: completed ? "line-through" : "none"
+      textDecoration: completed ? 'line-through' : 'none',
     }}
   >
     {text}
@@ -28,7 +36,7 @@ const Todo = ({ onClick, completed, text }) => (
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 };
 
 export default Todo;
@@ -37,9 +45,9 @@ export default Todo;
 components/TodoList.js
 
 ```js
-import React from "react";
-import PropTypes from "prop-types";
-import Todo from "./Todo";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Todo from './Todo';
 
 const TodoList = ({ todos, onTodoClick }) => (
   <ul>
@@ -54,10 +62,10 @@ TodoList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  onTodoClick: PropTypes.func.isRequired
+  onTodoClick: PropTypes.func.isRequired,
 };
 
 export default TodoList;
@@ -66,8 +74,8 @@ export default TodoList;
 components/Link.js
 
 ```js
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Link = ({ active, children, onClick }) => {
   if (active) {
@@ -77,7 +85,7 @@ const Link = ({ active, children, onClick }) => {
   return (
     <a
       href=""
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
         onClick();
       }}
@@ -90,7 +98,7 @@ const Link = ({ active, children, onClick }) => {
 Link.propTypes = {
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Link;
@@ -99,16 +107,16 @@ export default Link;
 components/Footer.js
 
 ```js
-import React from "react";
-import FilterLink from "../containers/FilterLink";
-import { VisibilityFilters } from "../actions";
+import React from 'react';
+import FilterLink from '../containers/FilterLink';
+import { VisibilityFilters } from '../actions';
 
 const Footer = () => (
   <p>
     Show: <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-    {", "}
+    {', '}
     <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-    {", "}
+    {', '}
     <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
   </p>
 );
@@ -123,19 +131,19 @@ To use connect(), you need to define a special function called mapStateToProps t
 ```js
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
-    case "SHOW_COMPLETED":
-      return todos.filter(t => t.completed);
-    case "SHOW_ACTIVE":
-      return todos.filter(t => !t.completed);
-    case "SHOW_ALL":
+    case 'SHOW_COMPLETED':
+      return todos.filter((t) => t.completed);
+    case 'SHOW_ACTIVE':
+      return todos.filter((t) => !t.completed);
+    case 'SHOW_ALL':
     default:
       return todos;
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    todos: getVisibleTodos(state.todos, state.visibilityFilter),
   };
 };
 ```
@@ -143,11 +151,11 @@ const mapStateToProps = state => {
 In addition to reading the state, container components can dispatch actions. In a similar fashion, you can define a function called mapDispatchToProps() that receives the dispatch() method and returns callback props that you want to inject into the presentational component. For example, we want the VisibleTodoList to inject a prop called onTodoClick into the TodoList component, and we want onTodoClick to dispatch a TOGGLE_TODO action:
 
 ```js
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onTodoClick: id => {
+    onTodoClick: (id) => {
       dispatch(toggleTodo(id));
-    }
+    },
   };
 };
 ```
@@ -155,7 +163,7 @@ const mapDispatchToProps = dispatch => {
 Finally, we create the VisibleTodoList by calling connect() and passing these two functions:
 
 ```js
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 
@@ -167,13 +175,13 @@ Find the rest of the container components defined below:
 containers/FilterLink.js
 
 ```js
-import { connect } from "react-redux";
-import { setVisibilityFilter } from "../actions";
-import Link from "../components/Link";
+import { connect } from 'react-redux';
+import { setVisibilityFilter } from '../actions';
+import Link from '../components/Link';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    active: ownProps.filter === state.visibilityFilter
+    active: ownProps.filter === state.visibilityFilter,
   };
 };
 
@@ -181,7 +189,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
       dispatch(setVisibilityFilter(ownProps.filter));
-    }
+    },
   };
 };
 
@@ -193,32 +201,32 @@ export default FilterLink;
 containers/VisibleTodoList.js
 
 ```js
-import { connect } from "react-redux";
-import { toggleTodo } from "../actions";
-import TodoList from "../components/TodoList";
+import { connect } from 'react-redux';
+import { toggleTodo } from '../actions';
+import TodoList from '../components/TodoList';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
-    case "SHOW_ALL":
+    case 'SHOW_ALL':
       return todos;
-    case "SHOW_COMPLETED":
-      return todos.filter(t => t.completed);
-    case "SHOW_ACTIVE":
-      return todos.filter(t => !t.completed);
+    case 'SHOW_COMPLETED':
+      return todos.filter((t) => t.completed);
+    case 'SHOW_ACTIVE':
+      return todos.filter((t) => !t.completed);
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    todos: getVisibleTodos(state.todos, state.visibilityFilter),
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onTodoClick: id => {
+    onTodoClick: (id) => {
       dispatch(toggleTodo(id));
-    }
+    },
   };
 };
 
@@ -232,9 +240,9 @@ export default VisibleTodoList;
 containers/AddTodo.js
 
 ```js
-import React from "react";
-import { connect } from "react-redux";
-import { addTodo } from "../actions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions';
 
 let AddTodo = ({ dispatch }) => {
   let input;
@@ -242,17 +250,17 @@ let AddTodo = ({ dispatch }) => {
   return (
     <div>
       <form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           if (!input.value.trim()) {
             return;
           }
           dispatch(addTodo(input.value));
-          input.value = "";
+          input.value = '';
         }}
       >
         <input
-          ref={node => {
+          ref={(node) => {
             input = node;
           }}
         />
@@ -271,10 +279,10 @@ export default AddTodo;
 components/App.js
 
 ```js
-import React from "react";
-import Footer from "./Footer";
-import AddTodo from "../containers/AddTodo";
-import VisibleTodoList from "../containers/VisibleTodoList";
+import React from 'react';
+import Footer from './Footer';
+import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
 
 const App = () => (
   <div>
@@ -292,12 +300,12 @@ export default App;
 index.js
 
 ```js
-import React from "react";
-import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import todoApp from "./reducers";
-import App from "./components/App";
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import todoApp from './reducers';
+import App from './components/App';
 
 const store = createStore(todoApp);
 
@@ -305,7 +313,7 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 ```
 
@@ -323,17 +331,17 @@ render(
 
 ```js
 export const startAction = {
-  type: "rotate",
-  payload: true
+  type: 'rotate',
+  payload: true,
 };
 ```
 
 ```js
 export default (state, action) => {
   switch (action.type) {
-    case "rotate":
+    case 'rotate':
       return {
-        rotating: action.payload
+        rotating: action.payload,
       };
     default:
       return state;
@@ -342,8 +350,8 @@ export default (state, action) => {
 ```
 
 ```js
-import { createStore } from "redux";
-import rotateReducer from "reducers/rotateReducer";
+import { createStore } from 'redux';
+import rotateReducer from 'reducers/rotateReducer';
 
 function configureStore(state = { rotating: true }) {
   return createStore(rotateReducer, state);
@@ -353,9 +361,9 @@ export default configureStore;
 ```
 
 ```js
-import { connect } from "react-redux";
-import { startAction } from "actions/startAction";
-import { stopAction } from "actions/stopAction";
+import { connect } from 'react-redux';
+import { startAction } from 'actions/startAction';
+import { stopAction } from 'actions/stopAction';
 
 export default connect()(App);
 ```
@@ -366,13 +374,13 @@ export default connect()(App);
 - mapDispatchToProps: this is used to retrieve the actions and dispatch them to the store
 
 ```js
-const mapStateToProps = state => ({
-  ...state
+const mapStateToProps = (state) => ({
+  ...state,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   startAction: () => dispatch(startAction),
-  stopAction: () => dispatch(stopAction)
+  stopAction: () => dispatch(stopAction),
 });
 ```
 
@@ -385,15 +393,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.js
 
 ```js
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // new lines from here
-import { connect } from "react-redux";
-import rotateAction from "actions/rotateAction";
+import { connect } from 'react-redux';
+import rotateAction from 'actions/rotateAction';
 
 //// new lines to here
 
-import logo from "./logo.svg";
-import "./App.css";
+import logo from './logo.svg';
+import './App.css';
 
 class App extends Component {
   render() {
@@ -404,7 +412,7 @@ class App extends Component {
           <img
             src={logo}
             className={
-              "App-logo" + (this.props.rotating ? "" : " App-logo-paused")
+              'App-logo' + (this.props.rotating ? '' : ' App-logo-paused')
             }
             alt="logo"
             onClick={() => this.props.rotateAction(!this.props.rotating)}
@@ -426,11 +434,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  ...state
+const mapStateToProps = (state) => ({
+  ...state,
 });
-const mapDispatchToProps = dispatch => ({
-  rotateAction: payload => dispatch(rotateAction(payload))
+const mapDispatchToProps = (dispatch) => ({
+  rotateAction: (payload) => dispatch(rotateAction(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
@@ -478,12 +486,12 @@ Or you can define separate types for them:
 actions.js (Synchronous)
 
 ```js
-export const SELECT_SUBREDDIT = "SELECT_SUBREDDIT";
+export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 
 export function selectSubreddit(subreddit) {
   return {
     type: SELECT_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 ```
@@ -491,12 +499,12 @@ export function selectSubreddit(subreddit) {
 They can also press a “refresh” button to update it:
 
 ```js
-export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
 export function invalidateSubreddit(subreddit) {
   return {
     type: INVALIDATE_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 ```
@@ -504,12 +512,12 @@ export function invalidateSubreddit(subreddit) {
 When it's time to fetch the posts for some subreddit, we will dispatch a REQUEST_POSTS action:
 
 ```js
-export const REQUEST_POSTS = "REQUEST_POSTS";
+export const REQUEST_POSTS = 'REQUEST_POSTS';
 
 function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
-    subreddit
+    subreddit,
   };
 }
 ```
@@ -517,14 +525,14 @@ function requestPosts(subreddit) {
 Finally, when the network request comes through, we will dispatch RECEIVE_POSTS:
 
 ```js
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 function receivePosts(subreddit, json) {
   return {
     type: RECEIVE_POSTS,
     subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
+    posts: json.data.children.map((child) => child.data),
+    receivedAt: Date.now(),
   };
 }
 ```
@@ -607,15 +615,15 @@ or
 reducers.js
 
 ```js
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
-  RECEIVE_POSTS
-} from "../actions";
+  RECEIVE_POSTS,
+} from '../actions';
 
-function selectedSubreddit(state = "reactjs", action) {
+function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit;
@@ -628,26 +636,26 @@ function posts(
   state = {
     isFetching: false,
     didInvalidate: false,
-    items: []
+    items: [],
   },
   action
 ) {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       return Object.assign({}, state, {
-        didInvalidate: true
+        didInvalidate: true,
       });
     case REQUEST_POSTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: false,
       });
     case RECEIVE_POSTS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
       });
     default:
       return state;
@@ -660,7 +668,7 @@ function postsBySubreddit(state = {}, action) {
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return Object.assign({}, state, {
-        [action.subreddit]: posts(state[action.subreddit], action)
+        [action.subreddit]: posts(state[action.subreddit], action),
       });
     default:
       return state;
@@ -669,7 +677,7 @@ function postsBySubreddit(state = {}, action) {
 
 const rootReducer = combineReducers({
   postsBySubreddit,
-  selectedSubreddit
+  selectedSubreddit,
 });
 
 export default rootReducer;
@@ -679,7 +687,7 @@ We use ES6 computed property syntax so we can update state[action.subreddit] wit
 
 ```js
 return Object.assign({}, state, {
-  [action.subreddit]: posts(state[action.subreddit], action)
+  [action.subreddit]: posts(state[action.subreddit], action),
 });
 ```
 
@@ -694,31 +702,31 @@ return Object.assign({}, state, nextState);
 #### Async Action Creators
 
 ```js
-import fetch from "cross-fetch";
+import fetch from 'cross-fetch';
 
-export const REQUEST_POSTS = "REQUEST_POSTS";
+export const REQUEST_POSTS = 'REQUEST_POSTS';
 function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
-    subreddit
+    subreddit,
   };
 }
 
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 function receivePosts(subreddit, json) {
   return {
     type: RECEIVE_POSTS,
     subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
+    posts: json.data.children.map((child) => child.data),
+    receivedAt: Date.now(),
   };
 }
 
-export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 export function invalidateSubreddit(subreddit) {
   return {
     type: INVALIDATE_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 
@@ -731,7 +739,7 @@ export function fetchPosts(subreddit) {
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
 
-  return function(dispatch) {
+  return function (dispatch) {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
 
@@ -745,14 +753,14 @@ export function fetchPosts(subreddit) {
 
     return fetch(`https://www.reddit.com/r/${subreddit}.json`)
       .then(
-        response => response.json(),
+        (response) => response.json(),
         // Do not use catch, because that will also catch
         // any errors in the dispatch and resulting render,
         // causing a loop of 'Unexpected batch number' errors.
         // https://github.com/facebook/react/issues/6895
-        error => console.log("An error occurred.", error)
+        (error) => console.log('An error occurred.', error)
       )
-      .then(json =>
+      .then((json) =>
         // We can dispatch many times!
         // Here, we update the app state with the results of the API call.
 
@@ -763,11 +771,11 @@ export function fetchPosts(subreddit) {
 ```
 
 ```js
-import thunkMiddleware from "redux-thunk";
-import { createLogger } from "redux-logger";
-import { createStore, applyMiddleware } from "redux";
-import { selectSubreddit, fetchPosts } from "./actions";
-import rootReducer from "./reducers";
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
+import { selectSubreddit, fetchPosts } from './actions';
+import rootReducer from './reducers';
 
 const loggerMiddleware = createLogger();
 
@@ -779,45 +787,45 @@ const store = createStore(
   )
 );
 
-store.dispatch(selectSubreddit("reactjs"));
-store.dispatch(fetchPosts("reactjs")).then(() => console.log(store.getState()));
+store.dispatch(selectSubreddit('reactjs'));
+store.dispatch(fetchPosts('reactjs')).then(() => console.log(store.getState()));
 ```
 
 ```js
-import fetch from "cross-fetch";
+import fetch from 'cross-fetch';
 
-export const REQUEST_POSTS = "REQUEST_POSTS";
+export const REQUEST_POSTS = 'REQUEST_POSTS';
 function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
-    subreddit
+    subreddit,
   };
 }
 
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 function receivePosts(subreddit, json) {
   return {
     type: RECEIVE_POSTS,
     subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
+    posts: json.data.children.map((child) => child.data),
+    receivedAt: Date.now(),
   };
 }
 
-export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 export function invalidateSubreddit(subreddit) {
   return {
     type: INVALIDATE_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 
 function fetchPosts(subreddit) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestPosts(subreddit));
     return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)));
+      .then((response) => response.json())
+      .then((json) => dispatch(receivePosts(subreddit, json)));
   };
 }
 
@@ -853,7 +861,7 @@ export function fetchPostsIfNeeded(subreddit) {
 
 ```js
 store
-  .dispatch(fetchPostsIfNeeded("reactjs"))
+  .dispatch(fetchPostsIfNeeded('reactjs'))
   .then(() => console.log(store.getState()));
 ```
 
@@ -863,8 +871,8 @@ Configuring Express
 If you are serving your index.html from Express:
 
 ```js
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 ```
 
@@ -884,11 +892,11 @@ First we will need to import <Router /> and <Route /> from React Router. Here's 
 #components/Root.js
 
 ```js
-import React from "react";
-import PropTypes from "prop-types";
-import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import App from "./App";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import App from './App';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -899,7 +907,7 @@ const Root = ({ store }) => (
 );
 
 Root.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
 };
 
 export default Root;
@@ -910,16 +918,16 @@ Navigating with React Router
 containers/FilterLink.js
 
 ```js
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const FilterLink = ({ filter, children }) => (
   <NavLink
     exact
-    to={filter === "SHOW_ALL" ? "/" : `/${filter}`}
+    to={filter === 'SHOW_ALL' ? '/' : `/${filter}`}
     activeStyle={{
-      textDecoration: "none",
-      color: "black"
+      textDecoration: 'none',
+      color: 'black',
     }}
   >
     {children}
@@ -932,16 +940,16 @@ export default FilterLink;
 components/Footer.js
 
 ```js
-import React from "react";
-import FilterLink from "../containers/FilterLink";
-import { VisibilityFilters } from "../actions";
+import React from 'react';
+import FilterLink from '../containers/FilterLink';
+import { VisibilityFilters } from '../actions';
 
 const Footer = () => (
   <p>
     Show: <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-    {", "}
+    {', '}
     <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-    {", "}
+    {', '}
     <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
   </p>
 );
@@ -956,7 +964,7 @@ containers/VisibleTodoList.js
 ```js
 const mapStateToProps = (state, ownProps) => {
   return {
-    todos: getVisibleTodos(state.todos, ownProps.filter) // previously was getVisibleTodos(state.todos, state.visibilityFilter)
+    todos: getVisibleTodos(state.todos, ownProps.filter), // previously was getVisibleTodos(state.todos, state.visibilityFilter)
   };
 };
 ```
@@ -968,7 +976,7 @@ const App = ({ match: { params } }) => {
   return (
     <div>
       <AddTodo />
-      <VisibleTodoList filter={params.filter || "SHOW_ALL"} />
+      <VisibleTodoList filter={params.filter || 'SHOW_ALL'} />
       <Footer />
     </div>
   );
@@ -981,44 +989,44 @@ Entry Point
 index.js
 
 ```js
-import "babel-polyfill";
+import 'babel-polyfill';
 
-import React from "react";
-import { render } from "react-dom";
-import Root from "./containers/Root";
+import React from 'react';
+import { render } from 'react-dom';
+import Root from './containers/Root';
 
-render(<Root />, document.getElementById("root"));
+render(<Root />, document.getElementById('root'));
 ```
 
 Action Creators and Constants
 #actions.js
 
 ```js
-import fetch from "cross-fetch";
+import fetch from 'cross-fetch';
 
-export const REQUEST_POSTS = "REQUEST_POSTS";
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const SELECT_SUBREDDIT = "SELECT_SUBREDDIT";
-export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
+export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
 export function selectSubreddit(subreddit) {
   return {
     type: SELECT_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 
 export function invalidateSubreddit(subreddit) {
   return {
     type: INVALIDATE_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 
 function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
-    subreddit
+    subreddit,
   };
 }
 
@@ -1026,17 +1034,17 @@ function receivePosts(subreddit, json) {
   return {
     type: RECEIVE_POSTS,
     subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
+    posts: json.data.children.map((child) => child.data),
+    receivedAt: Date.now(),
   };
 }
 
 function fetchPosts(subreddit) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestPosts(subreddit));
     return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)));
+      .then((response) => response.json())
+      .then((json) => dispatch(receivePosts(subreddit, json)));
   };
 }
 
@@ -1064,15 +1072,15 @@ Reducers
 reducers.js
 
 ```js
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
-  RECEIVE_POSTS
-} from "./actions";
+  RECEIVE_POSTS,
+} from './actions';
 
-function selectedSubreddit(state = "reactjs", action) {
+function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit;
@@ -1085,26 +1093,26 @@ function posts(
   state = {
     isFetching: false,
     didInvalidate: false,
-    items: []
+    items: [],
   },
   action
 ) {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       return Object.assign({}, state, {
-        didInvalidate: true
+        didInvalidate: true,
       });
     case REQUEST_POSTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: false,
       });
     case RECEIVE_POSTS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
       });
     default:
       return state;
@@ -1117,7 +1125,7 @@ function postsBySubreddit(state = {}, action) {
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return Object.assign({}, state, {
-        [action.subreddit]: posts(state[action.subreddit], action)
+        [action.subreddit]: posts(state[action.subreddit], action),
       });
     default:
       return state;
@@ -1126,7 +1134,7 @@ function postsBySubreddit(state = {}, action) {
 
 const rootReducer = combineReducers({
   postsBySubreddit,
-  selectedSubreddit
+  selectedSubreddit,
 });
 
 export default rootReducer;
@@ -1136,10 +1144,10 @@ Store
 configureStore.js
 
 ```js
-import { createStore, applyMiddleware } from "redux";
-import thunkMiddleware from "redux-thunk";
-import { createLogger } from "redux-logger";
-import rootReducer from "./reducers";
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import rootReducer from './reducers';
 
 const loggerMiddleware = createLogger();
 
@@ -1156,10 +1164,10 @@ Container Components
 containers/Root.js
 
 ```js
-import React, { Component } from "react";
-import { Provider } from "react-redux";
-import configureStore from "../configureStore";
-import AsyncApp from "./AsyncApp";
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import configureStore from '../configureStore';
+import AsyncApp from './AsyncApp';
 
 const store = configureStore();
 
@@ -1177,16 +1185,16 @@ export default class Root extends Component {
 containers/AsyncApp.js
 
 ```js
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   selectSubreddit,
   fetchPostsIfNeeded,
-  invalidateSubreddit
-} from "../actions";
-import Picker from "../components/Picker";
-import Posts from "../components/Posts";
+  invalidateSubreddit,
+} from '../actions';
+import Picker from '../components/Picker';
+import Posts from '../components/Posts';
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -1227,12 +1235,12 @@ class AsyncApp extends Component {
         <Picker
           value={selectedSubreddit}
           onChange={this.handleChange}
-          options={["reactjs", "frontend"]}
+          options={['reactjs', 'frontend']}
         />
         <p>
           {lastUpdated && (
             <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{" "}
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
             </span>
           )}
           {!isFetching && (
@@ -1256,7 +1264,7 @@ AsyncApp.propTypes = {
   posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -1265,14 +1273,14 @@ function mapStateToProps(state) {
     selectedSubreddit
   ] || {
     isFetching: true,
-    items: []
+    items: [],
   };
 
   return {
     selectedSubreddit,
     posts,
     isFetching,
-    lastUpdated
+    lastUpdated,
   };
 }
 
@@ -1283,8 +1291,8 @@ Presentational Components
 components/Picker.js
 
 ```js
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Picker extends Component {
   render() {
@@ -1293,8 +1301,8 @@ export default class Picker extends Component {
     return (
       <span>
         <h1>{value}</h1>
-        <select onChange={e => onChange(e.target.value)} value={value}>
-          {options.map(option => (
+        <select onChange={(e) => onChange(e.target.value)} value={value}>
+          {options.map((option) => (
             <option value={option} key={option}>
               {option}
             </option>
@@ -1308,15 +1316,15 @@ export default class Picker extends Component {
 Picker.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 ```
 
 components/Posts.js
 
 ```js
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Posts extends Component {
   render() {
@@ -1331,7 +1339,7 @@ export default class Posts extends Component {
 }
 
 Posts.propTypes = {
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
 };
 ```
 
@@ -1382,7 +1390,7 @@ First, let’s define the core concepts of MobX:
 https://mobx.js.org/assets/action-state-view.png
 
 ```js
-import { observable, autorun } from "mobx";
+import { observable, autorun } from 'mobx';
 
 var todoStore = observable({
   /* some observable state */
@@ -1390,14 +1398,14 @@ var todoStore = observable({
 
   /* a derived value */
   get completedCount() {
-    return this.todos.filter(todo => todo.completed).length;
-  }
+    return this.todos.filter((todo) => todo.completed).length;
+  },
 });
 
 /* a function that observes the state */
-autorun(function() {
+autorun(function () {
   console.log(
-    "Completed %d of %d items",
+    'Completed %d of %d items',
     todoStore.completedCount,
     todoStore.todos.length
   );
@@ -1405,8 +1413,8 @@ autorun(function() {
 
 /* ..and some actions that modify the state */
 todoStore.todos[0] = {
-  title: "Take a walk",
-  completed: false
+  title: 'Take a walk',
+  completed: false,
 };
 // -> synchronously prints 'Completed 0 of 1 items'
 
@@ -1509,23 +1517,23 @@ const newNums = [...oldNums, 5];
 
 // Examples of Object.assign and Object Spreads
 const oldPerson = {
-  firstName: "Bob",
-  lastName: "Smith"
+  firstName: 'Bob',
+  lastName: 'Smith',
 };
 
 // oldPerson => { firstName: 'Bob', lastName: 'Smith' }
 // newPerson => { firstName: 'Jane', lastName: 'Smith' }
-let newPerson = Object.assign({}, oldPerson, { firstName: "Jane" });
+let newPerson = Object.assign({}, oldPerson, { firstName: 'Jane' });
 
 // oldPerson => { firstName: 'Bob', lastName: 'Smith' }
 // newPerson => { firstName: 'Jane', lastName: 'Smith' }
-newPerson = { ...oldPerson, firstName: "Jane" };
+newPerson = { ...oldPerson, firstName: 'Jane' };
 ```
 
 Best Practice #3 – Props and State
 
 ```js
-const message = "Hello World";
+const message = 'Hello World';
 
 // pass the message into the component
 <ShowMessage message={message} />;
@@ -1559,7 +1567,7 @@ class SimpleForm extends React.Component {
 
     // initializing the state in the constructor
     this.state = {
-      message: ""
+      message: '',
     };
 
     this.onChange.bind = this.onChange.bind(this);
@@ -1576,7 +1584,7 @@ class SimpleForm extends React.Component {
   onChange(e) {
     // changing the state with setState
     this.setState({
-      message: e.target.value
+      message: e.target.value,
     });
   }
 
@@ -1601,7 +1609,7 @@ Best Practice #4 – Validating Props
 class ShowMessage extends React.Component {
   static propTypes = {
     // message is a string and is required
-    message: PropTypes.string.isRequired
+    message: PropTypes.string.isRequired,
   };
 
   render() {
@@ -1673,20 +1681,20 @@ export class CarStore {
   cars = [];
 
   @observable
-  sortFieldName = "id";
+  sortFieldName = 'id';
 
-  @observable filterFieldName = "";
-  @observable filterFieldValue = "";
+  @observable filterFieldName = '';
+  @observable filterFieldValue = '';
 
   // computed properties observe the properties above through
   // property accessor tracking
 
   @computed
   get filteredCars() {
-    if (this.filterFieldName === "") {
+    if (this.filterFieldName === '') {
       return this.cars;
     }
-    return this.cars.filter(car =>
+    return this.cars.filter((car) =>
       String(car[this.filterFieldName]).includes(String(this.filterFieldValue))
     );
   }
