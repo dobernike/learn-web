@@ -8,6 +8,11 @@
 
 ---
 
+## Hyperscript Tagged Markup: JSX alternative using standard tagged templates, with compiler support. (just FYI)
+[https://github.com/developit/htm]
+
+---
+
 # Redux
 
 ## Usage with React
