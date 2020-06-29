@@ -409,6 +409,11 @@ class SignUpDialog extends React.Component {
 
 ---
 
+## How Are Function Components Different from Classes
+[https://overreacted.io/how-are-function-components-different-from-classes/]
+
+---
+
 ## Why Do We Write super(props)?
 
 [https://overreacted.io/why-do-we-write-super-props/]
