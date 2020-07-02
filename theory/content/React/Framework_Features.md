@@ -9,6 +9,7 @@
 ---
 
 ## Hyperscript Tagged Markup: JSX alternative using standard tagged templates, with compiler support. (just FYI)
+
 [https://github.com/developit/htm]
 
 ---
@@ -1720,6 +1721,13 @@ export class CarStore {
 # Common knowledge
 
 ## State management beyond the libraries
+
 [https://www.youtube.com/watch?v=JKaJ9r3xYN4]
+
+---
+
+## Netflix JavaScript Talks - RxJS + Redux + React = Amazing!
+
+[https://www.youtube.com/watch?v=AslncyG8whg]
 
 ---
