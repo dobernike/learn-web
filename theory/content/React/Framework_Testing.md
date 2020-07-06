@@ -11,3 +11,9 @@
 [https://airbnb.io/enzyme/docs/guides/jest.html]
 
 ---
+
+## Testing React Components with Jest and Enzyme- In Depth
+
+[https://blog.bitsrc.io/how-to-test-react-components-with-jest-and-enzyme-in-depth-145fcd06b90]
+
+---
