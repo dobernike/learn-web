@@ -17,3 +17,9 @@
 [https://blog.bitsrc.io/how-to-test-react-components-with-jest-and-enzyme-in-depth-145fcd06b90]
 
 ---
+
+## Modern React testing, part 2: Jest and Enzyme
+
+[https://blog.sapegin.me/all/react-testing-2-jest-and-enzyme/]
+
+---
