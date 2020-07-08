@@ -23,3 +23,11 @@
 [https://blog.sapegin.me/all/react-testing-2-jest-and-enzyme/]
 
 ---
+
+# snapshot
+
+## Writing Snapshot Tests For React Components With Jest
+
+[https://scotch.io/tutorials/writing-snapshot-tests-for-react-components-with-jest]
+
+---
