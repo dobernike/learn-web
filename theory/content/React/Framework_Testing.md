@@ -31,3 +31,9 @@
 [https://scotch.io/tutorials/writing-snapshot-tests-for-react-components-with-jest]
 
 ---
+
+## When to Write Jest Snapshot Tests
+
+[https://medium.com/javascript-in-plain-english/should-i-be-writing-snapshot-tests-47da13a62085]
+
+---
