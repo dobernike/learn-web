@@ -37,3 +37,9 @@
 [https://medium.com/javascript-in-plain-english/should-i-be-writing-snapshot-tests-47da13a62085]
 
 ---
+
+## Testing with Jest and Enzyme in React 
+
+[https://blog.usejournal.com/testing-with-jest-and-enzyme-in-react-part-6-snapshot-testing-in-jest-72fb0ce91c5a]
+
+---
