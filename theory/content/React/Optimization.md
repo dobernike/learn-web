@@ -11,3 +11,9 @@
 [https://habr.com/ru/company/redmadrobot/blog/318222/]
 
 ---
+
+## Two mistakes in React.js we keep making over and over again
+
+[https://medium.com/wix-engineering/two-mistakes-in-react-js-we-keep-doing-over-and-over-again-b1aea20fb3f0]
+
+---
