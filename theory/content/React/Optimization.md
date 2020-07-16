@@ -17,3 +17,9 @@
 [https://medium.com/wix-engineering/two-mistakes-in-react-js-we-keep-doing-over-and-over-again-b1aea20fb3f0]
 
 ---
+
+## Best practices regarding passing props object from mapStateToProps as the only argument to selectors [docs clarification]
+
+[https://github.com/reduxjs/reselect/issues/294]
+
+---
