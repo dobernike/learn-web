@@ -23,3 +23,11 @@
 [https://github.com/reduxjs/reselect/issues/294]
 
 ---
+
+# Profiling Components with the Chrome Performance Tab
+
+## Profile a React App for Performance
+
+[https://kentcdodds.com/blog/profile-a-react-app-for-performance]
+
+---
