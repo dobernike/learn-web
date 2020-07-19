@@ -31,3 +31,9 @@
 [https://kentcdodds.com/blog/profile-a-react-app-for-performance]
 
 ---
+
+## Use the React Profiler for Performance
+
+[https://scotch.io/tutorials/use-the-react-profiler-for-performance]
+
+---
