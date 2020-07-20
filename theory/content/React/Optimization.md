@@ -37,3 +37,9 @@
 [https://scotch.io/tutorials/use-the-react-profiler-for-performance]
 
 ---
+
+## React Performance Primer
+
+[https://hackernoon.com/react-performance-primer-64fe623c4821]
+
+---
