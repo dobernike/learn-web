@@ -43,3 +43,9 @@
 [https://hackernoon.com/react-performance-primer-64fe623c4821]
 
 ---
+
+## Analyze Runtime Performance
+
+[https://developers.google.com/web/tools/chrome-devtools/rendering-tools]
+
+---
