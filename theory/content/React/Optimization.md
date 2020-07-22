@@ -49,3 +49,9 @@
 [https://developers.google.com/web/tools/chrome-devtools/rendering-tools]
 
 ---
+
+## Profiling memory performance
+
+[https://developer.chrome.com/devtools/docs/heap-profiling?hl=sv&csw=1]
+
+---
