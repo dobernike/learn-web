@@ -55,3 +55,9 @@
 [https://developer.chrome.com/devtools/docs/heap-profiling?hl=sv&csw=1]
 
 ---
+
+## Using the Chrome web developer tools, Part 4: The Timeline Tab
+
+[https://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art036]
+
+---
