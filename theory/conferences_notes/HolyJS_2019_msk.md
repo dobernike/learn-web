@@ -214,3 +214,223 @@ Relay юзает Fragment Models (Apollo 3 обещают, мб в 4)
 - Не крутить Redux к ApolloClient или Relay
 
 ---
+
+# Miguel Angel Duran Garcia — React rendering strategies
+
+[https://youtu.be/NythxcOI2Mw]
+
+## Understanding the problem
+
+do stuff on the client is expensive
+
+### (re)hydration
+
+// SERVER SIDE simplified
+```jsx
+const initialData = await getInitialData()
+const html = ReactDOM.renderToString(
+  <App initialData={initialData}>
+)
+
+res.send(`
+  <div id='root'>${html}</div>
+  <script>
+    window.__INITIAL_DATA__ = ${JSON.stringify(initialData)}
+  </script>
+`)
+
+// CLIENT SIDE
+ReactDOM.hydrate(
+  <App initialData={window.__INITIAL_DATA__} />,
+  document.getElementById('root')
+)
+``` 
+
+Next
+
+
+## Solution
+
+### Dynamic Rendering
+
+#### at Route level
+
+```js
+// midleware to activete Dynamic Rendering on Express
+const BOTS_USER_AGENTS = [
+  'googlebot',
+  'mediapartners-google',
+  'yandexbot'
+]
+
+const INDEX_HTML_PATH = path.join(__dirname, 'public', 'index.html')
+const HTML_TEMPLATE = fs.readFileSync(INDEX_HTML_PATH, 'utf8')
+
+module.exports = function midlleware(req, res, next) {
+  const rawUserAgent = req.get('user-agent')
+  const userAgent = rawUserAgent.toLowerCase()
+
+  // check if the request comes from a bot
+  if (BOTS_USER_AGENTS.find(ua => userAgent.includes(ua))) {
+    // if not an user, just use the normal behaviour (SSR?)
+    return next()
+  }
+
+  // return index.html directly if is an user
+  return res.send(HTML_TEMPLATE)
+}
+```
+
+```js
+// Using the middleware in Express
+const dynamicRendering = require('/dynamic-rendering')
+
+// Use dynamic rendering for a specific path for testing
+app.get(
+  '/es/:op/:type/barcelona-capital/*',
+  dynamicRenderingExperiment  
+)
+
+// Isomorphic routes handler
+app.get('*', serverSideRenderingMiddleware)
+```
+
+#### at Component level
+
+```jsx
+// Using <DynamicRendering /> Component
+// userAgent must be retrieved universally
+// on server and client
+
+<DynamicRendering userAgent={universalUserAgent}>
+  <a href='https://very-interesting-url.com'>
+    <VeryComplexToComputComponent />
+    <img src='https://huge-image.com/panda.jpg' />
+  </a>
+</DynamicRendering> 
+```
+
+```jsx
+// <DynamicRendering /> - "kinda" implementation
+
+export default function DynamicRendering({ children, userAgent }) {
+  // check if the userAgent is a bot
+  const isBot = checkUserAgentIsBot({userAgent})
+  // if isBot, we return is server and client the content
+  if (isBot) return children
+
+  // now, we`re sure the user is NOT a bot
+  // so check if we`re on the browser side
+  if (typeof window !== 'undefined') {
+    return <LazyContent>{children}</LazyContent>
+  } else {
+    // so, we`re on the server side or the component is disabled
+    return <div style={{border: '1px solid red'}} />
+  }
+}
+```
+
+it`s open sourse!
+
+npm install @midudev/react-dynamic-rendering
+
+only need React.
+
+### Static Rendering at component level
+
+```jsx
+// <StaticContent /> usage
+import StaticContent from './StaticContent'
+
+function Footer () {
+  return (
+    <StaticContent>
+      <HugeListOfLinks data={listOfLinks} />
+    </StaticContent>
+  )
+}
+```
+
+```jsx
+// <StaticContent /> - implementation
+import React from 'react'
+
+export default function StaticContent({children}) {
+  // we`re in the server, just render the content
+  if (typeof window === 'undefined') {
+    return <div>{children}</div>
+  }
+
+  // avoid re-render on the client
+  return (
+    <div
+      dangerouslySetInnerHTML={{__html: ''}}
+      suppressHydrationWarning
+    />
+  )
+}
+```
+
+
+it`s open sourse!
+
+npm install @midudev/react-static-content
+
+only need React.
+
+
+### Progressive Hydration = Dynamic Rendering at component level + Static Rendering
+
+```jsx
+// How to use <ProgressiveRendering />
+
+function ProgressiveHydrationUsage({articles}) {
+  return (
+    <Grid>
+      <h1>Articles</h1>
+      {articles.map(article => (
+        <ProgressiveHydration key={article.id}>
+          <Card {...article} />
+        </ProgressiveHydration>
+      ))}
+    </Grid>
+  )
+}
+```
+
+```jsx
+// <ProgressiveHydration /> - 'kinda' implementation
+function ProgressiveHydration({children}) {
+  const ref = userRef(null)
+  const isNearScreen = useNearScreen({ref})
+
+  useEffect(() => {
+    // CLIENT: If the element is near screen, then hydrate into
+    if (isNearScreen) {
+      ReactDOM.hydrate(children, ref.current)
+    }
+  }, [childen, isNearScreen])
+
+  // SERVER: Just render the content as usual
+  if (typeof window === 'undefined')
+    return <div ref={ref}>{children}</div>
+
+  // CLIENT: Avoid hydration until we say so
+  return (
+    <div ref={ref}
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{__html: ''}}
+    />
+  )
+}
+```
+
+
+it`s open sourse!
+
+npm install @midudev/react-progressive-hydration
+
+only need React.
+fully compatible with NEXT.js
+
+---
