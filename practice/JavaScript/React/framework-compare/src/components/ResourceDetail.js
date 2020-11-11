@@ -1,7 +1,7 @@
-const ResourceDetail = () => {
+const ResourceDetail = ({ onButtonClick }) => {
   return (
     <>
-      <h4 className="mb-3">Update Resource</h4>
+      <h4 className="mb-3">Resource Detail</h4>
       <div className="card">
         <div className="card-header">Resource Name</div>
         <div className="card-body">
@@ -9,9 +9,9 @@ const ResourceDetail = () => {
             <p>Resource description...</p>
             <footer className="text-muted mb-2">Type</footer>
           </blockquote>
-          <a href="#" className="btn btn-primary">
+          <button onClick={onButtonClick} className="btn btn-primary">
             Edit
-          </a>
+          </button>
         </div>
       </div>
     </>
