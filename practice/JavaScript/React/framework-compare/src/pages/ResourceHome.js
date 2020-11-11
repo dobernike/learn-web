@@ -14,9 +14,12 @@ const ResourceHome = () => {
   const [isDetailView, setDetailView] = useState(true);
 
   useEffect(() => {
-    getResources().then((res) => {
-      console.log(res);
-    });
+    async function _getResources() {
+      const _resources = await getResources();
+      setResources(_resources);
+    }
+
+    _getResources();
   }, []);
 
   const addResource = () => {
