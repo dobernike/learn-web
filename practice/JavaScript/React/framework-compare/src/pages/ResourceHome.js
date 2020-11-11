@@ -63,11 +63,18 @@ const ResourceHome = () => {
           </button>
         </div>
         <div className="col-md-8 order-md-1">
-          {isDetailView ? (
-            <ResourceDetail onButtonClick={() => setDetailView(false)} />
-          ) : (
-            <ResourceUpdate />
-          )}
+          <h4 className="mb-3">
+            Resource
+            <button
+              onClick={() => setDetailView(!isDetailView)}
+              className={`btn btn-sm ml-2 ${
+                isDetailView ? 'btn-warning' : 'btn-primary'
+              }`}
+            >
+              {isDetailView ? 'Edit' : 'Detail'}
+            </button>
+          </h4>
+          {isDetailView ? <ResourceDetail /> : <ResourceUpdate />}
         </div>
       </div>
     </div>
