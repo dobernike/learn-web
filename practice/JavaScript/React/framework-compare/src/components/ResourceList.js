@@ -1,32 +1,4 @@
-import { useState } from 'react';
-
-const initialResources = [
-  {
-    _id: '1',
-    title: 'resource 1',
-    description: 'Description 1',
-    link: 'https://google.com',
-    type: 'blog',
-  },
-  {
-    _id: '2',
-    title: 'resource 2',
-    description: 'Description 2',
-    link: 'https://google.com',
-    type: 'video',
-  },
-  {
-    _id: '3',
-    title: 'resource 3',
-    description: 'Description 3',
-    link: 'https://google.com',
-    type: 'book',
-  },
-];
-
-const ResourceList = () => {
-  const [resources, setResources] = useState(initialResources);
-
+const ResourceList = ({ resources }) => {
   return (
     <ul className="list-group mb-3 resource-list">
       {resources.map((resources) => (
