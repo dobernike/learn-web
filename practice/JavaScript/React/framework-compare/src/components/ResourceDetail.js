@@ -1,11 +1,11 @@
-const ResourceDetail = ({ onButtonClick }) => {
+const ResourceDetail = ({ resource }) => {
   return (
     <div className="card">
-      <div className="card-header">Resource Name</div>
+      <div className="card-header">{resource.title}</div>
       <div className="card-body">
         <blockquote className="blockquote mb-0">
-          <p>Resource description...</p>
-          <footer className="text-muted mb-2">Type</footer>
+          <p>{resource.description}</p>
+          <footer className="text-muted mb-2">{resource.type}</footer>
         </blockquote>
       </div>
     </div>
