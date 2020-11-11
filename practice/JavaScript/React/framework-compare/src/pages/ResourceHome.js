@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ResourceSearch from '../components/ResourceSearch';
 import ResourceList from '../components/ResourceList';
@@ -6,34 +6,18 @@ import ResourceDetail from '../components/ResourceDetail';
 import ResourceUpdate from '../components/ResourceUpdate';
 import Header from '../components/Header';
 
-const initialResources = [
-  {
-    _id: '1',
-    title: 'Resource 1',
-    description: 'Description 1',
-    link: 'https://google.com',
-    type: 'blog',
-  },
-  {
-    _id: '2',
-    title: 'Resource 2',
-    description: 'Description 2',
-    link: 'https://google.com',
-    type: 'video',
-  },
-  {
-    _id: '3',
-    title: 'Resource 3',
-    description: 'Description 3',
-    link: 'https://google.com',
-    type: 'book',
-  },
-];
+import { getResources } from '../actions';
 
 const ResourceHome = () => {
   const [selectedResource, setSelectedResource] = useState();
-  const [resources, setResources] = useState(initialResources);
+  const [resources, setResources] = useState([]);
   const [isDetailView, setDetailView] = useState(true);
+
+  useEffect(() => {
+    getResources().then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   const addResource = () => {
     const _id = '_' + Math.random().toString(36).substr(2, 9);
