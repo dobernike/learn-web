@@ -1,11 +1,13 @@
-const ResourceList = ({ resources, onItemClick }) => {
+const ResourceList = ({ resources, onItemClick, activeId }) => {
   return (
     <ul className="list-group mb-3 resource-list">
       {resources.map((resource) => (
         <li
           key={resource._id}
           onClick={() => onItemClick(resource)}
-          className="resource-list-item list-group-item d-flex justify-content-between lh-condensed"
+          className={`${
+            activeId === resource._id ? 'is-active' : ''
+          } resource-list-item list-group-item d-flex justify-content-between lh-condensed`}
         >
           <div>
             <h6 className="my-0">{resource.title}</h6>
