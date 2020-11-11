@@ -9,21 +9,21 @@ import Header from '../components/Header';
 const initialResources = [
   {
     _id: '1',
-    title: 'resource 1',
+    title: 'Resource 1',
     description: 'Description 1',
     link: 'https://google.com',
     type: 'blog',
   },
   {
     _id: '2',
-    title: 'resource 2',
+    title: 'Resource 2',
     description: 'Description 2',
     link: 'https://google.com',
     type: 'video',
   },
   {
     _id: '3',
-    title: 'resource 3',
+    title: 'Resource 3',
     description: 'Description 3',
     link: 'https://google.com',
     type: 'book',
@@ -31,6 +31,7 @@ const initialResources = [
 ];
 
 const ResourceHome = () => {
+  const [selectedResource, setSelectedResource] = useState({});
   const [resources, setResources] = useState(initialResources);
   const [isDetailView, setDetailView] = useState(true);
 
@@ -57,14 +58,17 @@ const ResourceHome = () => {
             <span className="badge badge-secondary badge-pill">6</span>
           </h4>
           <ResourceSearch />
-          <ResourceList resources={resources} />
+          <ResourceList
+            onItemClick={setSelectedResource}
+            resources={resources}
+          />
           <button onClick={addResource} className="btn btn-primary">
             Add Resource
           </button>
         </div>
         <div className="col-md-8 order-md-1">
           <h4 className="mb-3">
-            Resource
+            Resource {selectedResource._id}
             <button
               onClick={() => setDetailView(!isDetailView)}
               className={`btn btn-sm ml-2 ${
