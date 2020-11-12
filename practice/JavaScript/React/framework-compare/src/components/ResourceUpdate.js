@@ -1,11 +1,17 @@
 import { useState } from 'react';
 
+const RESOURCE_TYPES = ['blog', 'video', 'book'];
+
 const ResourceUpdate = ({ resource }) => {
   const [uResource, setUResource] = useState(resource);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUResource({ ...uResource, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    console.log(JSON.stringify(uResource));
   };
 
   return (
@@ -48,17 +54,28 @@ const ResourceUpdate = ({ resource }) => {
           />
         </div>
       </div>
-      {/* <div className="mb-3">
+      <div className="mb-3">
         <label htmlFor="type">Type</label>
-        <input
-          type="text"
+        <select
           className="form-control"
+          name="type"
+          value={uResource.type}
+          onChange={handleChange}
           id="type"
-          placeholder="Very interesting book"
-        />
-      </div> */}
+        >
+          {RESOURCE_TYPES.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
       <hr className="mb-4" />
-      <button className="btn btn-primary btn-lg btn-block" type="submit">
+      <button
+        onClick={handleSubmit}
+        className="btn btn-primary btn-lg btn-block"
+        type="button"
+      >
         Submit
       </button>
     </form>
