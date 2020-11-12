@@ -8,7 +8,7 @@
   },
   {
     "_id": "2",
-    "title": "Updated Title",
+    "title": "Updated Title2",
     "description": "Some Desc UPDATE",
     "link": "https://eincode.com/blogs/learn-how-to-validate-custom-input-components-with-react-hook-form",
     "type": "blog"
