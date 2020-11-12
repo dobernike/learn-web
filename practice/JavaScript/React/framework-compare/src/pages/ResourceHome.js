@@ -71,9 +71,9 @@ const ResourceHome = () => {
             </button>
           </h4>
           {isDetailView ? (
-            <ResourceDetail resource={{ activeResource }} />
+            <ResourceDetail resource={activeResource} />
           ) : (
-            <ResourceUpdate />
+            <ResourceUpdate resource={activeResource} />
           )}
         </div>
       </div>
