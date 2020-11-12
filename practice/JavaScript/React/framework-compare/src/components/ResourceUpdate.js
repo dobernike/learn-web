@@ -1,10 +1,21 @@
+import { useState } from 'react';
+
 const ResourceUpdate = ({ resource }) => {
+  const [uResource, setUResource] = useState(resource);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUResource({ ...uResource, [name]: value });
+  };
+
   return (
     <form>
       <div className="mb-3">
         <label htmlFor="title">Title</label>
         <input
-          value={resource.title}
+          onChange={handleChange}
+          value={uResource.title}
+          name="title"
           type="text"
           className="form-control"
           id="title"
@@ -12,9 +23,11 @@ const ResourceUpdate = ({ resource }) => {
         />
       </div>
       <div className="mb-3">
-        <label for="description">Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
-          value={resource.description}
+          onChange={handleChange}
+          value={uResource.description}
+          name="description"
           className="form-control"
           id="description"
           placeholder="Just some description"
@@ -25,7 +38,9 @@ const ResourceUpdate = ({ resource }) => {
         <label htmlFor="link">Resource Link</label>
         <div className="input-group">
           <input
-            value={resource.link}
+            onChange={handleChange}
+            value={uResource.link}
+            name="link"
             type="text"
             className="form-control"
             id="link"
