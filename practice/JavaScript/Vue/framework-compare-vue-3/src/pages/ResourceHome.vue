@@ -11,6 +11,9 @@
         </h4>
         <resource-search />
         <resource-list :resources="resources" />
+        <button @click="addResource" class="btn btn-sm btn-primary">
+          Add Resource
+        </button>
       </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">
@@ -76,11 +79,22 @@ export default {
   },
   methods: {
     // it will be re-evaluated every time
-    getResourceLength() {
-      return this.resources.length;
-    },
     toggleView() {
       this.isDetailView = !this.isDetailView;
+    },
+    addResource() {
+      const rnd = Math.random();
+      const _id = '_' + rnd.toString(36).slice(2);
+      const type = ['book', 'blog', 'video'][Math.floor(rnd * 3)];
+      const newResource = {
+        _id,
+        title: `Resource ${_id} Title`,
+        description: `Resource ${_id} Description`,
+        link: ``,
+        type,
+      };
+
+      this.resources.push(newResource);
     },
   },
 };
