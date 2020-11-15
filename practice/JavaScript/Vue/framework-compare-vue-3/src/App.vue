@@ -1,21 +1,16 @@
 <template>
-  <div class="app-container">
-    <counter-app />
-  </div>
+  <resource-home />
 </template>
 
 <script>
-import CounterApp from './CounterApp';
+import ResourceHome from './pages/ResourceHome';
 export default {
   components: {
-    CounterApp,
+    ResourceHome,
   },
 };
 </script>
 
-<style scoped>
-.app-container {
-  color: blue;
-  padding: 15rem;
-}
+<style>
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 </style>
