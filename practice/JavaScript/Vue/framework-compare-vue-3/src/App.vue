@@ -1,8 +1,8 @@
 <template>
   <div class="my-app">
-    <counter-view />
-    <button v-on:click="increment(1)">Increment</button>
-    <button v-on:click="increment(-1)">Decrement</button>
+    <counter-view :counter="counter" />
+    <button @click="increment(1)">Increment</button>
+    <button @click="increment(-1)">Decrement</button>
   </div>
 </template>
 

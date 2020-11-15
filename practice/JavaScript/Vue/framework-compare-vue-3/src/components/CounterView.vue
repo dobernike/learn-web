@@ -3,5 +3,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  //   props: ['counter'],
+  props: {
+    counter: {
+      type: Number,
+      required: true,
+      default: 500,
+    },
+  },
+};
 </script>
