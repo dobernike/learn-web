@@ -1,12 +1,15 @@
 <template>
-  <div class="card">
+  <div v-if="!resource?._id" class="card">
+    <div class="card-body">No Resource is selected</div>
+  </div>
+  <div v-else class="card">
     <div class="card-header">
-      Resource Name
+      {{ resource.title }}
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p>Resource description...</p>
-        <footer class="text-muted mb-2">Type</footer>
+        <p>{{ resource.description }}</p>
+        <footer class="text-muted mb-2">{{ resource.type }}</footer>
       </blockquote>
       <a href="#" class="btn btn-primary">Edit</a>
     </div>
@@ -14,5 +17,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    resource: {
+      validator: (prop) => typeof prop === 'object' || prop === null,
+      required: true,
+    },
+  },
+};
 </script>
