@@ -39,6 +39,7 @@ import ResourceSearch from '@/components/ResourceSearch';
 import ResourceList from '@/components/ResourceList';
 import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
+import { fetchResources } from '@/actions';
 export default {
   components: {
     ResourceHeader,
@@ -51,30 +52,13 @@ export default {
     return {
       isDetailView: true,
       selectedResource: null,
-      resources: [
-        {
-          _id: '1',
-          title: 'Resource 1 Title',
-          description: 'Resource 1 Description',
-          type: 'video',
-          link: '',
-        },
-        {
-          _id: '2',
-          title: 'Resource 2 Title',
-          description: 'Resource 2 Description',
-          type: 'book',
-          link: '',
-        },
-        {
-          _id: '3',
-          title: 'Resource 3 Title',
-          description: 'Resource 3 Description',
-          type: 'blog',
-          link: '',
-        },
-      ],
+      resources: [],
     };
+  },
+  // created is called once options are resolved(data, computed, methods...) and instance created
+  async created() {
+    const resources = await fetchResources();
+    console.log(resources);
   },
   computed: {
     // it will be re-evaluated every time reactive dependency will change
