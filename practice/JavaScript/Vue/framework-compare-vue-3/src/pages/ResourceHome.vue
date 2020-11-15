@@ -58,7 +58,7 @@ export default {
   // created is called once options are resolved(data, computed, methods...) and instance created
   async created() {
     const resources = await fetchResources();
-    console.log(resources);
+    this.resources = resources;
   },
   computed: {
     // it will be re-evaluated every time reactive dependency will change
