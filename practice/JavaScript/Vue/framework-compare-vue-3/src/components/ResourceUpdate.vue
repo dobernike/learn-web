@@ -31,6 +31,17 @@
         />
       </div>
     </div>
+    <div class="mb-3">
+      <label htmlFor="link">Type</label>
+      <select v-model="uResource.type" id="link" class="form-control">
+        <option
+          v-for="resourceType in types"
+          :key="resourceType"
+          :value="resourceType"
+          >{{ resourceType }}</option
+        >
+      </select>
+    </div>
     <hr class="mb-4" />
     <button class="btn btn-primary btn-lg btn-block" type="submit">
       Submit
@@ -46,6 +57,7 @@ export default {
   data() {
     return {
       uResource: { ...this.resource },
+      types: ['blog', 'video', 'book'],
     };
   },
   watch: {
