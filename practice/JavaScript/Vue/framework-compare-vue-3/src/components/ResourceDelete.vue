@@ -11,7 +11,7 @@ export default {
   emits: ['on-resource-delete'],
   methods: {
     async deleteResource() {
-      const deletedResource = await deleteResourceApi();
+      const deletedResource = await deleteResourceApi(this.activeId);
       this.$emit('on-resource-delete', deletedResource);
     },
   },
