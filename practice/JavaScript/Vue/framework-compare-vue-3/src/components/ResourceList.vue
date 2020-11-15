@@ -43,8 +43,16 @@
       <span class="text-muted">type</span>
     </li>
   </ul>
+  {{ resources }}
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    resources: {
+      type: Array,
+      default: () => [],
+    },
+  },
+};
 </script>

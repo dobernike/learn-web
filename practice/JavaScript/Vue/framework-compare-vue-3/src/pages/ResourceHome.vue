@@ -8,7 +8,7 @@
           <span class="badge badge-secondary badge-pill">6</span>
         </h4>
         <resource-search />
-        <resource-list />
+        <resource-list :resources="resources" />
       </div>
       <!-- {/* Update Form Starts */} -->
       <!-- {/* <div class="col-md-8 order-md-1">
@@ -39,6 +39,33 @@ export default {
     ResourceList,
     // ResourceUpdate,
     ResourceDetail,
+  },
+  data() {
+    return {
+      resources: [
+        {
+          _id: '1',
+          title: 'Resource 1 Title',
+          description: 'Resource 1 Description',
+          type: 'video',
+          link: '',
+        },
+        {
+          _id: '2',
+          title: 'Resource 2 Title',
+          description: 'Resource 2 Description',
+          type: 'book',
+          link: '',
+        },
+        {
+          _id: '3',
+          title: 'Resource 3 Title',
+          description: 'Resource 3 Description',
+          type: 'blog',
+          link: '',
+        },
+      ],
+    };
   },
 };
 </script>
