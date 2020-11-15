@@ -1,13 +1,17 @@
 <template>
   <div class="my-app">
-    <h1>{{ counter }}</h1>
+    <counter-view />
     <button v-on:click="increment(1)">Increment</button>
     <button v-on:click="increment(-1)">Decrement</button>
   </div>
 </template>
 
 <script>
+import CounterView from './components/CounterView';
 export default {
+  components: {
+    CounterView,
+  },
   data() {
     return {
       counter: 100,
