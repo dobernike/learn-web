@@ -1,120 +1,25 @@
 <template>
   <div class="container">
-    <div class="py-5 text-center">
-      <h2>Keep Resources</h2>
-      <p class="lead">Keep your resource at once place</p>
-    </div>
+    <resource-header />
     <div class="row">
       <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Your Resources</span>
           <span class="badge badge-secondary badge-pill">6</span>
         </h4>
-        <!-- {/* Seach Inputs Starts */} -->
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Some title" />
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-secondary">Search</button>
-            </div>
-          </div>
-        </form>
-        <!-- {/* Seach Inputs Ends */} -->
-        <!-- {/* Resource List Starts */} -->
-        <ul class="list-group mb-3">
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed"
-          >
-            <div>
-              <h6 class="my-0">Resource 1</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">type</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed"
-          >
-            <div>
-              <h6 class="my-0">Resource 2</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">type</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed"
-          >
-            <div>
-              <h6 class="my-0">Resource 3</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">type</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <div>
-              <h6 class="my-0">Resource 4</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">type</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <div>
-              <h6 class="my-0">Resource 5</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">type</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Resource 6</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">type</span>
-          </li>
-        </ul>
-        <!-- {/* Resource List Ends */} -->
+        <resource-search />
+        <resource-list />
       </div>
       <!-- {/* Update Form Starts */} -->
       <!-- {/* <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Update Resource</h4>
-        <form>
-          <div class="mb-3">
-            <label htmlFor="firstName">Title</label>
-            <input type="text" class="form-control" id="firstName" placeholder="How to survice in mountains" />
-          </div>
-          <div class="mb-3">
-            <label htmlFor="email">Description <span class="text-muted">(Optional)</span></label>
-            <input type="email" class="form-control" id="email" placeholder="Very interesting book" />
-          </div>
-          <div class="mb-3">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" placeholder="Just some description"></textarea>
-          </div>
-          <div class="mb-3">
-            <label htmlFor="username">Resource Link</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="username" placeholder="Username" />
-            </div>
-          </div>
-          <hr class="mb-4" />
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
-        </form>
+        <h4 class="mb-3">Resource</h4>
+        <resource-update />
       </div> */}
       {/* Update Form Ends */} -->
       <!-- {/* Detail View Starts */} -->
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Update Resource</h4>
-        <div class="card">
-          <div class="card-header">
-            Resource Name
-          </div>
-          <div class="card-body">
-            <blockquote class="blockquote mb-0">
-              <p>Resource description...</p>
-              <footer class="text-muted mb-2">Type</footer>
-            </blockquote>
-            <a href="#" class="btn btn-primary">Edit</a>
-          </div>
-        </div>
+        <h4 class="mb-3">Resource</h4>
+        <resource-detail />
       </div>
       <!-- {/* Detail View Ends */} -->
     </div>
@@ -122,5 +27,18 @@
 </template>
 
 <script>
-export default {};
+import ResourceHeader from '@/components/Header';
+import ResourceSearch from '@/components/ResourceSearch';
+import ResourceList from '@/components/ResourceList';
+// import ResourceUpdate from '@/components/ResourceUpdate';
+import ResourceDetail from '@/components/ResourceDetail';
+export default {
+  components: {
+    ResourceHeader,
+    ResourceSearch,
+    ResourceList,
+    // ResourceUpdate,
+    ResourceDetail,
+  },
+};
 </script>
