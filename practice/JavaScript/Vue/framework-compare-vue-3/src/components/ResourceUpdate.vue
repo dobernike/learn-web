@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="submitForm">
     <div class="mb-3">
       <label htmlFor="firstName">Title</label>
       <input
@@ -47,6 +47,16 @@ export default {
     return {
       uResource: { ...this.resource },
     };
+  },
+  watch: {
+    resource(newResource) {
+      this.uResource = { ...newResource };
+    },
+  },
+  methods: {
+    submitForm() {
+      alert(JSON.stringify(this.uResource));
+    },
   },
 };
 </script>
