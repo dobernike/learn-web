@@ -10,19 +10,23 @@
           }}</span>
         </h4>
         <resource-search />
-        <resource-list :resources="resources" @on-item-click="selectResource" />
+        <resource-list
+          :resources="resources"
+          :activeId="activeResource?._id"
+          @on-item-click="selectResource"
+        />
         <button @click="addResource" class="btn btn-sm btn-primary">
           Add Resource
         </button>
       </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">
-          Resource {{ selectedResource?._id }}
+          Resource {{ activeResource?._id }}
           <button @click="toggleView" :class="`btn btn-sm ${toggleBtnClass}`">
             {{ isDetailView ? 'Update' : 'Detail' }}
           </button>
         </h4>
-        <resource-detail v-if="isDetailView" :resource="selectedResource" />
+        <resource-detail v-if="isDetailView" :resource="activeResource" />
         <resource-update v-else />
       </div>
     </div>
@@ -79,6 +83,14 @@ export default {
     },
     toggleBtnClass() {
       return this.isDetailView ? 'btn-warning' : 'btn-primary';
+    },
+    hasResource() {
+      return this.resourcesLength > 0;
+    },
+    activeResource() {
+      return (
+        this.selectedResource || (this.hasResource && this.resources[0]) || null
+      );
     },
   },
   methods: {
