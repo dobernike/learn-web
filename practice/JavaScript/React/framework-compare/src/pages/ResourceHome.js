@@ -22,21 +22,22 @@ const ResourceHome = () => {
     _getResources();
   }, []);
 
-  const addResource = () => {
-    const _id = '_' + Math.random().toString(36).substr(2, 9);
-    const newSource = {
-      _id,
-      title: `Title ${_id}`,
-      description: `Description ${_id}`,
-      link: 'https://google.com',
-      type: 'video',
-    };
+  const findResourceIndex = (resource) => {
+    return resources.findIndex((r) => r._id === resource.id);
+  };
 
-    setResources([newSource, ...resources]);
+  const updateResourceList = (resource) => {
+    const resourceIndex = findResourceIndex(resource);
+    const copy = [...resources];
+    copy[resourceIndex] = resource;
+    return copy;
   };
 
   const handleResourceUpdate = (updatedResource) => {
-    alert(updatedResource);
+    const updatedResources = updateResourceList(updatedResource);
+
+    setResources(updatedResources);
+    setSelectedResource(updatedResource);
   };
 
   const hasResources = resources && resources.length > 0;
@@ -58,9 +59,6 @@ const ResourceHome = () => {
             onItemClick={setSelectedResource}
             resources={resources}
           />
-          <button onClick={addResource} className="btn btn-primary">
-            Add Resource
-          </button>
         </div>
         <div className="col-md-8 order-md-1">
           <h4 className="mb-3">
