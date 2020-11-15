@@ -22,9 +22,13 @@
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">
           Resource {{ activeResource?._id }}
-          <button @click="toggleView" :class="`btn btn-sm ${toggleBtnClass}`">
+          <button
+            @click="toggleView"
+            :class="`btn btn-sm ${toggleBtnClass} mr-2`"
+          >
             {{ isDetailView ? 'Update' : 'Detail' }}
           </button>
+          <resource-delete :activeId="activeResource?._id" />
         </h4>
         <resource-detail v-if="isDetailView" :resource="activeResource" />
         <resource-update
@@ -43,6 +47,7 @@ import ResourceSearch from '@/components/ResourceSearch';
 import ResourceList from '@/components/ResourceList';
 import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
+import ResourceDelete from '@/components/ResourceDelete';
 import { fetchResources } from '@/actions';
 export default {
   components: {
@@ -51,6 +56,7 @@ export default {
     ResourceList,
     ResourceUpdate,
     ResourceDetail,
+    ResourceDelete,
   },
   data() {
     return {
