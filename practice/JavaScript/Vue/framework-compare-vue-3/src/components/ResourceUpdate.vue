@@ -3,6 +3,7 @@
     <div class="mb-3">
       <label htmlFor="firstName">Title</label>
       <input
+        v-model="uResource.title"
         type="text"
         class="form-control"
         id="firstName"
@@ -10,31 +11,22 @@
       />
     </div>
     <div class="mb-3">
-      <label htmlFor="email"
-        >Description <span class="text-muted">(Optional)</span></label
-      >
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        placeholder="Very interesting book"
-      />
-    </div>
-    <div class="mb-3">
       <label for="description">Description</label>
       <textarea
+        v-model="uResource.description"
         class="form-control"
         id="description"
         placeholder="Just some description"
       ></textarea>
     </div>
     <div class="mb-3">
-      <label htmlFor="username">Resource Link</label>
+      <label htmlFor="link">Resource Link</label>
       <div class="input-group">
         <input
+          v-model="uResource.link"
           type="text"
           class="form-control"
-          id="username"
+          id="link"
           placeholder="Username"
         />
       </div>
@@ -47,5 +39,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    resource: Object,
+  },
+  data() {
+    return {
+      uResource: { ...this.resource },
+    };
+  },
+};
 </script>

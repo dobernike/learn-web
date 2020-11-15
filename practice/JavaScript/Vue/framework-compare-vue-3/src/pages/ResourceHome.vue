@@ -27,7 +27,7 @@
           </button>
         </h4>
         <resource-detail v-if="isDetailView" :resource="activeResource" />
-        <resource-update v-else />
+        <resource-update v-else :resource="activeResource" />
       </div>
     </div>
   </div>
