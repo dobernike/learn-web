@@ -27,7 +27,11 @@
           </button>
         </h4>
         <resource-detail v-if="isDetailView" :resource="activeResource" />
-        <resource-update v-else :resource="activeResource" />
+        <resource-update
+          v-else
+          @on-resource-update="hydrateResources"
+          :resource="activeResource"
+        />
       </div>
     </div>
   </div>
@@ -99,6 +103,10 @@ export default {
     selectResource(selectedResource) {
       // TODO: it`s copied by reference!
       this.selectedResource = selectedResource;
+    },
+    hydrateResources(newResources) {
+      console.log('hydrating');
+      console.log(newResources);
     },
   },
 };
