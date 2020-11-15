@@ -81,6 +81,7 @@ export default {
     setAlert(type, message) {
       this.alert = this.initAlert();
       this.alert[type] = message;
+      setTimeout(() => (this.alert = this.initAlert()), 3000);
     },
     async submitForm() {
       try {
@@ -90,8 +91,8 @@ export default {
         );
         this.$emit('on-resource-update', updatedResource);
         this.setAlert('success', 'Resource was updated!');
-      } catch (error) {
-        this.setAlert('error', error?.message);
+      } catch (errorMessage) {
+        this.setAlert('error', errorMessage);
       }
     },
   },
