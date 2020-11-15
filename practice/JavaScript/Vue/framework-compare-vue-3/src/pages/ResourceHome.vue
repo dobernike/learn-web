@@ -12,18 +12,16 @@
         <resource-search />
         <resource-list :resources="resources" />
       </div>
-      <!-- {/* Update Form Starts */} -->
-      <!-- {/* <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Resource</h4>
-        <resource-update />
-      </div> */}
-      {/* Update Form Ends */} -->
-      <!-- {/* Detail View Starts */} -->
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Resource</h4>
-        <resource-detail />
+        <h4 class="mb-3">
+          Resource
+          <button @click="toggleView" class="btn btn-sm btn-success">
+            Toggle
+          </button>
+        </h4>
+        <resource-detail v-if="isDetailView" />
+        <resource-update v-else />
       </div>
-      <!-- {/* Detail View Ends */} -->
     </div>
   </div>
 </template>
@@ -32,18 +30,19 @@
 import ResourceHeader from '@/components/Header';
 import ResourceSearch from '@/components/ResourceSearch';
 import ResourceList from '@/components/ResourceList';
-// import ResourceUpdate from '@/components/ResourceUpdate';
+import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
 export default {
   components: {
     ResourceHeader,
     ResourceSearch,
     ResourceList,
-    // ResourceUpdate,
+    ResourceUpdate,
     ResourceDetail,
   },
   data() {
     return {
+      isDetailView: true,
       resources: [
         {
           _id: '1',
@@ -79,6 +78,9 @@ export default {
     // it will be re-evaluated every time
     getResourceLength() {
       return this.resources.length;
+    },
+    toggleView() {
+      this.isDetailView = !this.isDetailView;
     },
   },
 };
