@@ -18,8 +18,8 @@
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">
           Resource
-          <button @click="toggleView" class="btn btn-sm btn-success">
-            Toggle
+          <button @click="toggleView" :class="`btn btn-sm ${toggleBtnClass}`">
+            {{ isDetailView ? 'Update' : 'Detail' }}
           </button>
         </h4>
         <resource-detail v-if="isDetailView" />
@@ -75,6 +75,9 @@ export default {
     // it will be re-evaluated every time reactive dependency will change
     resourcesLength() {
       return this.resources.length;
+    },
+    toggleBtnClass() {
+      return this.isDetailView ? 'btn-warning' : 'btn-primary';
     },
   },
   methods: {
