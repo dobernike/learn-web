@@ -11,7 +11,10 @@
         <p>{{ resource.description }}</p>
         <footer class="text-muted mb-2">{{ resource.type }}</footer>
       </blockquote>
-      <a href="#" class="btn btn-primary">Edit</a>
+      <a target="_blank" :href="resource.link" class="btn btn-outline-primary mr-2">Resource Link</a>
+      <router-link :to="{name: 'resourceDetailPage', params: {id: resource._id}}" class="btn btn-outline-success">
+        See detail page
+      </router-link>
     </div>
   </div>
 </template>
