@@ -7,7 +7,7 @@
           resourcesLength
         }}</span>
       </h4>
-      <resource-search />
+      <resource-search @on-search="handleSearch" />
       <resource-list
         :resources="resources"
         :activeId="activeResource?._id"
@@ -55,7 +55,7 @@ import ResourceList from '@/components/ResourceList';
 import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
 import ResourceDelete from '@/components/ResourceDelete';
-import { fetchResources } from '@/actions';
+import { fetchResources, searchResources } from '@/actions';
 export default {
   components: {
     ResourceSearch,
@@ -72,9 +72,8 @@ export default {
     };
   },
   // created is called once options are resolved(data, computed, methods...) and instance created
-  async created() {
-    const resources = await fetchResources();
-    this.resources = resources;
+  created() {
+    this.getResources()
   },
   computed: {
     // it will be re-evaluated every time reactive dependency will change
@@ -95,12 +94,22 @@ export default {
   },
   methods: {
     // it will be re-evaluated every time
+    async getResources() {
+      this.resources = await fetchResources();
+    },
     toggleView() {
       this.isDetailView = !this.isDetailView;
     },
     selectResource(selectedResource) {
       // TODO: it`s copied by reference!
       this.selectedResource = selectedResource;
+    },
+    async handleSearch(title) {
+      if (!title) {
+        return this.getResources()
+      }
+
+      this.resources = await searchResources(title)
     },
     hydrateResources(newResource, operation) {
       const index = this.resources.findIndex((r) => r._id === newResource._id);

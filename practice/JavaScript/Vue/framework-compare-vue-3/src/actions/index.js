@@ -6,6 +6,12 @@ export function fetchResources() {
     .then((res) => res.data);
 }
 
+export function searchResources(title) {
+  return axios
+    .get(`/api/resources/s/${title}`)
+    .then((res) => res.data);
+}
+
 export function fetchResourcesByIdApi(resourceId) {
   return axios
     .get(`/api/resources/${resourceId}`)
