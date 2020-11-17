@@ -106,10 +106,11 @@ export default {
     },
     async handleSearch(title) {
       if (!title) {
-        return this.getResources()
+        return this.getResources();
       }
 
-      this.resources = await searchResources(title)
+      this.resources = await searchResources(title);
+      this.selectedResource = null;
     },
     hydrateResources(newResource, operation) {
       const index = this.resources.findIndex((r) => r._id === newResource._id);
