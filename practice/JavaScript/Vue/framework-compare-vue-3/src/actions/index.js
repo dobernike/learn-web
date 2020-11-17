@@ -1,7 +1,15 @@
 import axios from 'axios';
 
 export function fetchResources() {
-  return axios.get('/api/resources').then((res) => res.data);
+  return axios
+    .get('/api/resources')
+    .then((res) => res.data);
+}
+
+export function fetchResourcesByIdApi(resourceId) {
+  return axios
+    .get(`/api/resources/${resourceId}`)
+    .then((res) => res.data);
 }
 
 export function createResourceApi(resource) {
