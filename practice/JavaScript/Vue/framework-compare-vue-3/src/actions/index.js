@@ -4,6 +4,13 @@ export function fetchResources() {
   return axios.get('/api/resources').then((res) => res.data);
 }
 
+export function createResourceApi(resource) {
+  return axios
+    .post(`/api/resources`, resource)
+    .then((res) => res.data)
+    .catch((error) => Promise.reject(error?.response?.data));
+}
+
 export function updateResourceApi(id, resource) {
   return axios
     .patch(`/api/resources/${id}`, resource)
