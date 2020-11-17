@@ -12,7 +12,7 @@
         <footer class="text-muted mb-2">{{ resource.type }}</footer>
       </blockquote>
       <a target="_blank" :href="resource.link" class="btn btn-outline-primary mr-2">Resource Link</a>
-      <slot></slot>
+      <slot name="buttonLink"></slot>
     </div>
   </div>
 </template>

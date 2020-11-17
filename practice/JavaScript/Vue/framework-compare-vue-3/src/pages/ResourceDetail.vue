@@ -3,11 +3,13 @@
 
 <template>
     <resource-detail :resource="resource">
-        <button
-            @click="$router.go(-1)"
-            class="btn btn-outline-success">
-            Back
-        </button>
+        <template #buttonLink>
+            <button
+                @click="$router.go(-1)"
+                class="btn btn-outline-success">
+                Back
+            </button>
+        </template>
     </resource-detail>
 </template>
 
