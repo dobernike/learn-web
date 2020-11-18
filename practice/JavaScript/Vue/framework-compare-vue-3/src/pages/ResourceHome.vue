@@ -55,7 +55,8 @@ import ResourceList from '@/components/ResourceList';
 import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
 import ResourceDelete from '@/components/ResourceDelete';
-import { fetchResources, searchResources } from '@/actions';
+import { searchResources } from '@/actions';
+import useResources from "@/composition/useResources";
 export default {
   components: {
     ResourceSearch,
@@ -68,13 +69,13 @@ export default {
     return {
       isDetailView: true,
       selectedResource: null,
-      resources: [],
     };
   },
-  // created is called once options are resolved(data, computed, methods...) and instance created
-  created() {
-    this.getResources()
+  // It's called before "beforeCreate" lifecycle function
+  setup() {
+    return { ...useResources() }
   },
+  // created is called once options are resolved(data, computed, methods...) and instance created
   computed: {
     // it will be re-evaluated every time reactive dependency will change
     resourcesLength() {
@@ -94,9 +95,6 @@ export default {
   },
   methods: {
     // it will be re-evaluated every time
-    async getResources() {
-      this.resources = await fetchResources();
-    },
     toggleView() {
       this.isDetailView = !this.isDetailView;
     },
