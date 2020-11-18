@@ -7,6 +7,13 @@ export default function useResources() {
     resources.value = await fetchResources()
   }
 
+  const hydrateResources = (resource, operation) => {
+    const index = resources.value.findIndex((r) => r._id === resource._id);
+    operation === 'update' ?
+      resources.value[index] = resource :
+      resources.value.splice(index, 1);
+  }
+
   onMounted(getResources)
 
   const resourcesLength = computed(() => resources.value.length)
@@ -16,6 +23,7 @@ export default function useResources() {
     resources,
     getResources,
     resourcesLength,
-    hasResource
+    hasResource,
+    hydrateResources
   }
 }

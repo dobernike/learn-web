@@ -26,7 +26,7 @@
           </button>
           <resource-delete
             @on-resource-delete="
-              hydrateResources($event, 'delete');
+              handleResourceChange($event, 'delete');
               !hasResources ? (isDetailView = true) : null;
             "
             :activeId="activeResource?._id"
@@ -42,7 +42,7 @@
       </resource-detail>
       <resource-update
         v-else
-        @on-resource-update="hydrateResources($event, 'update')"
+        @on-resource-update="handleResourceChange($event, 'update')"
         :resource="activeResource"
       />
     </div>
@@ -104,16 +104,10 @@ export default {
       this.resources = await searchResources(title);
       this.selectedResource = null;
     },
-    hydrateResources(newResource, operation) {
-      const index = this.resources.findIndex((r) => r._id === newResource._id);
-
-      if (operation === 'update') {
-        this.resources[index] = newResource;
-        this.selectResource(newResource);
-      } else {
-        this.resources.splice(index, 1);
-        this.selectResource(this.resources[0] || null);
-      }
+    handleResourceChange(newResource, operation) {
+      this.hydrateResources(newResource, operation)
+      const resourceToSelect = operation === 'update' ? newResource : this.resources[0] || null
+      this.selectResource(resourceToSelect)
     },
   },
 };
