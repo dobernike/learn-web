@@ -78,14 +78,8 @@ export default {
   // created is called once options are resolved(data, computed, methods...) and instance created
   computed: {
     // it will be re-evaluated every time reactive dependency will change
-    resourcesLength() {
-      return this.resources.length;
-    },
     toggleBtnClass() {
       return this.isDetailView ? 'btn-warning' : 'btn-primary';
-    },
-    hasResource() {
-      return this.resourcesLength > 0;
     },
     activeResource() {
       return (
