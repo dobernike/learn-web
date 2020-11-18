@@ -55,7 +55,6 @@ import ResourceList from '@/components/ResourceList';
 import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
 import ResourceDelete from '@/components/ResourceDelete';
-import { searchResources } from '@/actions';
 import useResources from "@/composition/useResources";
 export default {
   components: {
@@ -96,13 +95,9 @@ export default {
       // TODO: it`s copied by reference!
       this.selectedResource = selectedResource;
     },
-    async handleSearch(title) {
-      if (!title) {
-        return this.getResources();
-      }
-
-      this.resources = await searchResources(title);
-      this.selectedResource = null;
+    handleSearch(title) {
+      this.setSearchQuery(title)
+      this.selectedResource = null
     },
     handleResourceChange(newResource, operation) {
       this.hydrateResources(newResource, operation)
