@@ -1,6 +1,9 @@
 <template>
   <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
+      <div class="mb-2">
+        <settings-modal />
+      </div>
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your Resources</span>
         <span class="badge badge-secondary badge-pill">{{
@@ -35,7 +38,13 @@
       </h4>
       <resource-detail v-if="isDetailView" :resource="activeResource">
         <template #buttonLink>
-          <router-link :to="{name: 'resourceDetailPage', params: {id: activeResource?._id}}" class="btn btn-outline-success">
+          <router-link
+            :to="{
+              name: 'resourceDetailPage',
+              params: { id: activeResource?._id },
+            }"
+            class="btn btn-outline-success"
+          >
             See detail page
           </router-link>
         </template>
@@ -55,7 +64,8 @@ import ResourceList from '@/components/ResourceList';
 import ResourceUpdate from '@/components/ResourceUpdate';
 import ResourceDetail from '@/components/ResourceDetail';
 import ResourceDelete from '@/components/ResourceDelete';
-import useResources from "@/composition/useResources";
+import useResources from '@/composition/useResources';
+import SettingsModal from '@/components/SettingsModal';
 export default {
   components: {
     ResourceSearch,
@@ -63,6 +73,7 @@ export default {
     ResourceUpdate,
     ResourceDetail,
     ResourceDelete,
+    SettingsModal,
   },
   data() {
     return {
@@ -72,7 +83,7 @@ export default {
   },
   // It's called before "beforeCreate" lifecycle function
   setup() {
-    return { ...useResources() }
+    return { ...useResources() };
   },
   // created is called once options are resolved(data, computed, methods...) and instance created
   computed: {
@@ -96,13 +107,14 @@ export default {
       this.selectedResource = selectedResource;
     },
     handleSearch(title) {
-      this.setSearchQuery(title)
-      this.selectedResource = null
+      this.setSearchQuery(title);
+      this.selectedResource = null;
     },
     handleResourceChange(newResource, operation) {
-      this.hydrateResources(newResource, operation)
-      const resourceToSelect = operation === 'update' ? newResource : this.resources[0] || null
-      this.selectResource(resourceToSelect)
+      this.hydrateResources(newResource, operation);
+      const resourceToSelect =
+        operation === 'update' ? newResource : this.resources[0] || null;
+      this.selectResource(resourceToSelect);
     },
   },
 };
