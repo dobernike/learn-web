@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-group resource-list mb-3">
+  <ul :class="`list-group resource-list mb-3 ${getTheme()}`">
     <li
       v-for="resource in resources"
       :key="resource._id"
@@ -29,6 +29,7 @@ export default {
     activeId: String,
   },
   emit: ['on-item-click'],
+  inject: ['getTheme'],
   computed: {
     activeItemClass() {
       return (resource) => (resource._id === this.activeId ? 'is-active' : '');
@@ -49,6 +50,10 @@ export default {
 .resource-list {
   max-height: 350px;
   overflow-y: auto;
+
+  &.dark {
+    color: black;
+  }
 
   &-item {
     cursor: pointer;
