@@ -9,15 +9,27 @@ const app = Vue.createApp({
       monsterHealth: 100
     };
   },
+  computed: {
+    monsterBarStyles() {
+      return { width: this.monsterHealth + '%' };
+    },
+    playerBarStyles() {
+      return { width: this.playerHealth + '%' };
+    }
+  },
   methods: {
     attackMonster() {
       const attackValue = getRandomValue(5, 12);
-      this.monsterHealth -= attackValue;
+      this.monsterHealth = this.monsterHealth > attackValue
+        ? this.monsterHealth - attackValue
+        : 0;
       this.attackPlayer();
   },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15);
-      this.playerHealth -= attackValue;
+      this.playerHealth = this.playerHealth > attackValue
+        ? this.playerHealth - attackValue
+        : 0;
     }
   }
 });
