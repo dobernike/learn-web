@@ -13,7 +13,7 @@ const app = Vue.createApp({
     return {
       playerHealth: 100,
       monsterHealth: 100,
-      manaForSpecialAttack: 3,
+      rageForSpecialAttack: 3,
     };
   },
   computed: {
@@ -24,12 +24,12 @@ const app = Vue.createApp({
       return { width: this.playerHealth + '%' };
     },
     mayUseSpecialAttack() {
-      return this.manaForSpecialAttack < 3;
+      return this.rageForSpecialAttack < 3;
     }
   },
   methods: {
     attackMonster() {
-      this.manaForSpecialAttack++
+      this.rageForSpecialAttack++
       const attackValue = getRandomValue(5, 12)
       this.monsterHealth = getHealth(this.monsterHealth, attackValue)
       this.attackPlayer()
@@ -39,9 +39,17 @@ const app = Vue.createApp({
       this.playerHealth = getHealth(this.playerHealth, attackValue)
     },
     specialAttackMonster() {
-      this.manaForSpecialAttack = 0
+      this.rageForSpecialAttack = 0
       const attackValue = getRandomValue(10, 25)
       this.monsterHealth = getHealth(this.monsterHealth, attackValue)
+      this.attackPlayer()
+    },
+    healPlayer() {
+      this.rageForSpecialAttack++
+      const healValue = getRandomValue(8, 20)
+      this.playerHealth = this.playerHealth + healValue < 100
+        ? this.playerHealth + healValue
+        : 100
       this.attackPlayer()
     }
   }
