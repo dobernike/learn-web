@@ -2,27 +2,30 @@ function getRandomValue(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function getHealth(health, attack) {
-  return health > attack
-    ? health - attack
-    : 0;
+function getWidth(health) {
+  return health < 0 ? { width: '0%' } : { width: health + '%' }
 }
+
+const INITIAL_PLAYER_HEALTH = 100
+const INITIAL_MONSTER_HEALTH = 100
+const INITIAL_RAGE_FOR_SPECIAL_ATTACK = 3
+const INITIAL_WINNER = null
 
 const app = Vue.createApp({
   data() {
     return {
-      playerHealth: 100,
-      monsterHealth: 100,
-      rageForSpecialAttack: 3,
-      winner: null,
+      playerHealth: INITIAL_PLAYER_HEALTH,
+      monsterHealth: INITIAL_MONSTER_HEALTH,
+      rageForSpecialAttack: INITIAL_RAGE_FOR_SPECIAL_ATTACK,
+      winner: INITIAL_WINNER,
     };
   },
   computed: {
     monsterBarStyles() {
-      return { width: this.monsterHealth + '%' };
+      return getWidth(this.monsterHealth)
     },
     playerBarStyles() {
-      return { width: this.playerHealth + '%' };
+      return getWidth(this.playerHealth)
     },
     mayUseSpecialAttack() {
       return this.rageForSpecialAttack < 3;
@@ -49,20 +52,26 @@ const app = Vue.createApp({
     }
   },
   methods: {
+    startGame() {
+        this.playerHealth = INITIAL_PLAYER_HEALTH
+        this.monsterHealth = INITIAL_MONSTER_HEALTH
+        this.rageForSpecialAttack = INITIAL_RAGE_FOR_SPECIAL_ATTACK
+        this.winner = INITIAL_WINNER
+    },
     attackMonster() {
       this.rageForSpecialAttack++
       const attackValue = getRandomValue(5, 12)
-      this.monsterHealth = getHealth(this.monsterHealth, attackValue)
+      this.monsterHealth -= attackValue
       this.attackPlayer()
   },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15)
-      this.playerHealth = getHealth(this.playerHealth, attackValue)
+      this.playerHealth -= attackValue
     },
     specialAttackMonster() {
       this.rageForSpecialAttack = 0
       const attackValue = getRandomValue(10, 25)
-      this.monsterHealth = getHealth(this.monsterHealth, attackValue)
+      this.monsterHealth -= attackValue
       this.attackPlayer()
     },
     healPlayer() {
@@ -72,6 +81,9 @@ const app = Vue.createApp({
         ? this.playerHealth + healValue
         : 100
       this.attackPlayer()
+    },
+    surrender() {
+      this.winner = 'monster'
     }
   }
 })
