@@ -6,18 +6,21 @@ function getWidth(health) {
   return health < 0 ? { width: '0%' } : { width: health + '%' }
 }
 
-const INITIAL_PLAYER_HEALTH = 100
-const INITIAL_MONSTER_HEALTH = 100
-const INITIAL_RAGE_FOR_SPECIAL_ATTACK = 3
-const INITIAL_WINNER = null
+const INITIAL = {
+  PLAYER_HEALTH: 100,
+  MONSTER_HEALTH: 100,
+  RAGE_FOR_SPECIAL_ATTACK: 3,
+  WINNER: null,
+}
 
 const app = Vue.createApp({
   data() {
     return {
-      playerHealth: INITIAL_PLAYER_HEALTH,
-      monsterHealth: INITIAL_MONSTER_HEALTH,
-      rageForSpecialAttack: INITIAL_RAGE_FOR_SPECIAL_ATTACK,
-      winner: INITIAL_WINNER,
+      playerHealth: INITIAL.PLAYER_HEALTH,
+      monsterHealth: INITIAL.MONSTER_HEALTH,
+      rageForSpecialAttack: INITIAL.RAGE_FOR_SPECIAL_ATTACK,
+      winner: INITIAL.WINNER,
+      logMessages: [],
     };
   },
   computed: {
@@ -53,25 +56,29 @@ const app = Vue.createApp({
   },
   methods: {
     startGame() {
-        this.playerHealth = INITIAL_PLAYER_HEALTH
-        this.monsterHealth = INITIAL_MONSTER_HEALTH
-        this.rageForSpecialAttack = INITIAL_RAGE_FOR_SPECIAL_ATTACK
-        this.winner = INITIAL_WINNER
+        this.playerHealth = INITIAL.PLAYER_HEALTH
+        this.monsterHealth = INITIAL.MONSTER_HEALTH
+        this.rageForSpecialAttack = INITIAL.RAGE_FOR_SPECIAL_ATTACK
+        this.winner = INITIAL.WINNER
+        this.logMessages = []
     },
     attackMonster() {
       this.rageForSpecialAttack++
       const attackValue = getRandomValue(5, 12)
       this.monsterHealth -= attackValue
+      this.addLogMessage('player', 'attack', attackValue)
       this.attackPlayer()
   },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15)
       this.playerHealth -= attackValue
+      this.addLogMessage('monster', 'attack', attackValue)
     },
     specialAttackMonster() {
       this.rageForSpecialAttack = 0
       const attackValue = getRandomValue(10, 25)
       this.monsterHealth -= attackValue
+      this.addLogMessage('player', 'special-attack', attackValue)
       this.attackPlayer()
     },
     healPlayer() {
@@ -80,10 +87,18 @@ const app = Vue.createApp({
       this.playerHealth = this.playerHealth + healValue < 100
         ? this.playerHealth + healValue
         : 100
+      this.addLogMessage('player', 'heal', healValue)
       this.attackPlayer()
     },
     surrender() {
       this.winner = 'monster'
+    },
+    addLogMessage(who, what, value) {
+      this.logMessages.unshift({
+        actionBy: who,
+        actionType: what,
+        actionValue: value,
+      })
     }
   }
 })
