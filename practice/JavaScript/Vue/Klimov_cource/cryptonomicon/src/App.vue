@@ -187,7 +187,41 @@ export default {
       hints: [],
     };
   },
+  created() {
+    const list = localStorage.getItem('cryptonomicon-list');
+
+    if (list) {
+      this.tickers = JSON.parse(list);
+      this.tickers.map(({ name }) => this.subscribeToTicker(name));
+    }
+  },
   methods: {
+    subscribeToTicker(tickerName) {
+      const timer = setInterval(async () => {
+        const currentTicker = this.tickers.find(
+          (ticker) => ticker.name === tickerName
+        );
+
+        if (!currentTicker) {
+          clearInterval(timer);
+          return;
+        }
+
+        const request = await fetch(
+          `https://min-api.cryptocompare.com/data/price?fsym=${tickerName}&tsyms=USD&api_key=73f89886b75e4cb708beb44cebe67c3f5748664a03ce3f344c08582445dbde2c`
+        );
+        const responce = await request.json();
+        const price = responce.USD;
+
+        currentTicker.price =
+          price > 1 ? price.toFixed(2) : price.toPrecision(2);
+
+        if (this.presentation?.name === tickerName) {
+          this.graph.push(price);
+        }
+      }, 3000);
+    },
+
     addTicker(newTicker) {
       const ticker = newTicker ? newTicker : this.ticker;
 
@@ -202,33 +236,12 @@ export default {
       };
 
       this.tickers.push(tickerToAdd);
+      localStorage.setItem('cryptonomicon-list', JSON.stringify(this.tickers));
+      this.subscribeToTicker(tickerToAdd.name);
+
       this.isTickerIncludes = false;
       this.ticker = '';
       this.hints = [];
-
-      const intervatId = setInterval(async () => {
-        const currentTicker = this.tickers.find(
-          (ticker) => ticker.name === tickerToAdd.name
-        );
-
-        if (!currentTicker) {
-          clearInterval(intervatId);
-          return;
-        }
-
-        const request = await fetch(
-          `https://min-api.cryptocompare.com/data/price?fsym=${tickerToAdd.name}&tsyms=USD&api_key=73f89886b75e4cb708beb44cebe67c3f5748664a03ce3f344c08582445dbde2c`
-        );
-        const responce = await request.json();
-        const price = responce.USD;
-
-        currentTicker.price =
-          price > 1 ? price.toFixed(2) : price.toPrecision(2);
-
-        if (this.presentation?.name === tickerToAdd.name) {
-          this.graph.push(price);
-        }
-      }, 3000);
     },
 
     deleteTicker(tickerToDelete) {
@@ -237,6 +250,7 @@ export default {
       }
 
       this.tickers = this.tickers.filter((tick) => tick !== tickerToDelete);
+      localStorage.setItem('cryptonomicon-list', JSON.stringify(this.tickers));
     },
 
     selectTicker(ticker) {
