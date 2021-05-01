@@ -102,17 +102,22 @@
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
             v-for="tick in tickers"
-            :key="tick"
+            :key="tick.name"
+            :class="{
+              'border-4': tick === presentation,
+            }"
             class="bg-white overflow-hidden shadow rounded-lg border-purple-800 border-solid cursor-pointer"
           >
             <div
-              @click="showPresentation(tick)"
+              @click="selectTicker(tick)"
               class="px-4 py-5 sm:p-6 text-center"
             >
               <dt class="text-sm font-medium text-gray-500 truncate">
-                {{ tick }}
+                {{ tick.name }} - USD
               </dt>
-              <dd class="mt-1 text-3xl font-semibold text-gray-900">-</dd>
+              <dd class="mt-1 text-3xl font-semibold text-gray-900">
+                {{ tick.price }}
+              </dd>
             </div>
             <div class="w-full border-t border-gray-200"></div>
             <button
@@ -139,13 +144,15 @@
       </template>
       <section class="relative" v-if="presentation">
         <h3 class="text-lg leading-6 font-medium text-gray-900 my-8">
-          {{ presentation }}
+          {{ presentation.name }}
         </h3>
         <div class="flex items-end border-gray-600 border-b border-l h-64">
-          <div class="bg-purple-800 border w-10 h-24"></div>
-          <div class="bg-purple-800 border w-10 h-32"></div>
-          <div class="bg-purple-800 border w-10 h-48"></div>
-          <div class="bg-purple-800 border w-10 h-16"></div>
+          <div
+            v-for="(bar, idx) in normalizeGraph()"
+            :key="idx"
+            :style="`height: ${bar}%`"
+            class="bg-purple-800 border w-10"
+          ></div>
         </div>
         <button
           @click="closePresentation"
@@ -187,32 +194,63 @@ export default {
       ticker: '',
       tickers: [],
       presentation: null,
+      graph: [],
     };
   },
   methods: {
     addTicker() {
       if (this.isTickerIncludes) return;
 
-      this.tickers.push(this.ticker);
+      const tickerToAdd = {
+        name: this.ticker,
+        price: '-',
+      };
+
+      this.tickers.push(tickerToAdd);
       this.ticker = '';
+
+      setInterval(async () => {
+        const f = await fetch(
+          `https://min-api.cryptocompare.com/data/price?fsym=${tickerToAdd.name}&tsyms=USD&api_key=73f89886b75e4cb708beb44cebe67c3f5748664a03ce3f344c08582445dbde2c`
+        );
+        const data = await f.json();
+        const price =
+          data.USD > 1 ? data.USD.toFixed(2) : data.USD.toPrecision(2);
+
+        this.tickers.find(
+          (ticker) => ticker.name === tickerToAdd.name
+        ).price = price;
+
+        if (this.presentation.name === tickerToAdd.name) {
+          this.graph.push(data.USD);
+        }
+      }, 3000);
     },
     deleteTicker(tickerToDelete) {
       if (this.presentation === tickerToDelete) {
         this.presentation = null;
       }
 
-      this.tickers = this.tickers.filter((ticker) => ticker !== tickerToDelete);
+      this.tickers = this.tickers.filter((tick) => tick !== tickerToDelete);
     },
-    showPresentation(ticker) {
+    selectTicker(ticker) {
       this.presentation = ticker;
+      this.graph = [];
     },
     closePresentation() {
       this.presentation = null;
     },
+    normalizeGraph() {
+      const maxValue = Math.max(...this.graph);
+      const minValue = Math.min(...this.graph);
+      return this.graph.map(
+        (price) => 5 + ((price - minValue) * 95) / (maxValue - minValue)
+      );
+    },
   },
   computed: {
     isTickerIncludes() {
-      return this.tickers.includes(this.ticker);
+      return this.tickers.some(({ name }) => name === this.ticker);
     },
   },
   mounted() {
