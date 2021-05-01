@@ -207,6 +207,10 @@ export default {
     };
   },
   created() {
+    let params = new URL(document.location).searchParams;
+    this.filter = params.get('filter') ?? '';
+    this.page = params.get('page') ?? 1;
+
     const list = localStorage.getItem('cryptonomicon-list');
 
     if (list) {
@@ -332,6 +336,12 @@ export default {
         ({ name }) => name.toLowerCase() === ticker.toLowerCase()
       );
     },
+    updateQuery() {
+      const url = new URL(window.location);
+      url.searchParams.set('filter', this.filter);
+      url.searchParams.set('page', this.page);
+      window.history.pushState({}, '', url);
+    },
   },
   async mounted() {
     const request = await fetch(
@@ -346,6 +356,10 @@ export default {
   watch: {
     filter() {
       this.page = 1;
+      this.updateQuery();
+    },
+    page() {
+      this.updateQuery();
     },
   },
 };
