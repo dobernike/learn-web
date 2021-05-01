@@ -86,29 +86,45 @@
       </section>
       <template v-if="tickers.length">
         <hr class="w-full border-t border-gray-600 my-4" />
+        <p>
+          <button
+            v-if="page > 1"
+            @click="page -= 1"
+            class="my-4 mx-4 inline-flex items-center py-2 px-4 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-full text-white bg-gray-600 hover:bg-gray-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          >
+            НАЗАД
+          </button>
+          <button
+            v-if="hasNextPage"
+            @click="page += 1"
+            class="my-4 mx-4 inline-flex items-center py-2 px-4 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-full text-white bg-gray-600 hover:bg-gray-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          >
+            ВПЕРЕД
+          </button>
+          <br />
+          <label>Фильтр <input v-model="filter" /></label>
+        </p>
+        <hr class="w-full border-t border-gray-600 my-4" />
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
-            v-for="tick in tickers"
-            :key="tick.name"
+            v-for="t in filteredTickers()"
+            :key="t.name"
             :class="{
-              'border-4': tick === presentation,
+              'border-4': t === presentation,
             }"
             class="bg-white overflow-hidden shadow rounded-lg border-purple-800 border-solid cursor-pointer"
           >
-            <div
-              @click="selectTicker(tick)"
-              class="px-4 py-5 sm:p-6 text-center"
-            >
+            <div @click="selectTicker(t)" class="px-4 py-5 sm:p-6 text-center">
               <dt class="text-sm font-medium text-gray-500 truncate">
-                {{ tick.name }} - USD
+                {{ t.name }} - USD
               </dt>
               <dd class="mt-1 text-3xl font-semibold text-gray-900">
-                {{ tick.price }}
+                {{ t.price }}
               </dd>
             </div>
             <div class="w-full border-t border-gray-200"></div>
             <button
-              @click="deleteTicker(tick)"
+              @click="deleteTicker(t)"
               class="flex items-center justify-center font-medium w-full bg-gray-100 px-4 py-4 sm:px-6 text-md text-gray-500 hover:text-gray-600 hover:bg-gray-200 hover:opacity-20 transition-all focus:outline-none"
             >
               <svg
@@ -185,6 +201,9 @@ export default {
       graph: [],
       coinList: {},
       hints: [],
+      filter: '',
+      page: 1,
+      hasNextPage: false,
     };
   },
   created() {
@@ -196,6 +215,21 @@ export default {
     }
   },
   methods: {
+    filteredTickers() {
+      const maxPerPage = 6;
+      const start = maxPerPage * (this.page - 1);
+      const end = maxPerPage * this.page;
+
+      const filteredTickers = this.tickers.filter(({ name }) =>
+        name.toLowerCase().includes(this.filter.toLowerCase())
+      );
+
+      this.hasNextPage =
+        filteredTickers.length > maxPerPage * this.page ? true : false;
+
+      return filteredTickers.slice(start, end);
+    },
+
     subscribeToTicker(tickerName) {
       const timer = setInterval(async () => {
         const currentTicker = this.tickers.find(
@@ -212,6 +246,12 @@ export default {
         );
         const responce = await request.json();
         const price = responce.USD;
+
+        // price can be undefined. do this for clearly console. need to delete this before prod
+        if (!price) {
+          clearInterval(timer);
+          return;
+        }
 
         currentTicker.price =
           price > 1 ? price.toFixed(2) : price.toPrecision(2);
@@ -302,6 +342,11 @@ export default {
 
     this.coinList = coinList;
     this.loading = false;
+  },
+  watch: {
+    filter() {
+      this.page = 1;
+    },
   },
 };
 </script>
