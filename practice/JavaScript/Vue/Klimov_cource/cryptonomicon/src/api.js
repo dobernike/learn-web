@@ -10,41 +10,63 @@ export const loadCoinList = async () => {
   return Object.values(responce.Data);
 };
 
+const AGGREGATE_INDEX = '5';
+const MARKET = 'CCCAGG';
+
 const tickersHandlers = new Map();
 
-export const loadTickers = async () => {
-  if (tickersHandlers.size === 0) return;
+const socket = new WebSocket(
+  `wss://streamer.cryptocompare.com/v2?api_key=${API_KEY}`
+);
 
-  const tickersString = [...tickersHandlers.keys()].join(',');
-  const request = await fetch(
-    `${API_URL}/pricemulti?fsyms=${tickersString}&tsyms=${DEFAULT_CURRENCY}&api_key=${API_KEY}`
-  );
-  const responce = await request.json();
+socket.addEventListener('message', (event) => {
+  const data = JSON.parse(event.data);
+  const { TYPE: type, PRICE: price, FROMSYMBOL: ticker } = data;
 
-  const tickers = Object.fromEntries(
-    Object.entries(responce).map(([ticker, price]) => [
-      ticker,
-      price[DEFAULT_CURRENCY],
-    ])
-  );
+  if (type !== AGGREGATE_INDEX || !price || !ticker) return;
 
-  Object.entries(tickers).forEach(([ticker, price]) => {
-    const handlers = tickersHandlers.get(ticker);
-    handlers.forEach((cb) => cb(price));
-  });
+  const handlers = tickersHandlers.get(ticker);
+  handlers.forEach((cb) => cb(price));
+});
 
-  return tickers;
-};
+const sendToWebSocket = (message) => {
+  const stringifiedMessage = JSON.stringify(message);
 
-export const subscribeToTicker = (tickerName, cb) => {
-  const subscribers = tickersHandlers.get(tickerName) || [];
-  tickersHandlers.set(tickerName, [...subscribers, cb]);
-};
-
-export const unsubscribeFromTicker = (tickerName) => {
-  if (tickersHandlers.has(tickerName)) {
-    tickersHandlers.delete(tickerName);
+  if (socket.readyState === WebSocket.OPEN) {
+    socket.send(stringifiedMessage);
+    return;
   }
+
+  socket.addEventListener(
+    'open',
+    () => {
+      socket.send(stringifiedMessage);
+    },
+    { once: true }
+  );
 };
 
-window.setInterval(() => loadTickers(), 3000);
+const subscribeToTickerOnWs = (ticker) => {
+  sendToWebSocket({
+    action: 'SubAdd',
+    subs: [`${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`],
+  });
+};
+
+const unsubscribeFromTickerOnWs = (ticker) => {
+  sendToWebSocket({
+    action: 'SubRemove',
+    subs: [`${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`],
+  });
+};
+
+export const subscribeToTicker = (ticker, cb) => {
+  const subscribers = tickersHandlers.get(ticker) || [];
+  tickersHandlers.set(ticker, [...subscribers, cb]);
+  subscribeToTickerOnWs(ticker);
+};
+
+export const unsubscribeFromTicker = (ticker) => {
+  tickersHandlers.delete(ticker);
+  unsubscribeFromTickerOnWs(ticker);
+};
