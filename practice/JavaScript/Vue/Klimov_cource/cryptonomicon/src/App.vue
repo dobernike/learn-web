@@ -119,7 +119,7 @@
                 {{ t.name }} - USD
               </dt>
               <dd class="mt-1 text-3xl font-semibold text-gray-900">
-                {{ t.price }}
+                {{ formatPrice(t.price) }}
               </dd>
             </div>
             <div class="w-full border-t border-gray-200"></div>
@@ -190,6 +190,13 @@
 </template>
 
 <script>
+import {
+  loadCoinList,
+  // getTickers,
+  subscribeToTicker,
+  unsubscribeFromTicker,
+} from './api.js';
+
 const MAX_PER_PAGE = 6;
 
 export default {
@@ -222,17 +229,13 @@ export default {
 
     if (list) {
       this.tickers = JSON.parse(list);
-      this.tickers.map(({ name }) => this.subscribeToTicker(name));
+      this.tickers.map(({ name }) =>
+        subscribeToTicker(name, (price) => this.updateTicker(name, price))
+      );
     }
   },
   async mounted() {
-    const request = await fetch(
-      'https://min-api.cryptocompare.com/data/all/coinlist?summary=true'
-    );
-    const responce = await request.json();
-    const coinList = Object.values(responce.Data);
-
-    this.coinList = coinList;
+    this.coinList = await loadCoinList();
     this.loading = false;
   },
   computed: {
@@ -281,36 +284,18 @@ export default {
     },
   },
   methods: {
-    subscribeToTicker(tickerName) {
-      const timer = setInterval(async () => {
-        const currentTicker = this.tickers.find(
-          (ticker) => ticker.name === tickerName
-        );
+    updateTicker(tickerName, price) {
+      this.tickers.find(({ name }) => name === tickerName).price = price;
 
-        if (!currentTicker) {
-          clearInterval(timer);
-          return;
-        }
+      if (this.presentation?.name === tickerName) {
+        this.graph.push(price);
+      }
+    },
 
-        const request = await fetch(
-          `https://min-api.cryptocompare.com/data/price?fsym=${tickerName}&tsyms=USD&api_key=73f89886b75e4cb708beb44cebe67c3f5748664a03ce3f344c08582445dbde2c`
-        );
-        const responce = await request.json();
-        let price = responce.USD;
+    formatPrice(price) {
+      if (price === '-') return price;
 
-        // price can be undefined. do this for clearly console. need to delete this before prod
-        if (!price) {
-          clearInterval(timer);
-          return;
-        }
-        price = price / 1;
-        currentTicker.price =
-          price > 1 ? price.toFixed(2) : price.toPrecision(2);
-
-        if (this.presentation?.name === tickerName) {
-          this.graph.push(price);
-        }
-      }, 3000);
+      return price > 1 ? price.toFixed(2) : price.toPrecision(2);
     },
 
     addTicker(newTicker) {
@@ -327,7 +312,9 @@ export default {
       };
 
       this.tickers = [...this.tickers, tickerToAdd];
-      this.subscribeToTicker(tickerToAdd.name);
+      subscribeToTicker(tickerToAdd.name, (price) =>
+        this.updateTicker(tickerToAdd.name, price)
+      );
 
       this.isTickerIncludes = false;
       this.ticker = '';
@@ -339,7 +326,8 @@ export default {
         this.closePresentation();
       }
 
-      this.tickers = this.tickers.filter((tick) => tick !== tickerToDelete);
+      this.tickers = this.tickers.filter((ticker) => ticker !== tickerToDelete);
+      unsubscribeFromTicker(tickerToDelete.name);
     },
 
     selectTicker(ticker) {
