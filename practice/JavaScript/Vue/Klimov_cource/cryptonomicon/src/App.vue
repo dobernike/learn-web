@@ -107,7 +107,7 @@
         <hr class="w-full border-t border-gray-600 my-4" />
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div
-            v-for="t in filteredTickers()"
+            v-for="t in paginatedTickers"
             :key="t.name"
             :class="{
               'border-4': t === presentation,
@@ -151,7 +151,7 @@
         </h3>
         <div class="flex items-end border-gray-600 border-b border-l h-64">
           <div
-            v-for="(bar, idx) in normalizeGraph()"
+            v-for="(bar, idx) in normalizedGraph"
             :key="idx"
             :style="`height: ${bar}%`"
             class="bg-purple-800 border w-10"
@@ -190,6 +190,8 @@
 </template>
 
 <script>
+const MAX_PER_PAGE = 6;
+
 export default {
   data() {
     return {
@@ -203,13 +205,18 @@ export default {
       hints: [],
       filter: '',
       page: 1,
-      hasNextPage: false,
     };
   },
   created() {
     let params = new URL(document.location).searchParams;
-    this.filter = params.get('filter') ?? '';
-    this.page = params.get('page') ?? 1;
+
+    const VALID_KEYS = ['filter', 'page'];
+
+    VALID_KEYS.forEach((key) => {
+      if (params.has(key)) {
+        this[key] = params.get(key);
+      }
+    });
 
     const list = localStorage.getItem('cryptonomicon-list');
 
@@ -218,22 +225,62 @@ export default {
       this.tickers.map(({ name }) => this.subscribeToTicker(name));
     }
   },
-  methods: {
-    filteredTickers() {
-      const maxPerPage = 6;
-      const start = maxPerPage * (this.page - 1);
-      const end = maxPerPage * this.page;
+  async mounted() {
+    const request = await fetch(
+      'https://min-api.cryptocompare.com/data/all/coinlist?summary=true'
+    );
+    const responce = await request.json();
+    const coinList = Object.values(responce.Data);
 
-      const filteredTickers = this.tickers.filter(({ name }) =>
-        name.toLowerCase().includes(this.filter.toLowerCase())
-      );
-
-      this.hasNextPage =
-        filteredTickers.length > maxPerPage * this.page ? true : false;
-
-      return filteredTickers.slice(start, end);
+    this.coinList = coinList;
+    this.loading = false;
+  },
+  computed: {
+    startIndex() {
+      return MAX_PER_PAGE * (this.page - 1);
     },
 
+    endIndex() {
+      return MAX_PER_PAGE * this.page;
+    },
+
+    filteredTickers() {
+      return this.tickers.filter(({ name }) =>
+        name.toLowerCase().includes(this.filter.toLowerCase())
+      );
+    },
+
+    hasNextPage() {
+      return this.filteredTickers.length > MAX_PER_PAGE * this.page
+        ? true
+        : false;
+    },
+
+    paginatedTickers() {
+      return this.filteredTickers.slice(this.startIndex, this.endIndex);
+    },
+
+    pageStateOptions() {
+      return {
+        filter: this.filter,
+        page: this.page,
+      };
+    },
+
+    normalizedGraph() {
+      const maxValue = Math.max(...this.graph);
+      const minValue = Math.min(...this.graph);
+
+      if (maxValue === minValue) {
+        return this.graph.map(() => 50);
+      }
+
+      return this.graph.map(
+        (price) => 5 + ((price - minValue) * 95) / (maxValue - minValue)
+      );
+    },
+  },
+  methods: {
     subscribeToTicker(tickerName) {
       const timer = setInterval(async () => {
         const currentTicker = this.tickers.find(
@@ -249,14 +296,14 @@ export default {
           `https://min-api.cryptocompare.com/data/price?fsym=${tickerName}&tsyms=USD&api_key=73f89886b75e4cb708beb44cebe67c3f5748664a03ce3f344c08582445dbde2c`
         );
         const responce = await request.json();
-        const price = responce.USD;
+        let price = responce.USD;
 
         // price can be undefined. do this for clearly console. need to delete this before prod
         if (!price) {
           clearInterval(timer);
           return;
         }
-
+        price = price / 1;
         currentTicker.price =
           price > 1 ? price.toFixed(2) : price.toPrecision(2);
 
@@ -279,8 +326,7 @@ export default {
         price: '-',
       };
 
-      this.tickers.push(tickerToAdd);
-      localStorage.setItem('cryptonomicon-list', JSON.stringify(this.tickers));
+      this.tickers = [...this.tickers, tickerToAdd];
       this.subscribeToTicker(tickerToAdd.name);
 
       this.isTickerIncludes = false;
@@ -290,34 +336,25 @@ export default {
 
     deleteTicker(tickerToDelete) {
       if (this.presentation === tickerToDelete) {
-        this.presentation = null;
+        this.closePresentation();
       }
 
       this.tickers = this.tickers.filter((tick) => tick !== tickerToDelete);
-      localStorage.setItem('cryptonomicon-list', JSON.stringify(this.tickers));
     },
 
     selectTicker(ticker) {
       this.presentation = ticker;
-      this.graph = [];
     },
 
     closePresentation() {
       this.presentation = null;
     },
 
-    normalizeGraph() {
-      const maxValue = Math.max(...this.graph);
-      const minValue = Math.min(...this.graph);
-      return this.graph.map(
-        (price) => 5 + ((price - minValue) * 95) / (maxValue - minValue)
-      );
-    },
-
     handleInputChanged() {
       this.isTickerIncludes = false;
       this.hints = [];
       if (this.ticker.trim() === '') return;
+
       const ticker = this.ticker.toLowerCase();
       const finds = this.coinList
         .filter((coin) => coin.Symbol.toLowerCase().includes(ticker))
@@ -336,30 +373,32 @@ export default {
         ({ name }) => name.toLowerCase() === ticker.toLowerCase()
       );
     },
-    updateQuery() {
-      const url = new URL(window.location);
-      url.searchParams.set('filter', this.filter);
-      url.searchParams.set('page', this.page);
-      window.history.pushState({}, '', url);
-    },
-  },
-  async mounted() {
-    const request = await fetch(
-      'https://min-api.cryptocompare.com/data/all/coinlist?summary=true'
-    );
-    const responce = await request.json();
-    const coinList = Object.values(responce.Data);
-
-    this.coinList = coinList;
-    this.loading = false;
   },
   watch: {
+    presentation() {
+      this.graph = [];
+    },
+
+    tickers() {
+      localStorage.setItem('cryptonomicon-list', JSON.stringify(this.tickers));
+    },
+
+    paginatedTickers() {
+      if (this.paginatedTickers.length === 0 && this.page > 1) {
+        this.page -= 1;
+      }
+    },
+
     filter() {
       this.page = 1;
-      this.updateQuery();
     },
-    page() {
-      this.updateQuery();
+
+    pageStateOptions(values) {
+      const url = new URL(window.location);
+      Object.entries(values).forEach(([key, value]) => {
+        url.searchParams.set(key, value);
+      });
+      window.history.pushState({}, '', url);
     },
   },
 };
