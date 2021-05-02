@@ -192,7 +192,6 @@
 <script>
 import {
   loadCoinList,
-  // getTickers,
   subscribeToTicker,
   unsubscribeFromTicker,
 } from './api.js';
