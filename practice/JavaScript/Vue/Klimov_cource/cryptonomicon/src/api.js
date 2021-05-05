@@ -83,17 +83,20 @@ const sendToWebSocket = (message) => {
   );
 };
 
+const getSubcribeTickerCode = (ticker) =>
+  `${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`;
+
 const subscribeToTickerOnWs = (ticker) => {
   sendToWebSocket({
     action: 'SubAdd',
-    subs: [`${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`],
+    subs: [getSubcribeTickerCode(ticker)],
   });
 };
 
 const unsubscribeFromTickerOnWs = (ticker) => {
   sendToWebSocket({
     action: 'SubRemove',
-    subs: [`${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`],
+    subs: [getSubcribeTickerCode(ticker)],
   });
 };
 
