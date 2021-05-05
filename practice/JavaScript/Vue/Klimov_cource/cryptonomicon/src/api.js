@@ -1,3 +1,5 @@
+import { emitter, subscribeWithEffect, unsubscribeWithEffect } from './emitter';
+
 const API_URL = 'https://min-api.cryptocompare.com/data';
 const API_KEY =
   '73f89886b75e4cb708beb44cebe67c3f5748664a03ce3f344c08582445dbde2c';
@@ -13,14 +15,13 @@ export const loadCoinList = async () => {
 const AGGREGATE_INDEX = '5';
 const MARKET = 'CCCAGG';
 
-const tickersHandlers = new Map();
-
 let socket;
 const connect = () => {
   socket = new WebSocket(
     `wss://streamer.cryptocompare.com/v2?api_key=${API_KEY}`
   );
-  [...tickersHandlers.keys()].forEach((ticker) =>
+
+  Object.keys(emitter.events).forEach((ticker) =>
     subscribeToTickerOnWs(ticker)
   );
 
@@ -37,8 +38,7 @@ const connect = () => {
 connect();
 
 function updateTickerPrice(ticker, price) {
-  const handlers = tickersHandlers.get(ticker);
-  handlers.forEach((cb) => cb(price));
+  emitter.emit(ticker, price);
 }
 
 const CRYPTONOMICON_MESSAGE = 'cryptonomicon-message';
@@ -47,7 +47,6 @@ const CRYPTONOMICON_MASTER_TAB_ACTIVE = 'cryptonomicon-master-tab-active';
 // doesn't work in Safari, use localStorage instead
 const broadcastChannel = new BroadcastChannel('broadcast-channel');
 broadcastChannel.onmessage = (event) => {
-  console.log(event);
   if (event.data[CRYPTONOMICON_MESSAGE]) {
     const message = JSON.parse(event.data[CRYPTONOMICON_MESSAGE]);
     const { PRICE: price, FROMSYMBOL: ticker } = message;
@@ -99,14 +98,11 @@ const unsubscribeFromTickerOnWs = (ticker) => {
 };
 
 export const subscribeToTicker = (ticker, cb) => {
-  const subscribers = tickersHandlers.get(ticker) || [];
-  tickersHandlers.set(ticker, [...subscribers, cb]);
-  subscribeToTickerOnWs(ticker);
+  subscribeWithEffect(subscribeToTickerOnWs, ticker, cb);
 };
 
 export const unsubscribeFromTicker = (ticker) => {
-  tickersHandlers.delete(ticker);
-  unsubscribeFromTickerOnWs(ticker);
+  unsubscribeWithEffect(unsubscribeFromTickerOnWs, ticker);
 };
 
 function messageBroadcast(message) {
