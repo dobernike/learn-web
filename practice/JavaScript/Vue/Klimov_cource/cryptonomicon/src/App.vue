@@ -116,7 +116,7 @@
           >
             <div
               @click="selectTicker(t)"
-              :class="{ 'bg-red-100': t.price === '-' }"
+              :class="{ 'bg-red-100': t.price === 'ERROR' }"
               class="px-4 py-5 sm:p-6 text-center"
             >
               <dt class="text-sm font-medium text-gray-500 truncate">
@@ -296,6 +296,7 @@ export default {
     },
 
     formatPrice(price) {
+      if (price === 'ERROR') return '-';
       if (price === '-') return price;
 
       return price > 1 ? price.toFixed(2) : price.toPrecision(2);

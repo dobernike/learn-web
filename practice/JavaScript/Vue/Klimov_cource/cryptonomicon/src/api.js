@@ -13,7 +13,18 @@ export const loadCoinList = async () => {
 };
 
 const AGGREGATE_INDEX = '5';
+const INVALID_PARAMETER = '500';
 const MARKET = 'CCCAGG';
+
+const getSubcribeTickerCode = (ticker) =>
+  `${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`;
+
+const getTickerFromSubscribeCode = (code) => {
+  const codeExp = RegExp(
+    `${AGGREGATE_INDEX}~${MARKET}~(.*)~${DEFAULT_CURRENCY}`
+  );
+  return code.match(codeExp)?.[1];
+};
 
 let socket;
 const connect = () => {
@@ -27,7 +38,17 @@ const connect = () => {
 
   socket.addEventListener('message', (event) => {
     const message = JSON.parse(event.data);
-    const { TYPE: type, PRICE: price, FROMSYMBOL: ticker } = message;
+    const {
+      TYPE: type,
+      PRICE: price,
+      FROMSYMBOL: ticker,
+      PARAMETER: parametr,
+    } = message;
+
+    if (type === INVALID_PARAMETER) {
+      const ticker = getTickerFromSubscribeCode(parametr);
+      if (ticker) updateTickerPrice(ticker, 'ERROR');
+    }
 
     if (type !== AGGREGATE_INDEX || !price || !ticker) return;
 
@@ -82,9 +103,6 @@ const sendToWebSocket = (message) => {
     { once: true }
   );
 };
-
-const getSubcribeTickerCode = (ticker) =>
-  `${AGGREGATE_INDEX}~${MARKET}~${ticker}~${DEFAULT_CURRENCY}`;
 
 const subscribeToTickerOnWs = (ticker) => {
   sendToWebSocket({
