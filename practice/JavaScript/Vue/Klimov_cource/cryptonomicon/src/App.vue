@@ -153,12 +153,18 @@
         <h3 class="text-lg leading-6 font-medium text-gray-900 my-8">
           {{ presentation.name }}
         </h3>
-        <div class="flex items-end border-gray-600 border-b border-l h-64">
+        <div
+          ref="graph"
+          class="flex items-end border-gray-600 border-b border-l h-64"
+        >
           <div
             v-for="(bar, idx) in normalizedGraph"
             :key="idx"
-            :style="`height: ${bar}%`"
-            class="bg-purple-800 border w-10"
+            :style="{
+              height: `${bar}%`,
+              minWidth: `${MIN_WIDTH_BAR}px`,
+            }"
+            class="bg-purple-800 border"
           ></div>
         </div>
         <button
@@ -201,6 +207,7 @@ import {
 } from './api.js';
 
 const MAX_PER_PAGE = 6;
+const MIN_WIDTH_BAR = 38;
 
 export default {
   data() {
@@ -211,13 +218,17 @@ export default {
       isTickerIncludes: false,
       presentation: null,
       graph: [],
+      graphMaxElements: 1,
       coinList: {},
       hints: [],
       filter: '',
       page: 1,
     };
   },
+
   created() {
+    this.MIN_WIDTH_BAR = MIN_WIDTH_BAR;
+
     let params = new URL(document.location).searchParams;
 
     const VALID_KEYS = ['filter', 'page'];
@@ -237,10 +248,18 @@ export default {
       );
     }
   },
+
   async mounted() {
     this.coinList = await loadCoinList();
     this.loading = false;
+
+    window.addEventListener('resize', this.getGraphMaxElements);
   },
+
+  beforeUnmount() {
+    window.removeEventListener('resize', this.getGraphMaxElements);
+  },
+
   computed: {
     startIndex() {
       return MAX_PER_PAGE * (this.page - 1);
@@ -286,12 +305,26 @@ export default {
       );
     },
   },
+
   methods: {
+    getGraphMaxElements() {
+      if (this.presentation && this.graph.length) {
+        this.graphMaxElements = this.$refs.graph.clientWidth / MIN_WIDTH_BAR;
+      }
+    },
+
     updateTicker(tickerName, price) {
       this.tickers.find(({ name }) => name === tickerName).price = price;
 
       if (this.presentation?.name === tickerName) {
+        this.getGraphMaxElements();
         this.graph.push(price);
+
+        if (this.graph.length > this.graphMaxElements) {
+          this.graph = this.graph.slice(
+            this.graph.length - this.graphMaxElements
+          );
+        }
       }
     },
 
@@ -366,6 +399,7 @@ export default {
       );
     },
   },
+
   watch: {
     presentation() {
       this.graph = [];
