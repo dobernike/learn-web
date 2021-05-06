@@ -253,11 +253,11 @@ export default {
     this.coinList = await loadCoinList();
     this.loading = false;
 
-    window.addEventListener('resize', this.getGraphMaxElements);
+    window.addEventListener('resize', this.calculateGraphMaxElements);
   },
 
   beforeUnmount() {
-    window.removeEventListener('resize', this.getGraphMaxElements);
+    window.removeEventListener('resize', this.calculateGraphMaxElements);
   },
 
   computed: {
@@ -307,17 +307,16 @@ export default {
   },
 
   methods: {
-    getGraphMaxElements() {
-      if (this.presentation && this.graph.length) {
-        this.graphMaxElements = this.$refs.graph.clientWidth / MIN_WIDTH_BAR;
-      }
+    calculateGraphMaxElements() {
+      if (!this.$refs.graph) return;
+
+      this.graphMaxElements = this.$refs.graph.clientWidth / MIN_WIDTH_BAR;
     },
 
     updateTicker(tickerName, price) {
       this.tickers.find(({ name }) => name === tickerName).price = price;
 
       if (this.presentation?.name === tickerName) {
-        this.getGraphMaxElements();
         this.graph.push(price);
 
         if (this.graph.length > this.graphMaxElements) {
@@ -401,8 +400,12 @@ export default {
   },
 
   watch: {
-    presentation() {
+    presentation(value) {
       this.graph = [];
+
+      if (value === null) return;
+
+      this.$nextTick().then(this.calculateGraphMaxElements);
     },
 
     tickers() {
