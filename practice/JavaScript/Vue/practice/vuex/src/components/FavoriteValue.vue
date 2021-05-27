@@ -11,7 +11,7 @@ export default {
     // counter() {
     //   return this.$store.getters.normalizedCounter;
     // }
-    ...mapGetters(['normalizedCounter'])
+    ...mapGetters('numbers', ['normalizedCounter'])
   }
 };
 </script>
