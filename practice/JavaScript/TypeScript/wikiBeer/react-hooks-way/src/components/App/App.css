@@ -1,0 +1,307 @@
+/* global */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  -webkit-clip-path: inset(100%);
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.button {
+  display: inline-block;
+
+  padding: 10px;
+
+  font-size: 16px;
+  line-height: 18px;
+
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+
+  border: none;
+  border-radius: 3px;
+
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button--red {
+  background-color: #fb565a;
+}
+
+.button--red:hover,
+.button--red:focus {
+  background-color: #e74246;
+}
+
+.button--red:active {
+  color: rgba(255, 255, 255, 0.3);
+
+  background-color: #d7373b;
+  box-shadow: 0 3px rgba(0, 0, 0, 0.1) inset;
+}
+
+.button__sort:first-child {
+  margin-right: 10px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* header */
+.main-header {
+  margin-bottom: 6rem;
+}
+
+.main-header__wrapper {
+  margin-bottom: 2rem;
+
+  background-color: grey;
+}
+
+.main-header__sing-in {
+  text-align: right;
+}
+/* main */
+.main.container {
+  justify-content: space-around;
+}
+
+.beer-card {
+  box-sizing: border-box;
+
+  margin-bottom: 2rem;
+  position: relative;
+  width: 300px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.9fr 1fr;
+  grid-template-areas: "beer-card__image beer-card__wrapper" "beer-card__description beer-card__description";
+
+  border: 1px solid grey;
+}
+
+.beer-card__image {
+  grid-area: beer-card__image;
+  height: 200px;
+  margin: auto;
+}
+
+.beer-card__wrapper {
+  padding: 0 20px;
+  grid-area: beer-card__wrapper;
+}
+
+.beer-card__description {
+  padding: 0 20px;
+  grid-area: beer-card__description;
+}
+
+.beer-card__favorite-checkbox {
+  position: absolute;
+
+  bottom: 5px;
+  right: 5px;
+
+  cursor: pointer;
+}
+
+/* footer */
+.main-footer {
+  margin-top: 2rem;
+}
+
+.pagination {
+  margin-bottom: 2rem;
+}
+
+.pagination__list {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+
+  list-style: none;
+}
+
+.pagination__list a {
+  margin: 0;
+  padding: 0 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.3rem;
+
+  color: #4285f4;
+  text-decoration: none;
+}
+
+.pagination__list :not(.active) a:hover {
+  border-bottom: 1px solid black;
+}
+
+.pagination__list .active {
+  border: 2px solid aquamarine;
+  border-radius: 50px;
+}
+
+.pagination__list .active a {
+  cursor: auto;
+  color: #000000;
+}
+
+/* keyframes */
+@keyframes bounce {
+  0% {
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+
+  70% {
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+
+  90% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+/* modals */
+.modal {
+  position: fixed;
+
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+  z-index: 3;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+}
+
+.modal-login {
+  top: 136px;
+  left: 50%;
+
+  margin-left: -490px;
+
+  width: 980px;
+
+  text-align: center;
+  background-color: whitesmoke;
+  color: #000000;
+}
+
+.modal-login__title {
+  margin: 0;
+  margin-bottom: 25px;
+  padding-top: 37px;
+
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.modal-login__text {
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.modal-login__form {
+  margin-bottom: 37px;
+}
+
+.modal-login__item {
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+.modal-login__item:last-of-type {
+  margin-bottom: 20px;
+}
+
+.modal-login__input {
+  box-sizing: border-box;
+  width: 280px;
+  height: 50px;
+
+  padding-left: 18px;
+  padding-right: 40px;
+
+  border: 1px solid #e5ddd5;
+
+  background-repeat: no-repeat;
+  background-position: 245px center;
+}
+
+.modal-login__input:hover,
+.modal-login__input:focus {
+  outline-color: #999999;
+  border-color: #d5c9bd;
+}
+
+.modal-login__input:active {
+  border-color: #999999;
+}
+
+.modal-login__button {
+  display: inline-block;
+
+  width: 130px;
+
+  margin: 0 20px;
+}
+
+.modal-login__button--close {
+  background-color: grey;
+}
+
+.modal-login__button--close:hover {
+  opacity: 0.9;
+}
+
+.modal-login__button--close:active {
+  opacity: 0.6;
+}

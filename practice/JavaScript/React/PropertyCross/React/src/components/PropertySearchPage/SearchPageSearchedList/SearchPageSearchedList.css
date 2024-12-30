@@ -1,0 +1,10 @@
+.info {
+    margin-bottom: 0.5rem;
+}
+
+.list {
+    flex-grow: 1;
+
+    padding: 5px 10px;
+    border: 1px solid;
+}

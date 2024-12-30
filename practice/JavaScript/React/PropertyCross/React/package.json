@@ -1,0 +1,117 @@
+{
+    "name": "laboratory_practice",
+    "version": "1.0.0",
+    "description": "laboratory_practice",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dobernike/laboratory_practice.git"
+    },
+    "keywords": [],
+    "author": "dobernike",
+    "license": "ISC",
+    "scripts": {
+        "start": "webpack-dev-server --mode development --open --hot",
+        "build": "webpack --mode production",
+        "test": "jest",
+        "lint": "eslint --debug src/",
+        "lint:write": "eslint --fix",
+        "prettier": "prettier --write src/**/*.js"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.(js|jsx)": [
+            "npm run lint:write",
+            "git add"
+        ]
+    },
+    "jest": {
+        "verbose": true,
+        "clearMocks": false,
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx|ts|tsx)$",
+        "setupFilesAfterEnv": [
+            "<rootDir>src/setupTests.js"
+        ],
+        "testPathIgnorePatterns": [
+            "<rootDir>/(node_modules|.vscode)/"
+        ],
+        "collectCoverageFrom": [
+            "src/components/**/*.{js,jsx,ts,tsx}"
+        ],
+        "moduleNameMapper": {
+            "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+        }
+    },
+    "bugs": {
+        "url": "https://github.com/dobernike/laboratory_practice/issues"
+    },
+    "homepage": "https://github.com/dobernike/laboratory_practice#readme",
+    "devDependencies": {
+        "@babel/core": "^7.6.0",
+        "@babel/plugin-proposal-class-properties": "^7.5.5",
+        "@babel/preset-env": "^7.6.0",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-typescript": "^7.6.0",
+        "@ramda/includes": "^0.26.1",
+        "@ramda/indexby": "^0.26.1",
+        "@types/classnames": "^2.2.9",
+        "@types/enzyme": "^3.10.3",
+        "@types/enzyme-adapter-react-16": "^1.0.5",
+        "@types/jest": "^24.0.18",
+        "@types/react": "^16.9.5",
+        "@types/react-dom": "^16.9.1",
+        "@types/react-redux": "^7.1.4",
+        "@types/react-router-dom": "^5.1.0",
+        "autoprefixer": "^9.6.1",
+        "babel-loader": "^8.0.6",
+        "babel-plugin-react-css-modules": "^5.2.6",
+        "classnames": "^2.2.6",
+        "css-loader": "^3.2.0",
+        "enzyme": "^3.10.0",
+        "enzyme-adapter-react-16": "^1.15.1",
+        "eslint": "^6.1.0",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-config-node": "^4.0.0",
+        "eslint-config-prettier": "^6.3.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-react": "^7.14.3",
+        "eslint-plugin-react-hooks": "^1.7.0",
+        "eslint-plugin-sonarjs": "^0.4.0",
+        "exports-loader": "^0.7.0",
+        "html-webpack-plugin": "^3.2.0",
+        "husky": "^3.0.5",
+        "imports-loader": "^0.8.0",
+        "jest": "^24.9.0",
+        "jest-css-modules": "^2.1.0",
+        "lint-staged": "^9.2.5",
+        "postcss-loader": "^3.0.0",
+        "postcss-nested": "^4.1.2",
+        "prettier": "^1.18.2",
+        "prop-types": "^15.7.2",
+        "redux-devtools-extension": "^2.13.8",
+        "redux-thunk": "^2.3.0",
+        "reset-css": "^4.0.1",
+        "source-map-loader": "^0.2.4",
+        "style-loader": "^1.0.0",
+        "webpack": "^4.41.1",
+        "webpack-cli": "^3.3.9",
+        "webpack-dev-server": "^3.8.2",
+        "webpack-hot-middleware": "^2.25.0",
+        "whatwg-fetch": "2.0.0"
+    },
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "react-redux": "^7.1.1",
+        "react-router-dom": "^5.0.1",
+        "redux": "^4.0.4"
+    }
+}

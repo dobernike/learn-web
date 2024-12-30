@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>wikiBeer</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="main-header__wrapper">
+      <div class="container">
+        <button class="main-header__favorite button button--red " type="button">favorite</button>
+        <a href="/login" class="main-header__sing-in button button--red " type="button">sing in</a>
+      </div>
+    </div>
+    <section class="search-sort container">
+      <h1 class="visually-hidden">Поиск и сортировка</h1>
+      <form class="search" action="#">
+        <input type="search" list="beer">
+        <datalist id="beer">
+          <option value=""></option>
+        </datalist>
+      </form>
+      <div class="sort">
+        <button class="button button--red button__sort button__sort--name" type="button">Sort name</button>
+        <button class="button button--red button__sort button__sort--abv" type="button">Sort abv</button>
+      </div>
+    </section>
+  </header>
+
+  <main class="main container">
+    <article class="beer-card">
+      <h2 class="visually-hidden">Карточка товара "пива"</h2>
+      <img class="beer-card__image" alt="Бутылка пива" />
+      <div class="beer-card__wrapper">
+        <p class="beer-card__name">name</p>
+        <p class="beer-card__tagline">tagline</p>
+        <p class="beer-card__abv">abv</p>
+        <p class="beer-card__brewed">first_brewed</p>
+      </div>
+      <p class="beer-card__description">description</p>
+      <input class="beer-card__favorite-checkbox" type="checkbox" role="checkbox" title="В избранное" />
+    </article>
+
+    <article class="beer-card">
+      <h2 class="visually-hidden">Карточка товара "пива"</h2>
+      <img class="beer-card__image" alt="Бутылка пива" />
+      <div class="beer-card__wrapper">
+        <p class="beer-card__name">name</p>
+        <p class="beer-card__tagline">tagline</p>
+        <p class="beer-card__abv">abv</p>
+        <p class="beer-card__brewed">first_brewed</p>
+      </div>
+      <p class="beer-card__description">description</p>
+      <input class="beer-card__favorite-checkbox" type="checkbox" role="checkbox" title="В избранное" />
+    </article>
+
+    <article class="beer-card">
+      <h2 class="visually-hidden">Карточка товара "пива"</h2>
+      <img class="beer-card__image" alt="Бутылка пива" />
+      <div class="beer-card__wrapper">
+        <p class="beer-card__name">name</p>
+        <p class="beer-card__tagline">tagline</p>
+        <p class="beer-card__abv">abv</p>
+        <p class="beer-card__brewed">first_brewed</p>
+      </div>
+      <p class="beer-card__description">description</p>
+      <input class="beer-card__favorite-checkbox" type="checkbox" role="checkbox" title="В избранное" />
+    </article>
+
+    <article class="beer-card">
+      <h2 class="visually-hidden">Карточка товара "пива"</h2>
+      <img class="beer-card__image" alt="Бутылка пива" />
+      <div class="beer-card__wrapper">
+        <p class="beer-card__name">name</p>
+        <p class="beer-card__tagline">tagline</p>
+        <p class="beer-card__abv">abv</p>
+        <p class="beer-card__brewed">first_brewed</p>
+      </div>
+      <p class="beer-card__description">description</p>
+      <input class="beer-card__favorite-checkbox" type="checkbox" role="checkbox" title="В избранное" />
+    </article>
+
+    <article class="beer-card">
+      <h2 class="visually-hidden">Карточка товара "пива"</h2>
+      <img class="beer-card__image" alt="Бутылка пива" />
+      <div class="beer-card__wrapper">
+        <p class="beer-card__name">name</p>
+        <p class="beer-card__tagline">tagline</p>
+        <p class="beer-card__abv">abv</p>
+        <p class="beer-card__brewed">first_brewed</p>
+      </div>
+      <p class="beer-card__description">description</p>
+      <input class="beer-card__favorite-checkbox" type="checkbox" role="checkbox" title="В избранное" />
+    </article>
+
+    <article class="beer-card">
+      <h2 class="visually-hidden">Карточка товара "пива"</h2>
+      <img class="beer-card__image" alt="Бутылка пива" />
+      <div class="beer-card__wrapper">
+        <p class="beer-card__name">name</p>
+        <p class="beer-card__tagline">tagline</p>
+        <p class="beer-card__abv">abv</p>
+        <p class="beer-card__brewed">first_brewed</p>
+      </div>
+      <p class="beer-card__description">description</p>
+      <input class="beer-card__favorite-checkbox" type="checkbox" role="checkbox" title="В избранное" />
+    </article>
+
+  </main>
+
+  <footer class="main-footer">
+    <nav class="pagination" role="navigation">
+      <ul class="pagination__list">
+        <li><a href="#">left</a>&nbsp;</li>
+        <li class="active"><a href="#1">1</a></li>
+        <li><a href="#2">2</a></li>
+        <li><a href="#3">3</a></li>
+        <li><a href="#4">4</a></li>
+        <li><a href="#5">5</a></li>
+        <li><a href="#">right</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <div class="modal modal-login">
+    <h2 class="modal-login__title">
+      Личный кабинет
+    </h2>
+    <p class="modal-login__text">
+      Введите свой логин и пароль, чтобы войти
+    </p>
+    <form class="modal-login__form" action="#" method="post">
+      <p class="modal-login__item">
+        <label class="visually-hidden" for="user-name">Имя</label>
+        <input type="text" class="modal-login__input" id="user-name" name="login" placeholder="Имя..." autocomplete="on" required />
+      </p>
+      <p class="modal-login__item">
+        <label class="visually-hidden" for="user-email">Email</label>
+        <input type="email" class="modal-login__input" id="user-email" name="email" placeholder="Email..." autocomplete="on" required />
+      </p>
+      <p class="modal-login__item">
+        <label class="visually-hidden" for="user-password">Пароль</label>
+        <input type="password" class="modal-login__input" id="user-password" name="password" placeholder="Пароль..." minlength="6" maxlength="12" autocomplete="on" required />
+      </p>
+      <button class="modal-login__button modal-login__button--submit button button--red" type="submit">Войти</button>
+      <button class="modal-login__button 
+      modal-login__button--close button" type="button">Закрыть</button>
+    </form>
+  </div>
+
+  <div class="modal-overlay"></div>
+  <script src="./ts/main.ts"></script>
+</body>
+
+</html>

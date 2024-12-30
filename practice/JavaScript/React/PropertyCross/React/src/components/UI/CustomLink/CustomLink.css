@@ -1,0 +1,14 @@
+.link {
+    padding: 5px 10px;
+    border: 1px solid;
+    background: none;
+    box-shadow: 3px 2px #888888;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+
+    &:active {
+        box-shadow: none;
+    }
+}

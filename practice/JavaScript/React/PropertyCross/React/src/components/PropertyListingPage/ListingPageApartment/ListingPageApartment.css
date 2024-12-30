@@ -1,0 +1,26 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.location {
+    margin-bottom: 0.5rem;
+}
+
+.img {
+    margin-bottom: 1rem;
+    align-self: center;
+    max-width: 100%;
+}
+
+.rooms {
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,12 @@
+.form {
+    display: contents;
+}
+
+.searchWrapper {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.submitButton {
+    margin-right: 10px;
+}

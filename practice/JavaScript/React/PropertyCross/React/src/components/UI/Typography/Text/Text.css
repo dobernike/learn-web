@@ -1,0 +1,15 @@
+.text {
+    text-align: left;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.fontSizeMiddle {
+    font-size: 1.2rem;
+}
